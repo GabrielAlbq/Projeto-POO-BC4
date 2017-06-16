@@ -5,14 +5,14 @@ import repositorios.RepositorioVenda;
 
 
 public class ControladorVenda {
-	private RepositorioVenda repoItemVenda;
+	private RepositorioVenda repoVenda;
 	
 	// singleton
 	
 	private static ControladorVenda instancia;
 
 	private ControladorVenda() {
-		instancia = new ControladorVenda();
+		repoVenda = RepositorioVenda.intanciar();
 	}
 	
 	public static ControladorVenda instanciar() {
@@ -29,9 +29,9 @@ public class ControladorVenda {
 			return -1;
 		}
 		
-		ItemVenda[] teste = repoItemVenda.getArrayItem();
+		ItemVenda[] teste = repoVenda.getArrayItem();
 		
-		for (int i = 0; i < repoItemVenda.getTAM_MAX() ; i++) {
+		for (int i = 0; i < repoVenda.getTAM_MAX() ; i++) {
 			if( id == teste[i].getCodigo() ) {
 				return i;
 			}
@@ -58,7 +58,7 @@ public class ControladorVenda {
 			System.out.println("\n\n\tErro, item já inserido!\n\n");
 			return false;
 		}
-		repoItemVenda.inserir(itemInserir);
+		repoVenda.inserir(itemInserir);
 		return true;
 	}
 	
@@ -72,7 +72,7 @@ public class ControladorVenda {
 			System.out.println("\n\n\tErro, item inexistente!\n\n");
 			return false;
 		}
-		repoItemVenda.remover(codigo);
+		repoVenda.remover(codigo);
 		return true;
 	}
 }
