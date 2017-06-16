@@ -1,7 +1,7 @@
-package Controladores;
+package controladores;
 
-import Beans.Produto;
-import Repositorios.RepositorioEstoque;
+import beans.Produto;
+import repositorios.RepositorioEstoque;
 
 public class ControladorEstoque {
 	//ATRIBUTOS

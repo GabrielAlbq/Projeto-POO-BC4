@@ -1,6 +1,6 @@
-package Repositorios;
+package repositorios;
 
-import Beans.Produto;
+import beans.Produto;
 
 public class RepositorioEstoque {
 	//ATRIBUTOS

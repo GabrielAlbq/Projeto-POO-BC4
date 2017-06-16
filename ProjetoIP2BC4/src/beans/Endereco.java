@@ -1,4 +1,4 @@
-package Beans;
+package beans;
 
 public class Endereco {
 	private String rua;

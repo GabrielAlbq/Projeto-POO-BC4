@@ -1,4 +1,4 @@
-package Beans;
+package beans;
 
 public class Produto {
 	//Atributos

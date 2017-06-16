@@ -1,7 +1,7 @@
-package Controladores;
+package controladores;
 
-import Beans.Funcionario;
-import Repositorios.RepositorioFuncionario;
+import beans.Funcionario;
+import repositorios.RepositorioFuncionario;
 
 public class ControladorFuncionario {
 	
@@ -73,7 +73,7 @@ public class ControladorFuncionario {
 			return false;
 		}
 		if(identificacao <= 0) {
-			System.out.println("\n\tErro, Identificação inválida!\n\n");
+			System.out.println("\n\tErro, identifica��o inválida!\n\n");
 			return false;
 		}
 		
@@ -96,7 +96,7 @@ public class ControladorFuncionario {
 			return false;
 		}
 		if(funcionarioAlterar.getIdentificacao() <= 0) {
-			System.out.println("\n\tErro, identificação inválida!");
+			System.out.println("\n\tErro, identifica��o inválida!");
 			return false;
 		}
 		
@@ -115,7 +115,7 @@ public class ControladorFuncionario {
 	
 	public Funcionario buscar (int identificacao) {
 		if(identificacao <= 0) {
-			System.out.println("\n\tErro, identificação inválida!\n\n");
+			System.out.println("\n\tErro, identifica��o inválida!\n\n");
 			return null;
 		}
 		

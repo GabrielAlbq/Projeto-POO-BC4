@@ -1,6 +1,6 @@
-package Repositorios;
+package repositorios;
 
-import Beans.Funcionario;
+import beans.Funcionario;
 
 public class RepositorioFuncionario {
 	private final int TAMMAX = 10;
@@ -58,6 +58,11 @@ public class RepositorioFuncionario {
 
 	public int getTAMMAX() {
 		return TAMMAX;
+	}
+	
+	public Funcionario retornarFuncionario(int identificacao) { // Foi usado na Fachada
+		
+		return funcionario[identificacao];
 	}
 	
 	public void imprimirTodos() {

@@ -1,17 +1,92 @@
-package Principal;
+package principal;
 
 import java.util.Scanner;
 
-import Beans.*;
-import Controladores.ControladorFuncionario;
+import beans.*;
+import controladores.*;
+import repositorios.*;
 
 public class PrincipalTeste {
 	public static void main(String[] args) {
 		
-		/*================================================================================*/
-		
 		Scanner scanf = new Scanner(System.in);
 		
+		// CONTROLADORES INSTANCIADOS
+		
+		ControladorFuncionario controladorFuncionario = ControladorFuncionario.instanciarControlFuncionario();
+		ControladorEstoque controladorEstoque = ControladorEstoque.getInstancia();
+		ControladorVenda controladorVenda = ControladorVenda.instanciar();
+		
+		// REPOSITORIOS INSTANCIADOS
+		
+		RepositorioFuncionario repositorioFuncionario = RepositorioFuncionario.instanciarRepoFuncionario();
+		RepositorioEstoque repositorioEstoque = RepositorioEstoque.getInstancia();
+		RepositorioVenda repositorioVenda = RepositorioVenda.intanciar();
+		
+		int opcao, identificacao;
+		boolean parar = false;
+		boolean vender = true;
+		
+		
+		while(!parar) {
+			System.out.println("\n\n=========================================\n\n\tMercadinho mil grau\n\n1 - sistema de vendas\n"
+							 + "2 - sistema de estoque\n3 - sistema financeiro\n4 - sistema de funcionarios\n\n==> ");
+			opcao = scanf.nextInt();
+			
+			switch(opcao) {
+			case 1: {
+				System.out.println("\n\n=========================================\n\n\tsistema de vendas\n\n1 - registrar venda"
+						         + "\n2 - listar vendas\n3 - deletar historico\n");
+				opcao = scanf.nextInt();
+				
+				if( opcao == 1 ) {
+					// tem um laço e nele um sysout com todos os itens a serem vendidos, o usuario escolhe o item, e depois sua quantidade
+					// apos a quantidade do produto, o usuario dirá se quer mais algum produto, se ele nao quiser a venda será encerrada.
+					// é emitida uma nota fiscal, que será armazenada no repositorio venda, o dinheiro total é enviado para o repositorio financeiro
+					//  e os produtos vendidos sao retirados do estoque.
+					// essa informação será enviada para a nota fiscal desta venda, que terá o funcionario que efetuou a venda, indentificacao
+					System.out.println("\n\n=========================================\n\n\tInforme a identificação do funcionario: ");
+					identificacao = scanf.nextInt();
+					if( controladorFuncionario.buscar(identificacao) == null) {
+						System.out.println("\n\tErro, funcionario inexistente\n\n");
+						vender  = false;
+					}
+					while( vender ) {
+						System.out.println("\n\n=========================================\n\n\tFuncionario: "+repositorioFuncionario.retornarFuncionario(identificacao).getPessoa().getNome());
+						//System.out.println("\n\n(1) - ");
+					}
+					vender = true;
+				} 
+				else if (opcao == 2) {
+					// chamar controlador venda, que possui o metodo listar todas as vendas
+				} 
+				else if(opcao == 3) {
+					// chamar o controlador venda, que apaga o historico
+				}
+				break;
+			}
+			case 2: {
+				
+				
+				break;
+			}
+			case 3: {
+				
+				
+				break;
+			}
+			case 4: {
+				
+				
+				break;
+			}			
+		}
+		} // fechamento do switch externo
+	}
+}
+
+	  		
+	/*
 		String rua, cep, cidade, nome, cpf, numero, funcao = "vendedor";
 		boolean parar = false;
 		int identificacao, opcao;
@@ -28,7 +103,7 @@ public class PrincipalTeste {
 		Funcionario f2 = new Funcionario(p2,"vendedor",2000,2);
 		Funcionario funcionarioTeste;
 		
-		/*================================================================================*/
+	
 		
 		ControladorFuncionario controladorFuncionario;
 		controladorFuncionario = ControladorFuncionario.instanciarControlFuncionario();
@@ -114,6 +189,4 @@ public class PrincipalTeste {
 		
 		if(scanf != null)
 			scanf.close();
-	}
-}
-
+	 */
