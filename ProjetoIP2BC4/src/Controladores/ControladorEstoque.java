@@ -6,10 +6,18 @@ import Repositorios.RepositorioEstoque;
 public class ControladorEstoque {
 	//ATRIBUTOS
 	RepositorioEstoque repoestoque;
+	private static ControladorEstoque instancia;
 	
-	//CONTROLADOR
-	public ControladorEstoque(){
+	//SINGLETON
+	private ControladorEstoque(){
 		repoestoque = RepositorioEstoque.getInstancia();
+	}
+	
+	public static ControladorEstoque getInstancia(){
+		if(instancia == null){
+			instancia = new ControladorEstoque();
+		}
+		return instancia;
 	}
 	
 	public RepositorioEstoque getRepoestoque() {
