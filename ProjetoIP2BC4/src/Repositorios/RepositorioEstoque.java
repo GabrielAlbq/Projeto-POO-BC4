@@ -18,7 +18,7 @@ public class RepositorioEstoque {
 		if(instancia == null){
 			instancia = new RepositorioEstoque();
 		}
-		return null;
+		return instancia;
 	}
 
 	//GET
