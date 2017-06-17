@@ -2,15 +2,35 @@ package principal;
 
 import java.util.Scanner;
 
-import beans.*;
-import controladores.*;
-import repositorios.*;
+import beans.Endereco;
+import beans.Funcionario;
+import beans.Pessoa;
+import controladores.ControladorEstoque;
+import controladores.ControladorFuncionario;
+import controladores.ControladorVenda;
+import repositorios.RepositorioEstoque;
+import repositorios.RepositorioFuncionario;
+import repositorios.RepositorioVenda;
 
 public class PrincipalTeste {
 	public static void main(String[] args) {
 		
 		Scanner scanf = new Scanner(System.in);
 		
+		// TESTES
+		
+		Endereco e1 = new Endereco("Rua A", "Cidade A", "12345-100", "999");
+		Endereco e2 = new Endereco("Rua B", "Cidade B", "98765-100", "333");
+		Endereco enderecoTeste;
+		
+		Pessoa p1 = new Pessoa(e1, "fabio", "11111111111");
+		Pessoa p2 = new Pessoa(e2, "duda", "99999999999");
+		Pessoa pessoaTeste;
+		
+		Funcionario f1 = new Funcionario(p1,"vendedor",2000,1);
+		Funcionario f2 = new Funcionario(p2,"vendedor",2000,2);
+		Funcionario funcionarioTeste;
+			
 		// CONTROLADORES INSTANCIADOS
 		
 		ControladorFuncionario controladorFuncionario = ControladorFuncionario.instanciarControlFuncionario();
@@ -23,20 +43,23 @@ public class PrincipalTeste {
 		RepositorioEstoque repositorioEstoque = RepositorioEstoque.getInstancia();
 		RepositorioVenda repositorioVenda = RepositorioVenda.intanciar();
 		
+		controladorFuncionario.inserir(f1);
+		controladorFuncionario.inserir(f2);
+		
 		int opcao, identificacao;
 		boolean parar = false;
 		boolean vender = true;
 		
 		
 		while(!parar) {
-			System.out.println("\n\n=========================================\n\n\tMercadinho mil grau\n\n1 - sistema de vendas\n"
-							 + "2 - sistema de estoque\n3 - sistema financeiro\n4 - sistema de funcionarios\n\n==> ");
+			System.out.println("\n\n=========================================\n\n\tMercadinho mil grau\n\n(1) - Sistema de Vendas\n"
+							 + "(2) - Sistema de Estoque\n(3) - Sistema Financeiro\n(4) - Sistema de Funcionarios\n\n==> ");
 			opcao = scanf.nextInt();
 			
 			switch(opcao) {
 			case 1: {
-				System.out.println("\n\n=========================================\n\n\tsistema de vendas\n\n1 - registrar venda"
-						         + "\n2 - listar vendas\n3 - deletar historico\n");
+				System.out.println("\n\n=========================================\n\n\tSistema de Vendas\n\n(1) - Registrar Venda"
+						         + "\n(2) - Listar Vendas\n(3) - Deletar Histórico\n");
 				opcao = scanf.nextInt();
 				
 				if( opcao == 1 ) {
@@ -48,13 +71,11 @@ public class PrincipalTeste {
 					System.out.println("\n\n=========================================\n\n\tInforme a identificação do funcionario: ");
 					identificacao = scanf.nextInt();
 					if( controladorFuncionario.buscar(identificacao) == null) {
-						System.out.println("\n\tErro, funcionario inexistente\n\n");
+						System.out.println("\n\tErro! Funcionario inexistente\n\n");
 						vender  = false;
 					}
-					while( vender ) {
-						System.out.println("\n\n=========================================\n\n\tFuncionario: "+repositorioFuncionario.retornarFuncionario(identificacao).getPessoa().getNome());
-						//System.out.println("\n\n(1) - ");
-					}
+					System.out.println("\n\n=========================================\n\n\tFuncionario "
+					+repositorioFuncionario.retornarFuncionario(identificacao).getPessoa().getNome() + " irá registrar a venda\n");
 					vender = true;
 				} 
 				else if (opcao == 2) {

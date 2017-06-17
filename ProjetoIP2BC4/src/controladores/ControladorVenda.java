@@ -58,7 +58,7 @@ public class ControladorVenda {
 			System.out.println("\n\n\tErro, item já inserido!\n\n");
 			return false;
 		}
-		repoVenda.inserir(itemInserir);
+		repoVenda.efetuarVenda(itemInserir);
 		return true;
 	}
 	
@@ -72,7 +72,7 @@ public class ControladorVenda {
 			System.out.println("\n\n\tErro, item inexistente!\n\n");
 			return false;
 		}
-		repoVenda.remover(codigo);
+		repoVenda.limparHistorico();
 		return true;
 	}
 }

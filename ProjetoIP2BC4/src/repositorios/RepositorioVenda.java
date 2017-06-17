@@ -3,13 +3,14 @@ package repositorios;
 import java.util.ArrayList;
 
 import beans.ItemVenda;
+import beans.Produto;
 
 public class RepositorioVenda {
 	private int TAM_MAX = 100;
 	private int qtdItem;
 	private ItemVenda[] arrayItem;
 
-	// singleton
+	// Singleton
 	
 	private static RepositorioVenda instancia;
 	
@@ -26,23 +27,23 @@ public class RepositorioVenda {
 	
 	// CRUD
 	
-	public void inserir(ItemVenda itemInserir) {
-		//arrayItem[]
+	public void efetuarVenda(ItemVenda itemInserir) {
+		this.arrayItem[qtdItem] = itemInserir;
+		this.qtdItem++;
 	}
 	
-	public void remover(int codigo) {
-		
-	}
-	
-	public void alterar(ItemVenda item, int posicao) {
-		
+	public void limparHistorico() {
+		for (int i = 0 ; i < qtdItem; i++){
+			arrayItem[i] = null;
+		}
+		qtdItem = 0;
 	}
 	
 	public ItemVenda buscar (int codigo) {
-		return null;
+		return this.arrayItem[codigo];
 	}
 
-	// gets
+	// GETS
 	
 	public ItemVenda[] getArrayItem() {
 		return this.arrayItem;
