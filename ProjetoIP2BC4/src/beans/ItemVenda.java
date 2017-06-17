@@ -73,9 +73,9 @@ public class ItemVenda {
     public String toString() {
         return 
                 "Produto: " + getNome() + "\n" +  
-                "Código: " + getCodigo() + "\n" +
-                "Quantidadea: " + getQtd() + "\n" +
-                "Preço: " + getPreco() + "\n";
+                "CÃ³digo: " + getCodigo() + "\n" +
+                "Quantidade: " + getQtd() + "\n" +
+                "PreÃ§o: " + getPreco() + "\n";
     }
 }
 

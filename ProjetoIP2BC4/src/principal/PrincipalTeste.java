@@ -20,16 +20,16 @@ public class PrincipalTeste {
 		
 		// TESTES
 		
-		ItemVenda item1 = new ItemVenda (10, "P„o", 0.50, 100);
+		ItemVenda item1 = new ItemVenda (10, "P√£o", 0.50, 100);
 		ItemVenda item2 = new ItemVenda (20, "Arroz", 3.50, 100);
-		ItemVenda item3 = new ItemVenda (30, "Feij„o", 4.00, 100);
-		ItemVenda item4 = new ItemVenda (40, "Macarr„o", 2.50, 100);
+		ItemVenda item3 = new ItemVenda (30, "Feij√£o", 4.00, 100);
+		ItemVenda item4 = new ItemVenda (40, "Macarr√£o", 2.50, 100);
 		ItemVenda item5 = new ItemVenda (50, "Galinha", 10.00, 100);
-		ItemVenda item6 = new ItemVenda (60, "Guaran· em Lata", 3.00, 100);
+		ItemVenda item6 = new ItemVenda (60, "Guaran√° em Lata", 3.00, 100);
 		ItemVenda item7 = new ItemVenda (70, "Sorvete 2L", 13.00, 100);
 		ItemVenda item8 = new ItemVenda (80, "Biscoito", 1.50, 100);
 		ItemVenda item9 = new ItemVenda (90, "Salgadinho", 1.50, 100);
-		ItemVenda item10 = new ItemVenda (100, "¡gua", 1.00, 100);
+		ItemVenda item10 = new ItemVenda (100, "√°gua", 1.00, 100);
 		
 		Endereco e1 = new Endereco("Rua A", "Cidade A", "12345-100", "999");
 		Endereco e2 = new Endereco("Rua B", "Cidade B", "98765-100", "333");
@@ -71,23 +71,23 @@ public class PrincipalTeste {
 			switch(opcao) {
 			case 1: {
 				System.out.println("\n\n=========================================\n\n\tSistema de Vendas\n\n(1) - Registrar Venda"
-						         + "\n(2) - Listar Vendas\n(3) - Deletar HistÛrico\n");
+						         + "\n(2) - Listar Vendas\n(3) - Deletar Hist√≥rico\n");
 				opcao = scanf.nextInt();
 				
 				if( opcao == 1 ) {
-					// tem um laÁo e nele um sysout com todos os itens a serem vendidos, o usuario escolhe o item, e depois sua quantidade
-					// apos a quantidade do produto, o usuario dir· se quer mais algum produto, se ele nao quiser a venda ser· encerrada.
-					// È emitida uma nota fiscal, que ser· armazenada no repositorio venda, o dinheiro total È enviado para o repositorio financeiro
+					// tem um la√ßo e nele um sysout com todos os itens a serem vendidos, o usuario escolhe o item, e depois sua quantidade
+					// apos a quantidade do produto, o usuario dir√° se quer mais algum produto, se ele nao quiser a venda ser√° encerrada.
+					// √â emitida uma nota fiscal, que ser√° armazenada no repositorio venda, o dinheiro total √© enviado para o repositorio financeiro
 					//  e os produtos vendidos sao retirados do estoque.
-					// essa informaÁ„o ser· enviada para a nota fiscal desta venda, que ter· o funcionario que efetuou a venda, indentificacao
-					System.out.println("\n\n=========================================\n\n\tInforme a identificaÁ„o do funcionario: ");
+					// essa informa√ß√£o ser√° enviada para a nota fiscal desta venda, que ter√° o funcionario que efetuou a venda, indentificacao
+					System.out.println("\n\n=========================================\n\n\tInforme a identifica√ß√£o do funcionario: ");
 					identificacao = scanf.nextInt();
 					if( controladorFuncionario.buscar(identificacao) == null) {
 						System.out.println("\n\tErro! Funcionario inexistente\n\n");
 						vender  = false;
 					}
 					System.out.println("\n\n=========================================\n\n\tFuncionario "
-					+repositorioFuncionario.retornarFuncionario(identificacao).getPessoa().getNome() + " ir· registrar a venda\n");
+					+repositorioFuncionario.retornarFuncionario(identificacao).getPessoa().getNome() + " ir√° registrar a venda\n");
 					System.out.println("\n\n==========================================\n\n\tTabela de produtos\n\n");
 					//for (int i = 0; i < ; i++)
 					
