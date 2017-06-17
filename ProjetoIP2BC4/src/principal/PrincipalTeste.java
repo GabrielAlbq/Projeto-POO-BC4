@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import beans.Endereco;
 import beans.Funcionario;
+import beans.ItemVenda;
 import beans.Pessoa;
 import controladores.ControladorEstoque;
 import controladores.ControladorFuncionario;
@@ -18,6 +19,17 @@ public class PrincipalTeste {
 		Scanner scanf = new Scanner(System.in);
 		
 		// TESTES
+		
+		ItemVenda item1 = new ItemVenda (10, "Pão", 0.50, 100);
+		ItemVenda item2 = new ItemVenda (20, "Arroz", 3.50, 100);
+		ItemVenda item3 = new ItemVenda (30, "Feijão", 4.00, 100);
+		ItemVenda item4 = new ItemVenda (40, "Macarrão", 2.50, 100);
+		ItemVenda item5 = new ItemVenda (50, "Galinha", 10.00, 100);
+		ItemVenda item6 = new ItemVenda (60, "Guaraná em Lata", 3.00, 100);
+		ItemVenda item7 = new ItemVenda (70, "Sorvete 2L", 13.00, 100);
+		ItemVenda item8 = new ItemVenda (80, "Biscoito", 1.50, 100);
+		ItemVenda item9 = new ItemVenda (90, "Salgadinho", 1.50, 100);
+		ItemVenda item10 = new ItemVenda (100, "Água", 1.00, 100);
 		
 		Endereco e1 = new Endereco("Rua A", "Cidade A", "12345-100", "999");
 		Endereco e2 = new Endereco("Rua B", "Cidade B", "98765-100", "333");
@@ -76,6 +88,9 @@ public class PrincipalTeste {
 					}
 					System.out.println("\n\n=========================================\n\n\tFuncionario "
 					+repositorioFuncionario.retornarFuncionario(identificacao).getPessoa().getNome() + " irá registrar a venda\n");
+					System.out.println("\n\n==========================================\n\n\tTabela de produtos\n\n");
+					//for (int i = 0; i < ; i++)
+					
 					vender = true;
 				} 
 				else if (opcao == 2) {

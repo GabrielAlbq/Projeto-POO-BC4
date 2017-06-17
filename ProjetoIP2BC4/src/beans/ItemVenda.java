@@ -1,16 +1,29 @@
 package beans;
 
 public class ItemVenda {
+	
+	// ATRIBUTOS 
+	
 	private String nome;
 	private double preco;
 	private int codigo;
+	private int qtd;
 	
-	public ItemVenda(String nome, double preco, int codigo) {
+	// CONSTRUTORES
+	
+	public ItemVenda(int codigo, String nome, double preco, int qtd) {
 		this.nome = nome;
 		this.preco = preco;
 		this.codigo = codigo;
+		this.qtd = qtd;
+	}
+	
+	public ItemVenda (){
+		
 	}
 
+	// GET E SET 
+	
 	public String getNome() {
 		return nome;
 	}
@@ -35,6 +48,16 @@ public class ItemVenda {
 		this.codigo = codigo;
 	}	
 	
+	public int getQtd() {
+		return qtd;
+	}
+
+	public void setQtd(int qtd) {
+		this.qtd = qtd;
+	}
+	
+	// EQUALS
+	
 	public boolean equals(ItemVenda item) {
 		if(item == null)
 			return false;
@@ -44,5 +67,15 @@ public class ItemVenda {
 		
 		return false;
 	}
+	
+	// TO STRING
+
+    public String toString() {
+        return 
+                "Produto: " + getNome() + "\n" +  
+                "Código: " + getCodigo() + "\n" +
+                "Quantidadea: " + getQtd() + "\n" +
+                "Preço: " + getPreco() + "\n";
+    }
 }
 
