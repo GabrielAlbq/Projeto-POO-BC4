@@ -72,23 +72,12 @@ public class PrincipalTeste {
 				opcao = scanf.nextInt();
 				
 				if( opcao == 1 ) {
-					// tem um laço e nele um sysout com todos os itens a serem vendidos, o usuario escolhe o item, e depois sua quantidade
-					// apos a quantidade do produto, o usuario dirá se quer mais algum produto, se ele nao quiser a venda será encerrada.
-					// É emitida uma nota fiscal, que será armazenada no repositorio venda, o dinheiro total é enviado para o repositorio financeiro
-					//  e os produtos vendidos sao retirados do estoque.
-					// essa informação será enviada para a nota fiscal desta venda, que terá o funcionario que efetuou a venda, indentificacao
-					System.out.println("\n\n=========================================\n\n\tInforme a identificação do funcionario: ");
-					identificacao = scanf.nextInt();
-					if( controladorFuncionario.buscar(identificacao) == null) {
-						System.out.println("\n\tErro! Funcionario inexistente\n\n");
-						vender  = false;
-					}
-					System.out.println("\n\n=========================================\n\n\tFuncionario "
-					+repositorioFuncionario.retornarFuncionario(identificacao).getPessoa().getNome() + " irá registrar a venda\n");
-					System.out.println("\n\n==========================================\n\n\tTabela de produtos\n\n");
-					//for (int i = 0; i < ; i++)
-					
-					vender = true;
+					// receber id do funcionario
+					// abrir tabela de itens de venda
+					// selecionar item e quantidade em um la�o
+					// se terminar pergunta se quer concluir a venda
+					// se concluir chamar o metodo de pedido - encerrarPedido
+					// se cancelar o pedido chamar o metodo de peddo - resetarPedido
 				} 
 				else if (opcao == 2) {
 					// chamar controlador venda, que possui o metodo listar todas as vendas

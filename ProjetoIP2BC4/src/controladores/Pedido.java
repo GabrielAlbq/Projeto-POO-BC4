@@ -102,8 +102,9 @@ public class Pedido {
 	
 	// gera uma nota fiscal, deve ser usada antes do metodo encerrar pedido
 	public NotaFiscal gerarNotaFiscal() {
-		NotaFiscal notaFiscal = new NotaFiscal(funcionario, arrayItem, totalPagar, contadorCodigoNota);
+		NotaFiscal teste = new NotaFiscal(funcionario, arrayItem, totalPagar, contadorCodigoNota, qtdItens);
+		repoVenda.adicionarNotaFiscal( teste );
 		contadorCodigoNota++;
-		return notaFiscal;
+		return teste;
 	}
 }

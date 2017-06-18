@@ -1,17 +1,22 @@
 package controladores;
 
 import beans.Produto;
+import beans.ItemVenda;
 import repositorios.RepositorioEstoque;
+import repositorios.RepositorioVenda;
+
 
 public class ControladorEstoque {
 	//ATRIBUTOS
 	RepositorioEstoque repoestoque;
+	RepositorioVenda repoVenda;
 	private static ControladorEstoque instancia;
 	
 	//SINGLETON
 	
 	private ControladorEstoque(){
 		repoestoque = RepositorioEstoque.getInstancia();
+		repoVenda = RepositorioVenda.intanciar();
 	}
 	
 	public static ControladorEstoque getInstancia(){
@@ -41,7 +46,7 @@ public class ControladorEstoque {
 	}
 	
 	public boolean inserir(Produto prod){
-		if(prod == null || prod.getCodigo() == 0 || prod.getNome() == null)
+		if(prod == null || prod.getCodigo() <= 0 || prod.getNome() == null)
 			return false;
 		if(repoestoque.getQuantSKU() == repoestoque.getProdutos().length)
 			return false;
@@ -50,9 +55,11 @@ public class ControladorEstoque {
 			return false;
 		}
 		repoestoque.inserir(prod);
+		repoVenda.inserir( new ItemVenda(prod.getCodigo(), prod.getNome(), prod.getPreco(), 0) );
 		System.out.println("Produto adicionado com sucesso!");
 		return true;
 	}
+	
 	public Produto buscar(int cod){
 		int posicao;
 		posicao = this.retornarPosicao(cod);
@@ -63,6 +70,7 @@ public class ControladorEstoque {
 		}
 		return null;
 	}
+	
 	public boolean alterar(Produto novoProduto){
 		int posicao;
 		if(novoProduto == null){
@@ -86,6 +94,7 @@ public class ControladorEstoque {
 			return false;
 		}
 		repoestoque.remover(posicao);
+		repoVenda.remover(posicao);
 		System.out.println("Produto removido com sucesso!");
 		return true;
 	}

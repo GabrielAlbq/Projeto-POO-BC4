@@ -1,4 +1,4 @@
-package controladores;
+  package controladores;
 
 import beans.*;
 import repositorios.*;
@@ -43,26 +43,6 @@ public class ControladorVenda {
 		return -1;
 	}
 	
-	public boolean inserir(ItemVenda item) {
-		// TODO
-		return false;
-	}
-	
-	public boolean remover(int codigo) {
-		// TODO
-		
-		return false;
-	}
-	
-	public boolean alterar(int codigo) {
-		// TODO
-		return false;
-	}
-	
-	public ItemVenda buscar() {
-		// TODO
-		return null;
-	}
 	// este metodo checa se existe o produto com este codigo e quantidade no repositorioEstoque
 	// se houver ele retorna verdadeiro, para validar a subtração deste produto na quantidade
 	public boolean checarQuantidade(int codigo, int quantidade) {
@@ -80,7 +60,7 @@ public class ControladorVenda {
 		return false;
 	}
 	
-	public boolean efetuarPedido(int codigo, int quantidade, Funcionario funcionario) {
+	public boolean efetuarPedido (int codigo, int quantidade, Funcionario funcionario) {
 		if( codigo <= 0 ) {
 			System.out.println("\n\n\tErro! código inválido!");
 			return false;
@@ -111,11 +91,21 @@ public class ControladorVenda {
 	}
 	
 	// apaga as notas fiscais armazenadas no repositorioVenda
-	public void limparHistorico () {
+	public void limparHistoricoNotasFiscais () {
 		repoVenda.setQtdNotaFiscal(0);
 		for (int i = 0 ; i < repoVenda.getQtdNotaFiscal(); i++){
-			repoVenda.limparHistorico(i);
+			repoVenda.limparHistoricoNotasFiscais(i);
 		}
+	}
+	
+	// imprimir todas os produtos - nome(preço)\nqtd\ncodigo
+	public String listarProdutos () {
+		Produto[] teste = repoEstoque.getProdutos();
+		String texto = "";
+		for (int i = 0; i < repoEstoque.getQuantSKU(); i++) {
+			texto = texto+"\n"+teste[i].getNome()+"(R$ "+teste[i].getPreco()+")\nQuantidade: "+teste[i].getQuantidade()+"\nCodigo: "+teste[i].getCodigo()+"\n";
+		}
+		return texto;
 	}
 	
 	public String listarVendas () {

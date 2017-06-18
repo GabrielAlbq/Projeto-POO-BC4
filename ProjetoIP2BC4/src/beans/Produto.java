@@ -13,8 +13,6 @@ public class Produto {
 		this.quantidade = quantidade;
 		this.preco = preco;
 	}
-	public Produto(){
-	}
 	
 	//Get e Set
 	public String getNome() {

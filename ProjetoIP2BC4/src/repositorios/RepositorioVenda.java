@@ -32,13 +32,47 @@ public class RepositorioVenda {
 
 	// metodos
 	
-	public void limparHistorico (int posicao) {
+	
+	// limpa todas as notas fiscais
+	public void limparHistoricoNotasFiscais (int posicao) {
 		this.notaFiscal[posicao] = null;
 	}
+
+	// imprimir todas as notas fiscais
+
+	public String listarNotasFiscais () {
+		String texto = "";
+		for (int i = 0; i < qtdNotaFiscal; i++) {
+			texto = texto+notaFiscal[i].toString();
+		}
+		return texto;
+	}
+	
 	
 	public void adicionarNotaFiscal(NotaFiscal notaFiscal) {
 		this.notaFiscal[qtdNotaFiscal] = notaFiscal;
 		qtdNotaFiscal++;
+	}
+	
+	// não prescisa de validações, pois estas já foram feitas no controlador estoque!
+	public void inserir(ItemVenda item) {
+		arrayItem[qtdItem] = item;
+		qtdItem++;
+	}
+	
+	public void remover(int posicao) {
+		arrayItem[posicao] = null;
+		qtdItem--;
+	}
+	
+	public boolean alterar(int codigo) {
+		// TODO
+		return false;
+	}
+	
+	public ItemVenda buscar() {
+		// TODO
+		return null;
 	}
 	
 	// GETS
@@ -53,6 +87,10 @@ public class RepositorioVenda {
 	
 	public int getQtdNotaFiscal() {
 		return qtdNotaFiscal;
+	}
+	
+	public int getQtdItem() {
+		return qtdItem;
 	}
 	
 	public void setQtdNotaFiscal(int n) {
