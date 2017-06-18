@@ -45,6 +45,15 @@ public class ControladorFinanceiro {
 		return false;
 	}
 	
+	public boolean receberDinheiro (double valor){
+		if (valor <= 0){
+			System.out.println("\n\n\tErro! Valor invalido\n");
+			return false;
+		}
+		repositorioFinanceiro.receberDinheiroVenda(valor);
+		return true;
+	}
+	
 	
 	
 	

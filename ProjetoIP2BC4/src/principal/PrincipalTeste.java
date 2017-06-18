@@ -62,6 +62,7 @@ public class PrincipalTeste {
 					// se terminar pergunta se quer concluir a venda
 					// se concluir chamar o metodo de pedido - encerrarPedido
 					// se cancelar o pedido chamar o metodo de peddo - resetarPedido
+					
 						
 				} 
 				else if (opcao == 2) {

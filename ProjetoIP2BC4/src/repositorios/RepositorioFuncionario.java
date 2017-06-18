@@ -25,7 +25,7 @@ public class RepositorioFuncionario {
 		qtdFuncionario = 0;
 	}
 	
-	// metodos - as validações serao feitas no controlador utilizando estes metodos
+	// metodos - as validacoes serao feitas no controlador utilizando estes metodos
 	
 	public void pagarFancionario (int posicao){
 		funcionario[posicao].setRecebeuSalario(true);

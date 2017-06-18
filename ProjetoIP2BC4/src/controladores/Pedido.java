@@ -92,7 +92,6 @@ public class Pedido {
 			totalPagar += arrayItem[i].valorTotal();
 		}
 		
-		// TODO implementar a ida do dinheiro para o repo financeiro
 		// laço que subtrai os itens de venda dos produtos estocados
 		for (int i = 0; i < qtdItens; i++) {
 			controlEstoque.subtrairProduto( arrayItem[i].getCodigo() , arrayItem[i].getQtd());
