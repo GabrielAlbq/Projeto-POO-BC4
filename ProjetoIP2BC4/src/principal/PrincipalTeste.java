@@ -16,7 +16,7 @@ public class PrincipalTeste {
 		// OBJETOS DE TESTE - Armazena-los em arquivo depois!
 		
 		String[] nomes = {"Salgadinho","Biscoito","Sorvete","Arroz","Coca-Cola","Feijao","Macarrao","Acucar","Agua","Farinha"};
-		double[] precos = {1.50, 1.50, 3.50, 4.00, 8.00, 7.00, 2.50, 3.00, 1.00, 4.00};
+		double[] precos = {1.50, 1.50, 13.00, 4.00, 8.00, 7.00, 2.50, 3.00, 1.00, 4.00};
 		int codigoProduto[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 		
 		Produto[] produto = new Produto[10];
@@ -66,10 +66,10 @@ public class PrincipalTeste {
 						
 				} 
 				else if (opcao == 2) {
-					// chamar controlador venda, que possui o metodo listar todas as vendas
+					// Chamar controlador venda, que possui o metodo listar todas as vendas
 				} 
 				else if(opcao == 3) {
-					// chamar o controlador venda, que apaga o historico
+					// Chamar o controlador venda, que apaga o historico
 				}
 				
 				else if (opcao == 4){
