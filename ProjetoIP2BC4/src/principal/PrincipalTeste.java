@@ -2,34 +2,43 @@ package principal;
 
 import java.util.Scanner;
 
-import beans.Endereco;
-import beans.Funcionario;
-import beans.ItemVenda;
-import beans.Pessoa;
-import controladores.ControladorEstoque;
-import controladores.ControladorFuncionario;
-import controladores.ControladorVenda;
-import repositorios.RepositorioEstoque;
-import repositorios.RepositorioFuncionario;
-import repositorios.RepositorioVenda;
+import beans.*;
+import controladores.*;
+import repositorios.*;
 
 public class PrincipalTeste {
 	public static void main(String[] args) {
 		
+		// TODO todos os controladores serao instanciados pela fachada, trocar depois!
+		// CONTROLADORES INSTANCIADOS
+		
+		ControladorFuncionario controladorFuncionario = ControladorFuncionario.instanciarControlFuncionario();
+		ControladorEstoque controladorEstoque = ControladorEstoque.getInstancia();
+		ControladorVenda controladorVenda = ControladorVenda.instanciar();
+		
+		// REPOSITORIOS INSTANCIADOS
+				
+		RepositorioFuncionario repositorioFuncionario = RepositorioFuncionario.instanciarRepoFuncionario();
+		RepositorioEstoque repositorioEstoque = RepositorioEstoque.getInstancia();
+		RepositorioVenda repositorioVenda = RepositorioVenda.intanciar();
+		
+		// SCANNER
+		
 		Scanner scanf = new Scanner(System.in);
 		
-		// TESTES
+		// OBJETOS DE TESTE - Armazena-los em arquivo depois!
 		
-		ItemVenda item1 = new ItemVenda (10, "P√£o", 0.50, 100);
-		ItemVenda item2 = new ItemVenda (20, "Arroz", 3.50, 100);
-		ItemVenda item3 = new ItemVenda (30, "Feij√£o", 4.00, 100);
-		ItemVenda item4 = new ItemVenda (40, "Macarr√£o", 2.50, 100);
-		ItemVenda item5 = new ItemVenda (50, "Galinha", 10.00, 100);
-		ItemVenda item6 = new ItemVenda (60, "Guaran√° em Lata", 3.00, 100);
-		ItemVenda item7 = new ItemVenda (70, "Sorvete 2L", 13.00, 100);
-		ItemVenda item8 = new ItemVenda (80, "Biscoito", 1.50, 100);
-		ItemVenda item9 = new ItemVenda (90, "Salgadinho", 1.50, 100);
-		ItemVenda item10 = new ItemVenda (100, "√°gua", 1.00, 100);
+		String[] nomes = {"Salgadinho","Biscoito","Sorvete","Arroz","Coca-Cola","Feij„o","Macarr„o","AÁ˙car","¡gua","Farinha"};
+		double[] precos = {1.50, 1.50, 3.50, 4.00, 8.00, 7.00, 2.50, 3.00, 1.00, 4.00};
+		int codigoProduto[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+		
+		Produto[] produto = new Produto[10];
+		ItemVenda[] itens = new ItemVenda[10];
+		
+		for (int i = 0; i < produto.length; i++) {
+			produto[i] = new Produto( nomes[i], codigoProduto[i],100, precos[i]);
+			itens[i] = new ItemVenda(codigoProduto[i], nomes[i], precos[i], i);
+		}
 		
 		Endereco e1 = new Endereco("Rua A", "Cidade A", "12345-100", "999");
 		Endereco e2 = new Endereco("Rua B", "Cidade B", "98765-100", "333");
@@ -43,18 +52,6 @@ public class PrincipalTeste {
 		Funcionario f2 = new Funcionario(p2,"vendedor",2000,2);
 		Funcionario funcionarioTeste;
 			
-		// CONTROLADORES INSTANCIADOS
-		
-		ControladorFuncionario controladorFuncionario = ControladorFuncionario.instanciarControlFuncionario();
-		ControladorEstoque controladorEstoque = ControladorEstoque.getInstancia();
-		ControladorVenda controladorVenda = ControladorVenda.instanciar();
-		
-		// REPOSITORIOS INSTANCIADOS
-		
-		RepositorioFuncionario repositorioFuncionario = RepositorioFuncionario.instanciarRepoFuncionario();
-		RepositorioEstoque repositorioEstoque = RepositorioEstoque.getInstancia();
-		RepositorioVenda repositorioVenda = RepositorioVenda.intanciar();
-		
 		controladorFuncionario.inserir(f1);
 		controladorFuncionario.inserir(f2);
 		

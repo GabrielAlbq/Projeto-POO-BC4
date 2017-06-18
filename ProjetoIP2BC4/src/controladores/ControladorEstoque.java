@@ -9,6 +9,7 @@ public class ControladorEstoque {
 	private static ControladorEstoque instancia;
 	
 	//SINGLETON
+	
 	private ControladorEstoque(){
 		repoestoque = RepositorioEstoque.getInstancia();
 	}
@@ -25,6 +26,20 @@ public class ControladorEstoque {
 	}
 	
 	//METODOS COM CONTROLE DE NEGOCIOS
+	
+	public boolean subtrairProduto (int codigo, int quantidade) {
+		Produto[] produtos = repoestoque.getProdutos();
+		for (int i = 0; i < repoestoque.getQuantSKU(); i++) {
+			if( codigo == produtos[i].getCodigo() ) {
+				if( quantidade <= produtos[i].getQuantidade() ) {
+					repoestoque.subtrairProduto(codigo, quantidade);
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
 	public boolean inserir(Produto prod){
 		if(prod == null || prod.getCodigo() == 0 || prod.getNome() == null)
 			return false;

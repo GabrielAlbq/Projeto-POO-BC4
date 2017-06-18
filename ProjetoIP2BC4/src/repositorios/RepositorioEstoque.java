@@ -30,6 +30,9 @@ public class RepositorioEstoque {
 	}
 	
 	//METODOS
+	public void subtrairProduto (int posicao, int quantidade) {
+		produtos[posicao].setQuantidade( produtos[posicao].getQuantidade()-quantidade );
+	}
 	public void inserir(Produto prod){
 		this.produtos[quantSKU] = prod;
 		this.quantSKU++;

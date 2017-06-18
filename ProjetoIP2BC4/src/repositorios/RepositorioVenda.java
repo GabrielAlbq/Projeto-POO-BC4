@@ -2,13 +2,15 @@ package repositorios;
 
 import java.util.ArrayList;
 
-import beans.ItemVenda;
-import beans.Produto;
+import beans.*;
 
 public class RepositorioVenda {
 	private int TAM_MAX = 100;
+	private int TAM_MAX_NOTAS_FISCAIS = 1000;
 	private int qtdItem;
-	private ItemVenda[] arrayItem;
+	private int qtdNotaFiscal;
+	private ItemVenda[] arrayItem;// itens genericos que serao vendidos, copias da classe Produto.
+	private NotaFiscal[] notaFiscal; 
 
 	// Singleton
 	
@@ -16,6 +18,9 @@ public class RepositorioVenda {
 	
 	private RepositorioVenda () {
 		arrayItem = new ItemVenda[TAM_MAX];
+		notaFiscal = new NotaFiscal[TAM_MAX_NOTAS_FISCAIS];
+		qtdItem = 0;
+		qtdNotaFiscal = 0;
 	}
 	
 	public static RepositorioVenda intanciar() {
@@ -24,31 +29,33 @@ public class RepositorioVenda {
 		}
 		return instancia;
 	}
-	
-	// CRUD
-	
-	public void efetuarVenda(ItemVenda itemInserir) {
-		this.arrayItem[qtdItem] = itemInserir;
-		this.qtdItem++;
-	}
-	
-	public void limparHistorico() {
-		for (int i = 0 ; i < qtdItem; i++){
-			arrayItem[i] = null;
-		}
-		qtdItem = 0;
-	}
-	
-	public ItemVenda buscar (int codigo) {
-		return this.arrayItem[codigo];
-	}
 
+	// metodos
+	
+	public void limparHistorico (int posicao) {
+		this.notaFiscal[posicao] = null;
+	}
+	
+	public void adicionarNotaFiscal(NotaFiscal notaFiscal) {
+		this.notaFiscal[qtdNotaFiscal] = notaFiscal;
+		qtdNotaFiscal++;
+	}
+	
 	// GETS
 	
 	public ItemVenda[] getArrayItem() {
-		return this.arrayItem;
+		return arrayItem;
 	}
-	public int getTAM_MAX() {
-		return this.TAM_MAX;
+
+	public NotaFiscal[] getNotaFiscal() {
+		return notaFiscal;
+	}
+	
+	public int getQtdNotaFiscal() {
+		return qtdNotaFiscal;
+	}
+	
+	public void setQtdNotaFiscal(int n) {
+		qtdNotaFiscal = n;
 	}
 }

@@ -18,9 +18,10 @@ public class ItemVenda {
 		this.qtd = qtd;
 	}
 	
-	public ItemVenda (){
-		
+	public double valorTotal() {
+		return qtd * preco;
 	}
+	
 
 	// GET E SET 
 	
@@ -70,12 +71,10 @@ public class ItemVenda {
 	
 	// TO STRING
 
-    public String toString() {
-        return 
-                "Produto: " + getNome() + "\n" +  
-                "Código: " + getCodigo() + "\n" +
-                "Quantidade: " + getQtd() + "\n" +
-                "Preço: " + getPreco() + "\n";
-    }
+	@Override
+	public String toString() {
+		return "[ Nome: " + nome + ", Preco: R$" + preco + ", Quantidade: " + qtd + " ]";
+	}
+
 }
 
