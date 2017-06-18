@@ -1,10 +1,11 @@
 package repositorios;
 
-import beans.Funcionario;
+import beans.*;
 
 public class RepositorioFinanceiro {
 	
 	RepositorioFuncionario repositorioFuncionario;
+	RepositorioEstoque repositorioEstoque;
 	
 	// ATRIBUTO
 	
@@ -27,12 +28,13 @@ public class RepositorioFinanceiro {
 	
 	// CONSTRUTOR 
 	
-	public RepositorioFinanceiro() {
+	private RepositorioFinanceiro() {
 		this.repositorioFuncionario = RepositorioFuncionario.instanciarRepoFuncionario();
+		this.repositorioEstoque = RepositorioEstoque.getInstancia();
 		this.rendaBruta = 100000;
-		this.totalFuncionarios = 0;
-		this.totalFornecedor = 0;
-		this.rendaLiquida = 0;
+		this.totalFuncionarios = totalSalarioFuncionarios();
+		this.totalFornecedor = totalFornecedor();
+		this.rendaLiquida = rendaBruta - totalFornecedor() - totalSalarioFuncionarios();
 		this.totalVendas = 0;
 	}
 
@@ -48,8 +50,25 @@ public class RepositorioFinanceiro {
 	
 	// MÉTODOS
 	
-	public void pagarFuncionario (Funcionario func, boolean recebeuSalario, int posicao){
-		Funcionario [] funcionario = repositorioFuncionario.getFuncionario();
+	public double totalSalarioFuncionarios () {
+		double totalFuncionario = 0;
+		Funcionario[] func = repositorioFuncionario.getFuncionario();
+		for (int i = 0; i < repositorioFuncionario.getQtdFuncionario(); i++) {
+			totalFuncionario += func[i].getSalario();
+		}
+		return totalFuncionario;
+	}
+	
+	public double totalFornecedor () {
+		double totalFornecedor = 0;
+		Produto[] produtos = repositorioEstoque.getProdutos();
+		for (int i = 0; i < repositorioEstoque.getQuantSKU(); i++) {
+			totalFornecedor += (produtos[i].getPreco()*produtos[i].getQuantidade());
+		}
+		return totalFornecedor;
+	}
+	
+	public void pagarFuncionario (Funcionario func, int posicao){
 		repositorioFuncionario.pagarFancionario(posicao);
 		rendaBruta -= func.getSalario();
 		System.out.println("Funcionario pago!");
@@ -61,10 +80,10 @@ public class RepositorioFinanceiro {
 	
 	public String exibirFinancas (){
 		String teste = "";
-		teste = teste + "\n\n\t\tExibir Financas\n\tRenda total: "+rendaBruta + "\n\tSalario dos funcionarios: ";
-		
-		
-		return null;
+		teste += "\n\n\t\tExibir Financas\n\tRenda total: R$ "+rendaBruta + "\n\tSalario dos funcionarios: R$ ";
+		teste += totalSalarioFuncionarios()+"\n\tTotal fornecedor: R$ "+totalFornecedor()+"\n\tRenda liquida: R$ ";
+		teste += rendaLiquida+"\n\tTotal Vendas: R$ "+totalVendas+"\n\n";
+		return teste;
 	}
 	
 	// TODO pagar fornecedor

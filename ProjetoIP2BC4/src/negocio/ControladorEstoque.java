@@ -1,4 +1,4 @@
-package controladores;
+package negocio;
 
 import beans.Produto;
 import beans.ItemVenda;

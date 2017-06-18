@@ -1,4 +1,5 @@
-package controladores;
+
+package negocio;
 
 import beans.Funcionario;
 import repositorios.RepositorioFuncionario;
@@ -24,13 +25,13 @@ public class ControladorFuncionario {
 		
 	}
 	
-	// Metodos - As validacoes sao feitas nesta classe para chamar os metodos do repositorio
+	// métodos - As validações sao feitas nesta classe para chamar os metodos do repositorio
 
 	public int retornaPosicao (int identificacao) {
 		Funcionario[] funcionarioTeste = repoFuncionario.getFuncionario();
 		
 		if( identificacao <= 0 ) {
-			return -1; // Retorna -1 se a identificacao for negativa ou se nao achar a posicao
+			return -1; // retorna -1 se a identificação for negativa ou se nao achar a posicao
 		}
 		for(int n = 0; n < repoFuncionario.getQtdFuncionario() ; n++ ) {
 			if( identificacao == funcionarioTeste[n].getIdentificacao() ) {
@@ -92,18 +93,18 @@ public class ControladorFuncionario {
 	
 	public boolean alterar (Funcionario funcionarioAlterar) {
 		if(funcionarioAlterar == null) {
-			System.out.println("\n\n\tErro, funcionário nulo!\n\n");
+			System.out.println("\n\n\tErro! Funcionario nulo!\n\n");
 			return false;
 		}
 		if(funcionarioAlterar.getIdentificacao() <= 0) {
-			System.out.println("\n\tErro, identifica��o inválida!");
+			System.out.println("\n\tErro! Identifica�ao invalida!");
 			return false;
 		}
-		
+
 		int checagem = retornaPosicao(funcionarioAlterar.getIdentificacao());
 		
 		if(checagem == -1) {
-			System.out.println("\n\tErro, funcionário nao exite!\n\n");
+			System.out.println("\n\tErro! Funcionario nao exite!\n\n");
 			return false;
 		}
 		

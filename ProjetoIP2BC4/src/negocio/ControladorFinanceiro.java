@@ -1,4 +1,4 @@
-package controladores;
+package negocio;
 
 import beans.Funcionario;
 import repositorios.RepositorioFinanceiro;
@@ -6,9 +6,9 @@ import repositorios.RepositorioFuncionario;
 
 public class ControladorFinanceiro {
 	
-	ControladorFuncionario controladorFuncionario = ControladorFuncionario.instanciarControlFuncionario();
-	RepositorioFuncionario repositorioFuncionario = RepositorioFuncionario.instanciarRepoFuncionario();
-	RepositorioFinanceiro repositorioFinanceiro = RepositorioFinanceiro.instanciarRepoFinanceiro();
+	private ControladorFuncionario controladorFuncionario;
+	private RepositorioFuncionario repositorioFuncionario;
+	private RepositorioFinanceiro repositorioFinanceiro;
 	
 	
 	// SINGLETON
@@ -25,18 +25,24 @@ public class ControladorFinanceiro {
 	// CONSTRUTOR
 		
 	private ControladorFinanceiro () {
-			
+		controladorFuncionario = ControladorFuncionario.instanciarControlFuncionario();
+		repositorioFinanceiro = RepositorioFinanceiro.instanciarRepoFinanceiro();
+		repositorioFuncionario = RepositorioFuncionario.instanciarRepoFuncionario();
 	}
 	
 	// MÉTODOS 
 	
-	public boolean pagarFuncionario (Funcionario func, boolean recebeuSalario){
+	public boolean pagarFuncionario (Funcionario func){
+		if( func == null ) {
+			System.out.println("\n\n\tErro! funcionario nulo!");
+			return false;
+		}
 		Funcionario [] funcionario = repositorioFuncionario.getFuncionario();
 		for (int i = 0; i < repositorioFuncionario.getQtdFuncionario(); i++) {
 			if (func.getIdentificacao() == funcionario[i].getIdentificacao()){
 				if (repositorioFinanceiro.getRendaBruta() - func.getSalario() >= 0){
 					if (func.getRecebeuSalario() == false){
-						repositorioFinanceiro.pagarFuncionario(func, recebeuSalario, i);
+						repositorioFinanceiro.pagarFuncionario(func, i);
 						return true;
 					}
 				}
@@ -45,7 +51,7 @@ public class ControladorFinanceiro {
 		return false;
 	}
 	
-	public boolean receberDinheiro (double valor){
+	public boolean receberDinheiroVenda (double valor){
 		if (valor <= 0){
 			System.out.println("\n\n\tErro! Valor invalido\n");
 			return false;
@@ -53,9 +59,4 @@ public class ControladorFinanceiro {
 		repositorioFinanceiro.receberDinheiroVenda(valor);
 		return true;
 	}
-	
-	
-	
-	
-	
 }

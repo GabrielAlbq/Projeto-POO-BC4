@@ -1,4 +1,4 @@
-package controladores;
+package negocio;
 
 import repositorios.*;
 import beans.*;
