@@ -24,13 +24,13 @@ public class ControladorFuncionario {
 		
 	}
 	
-	// métodos - As validações sao feitas nesta classe para chamar os metodos do repositorio
+	// Metodos - As validacoes sao feitas nesta classe para chamar os metodos do repositorio
 
 	public int retornaPosicao (int identificacao) {
 		Funcionario[] funcionarioTeste = repoFuncionario.getFuncionario();
 		
 		if( identificacao <= 0 ) {
-			return -1; // retorna -1 se a identificação for negativa ou se nao achar a posicao
+			return -1; // Retorna -1 se a identificacao for negativa ou se nao achar a posicao
 		}
 		for(int n = 0; n < repoFuncionario.getQtdFuncionario() ; n++ ) {
 			if( identificacao == funcionarioTeste[n].getIdentificacao() ) {

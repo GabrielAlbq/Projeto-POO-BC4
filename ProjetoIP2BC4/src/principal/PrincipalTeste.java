@@ -9,19 +9,6 @@ import repositorios.*;
 public class PrincipalTeste {
 	public static void main(String[] args) {
 		
-		// TODO todos os controladores serao instanciados pela fachada, trocar depois!
-		// CONTROLADORES INSTANCIADOS
-		
-		ControladorFuncionario controladorFuncionario = ControladorFuncionario.instanciarControlFuncionario();
-		ControladorEstoque controladorEstoque = ControladorEstoque.getInstancia();
-		ControladorVenda controladorVenda = ControladorVenda.instanciar();
-		
-		// REPOSITORIOS INSTANCIADOS
-				
-		RepositorioFuncionario repositorioFuncionario = RepositorioFuncionario.instanciarRepoFuncionario();
-		RepositorioEstoque repositorioEstoque = RepositorioEstoque.getInstancia();
-		RepositorioVenda repositorioVenda = RepositorioVenda.intanciar();
-		
 		// SCANNER
 		
 		Scanner scanf = new Scanner(System.in);
@@ -51,10 +38,7 @@ public class PrincipalTeste {
 		Funcionario f1 = new Funcionario(p1,"vendedor",2000,1);
 		Funcionario f2 = new Funcionario(p2,"vendedor",2000,2);
 		Funcionario funcionarioTeste;
-			
-		controladorFuncionario.inserir(f1);
-		controladorFuncionario.inserir(f2);
-		
+
 		int opcao, identificacao;
 		boolean parar = false;
 		boolean vender = true;
@@ -62,13 +46,13 @@ public class PrincipalTeste {
 		
 		while(!parar) {
 			System.out.println("\n\n=========================================\n\n\tMercadinho mil grau\n\n(1) - Sistema de Vendas\n"
-							 + "(2) - Sistema de Estoque\n(3) - Sistema Financeiro\n(4) - Sistema de Funcionarios\n\n==> ");
+							 + "(2) - Sistema de Estoque\n(3) - Sistema de Funcionario\n(4) - Sistema Financeiro\n(5) - Fechar programa\n\n==> ");
 			opcao = scanf.nextInt();
 			
 			switch(opcao) {
 			case 1: {
 				System.out.println("\n\n=========================================\n\n\tSistema de Vendas\n\n(1) - Registrar Venda"
-						         + "\n(2) - Listar Vendas\n(3) - Deletar Histórico\n");
+						         + "\n(2) - Listar Vendas\n(3) - Deletar Historico\n(4) - Menu principal");
 				opcao = scanf.nextInt();
 				
 				if( opcao == 1 ) {
@@ -78,6 +62,7 @@ public class PrincipalTeste {
 					// se terminar pergunta se quer concluir a venda
 					// se concluir chamar o metodo de pedido - encerrarPedido
 					// se cancelar o pedido chamar o metodo de peddo - resetarPedido
+						
 				} 
 				else if (opcao == 2) {
 					// chamar controlador venda, que possui o metodo listar todas as vendas
@@ -85,23 +70,101 @@ public class PrincipalTeste {
 				else if(opcao == 3) {
 					// chamar o controlador venda, que apaga o historico
 				}
+				
+				else if (opcao == 4){
+							// Corrigir a redundancia depois 			
+				}
+				else {
+					System.out.println("\n\n\tOpcao invalida\n\n");
+				}
+				
 				break;
 			}
 			case 2: {
+				System.out.println("\n\n=========================================\n\n\tSistema de estoque\n\n(1) - Adicionar produto"
+				         + "\n(2) - Atualizar produtor\n(3) - Remover produto\n(4) - Buscar produto\n(5) - Menu principal\n\n");
 				
+				opcao = scanf.nextInt();
+				
+				if( opcao == 1 ) {
+					
+						
+				} 
+				else if (opcao == 2) {
+				
+				} 
+				else if(opcao == 3) {
+					
+				}
+				
+				else if (opcao == 4){
+		
+				}
+				else {
+					System.out.println("\n\n\tOpcao invalida\n\n");
+				}
 				
 				break;
 			}
 			case 3: {
+				System.out.println("\n\n=========================================\n\n\tSistema de Funcionario\n\n(1) - Adicionar funcionario"
+				         + "\n(2) - Atualizar funcionario\n(3) - Remover funcionario\n(4) - Buscar funcionario\n(5) - Menu principal\n\n");
+				
+				opcao = scanf.nextInt();
+				
+				if( opcao == 1 ) {
+					
+						
+				} 
+				else if (opcao == 2) {
+				
+				} 
+				else if(opcao == 3) {
+					
+				}
+				
+				else if (opcao == 4){
+		
+				}
+				else {
+					System.out.println("\n\n\tOpcao invalida\n\n");
+				}
 				
 				
 				break;
 			}
 			case 4: {
+				System.out.println("\n\n=========================================\n\n\tSistema Financeiro\n\n(1) - Pagar funcionario"
+				         + "\n(2) - Contatar fornecedor\n(3) - Informacoes das financas\n(4) - Menu principal\n\n");
+				
+				opcao = scanf.nextInt();
+				
+				if( opcao == 1 ) {
+					
+						
+				} 
+				else if (opcao == 2) {
+				
+				} 
+				else if(opcao == 3) {
+					
+				}
+				
+				else if (opcao == 4){
+		
+				}
+				else {
+					System.out.println("\n\n\tOpcao invalida\n\n");
+				}
+				
 				
 				
 				break;
-			}			
+			}	
+			case 5: {
+				parar = true;				
+				break;
+			}	
 		}
 		} // fechamento do switch externo
 	}
