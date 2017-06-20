@@ -33,12 +33,16 @@ public class Fachada {
 		return instancia;
 	}
 	private RepositorioFuncionario repositorioFuncionario;
-
+	//GEt
+	public ControladorEstoque getControladorEstoque() {
+		return controladorEstoque;
+	}
 	// SISTEMA VENDA
 	
 	public void vender (){
 		
 	}
+	
 	
 	public String listarVendas(){
 		return repositorioVenda.listarNotasFiscais();
@@ -52,9 +56,6 @@ public class Fachada {
 	
 	public void inserirProduto (Produto produto){
 		controladorEstoque.inserir(produto);
-			//return true;
-		//return false;
-	
 	}
 	
 	public void atualizarProduto (Produto novoProduto){
@@ -65,8 +66,8 @@ public class Fachada {
 		controladorEstoque.remover(indentificacao);
 	}
 	
-	public void buscarProduto (int codigo){
-		controladorEstoque.buscar(codigo);
+	public Produto buscarProduto (int codigo){
+		return controladorEstoque.buscar(codigo);
 	}
 	
 	// SISTEMA FUNCIONARIO

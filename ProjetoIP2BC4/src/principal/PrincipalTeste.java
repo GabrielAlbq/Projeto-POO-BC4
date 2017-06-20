@@ -83,15 +83,22 @@ public class PrincipalTeste {
 				break;
 			}
 			case 2: {
-				System.out.println("\n\n=========================================\n\n\tSistema de estoque\n\n(1) - Adicionar produto"
-				         + "\n(2) - Atualizar produtor\n(3) - Remover produto\n(4) - Buscar produto\n(5) - Menu principal\n\n");
+				System.out.println("\n\n=========================================\n\n\tSistema de estoque\n\n(1) - Listar Produtos"
+				         + "\n(2) - Adicionar produto\n(3) - Atualizar produtor\n(4) - Remover produto\n(5) - Buscar produto\n(6) - Menu principal\n\n");
 				
 				opcao = scanf.nextInt();
 				String nome;
 				int codigo;
 				int quantidade;
 				double preco;
-				if( opcao == 1 ) {
+				if( opcao == 1){
+					int i = 0;
+					for(i=0;i<fachada.getControladorEstoque().getRepoestoque().getQuantSKU();i++){
+						System.out.println("#" + (i+1));
+						System.out.println(fachada.getControladorEstoque().getRepoestoque().getProdutos()[i]);
+					}
+				}
+				else if( opcao == 2 ) {
 					
 					System.out.println("Digite o codigo do produto");
 					codigo = scanf.nextInt();
@@ -105,25 +112,41 @@ public class PrincipalTeste {
 					Produto prod = new Produto(nome,codigo,quantidade,preco);
 					fachada.inserirProduto(prod);				
 				}
-				else if (opcao == 2) {
-					//int codigo;
-					
+				else if (opcao == 3) {
+					//TODO Reestruturar a alteracao do produto
+					opcao = 0;
 					System.out.println("Digite o codigo do produto que será atualizado");
 					codigo = scanf.nextInt();
-					
-					System.out.println("Digite a nova quantidade");
-					quantidade = scanf.nextInt();
-					
-					System.out.println("Digite o novo preco");
-					preco = scanf.nextDouble();
+					System.out.println("O que você deseja alterar?\n(1)Quantidade\n(2)Preco\n(3)Nome");
+					opcao = scanf.nextInt();
+					if(opcao == 1){
+						Produto prod = new Produto();
+						System.out.println("Digite a nova quantidade");
+						quantidade = scanf.nextInt();
+						fachada.atualizarProduto(prod);
+					}
+					else if(opcao == 2){
+						
+						System.out.println("Digite o novo preco");
+						preco = scanf.nextDouble();
+					}
+					else if(opcao == 3){
+						
+						System.out.println("Digite o novo nome");
+						nome = scanf.nextLine();
+					}
 					//Produto prod = controladorestoque.getRepoestoque().alterar(prod, posicao);
 				} 
-				else if(opcao == 3) {
-					
+				else if(opcao == 4) {
+					System.out.println("Digite o codigo do produto a ser removido");
+					codigo = scanf.nextInt();
+					fachada.removerProduto(codigo);
 				}
 				
-				else if (opcao == 4){
-		
+				else if (opcao == 5){
+					System.out.println("Digite o codigo do produto a ser buscado");
+					codigo = scanf.nextInt();
+					System.out.println(fachada.buscarProduto(codigo));
 				}
 				else {
 					System.out.println("\n\n\tOpcao invalida\n\n");

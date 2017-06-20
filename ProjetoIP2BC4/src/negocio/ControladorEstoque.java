@@ -83,6 +83,7 @@ public class ControladorEstoque {
 		}
 		if(repoestoque.getProdutos()[posicao].getCodigo() == novoProduto.getCodigo()){
 			repoestoque.alterar(novoProduto,posicao);
+			System.out.println("Produto alterado com sucesso!");
 		return true;
 		}
 		return false;

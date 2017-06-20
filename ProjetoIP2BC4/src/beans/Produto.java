@@ -13,6 +13,8 @@ public class Produto {
 		this.quantidade = quantidade;
 		this.preco = preco;
 	}
+	public Produto(){
+	}
 	
 	//Get e Set
 	public String getNome() {
@@ -42,7 +44,7 @@ public class Produto {
 	
 	
 	public String toString() {
-		return "Nome: " + nome + "\nCodigo: " + codigo + "\nQuantidade: " + quantidade + "\nPreco=" + preco + "\n";
+		return "Nome: " + nome + "\nCodigo: " + codigo + "\nQuantidade: " + quantidade + "\nPreco: R$ " + preco + "\n";
 	}
 	
 	

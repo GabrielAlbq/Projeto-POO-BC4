@@ -8,7 +8,7 @@ public class ItemVenda {
 	private double preco;
 	private int codigo;
 	private int qtd;
-	
+	//TODO verificar a modificacao com produto
 	// CONSTRUTORES
 	
 	public ItemVenda(int codigo, String nome, double preco, int qtd) {
