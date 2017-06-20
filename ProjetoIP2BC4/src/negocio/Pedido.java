@@ -32,7 +32,7 @@ public class Pedido {
 		totalPagar = 0;
 	}
 	
-	public static Pedido instanciar() {
+	public static Pedido getInstancia() {
 		if( instancia == null ) {
 			instancia = new Pedido();
 		}
@@ -72,7 +72,7 @@ public class Pedido {
 		return;
 	}
 	
-	// � usado ap�s a venda ser concluida ou para cancelar o pedido
+	// eh usado apos a venda ser concluida ou para cancelar o pedido
 	public void resetarPedido () {
 		for (int i = 0; i < qtdItens; i++) {
 			arrayItem[i] = null;
@@ -82,17 +82,17 @@ public class Pedido {
 		this.funcionario = null;
 	}
 	
-	// emitir nota fiscal / ocorre quando o pedido � concluido;
-	// envia o dinheiro para as fina�as e subtrai a quantidade do estoque
-	// ap�s o envio desses dados este metodo "reseta" a classe para receber um novo pedido
+	// emitir nota fiscal / ocorre quando o pedido eh concluido;
+	// envia o dinheiro para as finacas e subtrai a quantidade do estoque
+	// apos o envio desses dados este metodo "reseta" a classe para receber um novo pedido
 	
 	public void encerrarPedido () {
-		// este la�o faz o somatorio da venda atual
+		// este laco faz o somatorio da venda atual
 		for (int i = 0; i < qtdItens; i++) {
 			totalPagar += arrayItem[i].valorTotal();
 		}
 		controladorFinanceiro.receberDinheiroVenda(totalPagar);
-		// la�o que subtrai os itens de venda dos produtos estocados
+		// laco que subtrai os itens de venda dos produtos estocados
 		for (int i = 0; i < qtdItens; i++) {
 			controlEstoque.subtrairProduto( arrayItem[i].getCodigo() , arrayItem[i].getQtd());
 		}

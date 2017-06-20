@@ -33,23 +33,37 @@ public class PrincipalTeste {
 			fachada.inserirProduto(produto[i]);
 		}
 		
-		Endereco e1 = new Endereco("Rua A", "Cidade A", "12345-100", "999");
-		Endereco e2 = new Endereco("Rua B", "Cidade B", "98765-100", "333");
+		Endereco e1 = new Endereco("Rua A", "Cidade A", "12345-100", "155");
+		Endereco e2 = new Endereco("Rua B", "Cidade B", "98765-100", "344");
+		Endereco e3 = new Endereco("Rua C", "Cidade C", "15657-887", "511");
+		Endereco e4 = new Endereco("Rua D", "Cidade D", "78877-002", "361");
+		
 		Endereco enderecoTeste;
 		
-		Pessoa p1 = new Pessoa(e1, "fabio", "11111111111");
-		Pessoa p2 = new Pessoa(e2, "duda", "99999999999");
+		Pessoa p1 = new Pessoa(e1, "Fabio", "11111111111");
+		Pessoa p2 = new Pessoa(e2, "Elthon", "11111111111");
+		Pessoa p3 = new Pessoa(e3, "Gabriel", "99999999999");
+		Pessoa p4 = new Pessoa(e4, "Luciano", "11111111111");
+		
 		Pessoa pessoaTeste;
 		
-		Funcionario f1 = new Funcionario(p1,"vendedor",2000,1);
+		Funcionario f1 = new Funcionario(p1,"vendedor",2001,1);
 		Funcionario f2 = new Funcionario(p2,"vendedor",2000,2);
+		Funcionario f3 = new Funcionario(p3,"vendedor",2000,3);
+		Funcionario f4 = new Funcionario(p4,"vendedor",2000,4);
+		
 		Funcionario funcionarioTeste;
 
+		fachada.inserirFuncionario(f1);
+		fachada.inserirFuncionario(f2);
+		fachada.inserirFuncionario(f3);
+		fachada.inserirFuncionario(f4);
+		
 		int opcao, identificacao, codigo, quantidade;
-		boolean parar = false, vender = true;
+		boolean parar = false, vender = true, terminarVenda = false;
 		String nome, cep, cidade, rua, logradouro, numeroCasa, cpf, funcao;
 		double preco, salario;
-	
+		Funcionario f;
 		
 		
 		while(!parar) {
@@ -64,15 +78,48 @@ public class PrincipalTeste {
 				opcao = scanf.nextInt();
 				
 				if( opcao == 1 ) {
-					// receber id do funcionario
-					// abrir tabela de itens de venda
-					// selecionar item e quantidade em um laï¿½o
-					// se terminar pergunta se quer concluir a venda
-					// se concluir chamar o metodo de pedido - encerrarPedido
-					// se cancelar o pedido chamar o metodo de peddo - resetarPedido
+					int i = 1;
+					System.out.println("Digite a identificacao do funcionario");
+					identificacao = scanf.nextInt();
+					f = fachada.buscarFuncionario(identificacao);
+					System.out.println("Funcionario: "+f.getPessoa().getNome());
+					while( !terminarVenda ){
+						
+						System.out.println(fachada.listarItensVenda());
+						System.out.println("\n\n\t(0) - Encerrar a venda\n\t(-1) - Cancelar venda\n\n");
+						System.out.println("Digite o codigo do produto");
+						codigo = scanf.nextInt();
+						
+						if(codigo == 0) {
+							System.out.println("\n\n\tTem certeza de que quer ENCERRAR a compra?\n\t (1) - SIM \n\t(2) - NAO\n\n");
+							 int charizard = scanf.nextInt();
+							 if( charizard == 1 ) {
+								 fachada.encerrarPedido();
+								 terminarVenda = true;
+							 }
+							 else if(codigo == 2) {
+								
+							 }
+						}
+						if(codigo == -1) {
+							System.out.println("\n\n\tTem certeza de que quer CANCELAR a compra?\n\t (1) - SIM \n\t(2) - NAO\n\n");
+							 int charizard = scanf.nextInt();
+							 if( charizard == 1 ) {
+								 fachada.cancelarPedido();
+								 terminarVenda = true;
+							 }
+							 else if(codigo == 2) {
+								
+							 }
+						}
+						
+						System.out.println("Digite a quantidade");
+						quantidade = scanf.nextInt();
+						fachada.vender(codigo, quantidade, fachada.buscarFuncionario(identificacao));
+					}
 					
-						// loop fachada.vender();
-				} 
+					
+				}
 				else if (opcao == 2) {
 					fachada.listarVendas();
 				} 
@@ -80,12 +127,8 @@ public class PrincipalTeste {
 					fachada.limparHistorico();
 				}
 				else if (opcao == 4){
-					
+					// já volta automaticamente
 				}
-				else {
-					System.out.println("\n\n\tOpcao invalida\n\n");
-				}
-				
 				break;
 			}
 			case 2: {
@@ -151,12 +194,8 @@ public class PrincipalTeste {
 					System.out.println(fachada.buscarProduto(codigo));
 				}
 				else if (opcao == 6){
-					
+					// já volta automaticamente
 				}
-				else {
-					System.out.println("\n\n\tOpcao invalida\n\n");
-				}
-				
 				break;
 			}
 			case 3: {
@@ -216,13 +255,12 @@ public class PrincipalTeste {
 				
 				else if (opcao == 4){
 					System.out.println("\n\n\tDigite a identificacao do funcionario: \n");
-					fachada.buscarFuncionario(scanf.nextInt());
+					f = fachada.buscarFuncionario(scanf.nextInt());
+					System.out.println(f);
 				}
-				else {
-					System.out.println("\n\n\tOpcao invalida\n\n");
+				else if(opcao == 5) {
+					// já volta automaticamente
 				}
-				
-				
 				break;
 			}
 			case 4: {
@@ -243,14 +281,8 @@ public class PrincipalTeste {
 				}
 				
 				else if (opcao == 4){
-		
+					// já volta automaticamente
 				}
-				else {
-					System.out.println("\n\n\tOpcao invalida\n\n");
-				}
-				
-				
-				
 				break;
 			}	
 			case 5: {

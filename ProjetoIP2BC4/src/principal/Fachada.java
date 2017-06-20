@@ -12,6 +12,7 @@ public class Fachada {
 	private ControladorEstoque controladorEstoque;
 	private ControladorFuncionario controladorFuncionario;
 	private ControladorFinanceiro controladorFinanceiro;
+	private Pedido pedido;
 	
 	//SINGLETON
 	
@@ -22,6 +23,7 @@ public class Fachada {
 		controladorEstoque = ControladorEstoque.getInstancia();
 		controladorFuncionario = ControladorFuncionario.getInstancia();
 		controladorFinanceiro = ControladorFinanceiro.getInstancia();
+		pedido = Pedido.getInstancia();
 	}
 	public static Fachada getInstancia(){
 		if(instancia == null){
@@ -36,10 +38,21 @@ public class Fachada {
 	
 	// SISTEMA VENDA
 	
-	public void vender (){
-		
+	public void encerrarPedido () {
+		pedido.encerrarPedido();
 	}
 	
+	public void vender (int codigo, int quantidade, Funcionario funcionario){
+		controladorVenda.efetuarPedido(codigo, quantidade, funcionario);
+	}
+	
+	public void cancelarPedido() {
+		pedido.resetarPedido();
+	}
+	
+	public String listarItensVenda() {
+		return controladorVenda.listarProdutos();
+	}
 	
 	public String listarVendas(){
 		return controladorVenda.listarNotasFiscais();
@@ -69,6 +82,9 @@ public class Fachada {
 	
 	// SISTEMA FUNCIONARIO
 	
+	public ControladorFuncionario getControladorFuncionario() {
+		return controladorFuncionario;
+	}
 	public void inserirFuncionario (Funcionario funcionario) {
 		controladorFuncionario.inserir(funcionario);
 	}

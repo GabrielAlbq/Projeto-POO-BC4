@@ -61,7 +61,7 @@ public class ControladorFuncionario {
 			return false;
 		}
 		
-		System.out.println("\n\tInserido com sucesso!\n\n");
+		System.out.println("\tInserido com sucesso!");
 		repoFuncionario.inserir(funcionarioInserir);
 		
 		return true;
@@ -85,7 +85,7 @@ public class ControladorFuncionario {
 			return false;
 		}
 		
-		System.out.println("\n\tFuncionario removido com sucesso!\n\n");
+		System.out.println("\tFuncionario removido com sucesso!");
 		repoFuncionario.remover(identificacao);
 		
 		return true;
@@ -93,7 +93,7 @@ public class ControladorFuncionario {
 	
 	public boolean alterar (Funcionario funcionarioAlterar) {
 		if(funcionarioAlterar == null) {
-			System.out.println("\n\n\tErro! Funcionario nulo!\n\n");
+			System.out.println("\tErro! Funcionario nulo!");
 			return false;
 		}
 		if(funcionarioAlterar.getIdentificacao() <= 0) {
@@ -123,7 +123,7 @@ public class ControladorFuncionario {
 		int checagem = retornaPosicao(identificacao);
 		
 		if(checagem == -1) {
-			System.out.println("\n\tErro! Funcionario inexistente!\n\n");
+			System.out.println("\tErro! Funcionario inexistente!");
 			return null;
 		}
 		
@@ -132,6 +132,10 @@ public class ControladorFuncionario {
 	
 	public void imprimirTodos() {
 		repoFuncionario.imprimirTodos();
+	}
+	
+	public RepositorioFuncionario getRepositorioFuncionario () {
+		return repoFuncionario;
 	}
 	
 	//TODO método pagar funcionario
