@@ -11,7 +11,7 @@ public class RepositorioFuncionario {
 	
 	private static RepositorioFuncionario instancia;
 	
-	public static RepositorioFuncionario instanciarRepoFuncionario () {
+	public static RepositorioFuncionario getInstancia() {
 		if( instancia == null ) {
 			instancia = new RepositorioFuncionario();
 		}

@@ -12,14 +12,14 @@ public class RepositorioFinanceiro {
 	private double rendaBruta; // Total inicial do mes
 	private double totalFuncionarios; // Pagamento dos funcionarios
 	private double totalFornecedor; // Falta implementar (2 VA)
-	private double rendaLiquida;  // Total de dinheiro após o pagamento de func + forn 
+	private double rendaLiquida;  // Total de dinheiro apï¿½s o pagamento de func + forn 
 	private double totalVendas; // Total de vendas - total fornecedor = lucro das vendas
 	
 	// SINGLETON
 	
 	private static RepositorioFinanceiro instancia;
 		
-	public static RepositorioFinanceiro instanciarRepoFinanceiro () {
+	public static RepositorioFinanceiro getInstancia () {
 		if( instancia == null ) {
 			instancia = new RepositorioFinanceiro();
 		}
@@ -29,7 +29,7 @@ public class RepositorioFinanceiro {
 	// CONSTRUTOR 
 	
 	private RepositorioFinanceiro() {
-		this.repositorioFuncionario = RepositorioFuncionario.instanciarRepoFuncionario();
+		this.repositorioFuncionario = RepositorioFuncionario.getInstancia();
 		this.repositorioEstoque = RepositorioEstoque.getInstancia();
 		this.rendaBruta = 100000;
 		this.totalFuncionarios = totalSalarioFuncionarios();
@@ -48,7 +48,7 @@ public class RepositorioFinanceiro {
 		this.rendaBruta = rendaBruta;
 	}
 	
-	// MÉTODOS
+	// Mï¿½TODOS
 	
 	public double totalSalarioFuncionarios () {
 		double totalFuncionario = 0;

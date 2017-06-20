@@ -6,7 +6,7 @@ import repositorios.RepositorioFuncionario;
 
 public class ControladorFuncionario {
 	
-	private RepositorioFuncionario repoFuncionario = RepositorioFuncionario.instanciarRepoFuncionario();
+	private RepositorioFuncionario repoFuncionario;
 	
 	// singleton
 	
@@ -22,7 +22,7 @@ public class ControladorFuncionario {
 	// construtor
 	
 	private ControladorFuncionario () {
-		
+		repoFuncionario = RepositorioFuncionario.getInstancia();
 	}
 	
 	// métodos - As validações sao feitas nesta classe para chamar os metodos do repositorio

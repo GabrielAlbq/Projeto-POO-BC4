@@ -12,7 +12,8 @@ public class Fachada {
 	private ControladorFuncionario controladorFuncionario;
 	private ControladorFinanceiro controladorFinanceiro;
 	private Pedido pedido;
-	
+	private RepositorioFinanceiro repositorioFinanceiro;
+	private RepositorioVenda repositorioVenda;
 	// REPOSITORIOS
 	private static Fachada instancia;
 	
@@ -22,6 +23,8 @@ public class Fachada {
 		controladorEstoque = ControladorEstoque.getInstancia();
 		controladorFuncionario = ControladorFuncionario.getInstancia();
 		controladorFinanceiro = ControladorFinanceiro.getInstancia();
+		repositorioFinanceiro = RepositorioFinanceiro.getInstancia();
+		repositorioVenda = RepositorioVenda.intanciar();
 	}
 	public static Fachada getInstancia(){
 		if(instancia == null){
@@ -29,12 +32,8 @@ public class Fachada {
 		}
 		return instancia;
 	}
-	private RepositorioVenda repositorioVenda;
-	//private RepositorioEstoque repositorioEstoque;
 	private RepositorioFuncionario repositorioFuncionario;
-	private RepositorioFinanceiro repositorioFinanceiro;
 
-	controladorEstoque = ControladorEstoque.get
 	// SISTEMA VENDA
 	
 	public void vender (){
