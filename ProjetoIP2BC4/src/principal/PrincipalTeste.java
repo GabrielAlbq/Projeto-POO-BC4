@@ -113,29 +113,32 @@ public class PrincipalTeste {
 					fachada.inserirProduto(prod);				
 				}
 				else if (opcao == 3) {
-					//TODO Reestruturar a alteracao do produto
 					opcao = 0;
 					System.out.println("Digite o codigo do produto que será atualizado");
 					codigo = scanf.nextInt();
 					System.out.println("O que você deseja alterar?\n(1)Quantidade\n(2)Preco\n(3)Nome");
 					opcao = scanf.nextInt();
 					if(opcao == 1){
-						Produto prod = new Produto();
+						Produto prod = fachada.buscarProduto(codigo);
 						System.out.println("Digite a nova quantidade");
 						quantidade = scanf.nextInt();
+						prod.setQuantidade(quantidade);
 						fachada.atualizarProduto(prod);
 					}
 					else if(opcao == 2){
-						
+						Produto prod = fachada.buscarProduto(codigo);
 						System.out.println("Digite o novo preco");
 						preco = scanf.nextDouble();
+						prod.setPreco(preco);
+						fachada.atualizarProduto(prod);
 					}
 					else if(opcao == 3){
-						
+						Produto prod = fachada.buscarProduto(codigo);
 						System.out.println("Digite o novo nome");
 						nome = scanf.nextLine();
+						prod.setNome(nome);
+						fachada.atualizarProduto(prod);
 					}
-					//Produto prod = controladorestoque.getRepoestoque().alterar(prod, posicao);
 				} 
 				else if(opcao == 4) {
 					System.out.println("Digite o codigo do produto a ser removido");

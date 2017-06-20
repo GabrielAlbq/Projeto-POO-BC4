@@ -33,7 +33,7 @@ public class Fachada {
 		return instancia;
 	}
 	private RepositorioFuncionario repositorioFuncionario;
-	//GEt
+	//GET
 	public ControladorEstoque getControladorEstoque() {
 		return controladorEstoque;
 	}
