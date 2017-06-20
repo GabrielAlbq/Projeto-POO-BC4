@@ -7,24 +7,21 @@ import negocio.*;
 public class Fachada {
 	
 	//CONTROLADORES
+	
 	private ControladorVenda controladorVenda;
 	private ControladorEstoque controladorEstoque;
 	private ControladorFuncionario controladorFuncionario;
 	private ControladorFinanceiro controladorFinanceiro;
-	private Pedido pedido;
-	private RepositorioFinanceiro repositorioFinanceiro;
-	private RepositorioVenda repositorioVenda;
-	// REPOSITORIOS
-	private static Fachada instancia;
 	
 	//SINGLETON
+	
+	private static Fachada instancia;
+	
 	private Fachada(){
 		controladorVenda = ControladorVenda.getInstancia();
 		controladorEstoque = ControladorEstoque.getInstancia();
 		controladorFuncionario = ControladorFuncionario.getInstancia();
 		controladorFinanceiro = ControladorFinanceiro.getInstancia();
-		repositorioFinanceiro = RepositorioFinanceiro.getInstancia();
-		repositorioVenda = RepositorioVenda.getInstancia();
 	}
 	public static Fachada getInstancia(){
 		if(instancia == null){
@@ -32,11 +29,11 @@ public class Fachada {
 		}
 		return instancia;
 	}
-	private RepositorioFuncionario repositorioFuncionario;
-	//GET
+	
 	public ControladorEstoque getControladorEstoque() {
 		return controladorEstoque;
 	}
+	
 	// SISTEMA VENDA
 	
 	public void vender (){
@@ -45,7 +42,7 @@ public class Fachada {
 	
 	
 	public String listarVendas(){
-		return repositorioVenda.listarNotasFiscais();
+		return controladorVenda.listarNotasFiscais();
 	}
 	
 	public void limparHistorico (){
@@ -97,6 +94,6 @@ public class Fachada {
 	// TODO public void solicitarFornecedor() { }
 	
 	public String exibirFinancas () {
-		return repositorioFinanceiro.exibirFinancas();
+		return controladorFinanceiro.exibirFinancas();
 	}
 }

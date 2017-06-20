@@ -65,16 +65,10 @@ public class RepositorioVenda {
 		qtdItem--;
 	}
 	
-	public boolean alterar(int codigo) {
-		// TODO
-		return false;
+	public void alterar(int posicao, ItemVenda item) {
+		arrayItem[posicao] = item;
 	}
-	
-	public ItemVenda buscar() {
-		// TODO
-		return null;
-	}
-	
+
 	// GETS
 	
 	public ItemVenda[] getArrayItem() {

@@ -26,9 +26,7 @@ public class Produto {
 	public int getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
-	}
+
 	public int getQuantidade() {
 		return quantidade;
 	}

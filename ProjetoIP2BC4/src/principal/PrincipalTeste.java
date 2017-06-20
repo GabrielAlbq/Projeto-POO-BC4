@@ -13,6 +13,9 @@ public class PrincipalTeste {
 		
 		Scanner scanf = new Scanner(System.in);
 		
+		//FACHADA 
+				Fachada fachada = Fachada.getInstancia();
+		
 		// OBJETOS DE TESTE - Armazena-los em arquivo depois!
 		
 		String[] nomes = {"Salgadinho","Biscoito","Sorvete","Arroz","Coca-Cola","Feijao","Macarrao","Acucar","Agua","Farinha"};
@@ -25,6 +28,7 @@ public class PrincipalTeste {
 		for (int i = 0; i < produto.length; i++) {
 			produto[i] = new Produto( nomes[i], codigoProduto[i],1000, precos[i]);
 			itens[i] = new ItemVenda(codigoProduto[i], nomes[i], precos[i], i);
+			fachada.inserirProduto(produto[i]);
 		}
 		
 		Endereco e1 = new Endereco("Rua A", "Cidade A", "12345-100", "999");
@@ -43,8 +47,7 @@ public class PrincipalTeste {
 		boolean parar = false;
 		boolean vender = true;
 		
-		//FACHADA 
-		Fachada fachada = Fachada.getInstancia();
+		
 		while(!parar) {
 			System.out.println("\n\n=========================================\n\n\tMercadinho mil grau\n\n(1) - Sistema de Vendas\n"
 							 + "(2) - Sistema de Estoque\n(3) - Sistema de Funcionario\n(4) - Sistema Financeiro\n(5) - Fechar programa\n\n==> ");
@@ -64,7 +67,7 @@ public class PrincipalTeste {
 					// se concluir chamar o metodo de pedido - encerrarPedido
 					// se cancelar o pedido chamar o metodo de peddo - resetarPedido
 					
-						
+						// loop fachada.vender();
 				} 
 				else if (opcao == 2) {
 					// Chamar controlador venda, que possui o metodo listar todas as vendas

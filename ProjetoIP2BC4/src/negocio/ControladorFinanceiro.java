@@ -32,6 +32,10 @@ public class ControladorFinanceiro {
 	
 	// M�TODOS 
 	
+	public String exibirFinancas () {
+		return repositorioFinanceiro.exibirFinancas();
+	}
+	
 	public boolean pagarFuncionario (Funcionario func){
 		if( func == null ) {
 			System.out.println("\n\n\tErro! funcionario nulo!");

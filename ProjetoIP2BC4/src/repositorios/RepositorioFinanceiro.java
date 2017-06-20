@@ -65,6 +65,7 @@ public class RepositorioFinanceiro {
 		for (int i = 0; i < repositorioEstoque.getQuantSKU(); i++) {
 			totalFornecedor += (produtos[i].getPreco()*produtos[i].getQuantidade());
 		}
+		totalFornecedor = totalFornecedor*(75/100);
 		return totalFornecedor;
 	}
 	

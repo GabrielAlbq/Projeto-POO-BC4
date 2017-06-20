@@ -44,10 +44,6 @@ public class ItemVenda {
 	public int getCodigo() {
 		return codigo;
 	}
-
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
-	}	
 	
 	public int getQtd() {
 		return qtd;
@@ -56,9 +52,10 @@ public class ItemVenda {
 	public void setQtd(int qtd) {
 		this.qtd = qtd;
 	}
-	
 	// EQUALS
 	
+
+
 	public boolean equals(ItemVenda item) {
 		if(item == null)
 			return false;
@@ -72,7 +69,7 @@ public class ItemVenda {
 	// TO STRING
 
 	public String toString() {
-		return "Nome: " + nome + ", Preco: R$" + preco + ", Quantidade: " + qtd;
+		return "Nome: " + nome + ", Preco: R$" + preco;
 	}
 
 }

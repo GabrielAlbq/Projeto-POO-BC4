@@ -60,9 +60,13 @@ public class ControladorVenda {
 		return false;
 	}
 	
+	public String listarNotasFiscais() {
+		return repoVenda.listarNotasFiscais();
+	}
+	
 	public boolean efetuarPedido (int codigo, int quantidade, Funcionario funcionario) {
 		if( codigo <= 0 ) {
-			System.out.println("\n\n\tErro! c�digo inv�lido!");
+			System.out.println("\n\n\tErro! c�digo invalido!");
 			return false;
 		}
 		if( quantidade <= 0 ) {
@@ -103,11 +107,32 @@ public class ControladorVenda {
 		Produto[] teste = repoEstoque.getProdutos();
 		String texto = "";
 		for (int i = 0; i < repoEstoque.getQuantSKU(); i++) {
-			texto = texto+"\n"+teste[i].getNome()+"(R$ "+teste[i].getPreco()+")\nQuantidade: "+teste[i].getQuantidade()+"\nCodigo: "+teste[i].getCodigo()+"\n";
+			texto += "\n"+teste[i].toString();
 		}
 		return texto;
 	}
 	
+	public boolean alterar(Produto produto) {
+		if( produto == null ) {
+			System.out.println("\n\n\tErro! itemVenda invalido\n\n");
+			return true;
+		}
+		if(produto.getCodigo() <= 0) {
+			System.out.println("\n\n\tErro! codigo invalido!\n\n");
+			return false;
+		}
+		
+		int posicao = retornaPosicao(produto.getCodigo());
+		
+		if(posicao == -1) {
+			System.out.println("\n\n\tErro! produto inexistente\n\n");
+			return false;
+		}
+		repoVenda.alterar(posicao, new ItemVenda(produto.getCodigo(), produto.getNome(), produto.getPreco(), produto.getQuantidade()));
+		return true;
+		
+	}
+ 	
 	public String listarVendas () {
 		String teste = "";
 		NotaFiscal[] notas = repoVenda.getNotaFiscal();
