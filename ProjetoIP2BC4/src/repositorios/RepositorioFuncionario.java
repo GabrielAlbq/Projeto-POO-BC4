@@ -27,6 +27,14 @@ public class RepositorioFuncionario {
 	
 	// METODOS - as validacoes serao feitas no controlador utilizando estes metodos
 	
+	public String listarFuncionarios() {
+		String texto = "";
+		for (int i = 0; i < qtdFuncionario; i++) {
+			texto += "\n_____________________________\n"+funcionario[i].toString(); 
+		}
+		return texto;
+	}
+	
 	public void pagarFancionario (int posicao){
 		funcionario[posicao].setRecebeuSalario(true);
 	}

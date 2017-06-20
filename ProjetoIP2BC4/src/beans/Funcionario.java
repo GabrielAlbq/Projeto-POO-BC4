@@ -79,7 +79,7 @@ public class Funcionario {
 	
 	public String toString() {
 		return "Funcionario:\n\nfuncao: "+funcao+"\nsalario: "+salario+"\nidentificacao: "
-				+identificacao+"\n\n"+pessoa;
+				+identificacao+"\nStatus do Pagamento: "+recebeuSalario+"\n\n"+pessoa;
 	}
 	
 	

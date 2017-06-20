@@ -41,6 +41,10 @@ public class ControladorFuncionario {
 		return -1;
 	}
 	
+	public String listarFuncionarios() {
+		return repoFuncionario.listarFuncionarios();
+	}
+	
 	public boolean inserir (Funcionario funcionarioInserir) {
 		if(funcionarioInserir == null) {
 			System.out.println("\n\n\tErro! Funcionario nulo!\n\n");
@@ -86,7 +90,7 @@ public class ControladorFuncionario {
 		}
 		
 		System.out.println("\tFuncionario removido com sucesso!");
-		repoFuncionario.remover(identificacao);
+		repoFuncionario.remover(checagem);
 		
 		return true;
 	}

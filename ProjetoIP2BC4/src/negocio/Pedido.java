@@ -10,10 +10,10 @@ public class Pedido {
 	private RepositorioVenda repoVenda;
 	private ControladorFinanceiro controladorFinanceiro;
 	private int contadorCodigoNota;   // variavel que coloca o codigo da nota fiscal de modo que nao se repetem
-	private double totalPagar;        // zera apï¿½s o metodo encerrarPedido ser chamado
-	private ItemVenda[] arrayItem;    // zera apï¿½s o metodo encerrarPedido ser chamado
-	private int qtdItens; 			  // zera apï¿½s o metodo encerrarPedido ser chamado
-	private Funcionario funcionario;  // zera apï¿½s o metodo encerrarPedido ser chamado
+	private double totalPagar;        // zera apos metodo encerrarPedido ser chamado
+	private ItemVenda[] arrayItem;    // zera apos o metodo encerrarPedido ser chamado
+	private int qtdItens; 			  // zera apos o metodo encerrarPedido ser chamado
+	private Funcionario funcionario;  // zera apos o metodo encerrarPedido ser chamado
 	
 	// instanciar o repositorioFinanceiro
 	
@@ -91,7 +91,12 @@ public class Pedido {
 		for (int i = 0; i < qtdItens; i++) {
 			totalPagar += arrayItem[i].valorTotal();
 		}
-		controladorFinanceiro.receberDinheiroVenda(totalPagar);
+		
+		//TODO  o bug das vendas está nesta parte!
+		//controladorFinanceiro.receberDinheiroVenda(totalPagar);
+		
+		
+		
 		// laco que subtrai os itens de venda dos produtos estocados
 		for (int i = 0; i < qtdItens; i++) {
 			controlEstoque.subtrairProduto( arrayItem[i].getCodigo() , arrayItem[i].getQtd());

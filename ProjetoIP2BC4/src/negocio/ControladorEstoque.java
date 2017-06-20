@@ -35,11 +35,18 @@ public class ControladorEstoque {
 	
 	//METODOS COM CONTROLE DE NEGOCIOS
 	
-	public void listarProduto(){
-		for(int i = 0 ; i < getRepoestoque().getQuantSKU() ; i++){
-			System.out.println("#" + (i+1));
-			System.out.println(getRepoestoque().getProdutos()[i]);
+	public String listarProduto(){
+		Produto[] prod = repoestoque.getProdutos();
+		String texto = "";
+		for(int i = 0 ; i < repoestoque.getQuantSKU() ; i++){
+			if( prod[i] == null ) {
+				texto = "\n\n\tNao ha produtos cadastrados!\n\n";
+			} 
+			else {
+				texto += "\n#"+(i+1)+prod[i].toString();
+			}
 		}
+		return texto;
 	}
 	public boolean subtrairProduto (int codigo, int quantidade) {
 		Produto[] produtos = repoestoque.getProdutos();
@@ -98,6 +105,10 @@ public class ControladorEstoque {
 	}
 	
 	public boolean remover(int cod){
+		if(repoestoque.getQuantSKU() == 0) {
+			System.out.println("\n\tErro! Nao ha produtos para remover!");
+			return false;
+		}
 		int posicao = this.retornarPosicao(cod);
 		if(posicao == -1){
 			System.out.println("Codigo nao encontrado!");

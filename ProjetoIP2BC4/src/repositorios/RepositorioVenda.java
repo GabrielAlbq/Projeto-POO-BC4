@@ -42,8 +42,13 @@ public class RepositorioVenda {
 
 	public String listarNotasFiscais () {
 		String texto = "";
-		for (int i = 0; i < qtdNotaFiscal; i++) {
-			texto = texto+notaFiscal[i].toString();
+		if( qtdNotaFiscal == 0 ) {
+			texto += "\n\n\tO historico ja esta vazio!\n\n";
+		}
+		else {
+			for (int i = 0; i < qtdNotaFiscal; i++) {
+				texto = texto+notaFiscal[i].toString();
+			}
 		}
 		return texto;
 	}

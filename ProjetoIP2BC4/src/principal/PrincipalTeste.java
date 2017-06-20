@@ -40,10 +40,10 @@ public class PrincipalTeste {
 		
 		Endereco enderecoTeste;
 		
-		Pessoa p1 = new Pessoa(e1, "Fabio", "11111111111");
-		Pessoa p2 = new Pessoa(e2, "Elthon", "11111111111");
-		Pessoa p3 = new Pessoa(e3, "Gabriel", "99999999999");
-		Pessoa p4 = new Pessoa(e4, "Luciano", "11111111111");
+		Pessoa p1 = new Pessoa(e1, "Fabio"  , "11111111111");
+		Pessoa p2 = new Pessoa(e2, "Elthon" , "22222222222");
+		Pessoa p3 = new Pessoa(e3, "Gabriel", "33333333333");
+		Pessoa p4 = new Pessoa(e4, "Luciano", "44444444444");
 		
 		Pessoa pessoaTeste;
 		
@@ -60,7 +60,7 @@ public class PrincipalTeste {
 		fachada.inserirFuncionario(f4);
 		
 		int opcao, identificacao, codigo, quantidade;
-		boolean parar = false, vender = true, terminarVenda = false;
+		boolean parar = false, vender = true, terminarVenda = false, auxiliarVenda = false;
 		String nome, cep, cidade, rua, logradouro, numeroCasa, cpf, funcao;
 		double preco, salario;
 		Funcionario f;
@@ -68,7 +68,7 @@ public class PrincipalTeste {
 		
 		while(!parar) {
 			System.out.println("\n\n=========================================\n\n\tMercadinho mil grau\n\n(1) - Sistema de Vendas\n"
-							 + "(2) - Sistema de Estoque\n(3) - Sistema de Funcionario\n(4) - Sistema Financeiro\n(5) - Fechar programa\n\n==> ");
+							 + "(2) - Sistema de Estoque\n(3) - Sistema de Funcionario\n(4) - Sistema Financeiro\n(5) - Fechar programa");
 			opcao = scanf.nextInt();
 			
 			switch(opcao) {
@@ -91,43 +91,52 @@ public class PrincipalTeste {
 						codigo = scanf.nextInt();
 						
 						if(codigo == 0) {
-							System.out.println("\n\n\tTem certeza de que quer ENCERRAR a compra?\n\t (1) - SIM \n\t(2) - NAO\n\n");
+							System.out.println("\n\n\tTem certeza de que quer ENCERRAR a compra?\n\t(1) - SIM \n\t(2) - NAO\n\n");
 							 int charizard = scanf.nextInt();
 							 if( charizard == 1 ) {
 								 fachada.encerrarPedido();
+								 // TODO gerar nota fiscal
+								 auxiliarVenda = true;
 								 terminarVenda = true;
 							 }
 							 else if(codigo == 2) {
-								
+								// se a opcao for 2 ou qualquer valor diferente de 1 o codigo volta ao menu de vendas!
 							 }
 						}
 						if(codigo == -1) {
-							System.out.println("\n\n\tTem certeza de que quer CANCELAR a compra?\n\t (1) - SIM \n\t(2) - NAO\n\n");
+							System.out.println("\n\n\tTem certeza de que quer CANCELAR a compra?\n\t(1) - SIM \n\t(2) - NAO\n\n");
 							 int charizard = scanf.nextInt();
 							 if( charizard == 1 ) {
 								 fachada.cancelarPedido();
+								 
 								 terminarVenda = true;
+								 System.out.println("\n\tVenda cancelada!\n\n");
 							 }
 							 else if(codigo == 2) {
-								
+								// se a opcao for 2 ou qualquer valor diferente de 1 o codigo volta ao menu de vendas!
 							 }
 						}
+						if( !auxiliarVenda ) {
+							System.out.println("Digite a quantidade");
+							quantidade = scanf.nextInt();
+							fachada.vender(codigo, quantidade, fachada.buscarFuncionario(identificacao));
+						}
 						
-						System.out.println("Digite a quantidade");
-						quantidade = scanf.nextInt();
-						fachada.vender(codigo, quantidade, fachada.buscarFuncionario(identificacao));
-					}
-					
-					
+					} // fechamento do laço de venda
 				}
 				else if (opcao == 2) {
-					fachada.listarVendas();
+					System.out.println(fachada.listarVendas());
 				} 
 				else if(opcao == 3) {
-					fachada.limparHistorico();
+					if(fachada.limparHistorico() == false ) {
+						System.out.println("\n\n\tHistorico ja esta vazio!\n\n");
+					}
+					else {
+						System.out.println("\n\n\tHistorico de vendas apagado,\n\tnotas fiscais deletadas!\n\n");
+					}
 				}
 				else if (opcao == 4){
-					// já volta automaticamente
+					// já volta automaticamente com qualquer numero exceto os que estao nos if's!
 				}
 				break;
 			}
@@ -138,7 +147,7 @@ public class PrincipalTeste {
 				opcao = scanf.nextInt();
 				
 				if( opcao == 1){
-					fachada.getControladorEstoque().listarProduto();				
+					System.out.println(fachada.listarProdutos());	
 				}
 				else if( opcao == 2 ) {
 					
@@ -164,20 +173,31 @@ public class PrincipalTeste {
 						Produto prod = fachada.buscarProduto(codigo);
 						System.out.println("Digite a nova quantidade");
 						quantidade = scanf.nextInt();
-						prod.setQuantidade(quantidade);
-						fachada.atualizarProduto(prod);
+						if(quantidade > 0) {
+							prod.setQuantidade(quantidade);
+							fachada.atualizarProduto(prod);
+						}
+						else {
+							System.out.println("Erro! quantidade invalida!");
+						}
 					}
 					else if(opcao == 2){
 						Produto prod = fachada.buscarProduto(codigo);
 						System.out.println("Digite o novo preco");
 						preco = scanf.nextDouble();
-						prod.setPreco(preco);
-						fachada.atualizarProduto(prod);
+						if(preco > 0) {
+							prod.setPreco(preco);
+							fachada.atualizarProduto(prod);
+						}
+						else {
+							System.out.println("Erro! quantidade invalida!");
+						}
 					}
 					else if(opcao == 3){
 						Produto prod = fachada.buscarProduto(codigo);
 						System.out.println("Digite o novo nome");
 						nome = scanf.nextLine();
+						scanf.nextLine();
 						prod.setNome(nome);
 						fachada.atualizarProduto(prod);
 					}
@@ -194,17 +214,22 @@ public class PrincipalTeste {
 					System.out.println(fachada.buscarProduto(codigo));
 				}
 				else if (opcao == 6){
-					// já volta automaticamente
+					// já volta automaticamente com qualquer numero exceto os que estao nos if's!
 				}
 				break;
 			}
 			case 3: {
-				System.out.println("\n\n=========================================\n\n\tSistema de Funcionario\n\n(1) - Adicionar funcionario"
-				         + "\n(2) - Atualizar funcionario\n(3) - Remover funcionario\n(4) - Buscar funcionario\n(5) - Menu principal\n\n");
+				System.out.println("\n\n=========================================\n\n\tSistema de Funcionario\n\n(1) - Listar todos os funcionarios\n"
+							     + "(2) - Adicionar funcionario"+ "\n(3) - Atualizar funcionario\n"
+							     + "(4) - Remover funcionario\n(5) - Buscar funcionario\n(6) - Menu principal\n\n");
 				
 				opcao = scanf.nextInt();
 				
+				
 				if( opcao == 1 ) {
+					System.out.println(fachada.listarFuncionarios());
+				}
+				else if( opcao == 2 ) {
 					System.out.println("\n\n\tDigite a identificacao do funcionario: \n");
 					identificacao = scanf.nextInt();
 					System.out.println("\n\n\tNome: ");
@@ -223,12 +248,14 @@ public class PrincipalTeste {
 					System.out.println("\n\n\tSalario: ");
 					salario = scanf.nextDouble();
 					System.out.println("\n\n\tFuncao: ");
+					scanf.nextLine();
 					funcao = scanf.nextLine();
+					System.out.println("\t"+funcao+"\n");
 					enderecoTeste = new Endereco(logradouro, cidade, cep, numeroCasa);
 					pessoaTeste = new Pessoa(enderecoTeste, nome, cpf);
 					fachada.inserirFuncionario(new Funcionario(pessoaTeste, funcao, salario, identificacao));
 				} 
-				else if (opcao == 2) {
+				else if (opcao == 3) {
 					System.out.println("\n\n\tDigite a identificacao do funcionario: \n");
 					identificacao = scanf.nextInt();
 					System.out.println("\n\n\tNome: ");
@@ -248,24 +275,24 @@ public class PrincipalTeste {
 					pessoaTeste = new Pessoa(enderecoTeste, nome, cpf);
 					fachada.atualizarFuncionario(new Funcionario(pessoaTeste, identificacao));
 				} 
-				else if(opcao == 3) {
+				else if(opcao == 4) {
 					System.out.println("\n\n\tDigite a identificacao do funcionario: \n");
 					fachada.removerFuncionario(scanf.nextInt());
 				}
 				
-				else if (opcao == 4){
+				else if (opcao == 5){
 					System.out.println("\n\n\tDigite a identificacao do funcionario: \n");
 					f = fachada.buscarFuncionario(scanf.nextInt());
 					System.out.println(f);
 				}
-				else if(opcao == 5) {
-					// já volta automaticamente
+				else if(opcao == 6) {
+					// já volta automaticamente com qualquer numero exceto os que estao nos if's!
 				}
 				break;
 			}
 			case 4: {
 				System.out.println("\n\n=========================================\n\n\tSistema Financeiro\n\n(1) - Pagar funcionario"
-				         + "\n(2) - Contatar fornecedor\n(3) - Informacoes das financas\n(4) - Menu principal\n\n");
+				         + "\n(2) - Informacoes das financas\n(3) - Menu principal\n\n");
 				
 				opcao = scanf.nextInt();
 				
@@ -273,15 +300,11 @@ public class PrincipalTeste {
 					System.out.println("\n\n\tDigite a identificacao do funcionario: \n");
 					fachada.pagarFuncionario(fachada.buscarFuncionario(scanf.nextInt()));
 				} 
-				else if (opcao == 2) {
-					// TODO
-				} 
-				else if(opcao == 3) {
-					fachada.exibirFinancas();
+				else if(opcao == 2) {
+					System.out.println(fachada.exibirFinancas());
 				}
-				
-				else if (opcao == 4){
-					// já volta automaticamente
+				else if (opcao == 3){
+					// já volta automaticamente com qualquer numero exceto os que estao nos if's!
 				}
 				break;
 			}	
@@ -290,6 +313,6 @@ public class PrincipalTeste {
 				break;
 			}	
 		  }
-		} // fechamento do switch externo
+		} // fechamento do switch
 	}
 }

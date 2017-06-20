@@ -38,6 +38,7 @@ public class Fachada {
 	
 	// SISTEMA VENDA
 	
+	
 	public void encerrarPedido () {
 		pedido.encerrarPedido();
 	}
@@ -58,14 +59,18 @@ public class Fachada {
 		return controladorVenda.listarNotasFiscais();
 	}
 	
-	public void limparHistorico (){
-		controladorVenda.limparHistoricoNotasFiscais();
+	public boolean limparHistorico (){
+		return controladorVenda.limparHistoricoNotasFiscais();
 	}
 	
 	// SISTEMA ESTOQUE
 	
 	public void inserirProduto (Produto produto){
 		controladorEstoque.inserir(produto);
+	}
+	
+	public String listarProdutos() {
+		return controladorEstoque.listarProduto();
 	}
 	
 	public void atualizarProduto (Produto novoProduto){
@@ -82,9 +87,10 @@ public class Fachada {
 	
 	// SISTEMA FUNCIONARIO
 	
-	public ControladorFuncionario getControladorFuncionario() {
-		return controladorFuncionario;
+	public String listarFuncionarios() {
+		return controladorFuncionario.listarFuncionarios();
 	}
+
 	public void inserirFuncionario (Funcionario funcionario) {
 		controladorFuncionario.inserir(funcionario);
 	}

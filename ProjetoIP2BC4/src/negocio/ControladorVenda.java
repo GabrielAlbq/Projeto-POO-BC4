@@ -95,11 +95,15 @@ public class ControladorVenda {
 	}
 	
 	// apaga as notas fiscais armazenadas no repositorioVenda
-	public void limparHistoricoNotasFiscais () {
+	public boolean limparHistoricoNotasFiscais () {
+		if(repoVenda.getQtdNotaFiscal() == 0) {
+			return false;
+		}
 		repoVenda.setQtdNotaFiscal(0);
 		for (int i = 0 ; i < repoVenda.getQtdNotaFiscal(); i++){
 			repoVenda.limparHistoricoNotasFiscais(i);
 		}
+		return true;
 	}
 	
 	// imprimir todas os produtos - nome(preco)\nqtd\ncodigo
