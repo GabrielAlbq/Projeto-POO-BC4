@@ -8,7 +8,7 @@ public class ControladorFuncionario {
 	
 	private RepositorioFuncionario repoFuncionario;
 	
-	// singleton
+	// SINGLETON
 	
 	private static ControladorFuncionario instancia;
 	
@@ -19,19 +19,19 @@ public class ControladorFuncionario {
 		return instancia;
 	}
 	
-	// construtor
+	// CONSTRUTOR
 	
 	private ControladorFuncionario () {
 		repoFuncionario = RepositorioFuncionario.getInstancia();
 	}
 	
-	// métodos - As validações sao feitas nesta classe para chamar os metodos do repositorio
+	// METODOS - As validacoes sao feitas nesta classe para chamar os metodos do repositorio
 
 	public int retornaPosicao (int identificacao) {
 		Funcionario[] funcionarioTeste = repoFuncionario.getFuncionario();
 		
 		if( identificacao <= 0 ) {
-			return -1; // retorna -1 se a identificação for negativa ou se nao achar a posicao
+			return -1; // Retorna -1 se a identificacao for negativa ou se nao achar a posicao
 		}
 		for(int n = 0; n < repoFuncionario.getQtdFuncionario() ; n++ ) {
 			if( identificacao == funcionarioTeste[n].getIdentificacao() ) {
@@ -43,21 +43,21 @@ public class ControladorFuncionario {
 	
 	public boolean inserir (Funcionario funcionarioInserir) {
 		if(funcionarioInserir == null) {
-			System.out.println("\n\n\tErro, funcionário nulo!\n\n");
+			System.out.println("\n\n\tErro! Funcionario nulo!\n\n");
 			return false;
 		}
 		if(repoFuncionario.getQtdFuncionario() == 10) {
-			System.out.println("\n\tErro, máximo de funcionarios já atingido!\n\n");
+			System.out.println("\n\tErro! Maximo de funcionarios ja atingido!\n\n");
 			return false;
 		}
 		if(funcionarioInserir.getIdentificacao() <= 0) {
-			System.out.println("\n\tErro, identificação inválida!");
+			System.out.println("\n\tErro! Identificacao invalida!");
 			return false;
 		}
 		int checagem = retornaPosicao(funcionarioInserir.getIdentificacao());
 		
 		if(checagem != -1) {
-			System.out.println("\n\tErro, funcionário já cadastrado!\n\n");
+			System.out.println("\n\tErro! Funcionario ja cadastrado!\n\n");
 			return false;
 		}
 		
@@ -70,22 +70,22 @@ public class ControladorFuncionario {
 	
 	public boolean remover (int identificacao) {
 		if(repoFuncionario.getQtdFuncionario() == 0) {
-			System.out.println("\n\tErro, não há funcionário para remover!");
+			System.out.println("\n\tErro! Nao ha funcionario para remover!");
 			return false;
 		}
 		if(identificacao <= 0) {
-			System.out.println("\n\tErro, identifica��o inválida!\n\n");
+			System.out.println("\n\tErro! Identificacao invalida!\n\n");
 			return false;
 		}
 		
 		int checagem = retornaPosicao(identificacao);
 		
 		if(checagem == -1) {
-			System.out.println("\n\tErro, funcionário nao exite!\n\n");
+			System.out.println("\n\tErro! Funcionario nao exite!\n\n");
 			return false;
 		}
 		
-		System.out.println("\n\tRemovido com sucesso!\n\n");
+		System.out.println("\n\tFuncionario removido com sucesso!\n\n");
 		repoFuncionario.remover(identificacao);
 		
 		return true;
@@ -97,7 +97,7 @@ public class ControladorFuncionario {
 			return false;
 		}
 		if(funcionarioAlterar.getIdentificacao() <= 0) {
-			System.out.println("\n\tErro! Identifica�ao invalida!");
+			System.out.println("\n\tErro! Identificacao invalida!");
 			return false;
 		}
 
@@ -108,7 +108,7 @@ public class ControladorFuncionario {
 			return false;
 		}
 		
-		System.out.println("\n\tAlterado com sucesso!\n\n");
+		System.out.println("\n\tFuncionario alterado com sucesso!\n\n");
 		repoFuncionario.alterar(funcionarioAlterar, checagem);
 		
 		return true;
@@ -116,14 +116,14 @@ public class ControladorFuncionario {
 	
 	public Funcionario buscar (int identificacao) {
 		if(identificacao <= 0) {
-			System.out.println("\n\tErro, identifica��o inválida!\n\n");
+			System.out.println("\n\tErro! Identificacao invalida!\n\n");
 			return null;
 		}
 		
 		int checagem = retornaPosicao(identificacao);
 		
 		if(checagem == -1) {
-			System.out.println("\n\tErro, conta inexistente\n\n");
+			System.out.println("\n\tErro! Funcionario inexistente!\n\n");
 			return null;
 		}
 		

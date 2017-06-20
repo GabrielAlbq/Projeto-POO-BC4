@@ -20,6 +20,11 @@ public class Funcionario {
 		this.recebeuSalario = false; // Indica se o funcionario ja recebeu o salario "False: não" "True: sim"
 	}
 
+	public Funcionario (Pessoa pessoa, int identificacao){
+		this.pessoa = pessoa;
+		this.identificacao = identificacao;
+	}
+	
 	// GET E SET 
 	
 	public Pessoa getPessoa() {

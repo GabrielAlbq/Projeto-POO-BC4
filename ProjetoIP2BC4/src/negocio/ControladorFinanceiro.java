@@ -30,7 +30,7 @@ public class ControladorFinanceiro {
 		repositorioFuncionario = RepositorioFuncionario.getInstancia();
 	}
 	
-	// M�TODOS 
+	// METODOS 
 	
 	public String exibirFinancas () {
 		return repositorioFinanceiro.exibirFinancas();
@@ -38,7 +38,7 @@ public class ControladorFinanceiro {
 	
 	public boolean pagarFuncionario (Funcionario func){
 		if( func == null ) {
-			System.out.println("\n\n\tErro! funcionario nulo!");
+			System.out.println("\n\n\tErro! Funcionario nulo!");
 			return false;
 		}
 		Funcionario [] funcionario = repositorioFuncionario.getFuncionario();

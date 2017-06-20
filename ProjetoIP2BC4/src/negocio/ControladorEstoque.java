@@ -7,7 +7,9 @@ import repositorios.RepositorioVenda;
 
 
 public class ControladorEstoque {
+	
 	//ATRIBUTOS
+	
 	RepositorioEstoque repoestoque;
 	RepositorioVenda repoVenda;
 	private static ControladorEstoque instancia;
@@ -32,6 +34,7 @@ public class ControladorEstoque {
 	}
 	
 	//METODOS COM CONTROLE DE NEGOCIOS
+	
 	public void listarProduto(){
 		for(int i = 0 ; i < getRepoestoque().getQuantSKU() ; i++){
 			System.out.println("#" + (i+1));
@@ -57,7 +60,7 @@ public class ControladorEstoque {
 		if(repoestoque.getQuantSKU() == repoestoque.getProdutos().length)
 			return false;
 		if(retornarPosicao(prod.getCodigo()) != -1){
-			System.out.println("Já existe um produto com esse código!");
+			System.out.println("Ja existe um produto com esse codigo!");
 			return false;
 		}
 		repoestoque.inserir(prod);

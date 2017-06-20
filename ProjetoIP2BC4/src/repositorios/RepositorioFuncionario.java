@@ -7,7 +7,7 @@ public class RepositorioFuncionario {
 	private Funcionario[] funcionario;
 	private int qtdFuncionario; // é o int proxima do class conta
 	
-	// singleton
+	// SINGLETON
 	
 	private static RepositorioFuncionario instancia;
 	
@@ -18,14 +18,14 @@ public class RepositorioFuncionario {
 		return instancia;
 	}
 	
-	// construtor
+	// CONSTRUTOR
 	
 	private RepositorioFuncionario() {
 		funcionario = new Funcionario[TAMMAX];
 		qtdFuncionario = 0;
 	}
 	
-	// metodos - as validacoes serao feitas no controlador utilizando estes metodos
+	// METODOS - as validacoes serao feitas no controlador utilizando estes metodos
 	
 	public void pagarFancionario (int posicao){
 		funcionario[posicao].setRecebeuSalario(true);
@@ -50,7 +50,7 @@ public class RepositorioFuncionario {
 		return this.funcionario[posicao];
 	}
 	
-	// gets / sets
+	// GETS / SETS
 	
 	public Funcionario[] getFuncionario() {
 		return funcionario;

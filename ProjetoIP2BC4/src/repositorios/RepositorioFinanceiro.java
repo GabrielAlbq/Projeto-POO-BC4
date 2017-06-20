@@ -12,7 +12,7 @@ public class RepositorioFinanceiro {
 	private double rendaBruta; // Total inicial do mes
 	private double totalFuncionarios; // Pagamento dos funcionarios
 	private double totalFornecedor; // Falta implementar (2 VA)
-	private double rendaLiquida;  // Total de dinheiro ap�s o pagamento de func + forn 
+	private double rendaLiquida;  // Total de dinheiro apos o pagamento de func + forn 
 	private double totalVendas; // Total de vendas - total fornecedor = lucro das vendas
 	
 	// SINGLETON
@@ -48,7 +48,7 @@ public class RepositorioFinanceiro {
 		this.rendaBruta = rendaBruta;
 	}
 	
-	// M�TODOS
+	// METODOS
 	
 	public double totalSalarioFuncionarios () {
 		double totalFuncionario = 0;

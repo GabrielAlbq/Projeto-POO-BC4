@@ -12,7 +12,7 @@ public class RepositorioVenda {
 	private ItemVenda[] arrayItem;// itens genericos que serao vendidos, copias da classe Produto.
 	private NotaFiscal[] notaFiscal; 
 
-	// Singleton
+	// SINGLETON
 	
 	private static RepositorioVenda instancia;
 	
@@ -30,7 +30,7 @@ public class RepositorioVenda {
 		return instancia;
 	}
 
-	// metodos
+	// METODOS
 	
 	
 	// limpa todas as notas fiscais

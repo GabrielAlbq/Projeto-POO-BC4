@@ -102,7 +102,7 @@ public class ControladorVenda {
 		}
 	}
 	
-	// imprimir todas os produtos - nome(pre�o)\nqtd\ncodigo
+	// imprimir todas os produtos - nome(preco)\nqtd\ncodigo
 	public String listarProdutos () {
 		Produto[] teste = repoEstoque.getProdutos();
 		String texto = "";
