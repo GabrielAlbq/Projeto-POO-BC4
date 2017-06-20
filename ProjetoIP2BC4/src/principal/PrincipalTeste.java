@@ -87,34 +87,36 @@ public class PrincipalTeste {
 				         + "\n(2) - Atualizar produtor\n(3) - Remover produto\n(4) - Buscar produto\n(5) - Menu principal\n\n");
 				
 				opcao = scanf.nextInt();
-				
+				String nome;
+				int codigo;
+				int quantidade;
+				double preco;
 				if( opcao == 1 ) {
-					String nome;
-					int codigo;
-					int quantidade;
-					double preco;
 					
 					System.out.println("Digite o codigo do produto");
 					codigo = scanf.nextInt();
-					//prod.setCodigo(sc.nextInt());
-					
 					System.out.println("Digite o nome do produto");
 					scanf.nextLine();
 					nome = scanf.nextLine();
-					//prod.setNome(sc.nextLine());
 					System.out.println("Digite o preço do produto");
 					preco = scanf.nextDouble();
-					//prod.setPreco(sc.nextDouble());
 					System.out.println("Digite a sua quantidade");
 					quantidade = scanf.nextInt();
-					//prod.setQuantidade(sc.nextInt());
 					Produto prod = new Produto(nome,codigo,quantidade,preco);
-					if(ControladorEstoque.inserir(prod) == true)
-						System.out.println("Produto adicionado com sucesso!");
-						
-				} 
+					fachada.inserirProduto(prod);				
+				}
 				else if (opcao == 2) {
-				
+					//int codigo;
+					
+					System.out.println("Digite o codigo do produto que será atualizado");
+					codigo = scanf.nextInt();
+					
+					System.out.println("Digite a nova quantidade");
+					quantidade = scanf.nextInt();
+					
+					System.out.println("Digite o novo preco");
+					preco = scanf.nextDouble();
+					//Produto prod = controladorestoque.getRepoestoque().alterar(prod, posicao);
 				} 
 				else if(opcao == 3) {
 					

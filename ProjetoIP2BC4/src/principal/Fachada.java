@@ -52,6 +52,9 @@ public class Fachada {
 	
 	public void inserirProduto (Produto produto){
 		controladorEstoque.inserir(produto);
+			//return true;
+		//return false;
+	
 	}
 	
 	public void atualizarProduto (Produto novoProduto){
