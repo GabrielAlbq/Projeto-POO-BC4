@@ -23,7 +23,7 @@ public class RepositorioVenda {
 		qtdNotaFiscal = 0;
 	}
 	
-	public static RepositorioVenda intanciar() {
+	public static RepositorioVenda getInstancia() {
 		if( instancia == null ) {
 			instancia = new RepositorioVenda();
 		}

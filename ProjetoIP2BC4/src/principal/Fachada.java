@@ -24,7 +24,7 @@ public class Fachada {
 		controladorFuncionario = ControladorFuncionario.getInstancia();
 		controladorFinanceiro = ControladorFinanceiro.getInstancia();
 		repositorioFinanceiro = RepositorioFinanceiro.getInstancia();
-		repositorioVenda = RepositorioVenda.intanciar();
+		repositorioVenda = RepositorioVenda.getInstancia();
 	}
 	public static Fachada getInstancia(){
 		if(instancia == null){

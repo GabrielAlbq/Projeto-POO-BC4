@@ -24,7 +24,7 @@ public class Pedido {
 	
 	private Pedido() {
 		controlEstoque = ControladorEstoque.getInstancia();
-		repoVenda = RepositorioVenda.intanciar();
+		repoVenda = RepositorioVenda.getInstancia();
 		
 		arrayItem = new ItemVenda[TAM_MAX];
 		qtdItens = 0;

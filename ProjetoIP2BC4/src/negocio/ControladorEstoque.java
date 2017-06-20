@@ -16,7 +16,7 @@ public class ControladorEstoque {
 	
 	private ControladorEstoque(){
 		repoestoque = RepositorioEstoque.getInstancia();
-		repoVenda = RepositorioVenda.intanciar();
+		repoVenda = RepositorioVenda.getInstancia();
 	}
 	
 	public static ControladorEstoque getInstancia(){

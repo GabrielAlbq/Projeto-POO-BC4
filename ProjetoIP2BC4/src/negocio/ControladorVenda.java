@@ -14,7 +14,7 @@ public class ControladorVenda {
 	private static ControladorVenda instancia;
 
 	private ControladorVenda() {
-		repoVenda = RepositorioVenda.intanciar();
+		repoVenda = RepositorioVenda.getInstancia();
 		repoEstoque = RepositorioEstoque.getInstancia();
 		pedido = Pedido.instanciar();
 	}
