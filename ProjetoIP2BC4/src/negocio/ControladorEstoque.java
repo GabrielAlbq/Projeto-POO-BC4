@@ -32,7 +32,12 @@ public class ControladorEstoque {
 	}
 	
 	//METODOS COM CONTROLE DE NEGOCIOS
-	
+	public void listarProduto(){
+		for(int i = 0 ; i < getRepoestoque().getQuantSKU() ; i++){
+			System.out.println("#" + (i+1));
+			System.out.println(getRepoestoque().getProdutos()[i]);
+		}
+	}
 	public boolean subtrairProduto (int codigo, int quantidade) {
 		Produto[] produtos = repoestoque.getProdutos();
 		for (int i = 0; i < repoestoque.getQuantSKU(); i++) {

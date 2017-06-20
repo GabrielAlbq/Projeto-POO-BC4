@@ -92,11 +92,7 @@ public class PrincipalTeste {
 				int quantidade;
 				double preco;
 				if( opcao == 1){
-					int i = 0;
-					for(i=0;i<fachada.getControladorEstoque().getRepoestoque().getQuantSKU();i++){
-						System.out.println("#" + (i+1));
-						System.out.println(fachada.getControladorEstoque().getRepoestoque().getProdutos()[i]);
-					}
+					fachada.getControladorEstoque().listarProduto();				
 				}
 				else if( opcao == 2 ) {
 					
