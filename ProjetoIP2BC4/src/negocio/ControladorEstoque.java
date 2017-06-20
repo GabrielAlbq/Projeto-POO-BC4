@@ -26,6 +26,7 @@ public class ControladorEstoque {
 		return instancia;
 	}
 	
+	//GET
 	public RepositorioEstoque getRepoestoque() {
 		return repoestoque;
 	}

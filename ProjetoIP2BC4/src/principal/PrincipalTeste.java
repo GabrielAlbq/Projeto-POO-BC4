@@ -43,7 +43,8 @@ public class PrincipalTeste {
 		boolean parar = false;
 		boolean vender = true;
 		
-		
+		//FACHADA 
+		Fachada fachada = Fachada.getInstancia();
 		while(!parar) {
 			System.out.println("\n\n=========================================\n\n\tMercadinho mil grau\n\n(1) - Sistema de Vendas\n"
 							 + "(2) - Sistema de Estoque\n(3) - Sistema de Funcionario\n(4) - Sistema Financeiro\n(5) - Fechar programa\n\n==> ");
@@ -58,7 +59,7 @@ public class PrincipalTeste {
 				if( opcao == 1 ) {
 					// receber id do funcionario
 					// abrir tabela de itens de venda
-					// selecionar item e quantidade em um laço
+					// selecionar item e quantidade em um laï¿½o
 					// se terminar pergunta se quer concluir a venda
 					// se concluir chamar o metodo de pedido - encerrarPedido
 					// se cancelar o pedido chamar o metodo de peddo - resetarPedido
@@ -88,7 +89,28 @@ public class PrincipalTeste {
 				opcao = scanf.nextInt();
 				
 				if( opcao == 1 ) {
+					String nome;
+					int codigo;
+					int quantidade;
+					double preco;
 					
+					System.out.println("Digite o codigo do produto");
+					codigo = scanf.nextInt();
+					//prod.setCodigo(sc.nextInt());
+					
+					System.out.println("Digite o nome do produto");
+					scanf.nextLine();
+					nome = scanf.nextLine();
+					//prod.setNome(sc.nextLine());
+					System.out.println("Digite o preÃ§o do produto");
+					preco = scanf.nextDouble();
+					//prod.setPreco(sc.nextDouble());
+					System.out.println("Digite a sua quantidade");
+					quantidade = scanf.nextInt();
+					//prod.setQuantidade(sc.nextInt());
+					Produto prod = new Produto(nome,codigo,quantidade,preco);
+					if(ControladorEstoque.inserir(prod) == true)
+						System.out.println("Produto adicionado com sucesso!");
 						
 				} 
 				else if (opcao == 2) {

@@ -15,7 +15,7 @@ public class ControladorFinanceiro {
 	
 	private static ControladorFinanceiro instancia;
 		
-	public static ControladorFinanceiro instanciarControlFinanceiro () {
+	public static ControladorFinanceiro getInstancia () {
 		if( instancia == null ) {
 			instancia = new ControladorFinanceiro();
 		}
@@ -25,12 +25,12 @@ public class ControladorFinanceiro {
 	// CONSTRUTOR
 		
 	private ControladorFinanceiro () {
-		controladorFuncionario = ControladorFuncionario.instanciarControlFuncionario();
+		controladorFuncionario = ControladorFuncionario.getInstancia();
 		repositorioFinanceiro = RepositorioFinanceiro.instanciarRepoFinanceiro();
 		repositorioFuncionario = RepositorioFuncionario.instanciarRepoFuncionario();
 	}
 	
-	// MÉTODOS 
+	// Mï¿½TODOS 
 	
 	public boolean pagarFuncionario (Funcionario func){
 		if( func == null ) {

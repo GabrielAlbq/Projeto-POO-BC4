@@ -12,7 +12,7 @@ public class ControladorFuncionario {
 	
 	private static ControladorFuncionario instancia;
 	
-	public static ControladorFuncionario instanciarControlFuncionario () {
+	public static ControladorFuncionario getInstancia () {
 		if( instancia == null ) {
 			instancia = new ControladorFuncionario();
 		}
@@ -74,7 +74,7 @@ public class ControladorFuncionario {
 			return false;
 		}
 		if(identificacao <= 0) {
-			System.out.println("\n\tErro, identificação invÃ¡lida!\n\n");
+			System.out.println("\n\tErro, identificaï¿½ï¿½o invÃ¡lida!\n\n");
 			return false;
 		}
 		
@@ -97,7 +97,7 @@ public class ControladorFuncionario {
 			return false;
 		}
 		if(funcionarioAlterar.getIdentificacao() <= 0) {
-			System.out.println("\n\tErro! Identificaçao invalida!");
+			System.out.println("\n\tErro! Identificaï¿½ao invalida!");
 			return false;
 		}
 
@@ -116,7 +116,7 @@ public class ControladorFuncionario {
 	
 	public Funcionario buscar (int identificacao) {
 		if(identificacao <= 0) {
-			System.out.println("\n\tErro, identificação invÃ¡lida!\n\n");
+			System.out.println("\n\tErro, identificaï¿½ï¿½o invÃ¡lida!\n\n");
 			return null;
 		}
 		

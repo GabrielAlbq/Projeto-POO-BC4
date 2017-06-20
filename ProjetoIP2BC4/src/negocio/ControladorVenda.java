@@ -19,7 +19,7 @@ public class ControladorVenda {
 		pedido = Pedido.instanciar();
 	}
 	
-	public static ControladorVenda instanciar() {
+	public static ControladorVenda getInstancia() {
 		if( instancia == null ) {
 			instancia = new ControladorVenda();
 		}
@@ -44,7 +44,7 @@ public class ControladorVenda {
 	}
 	
 	// este metodo checa se existe o produto com este codigo e quantidade no repositorioEstoque
-	// se houver ele retorna verdadeiro, para validar a subtração deste produto na quantidade
+	// se houver ele retorna verdadeiro, para validar a subtraï¿½ï¿½o deste produto na quantidade
 	public boolean checarQuantidade(int codigo, int quantidade) {
 		if( codigo <= 0 || quantidade <= 0) {
 			return false;
@@ -62,11 +62,11 @@ public class ControladorVenda {
 	
 	public boolean efetuarPedido (int codigo, int quantidade, Funcionario funcionario) {
 		if( codigo <= 0 ) {
-			System.out.println("\n\n\tErro! código inválido!");
+			System.out.println("\n\n\tErro! cï¿½digo invï¿½lido!");
 			return false;
 		}
 		if( quantidade <= 0 ) {
-			System.out.println("\n\n\tErro! quantidade inválida!");
+			System.out.println("\n\n\tErro! quantidade invï¿½lida!");
 			return false;
 		}
 		int posicao = retornaPosicao(codigo);
@@ -76,7 +76,7 @@ public class ControladorVenda {
 		}
 		boolean checagem = checarQuantidade(codigo, quantidade);
 		if( checagem == false ) {
-			System.out.println("Erro! número de itens insuficiente!");
+			System.out.println("Erro! nï¿½mero de itens insuficiente!");
 			return false;
 		}
 		pedido.acrescentarPedido(codigo, quantidade, funcionario);
@@ -98,7 +98,7 @@ public class ControladorVenda {
 		}
 	}
 	
-	// imprimir todas os produtos - nome(preço)\nqtd\ncodigo
+	// imprimir todas os produtos - nome(preï¿½o)\nqtd\ncodigo
 	public String listarProdutos () {
 		Produto[] teste = repoEstoque.getProdutos();
 		String texto = "";
