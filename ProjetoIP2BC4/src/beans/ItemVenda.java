@@ -3,12 +3,12 @@ package beans;
 public class ItemVenda {
 	
 	// ATRIBUTOS 
-	
 	private String nome;
 	private double preco;
 	private int codigo;
 	private int qtd;
 	//TODO verificar a modificacao com produto
+	
 	// CONSTRUTORES
 	
 	public ItemVenda(int codigo, String nome, double preco, int qtd) {
@@ -71,9 +71,8 @@ public class ItemVenda {
 	
 	// TO STRING
 
-	@Override
 	public String toString() {
-		return "[ Nome: " + nome + ", Preco: R$" + preco + ", Quantidade: " + qtd + " ]";
+		return "Nome: " + nome + ", Preco: R$" + preco + ", Quantidade: " + qtd;
 	}
 
 }

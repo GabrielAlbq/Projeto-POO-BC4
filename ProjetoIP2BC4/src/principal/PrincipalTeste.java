@@ -105,7 +105,7 @@ public class PrincipalTeste {
 					System.out.println("Digite o nome do produto");
 					scanf.nextLine();
 					nome = scanf.nextLine();
-					System.out.println("Digite o preço do produto");
+					System.out.println("Digite o preco do produto");
 					preco = scanf.nextDouble();
 					System.out.println("Digite a sua quantidade");
 					quantidade = scanf.nextInt();
@@ -114,9 +114,9 @@ public class PrincipalTeste {
 				}
 				else if (opcao == 3) {
 					opcao = 0;
-					System.out.println("Digite o codigo do produto que será atualizado");
+					System.out.println("Digite o codigo do produto que sera atualizado");
 					codigo = scanf.nextInt();
-					System.out.println("O que você deseja alterar?\n(1)Quantidade\n(2)Preco\n(3)Nome");
+					System.out.println("O que voce deseja alterar?\n(1)Quantidade\n(2)Preco\n(3)Nome");
 					opcao = scanf.nextInt();
 					if(opcao == 1){
 						Produto prod = fachada.buscarProduto(codigo);
