@@ -76,18 +76,22 @@ public class PrincipalTeste {
 				System.out.println("\n\n=========================================\n\n\tSistema de Vendas\n\n(1) - Registrar Venda"
 						         + "\n(2) - Listar Vendas\n(3) - Deletar Historico\n(4) - Menu principal");
 				opcao = scanf.nextInt();
+				
 				if( opcao == 1 ) {
+					while(opcao != 0){ //while para voltar a pedir a identificacao caso seja nula.
 					int i = 1;
 					System.out.println("Digite a identificacao do funcionario");
 					identificacao = scanf.nextInt();
 					f = fachada.buscarFuncionario(identificacao);
 					if(f == null){
+						opcao = 1;
 					}
 					else{
 					System.out.println("Funcionario: "+f.getPessoa().getNome());
+					System.out.println(fachada.listarItensVenda());
 					while( !terminarVenda ){
 						
-						System.out.println(fachada.listarItensVenda());
+//						System.out.println(fachada.listarItensVenda());
 						System.out.println("\n\n\t(0) - Encerrar a venda\n\t(-1) - Cancelar venda\n\n");
 						System.out.println("Digite o codigo do produto");
 						codigo = scanf.nextInt();
@@ -100,6 +104,7 @@ public class PrincipalTeste {
 								 // TODO gerar nota fiscal
 								 auxiliarVenda = true;
 								 terminarVenda = true;
+								 opcao = 0; //para encerrar o primeiro while.
 							 }
 							 else if(codigo == 2) {
 								// se a opcao for 2 ou qualquer valor diferente de 1 o codigo volta ao menu de vendas!
@@ -124,7 +129,8 @@ public class PrincipalTeste {
 							fachada.vender(codigo, quantidade, fachada.buscarFuncionario(identificacao));
 						}
 						
-					} } // fechamento do la�o de venda
+					} } // fechamento do laco de venda e do else
+				}
 				}
 				else if (opcao == 2) {
 					System.out.println(fachada.listarVendas());
