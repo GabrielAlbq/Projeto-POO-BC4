@@ -15,10 +15,10 @@ public class Pedido {
 	private int qtdItens; 			  // zera apos o metodo encerrarPedido ser chamado
 	private Funcionario funcionario;  // zera apos o metodo encerrarPedido ser chamado
 	
-	// instanciar o repositorioFinanceiro
+	// Instanciar o repositorioFinanceiro
 	
 	
-	// singleton
+	// SINGLETON
 	
 	private static Pedido instancia;
 	
@@ -53,6 +53,7 @@ public class Pedido {
 		 * Este laco busca se o item com este codigo ja foi adionado.
 		 * Se sim, ele acrescente a quantidade nele
 		 * Se nao, significa que o item nao esta cadastrado
+		 * o outro laco faz o trabalho de instancia-lo
 		 * o outro laco faz o trabalho de instancia-lo
 		 */
 		//ItemVenda[] itempedido = new ItemVenda[TAM_MAX];
@@ -120,11 +121,12 @@ public class Pedido {
 		for (int i = 0; i < repoVenda.getQtdItem(); i++) {
 			totalPagar += repoVenda.getArrayItem()[i].valorTotal();
 		}
-		
-		
-		System.out.println("TESTE PARA VER SE FUNCIONA Item: " +repoVenda.getArrayItem()[0]);// Print so pra teste.
+
+
 		System.out.println("Total a pagar: " +totalPagar);
 		//TODO  o bug das vendas esta nesta parte!
+
+
 		//controladorFinanceiro.receberDinheiroVenda(totalPagar);
 		
 		

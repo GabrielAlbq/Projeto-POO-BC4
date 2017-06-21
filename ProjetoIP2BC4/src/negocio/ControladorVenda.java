@@ -9,7 +9,8 @@ public class ControladorVenda {
 	private RepositorioVenda repoVenda;
 	private Pedido pedido;
 	private ControladorEstoque controlEstoque; //PARA COMPARAR A QUANTIDADE DO PRODUTO ORIGINAL
-	// singleton
+	// SINGLETON
+
 	
 	private static ControladorVenda instancia;
 
@@ -27,7 +28,7 @@ public class ControladorVenda {
 		return instancia;
 	}
 	
-	// crud e metodos
+	// CRUD E METODOS
 	
 	public int retornaPosicao(int codigo) {
 		if( codigo <= 0 ) {
@@ -44,8 +45,10 @@ public class ControladorVenda {
 		return -1;
 	}
 	
+
 	// este metodo checa se existe o produto com este codigo e quantidade no repositorioEstoque
 	// se houver ele retorna verdadeiro, para validar a subtracao deste produto na quantidade
+
 	public boolean checarQuantidade(int codigo, int quantidade) {
 		if( codigo <= 0 || quantidade <= 0) {
 			return false;
@@ -116,7 +119,6 @@ public class ControladorVenda {
 		}
 		return texto;
 	}
-	
 	public boolean alterar(Produto produto) {
 		if( produto == null ) {
 			System.out.println("\n\n\tErro! itemVenda invalido\n\n");

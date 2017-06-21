@@ -43,7 +43,9 @@ public class Fachada {
 	
 	// SISTEMA VENDA
 	
-	
+	public int procuraProduto (){
+		return controladorVenda.procuraProduto();
+	}
 	public void encerrarPedido () {
 		pedido.encerrarPedido();
 	}
