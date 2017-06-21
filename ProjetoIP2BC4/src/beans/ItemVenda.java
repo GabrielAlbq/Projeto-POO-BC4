@@ -3,6 +3,7 @@ package beans;
 public class ItemVenda {
 	
 	// ATRIBUTOS 
+	
 	private String nome;
 	private double preco;
 	private int codigo;
@@ -62,10 +63,9 @@ public class ItemVenda {
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
+	
 	// EQUALS
 	
-
-
 	public boolean equals(ItemVenda item) {
 		if(item == null)
 			return false;
@@ -81,6 +81,4 @@ public class ItemVenda {
 	public String toString() {
 		return "Nome: " + nome + ", Preco: R$" + preco;
 	}
-
 }
-

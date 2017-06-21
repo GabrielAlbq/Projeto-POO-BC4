@@ -83,6 +83,8 @@ public class RepositorioFinanceiro {
 		totalVendas += valor;		
 	}
 	
+	// TO STRING 
+	
 	public String exibirFinancas (){
 		String teste = "";
 		teste += "\n\n\t\tExibir Financas\n\tRenda total: R$ "+rendaBruta + "\n\tSalario dos funcionarios: R$ ";

@@ -3,6 +3,9 @@ package repositorios;
 import beans.Funcionario;
 
 public class RepositorioFuncionario {
+	
+	// ATRIBUTOS 
+	
 	private final int TAMMAX = 10;
 	private Funcionario[] funcionario;
 	private int qtdFuncionario; // é o int proxima do class conta

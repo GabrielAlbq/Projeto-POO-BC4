@@ -1,10 +1,15 @@
 package beans;
 
 public class Endereco {
+	
+	// ATRIBUTOS 
+	
 	private String rua;
 	private String cidade;
 	private String cep;
 	private String numero;
+	
+	// CONSTRUTOR
 	
 	public Endereco(String rua, String cidade, String cep, String numero) {
 		this.rua = rua;
@@ -12,6 +17,8 @@ public class Endereco {
 		this.cep = cep;
 		this.numero = numero;
 	}
+	
+	// GET / SET
 
 	public String getRua() {
 		return rua;
@@ -44,8 +51,9 @@ public class Endereco {
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
+	
+	// TO STRING
 
-	@Override
 	public String toString() {
 		return "Endereco\n\nrua: "+rua+"\ncidade: "+cidade+"\ncep: "+cep+"\nnumero: "+numero;
 	}

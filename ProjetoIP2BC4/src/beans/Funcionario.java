@@ -25,7 +25,7 @@ public class Funcionario {
 		this.identificacao = identificacao;
 	}
 	
-	// GET E SET 
+	// GET / SET 
 	
 	public Pessoa getPessoa() {
 		return pessoa;

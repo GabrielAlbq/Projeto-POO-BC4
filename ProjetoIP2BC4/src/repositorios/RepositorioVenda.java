@@ -4,6 +4,9 @@ import beans.ItemVenda;
 import beans.NotaFiscal;
 
 public class RepositorioVenda {
+	
+	// ATRIBUTOS 
+	
 	private int TAM_MAX = 100;
 	private int TAM_MAX_NOTAS_FISCAIS = 1000;
 	private int qtdItem;
@@ -31,7 +34,6 @@ public class RepositorioVenda {
 
 	// METODOS
 	
-	
 	// limpa todas as notas fiscais
 	public void limparHistoricoNotasFiscais (int posicao) {
 		this.notaFiscal[posicao] = null;
@@ -58,7 +60,6 @@ public class RepositorioVenda {
 		qtdNotaFiscal++;
 	}
 	
-
 	// nao prescisa de validacoes, pois estas ja foram feitas no controlador estoque!
 	// nao precisa de validacoes, pois estas ja foram feitas no controlador estoque!
 	public void inserir(ItemVenda itemvenda) {

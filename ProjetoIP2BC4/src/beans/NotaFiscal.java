@@ -1,14 +1,16 @@
 package beans;
 
 public class NotaFiscal {
-
+	
+	// ATRIBUTOS 
+	
 	private Funcionario funcionario; // É o funcionario que vendeu
 	private ItemVenda[] itensVendidos; // Lista de itens vendidos
-	private Funcionario funcionario; // Ã‰ o funcionario que vendeu
-	private ItemVenda[] itensVendidos; // lista de itens vendidos
 	private int qtdItens;
 	private double totalPagar; // Somatorio de cada item da lista, (quantidade de cada item) * (valor do item);
 	private int codigoDaNota; // Codigo da nota fiscal
+	
+	// CONSTRUTOR 
 	
 	public NotaFiscal(Funcionario funcionario, ItemVenda[] itensVendidos, double totalPagar, int codigoDaNota, int qtdItens) {
 		this.funcionario = funcionario;
@@ -18,6 +20,8 @@ public class NotaFiscal {
 		this.qtdItens = qtdItens;
 	}
 
+	// GET / SET
+	
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}
@@ -33,6 +37,8 @@ public class NotaFiscal {
 	public int getCodigoDaNota() {
 		return codigoDaNota;
 	}
+	
+	// TO STRING 
 	
 	public String toString() {
 		String teste = "\n\n========================================\n";

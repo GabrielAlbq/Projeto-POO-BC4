@@ -3,13 +3,16 @@ package repositorios;
 import beans.Produto;
 
 public class RepositorioEstoque {
+	
 	//ATRIBUTOS
+	
 	private final static int TAM_MAX = 100;
 	private Produto[] produtos;
 	private int quantSKU;
 	private static RepositorioEstoque instancia;
 	
 	//CONSTRUTOR
+	
 	private RepositorioEstoque(){
 		this.produtos = new Produto[TAM_MAX];
 		this.quantSKU = 0;
@@ -22,6 +25,7 @@ public class RepositorioEstoque {
 	}
 
 	//GET
+	
 	public Produto[] getProdutos() {
 		return produtos;
 	}
@@ -30,6 +34,7 @@ public class RepositorioEstoque {
 	}
 	
 	//METODOS
+	
 	public void subtrairProduto (int posicao, int quantidade) {
 		produtos[posicao].setQuantidade( produtos[posicao].getQuantidade()-quantidade );
 	}

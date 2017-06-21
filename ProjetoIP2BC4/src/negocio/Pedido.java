@@ -4,8 +4,10 @@ import repositorios.*;
 import beans.*;
 
 public class Pedido {
+	
+	// ATRIBUTOS 
+	
 	private int TAM_MAX = 100;
-
 	private ControladorEstoque controlEstoque;
 	private RepositorioVenda repoVenda;
 	private ControladorFinanceiro controladorFinanceiro;
@@ -14,9 +16,6 @@ public class Pedido {
 	private ItemVenda[] arrayItem;    // zera apos o metodo encerrarPedido ser chamado
 	private int qtdItens; 			  // zera apos o metodo encerrarPedido ser chamado
 	private Funcionario funcionario;  // zera apos o metodo encerrarPedido ser chamado
-	
-	// Instanciar o repositorioFinanceiro
-	
 	
 	// SINGLETON
 	
@@ -39,9 +38,12 @@ public class Pedido {
 		return instancia;
 	}
 	
-	// controla o pedido do cliente
-	// estes metodos contam a quantidade de itens que o cliente pediu, colocand-os no array para emitir a nota fiscal
-	// efetua a venda e checa se no array ja possui um item repetido para somar o novo
+	// METODOS 
+	
+	// Controla o pedido do cliente
+	// Estes metodos contam a quantidade de itens que o cliente pediu, colocand-os no array para emitir a nota fiscal
+	// Efetua a venda e checa se no array ja possui um item repetido para somar o novo
+	
 	ItemVenda[] itempedido = new ItemVenda[TAM_MAX];
 	
 	int qtditem = 0;

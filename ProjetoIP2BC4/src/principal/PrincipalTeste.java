@@ -13,11 +13,10 @@ public class PrincipalTeste {
 	public static void main(String[] args) {
 		
 		// SCANNER
-		
 		Scanner scanf = new Scanner(System.in);
 		
 		//FACHADA 
-				Fachada fachada = Fachada.getInstancia();
+		Fachada fachada = Fachada.getInstancia();
 		
 		// OBJETOS DE TESTE - Armazena-los em arquivo depois!
 		
@@ -92,7 +91,7 @@ public class PrincipalTeste {
 					System.out.println("Funcionario: "+f.getPessoa().getNome());
 					System.out.println(fachada.listarItensVenda());
 					//aux = fachada.procuraProduto();
-					aux = 0; // só funciona assim, porem com erro. A linha acima, deveria funcionar, mas da null pointer excepetion
+					aux = 0; // So funciona assim, porem com erro. A linha acima, deveria funcionar, mas da null pointer excepetion
 							 // a funcao procuraProduto deveria retornar um inteiro, to me baseando no projeto de c
 					while(!terminarVenda && aux >= 0){
 						
@@ -160,7 +159,7 @@ public class PrincipalTeste {
 					}
 				}
 				else if (opcao == 4){
-					// jï¿½ volta automaticamente com qualquer numero exceto os que estao nos if's!
+					// ja volta automaticamente com qualquer numero exceto os que estao nos if's!
 				}
 				break;
 			}

@@ -6,6 +6,8 @@ import repositorios.RepositorioFuncionario;
 
 public class ControladorFuncionario {
 	
+	// ATRIBUTO 
+	
 	private RepositorioFuncionario repoFuncionario;
 	
 	// SINGLETON
@@ -141,8 +143,4 @@ public class ControladorFuncionario {
 	public RepositorioFuncionario getRepositorioFuncionario () {
 		return repoFuncionario;
 	}
-	
-	//TODO método pagar funcionario
-	//TODO método calcular adicional
-	//TODO listar produtos vendidos
 }

@@ -6,6 +6,8 @@ import repositorios.RepositorioFuncionario;
 
 public class ControladorFinanceiro {
 	
+	// ATRIBUTOS 
+	
 	private ControladorFuncionario controladorFuncionario;
 	private RepositorioFuncionario repositorioFuncionario;
 	private RepositorioFinanceiro repositorioFinanceiro;

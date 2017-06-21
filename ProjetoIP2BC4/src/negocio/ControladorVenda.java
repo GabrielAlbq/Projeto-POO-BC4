@@ -5,13 +5,16 @@ import repositorios.*;
 
 
 public class ControladorVenda {
+	
+	// ATRIBUTOS 
+	
 	private RepositorioEstoque repoEstoque;
 	private RepositorioVenda repoVenda;
 	private Pedido pedido;
 	private ControladorEstoque controlEstoque; //PARA COMPARAR A QUANTIDADE DO PRODUTO ORIGINAL
+	
 	// SINGLETON
 
-	
 	private static ControladorVenda instancia;
 
 	private ControladorVenda() {
@@ -148,7 +151,6 @@ public class ControladorVenda {
 		}
 		return teste;
 	}
-	
 	
 	//PARA A VENDA
 	public boolean inserir(ItemVenda itemvenda){
