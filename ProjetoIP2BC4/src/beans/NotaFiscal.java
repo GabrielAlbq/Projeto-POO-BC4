@@ -1,8 +1,11 @@
 package beans;
 
 public class NotaFiscal {
+
 	private Funcionario funcionario; // É o funcionario que vendeu
 	private ItemVenda[] itensVendidos; // Lista de itens vendidos
+	private Funcionario funcionario; // Ã‰ o funcionario que vendeu
+	private ItemVenda[] itensVendidos; // lista de itens vendidos
 	private int qtdItens;
 	private double totalPagar; // Somatorio de cada item da lista, (quantidade de cada item) * (valor do item);
 	private int codigoDaNota; // Codigo da nota fiscal

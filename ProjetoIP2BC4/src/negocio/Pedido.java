@@ -50,8 +50,10 @@ public class Pedido {
 		 * Este laco busca se o item com este codigo ja foi adionado.
 		 * Se sim, ele acrescente a quantidade nele
 		 * Se nao, significa que o item nao esta cadastrado
-		 * o outro laï¿½o faz o trabalho de instancia-lo
+		 * o outro laco faz o trabalho de instancia-lo
+		 * o outro laco faz o trabalho de instancia-lo
 		 */
+		//System.out.println("Item antes de acrescentar pedido: " + arrayItem[0]);
 		for (int i = 0; i < qtdItens ; i++) {
 			if(arrayItem[i].getCodigo() == codigo) {
 				arrayItem[i].setQtd( arrayItem[i].getQtd()+quantidade );
@@ -92,10 +94,15 @@ public class Pedido {
 		for (int i = 0; i < qtdItens; i++) {
 			totalPagar += arrayItem[i].valorTotal();
 		}
+
 		
 		//TODO  o bug das vendas está nesta parte!
 		//System.out.println("Item: " +arrayItem[0]); Print so pra teste.
 		//TODO  o bug das vendas está nesta parte!		
+
+	//	System.out.println("Item: " +arrayItem[0]); Print so pra teste.
+	//	System.out.println("Total a pagar: " +totalPagar);
+		//TODO  o bug das vendas esta nesta parte!
 		//controladorFinanceiro.receberDinheiroVenda(totalPagar);
 		
 		

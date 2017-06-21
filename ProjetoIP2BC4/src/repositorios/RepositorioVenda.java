@@ -58,7 +58,9 @@ public class RepositorioVenda {
 		qtdNotaFiscal++;
 	}
 	
+
 	// nao prescisa de validacoes, pois estas ja foram feitas no controlador estoque!
+	// nao precisa de validacoes, pois estas ja foram feitas no controlador estoque!
 	public void inserir(ItemVenda item) {
 		arrayItem[qtdItem] = item;
 		qtdItem++;
