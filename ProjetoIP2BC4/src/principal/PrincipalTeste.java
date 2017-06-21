@@ -132,7 +132,9 @@ public class PrincipalTeste {
 							ItemVenda ArrayItem = new ItemVenda(prod,quantidade);
 							fachada.inserirItem(ArrayItem);
 							totalparcial = totalparcial + ArrayItem.valorTotal();
-							System.out.println("Total parcial: "+totalparcial);
+							System.out.print("\n\tProduto: " + ArrayItem.getNome()+"\n\tQtd: " + ArrayItem.getQtd() +
+							"\n\tPreco: " + ArrayItem.getPreco() + "\n\tSubTotal: " + (ArrayItem.getPreco()*ArrayItem.getQtd()) + "\n");
+							System.out.println("\nTotal parcial: "+totalparcial);
 							}
 							else{
 								System.out.println("Quantidade tem que ser maior que zero!");
