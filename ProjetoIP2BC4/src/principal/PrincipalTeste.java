@@ -76,12 +76,14 @@ public class PrincipalTeste {
 				System.out.println("\n\n=========================================\n\n\tSistema de Vendas\n\n(1) - Registrar Venda"
 						         + "\n(2) - Listar Vendas\n(3) - Deletar Historico\n(4) - Menu principal");
 				opcao = scanf.nextInt();
-				
 				if( opcao == 1 ) {
 					int i = 1;
 					System.out.println("Digite a identificacao do funcionario");
 					identificacao = scanf.nextInt();
 					f = fachada.buscarFuncionario(identificacao);
+					if(f == null){
+					}
+					else{
 					System.out.println("Funcionario: "+f.getPessoa().getNome());
 					while( !terminarVenda ){
 						
@@ -122,7 +124,7 @@ public class PrincipalTeste {
 							fachada.vender(codigo, quantidade, fachada.buscarFuncionario(identificacao));
 						}
 						
-					} // fechamento do laço de venda
+					} } // fechamento do laï¿½o de venda
 				}
 				else if (opcao == 2) {
 					System.out.println(fachada.listarVendas());
@@ -136,7 +138,7 @@ public class PrincipalTeste {
 					}
 				}
 				else if (opcao == 4){
-					// já volta automaticamente com qualquer numero exceto os que estao nos if's!
+					// jï¿½ volta automaticamente com qualquer numero exceto os que estao nos if's!
 				}
 				break;
 			}
@@ -214,7 +216,7 @@ public class PrincipalTeste {
 					System.out.println(fachada.buscarProduto(codigo));
 				}
 				else if (opcao == 6){
-					// já volta automaticamente com qualquer numero exceto os que estao nos if's!
+					// jï¿½ volta automaticamente com qualquer numero exceto os que estao nos if's!
 				}
 				break;
 			}
@@ -286,7 +288,7 @@ public class PrincipalTeste {
 					System.out.println(f);
 				}
 				else if(opcao == 6) {
-					// já volta automaticamente com qualquer numero exceto os que estao nos if's!
+					// jï¿½ volta automaticamente com qualquer numero exceto os que estao nos if's!
 				}
 				break;
 			}
@@ -304,7 +306,7 @@ public class PrincipalTeste {
 					System.out.println(fachada.exibirFinancas());
 				}
 				else if (opcao == 3){
-					// já volta automaticamente com qualquer numero exceto os que estao nos if's!
+					// jï¿½ volta automaticamente com qualquer numero exceto os que estao nos if's!
 				}
 				break;
 			}	
