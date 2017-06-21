@@ -17,7 +17,13 @@ public class ItemVenda {
 		this.codigo = codigo;
 		this.qtd = qtd;
 	}
-	
+	public ItemVenda(Produto prod, int quantidade){
+		this.nome = prod.getNome();
+		this.preco = prod.getPreco();
+		this.codigo = prod.getCodigo();
+		//this.qtd = prod.getQuantidade();
+		this.qtd = quantidade;
+	}
 	public double valorTotal() {
 		return qtd * preco;
 	}
@@ -51,6 +57,10 @@ public class ItemVenda {
 
 	public void setQtd(int qtd) {
 		this.qtd = qtd;
+	}
+	
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
 	}
 	// EQUALS
 	

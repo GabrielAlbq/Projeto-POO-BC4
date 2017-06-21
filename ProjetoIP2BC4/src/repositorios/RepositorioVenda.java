@@ -59,8 +59,8 @@ public class RepositorioVenda {
 	}
 	
 	// nao precisa de validacoes, pois estas ja foram feitas no controlador estoque!
-	public void inserir(ItemVenda item) {
-		arrayItem[qtdItem] = item;
+	public void inserir(ItemVenda itemvenda) {
+		arrayItem[qtdItem] = itemvenda;
 		qtdItem++;
 	}
 	

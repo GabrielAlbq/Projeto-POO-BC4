@@ -1,6 +1,7 @@
 package principal;
 
 import beans.Funcionario;
+import beans.ItemVenda;
 import beans.Produto;
 import negocio.ControladorEstoque;
 import negocio.ControladorFinanceiro;
@@ -46,7 +47,9 @@ public class Fachada {
 	public void encerrarPedido () {
 		pedido.encerrarPedido();
 	}
-	
+	public void gerarNotaFiscal(Funcionario funcionario){
+		pedido.gerarNotaFiscal(funcionario);
+	}
 	public void vender (int codigo, int quantidade, Funcionario funcionario){
 		controladorVenda.efetuarPedido(codigo, quantidade, funcionario);
 	}
@@ -65,6 +68,9 @@ public class Fachada {
 	
 	public boolean limparHistorico (){
 		return controladorVenda.limparHistoricoNotasFiscais();
+	}
+	public void inserirItem(ItemVenda itemvenda){
+		controladorVenda.inserir(itemvenda);
 	}
 	
 	// SISTEMA ESTOQUE

@@ -29,6 +29,7 @@ public class ControladorEstoque {
 	}
 	
 	//GET
+	
 	public RepositorioEstoque getRepoestoque() {
 		return repoestoque;
 	}
@@ -53,7 +54,7 @@ public class ControladorEstoque {
 		for (int i = 0; i < repoestoque.getQuantSKU(); i++) {
 			if( codigo == produtos[i].getCodigo() ) {
 				if( quantidade <= produtos[i].getQuantidade() ) {
-					repoestoque.subtrairProduto(codigo, quantidade);
+					repoestoque.subtrairProduto(i, quantidade); //É pra passar por parametro a posicao
 					return true;
 				}
 			}
@@ -71,7 +72,7 @@ public class ControladorEstoque {
 			return false;
 		}
 		repoestoque.inserir(prod);
-		repoVenda.inserir( new ItemVenda(prod.getCodigo(), prod.getNome(), prod.getPreco(), 0) );
+	//	repoVenda.inserir( new ItemVenda(prod.getCodigo(), prod.getNome(), prod.getPreco(), 0) ); ///////
 		System.out.println("Produto adicionado com sucesso!");
 		return true;
 	}

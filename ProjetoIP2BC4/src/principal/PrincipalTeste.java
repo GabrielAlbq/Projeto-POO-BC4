@@ -79,7 +79,6 @@ public class PrincipalTeste {
 				
 				if( opcao == 1 ) {
 					while(opcao != 0){ //while para voltar a pedir a identificacao caso seja nula.
-					int i = 1;
 					System.out.println("Digite a identificacao do funcionario");
 					identificacao = scanf.nextInt();
 					f = fachada.buscarFuncionario(identificacao);
@@ -87,7 +86,8 @@ public class PrincipalTeste {
 						opcao = 1;
 					}
 					else{
-						
+					terminarVenda = false; //Recebem o valor aqui pois se for registrar nova venda, para eles entrarem no while precisam recebe false de novo.
+					auxiliarVenda = false;
 					System.out.println("Funcionario: "+f.getPessoa().getNome());
 					System.out.println(fachada.listarItensVenda());
 					while( !terminarVenda ){
@@ -102,13 +102,14 @@ public class PrincipalTeste {
 							 int charizard = scanf.nextInt();
 							 if( charizard == 1 ) {
 								 fachada.encerrarPedido();
+								 fachada.gerarNotaFiscal(f);
+								 //gerarNotaFiscal();
 								 // TODO gerar nota fiscal
 								 auxiliarVenda = true;
 								 terminarVenda = true;
 								 opcao = 0; //para encerrar o primeiro while.
 							 }
 							 else if(codigo == 2) {
-								// se a opcao for 2 ou qualquer valor diferente de 1 o codigo volta ao menu de vendas!
 							 }
 						}
 						if(codigo == -1) {
@@ -121,13 +122,17 @@ public class PrincipalTeste {
 								 System.out.println("\n\tVenda cancelada!\n\n");
 							 }
 							 else if(codigo == 2) {
-								// se a opcao for 2 ou qualquer valor diferente de 1 o codigo volta ao menu de vendas!
 							 }
 						}
 						if( !auxiliarVenda ) {
+							Produto prod = fachada.buscarProduto(codigo);
 							System.out.println("Digite a quantidade");
 							quantidade = scanf.nextInt();
-							fachada.vender(codigo, quantidade, fachada.buscarFuncionario(identificacao));
+							if(quantidade > 0){
+							ItemVenda ArrayItem = new ItemVenda(prod,quantidade);
+							fachada.inserirItem(ArrayItem);
+							}
+							//fachada.vender(codigo, quantidade, fachada.buscarFuncionario(identificacao));
 						}
 						
 					} } // fechamento do laco de venda e do else
