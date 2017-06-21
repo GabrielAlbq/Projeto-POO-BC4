@@ -134,6 +134,9 @@ public class PrincipalTeste {
 							totalparcial = totalparcial + ArrayItem.valorTotal();
 							System.out.println("Total parcial: "+totalparcial);
 							}
+							else{
+								System.out.println("Quantidade tem que ser maior que zero!");
+							}
 							}
 							else{
 								System.out.println("Codigo invalido ou produto nao existe. Digite novamente");

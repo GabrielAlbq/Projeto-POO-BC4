@@ -1,7 +1,6 @@
 package negocio;
 
 import beans.Produto;
-import beans.ItemVenda;
 import repositorios.RepositorioEstoque;
 import repositorios.RepositorioVenda;
 
