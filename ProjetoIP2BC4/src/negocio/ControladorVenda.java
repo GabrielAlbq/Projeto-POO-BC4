@@ -8,9 +8,9 @@ public class ControladorVenda {
 	private RepositorioEstoque repoEstoque;
 	private RepositorioVenda repoVenda;
 	private Pedido pedido;
-	ItemVenda[] itens = new ItemVenda[10];
-	
+	private ControladorEstoque controlEstoque; //PARA COMPARAR A QUANTIDADE DO PRODUTO ORIGINAL
 	// SINGLETON
+
 	
 	private static ControladorVenda instancia;
 
@@ -18,6 +18,7 @@ public class ControladorVenda {
 		repoVenda = RepositorioVenda.getInstancia();
 		repoEstoque = RepositorioEstoque.getInstancia();
 		pedido = Pedido.getInstancia();
+		controlEstoque = ControladorEstoque.getInstancia();
 	}
 	
 	public static ControladorVenda getInstancia() {
@@ -44,8 +45,10 @@ public class ControladorVenda {
 		return -1;
 	}
 	
-	// Este metodo checa se existe o produto com este codigo e quantidade no repositorioEstoque
-	// Se houver ele retorna verdadeiro, para validar a subtra��o deste produto na quantidade
+
+	// este metodo checa se existe o produto com este codigo e quantidade no repositorioEstoque
+	// se houver ele retorna verdadeiro, para validar a subtracao deste produto na quantidade
+
 	public boolean checarQuantidade(int codigo, int quantidade) {
 		if( codigo <= 0 || quantidade <= 0) {
 			return false;
@@ -67,11 +70,11 @@ public class ControladorVenda {
 	
 	public boolean efetuarPedido (int codigo, int quantidade, Funcionario funcionario) {
 		if( codigo <= 0 ) {
-			System.out.println("\n\n\tErro! c�digo invalido!");
+			System.out.println("\n\n\tErro! codigo invalido!");
 			return false;
 		}
 		if( quantidade <= 0 ) {
-			System.out.println("\n\n\tErro! quantidade inv�lida!");
+			System.out.println("\n\n\tErro! quantidade invalida!");
 			return false;
 		}
 		int posicao = retornaPosicao(codigo);
@@ -92,7 +95,7 @@ public class ControladorVenda {
 		if( notaFiscal == null ) {
 			return;
 		}
-		repoVenda.adicionarNotaFiscal( pedido.gerarNotaFiscal() );
+		repoVenda.adicionarNotaFiscal( notaFiscal);
 	}
 	
 	// apaga as notas fiscais armazenadas no repositorioVenda
@@ -144,5 +147,17 @@ public class ControladorVenda {
 			teste = teste+"\n\n"+notas[i].toString();
 		}
 		return teste;
+	}
+	
+	
+	//PARA A VENDA
+	public boolean inserir(ItemVenda itemvenda){
+		Produto prod = controlEstoque.buscar(itemvenda.getCodigo());
+		if(itemvenda.getQtd() > prod.getQuantidade() ){
+			System.out.println("Quantidade maior do que a do produto");
+			return false;
+		}
+		repoVenda.inserir(itemvenda);
+		return true;
 	}
 }

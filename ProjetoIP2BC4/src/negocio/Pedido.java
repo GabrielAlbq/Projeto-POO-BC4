@@ -42,7 +42,10 @@ public class Pedido {
 	// controla o pedido do cliente
 	// estes metodos contam a quantidade de itens que o cliente pediu, colocand-os no array para emitir a nota fiscal
 	// efetua a venda e checa se no array ja possui um item repetido para somar o novo
+	ItemVenda[] itempedido = new ItemVenda[TAM_MAX];
 	
+	int qtditem = 0;
+	int i = 0;
 	public void acrescentarPedido(int codigo, int quantidade, Funcionario funcionario) {
 		
 		this.funcionario = funcionario;
@@ -53,25 +56,44 @@ public class Pedido {
 		 * o outro laco faz o trabalho de instancia-lo
 		 * o outro laco faz o trabalho de instancia-lo
 		 */
-		//System.out.println("Item antes de acrescentar pedido: " + arrayItem[0]);
-		for (int i = 0; i < qtdItens ; i++) {
-			if(arrayItem[i].getCodigo() == codigo) {
-				arrayItem[i].setQtd( arrayItem[i].getQtd()+quantidade );
+		//ItemVenda[] itempedido = new ItemVenda[TAM_MAX];
+		System.out.println("Item antes de acrescentar pedido: " + itempedido[0]);
+		for (int i = 0; i < qtditem ; i++) {
+			if(itempedido[i].getCodigo() == codigo) {
+				itempedido[i].setQtd( itempedido[i].getQtd()+quantidade );
 				return;
 			}
 		}
+		//for(int i = 0; i < qtditem; i++){
+			itempedido[i].setNome(controlEstoque.buscar(codigo).getNome());
+			itempedido[i].setCodigo(codigo);
+			itempedido[i].setQtd(quantidade);
+			itempedido[i].setPreco(controlEstoque.buscar(codigo).getPreco());
+			itempedido[i].valorTotal();
+			
+		//}
+			i++;
+		qtditem++;
 		
-		ItemVenda[] testeArray = repoVenda.getArrayItem(); 
+//		for (int i = 0; i < qtdItens ; i++) {
+//			if(arrayItem[i].getCodigo() == codigo) {
+//				arrayItem[i].setQtd( arrayItem[i].getQtd()+quantidade );
+//				return;
+//			}
+//		}
 		
-		// adiciona o item ainda nao instanciado no array
-		for (int i = 0; i < qtdItens; i++) {
-			if( codigo ==  testeArray[i].getCodigo() ) {
-				arrayItem[i] = testeArray[i];
-				qtdItens++;
-				return;
-			}
-		}
-		//System.out.println("Item depois de acrescentar pedido: " + arrayItem[0]);
+//		ItemVenda[] testeArray = repoVenda.getArrayItem(); 
+//		
+//		// adiciona o item ainda nao instanciado no array
+//		for (int i = 0; i < qtdItens; i++) {
+//			if( codigo ==  testeArray[i].getCodigo() ) {
+//				arrayItem[i] = testeArray[i];
+//				qtdItens++;
+//				return;
+//			}
+//			
+//		}
+		System.out.println("Item depois de acrescentar pedido: " + itempedido[0]);
 		return;
 	}
 	
@@ -91,32 +113,34 @@ public class Pedido {
 	
 	public void encerrarPedido () {
 		// este laco faz o somatorio da venda atual
-		for (int i = 0; i < qtdItens; i++) {
-			totalPagar += arrayItem[i].valorTotal();
+//		for (int i = 0; i < qtdItens; i++) {
+//			totalPagar += arrayItem[i].valorTotal();
+//		}
+		
+		
+		for (int i = 0; i < repoVenda.getQtdItem(); i++) {
+			totalPagar += repoVenda.getArrayItem()[i].valorTotal();
 		}
 
-		
-		//TODO  o bug das vendas está nesta parte!
-		//System.out.println("Item: " +arrayItem[0]); Print so pra teste.
-		//TODO  o bug das vendas está nesta parte!		
 
-	//	System.out.println("Item: " +arrayItem[0]); Print so pra teste.
-	//	System.out.println("Total a pagar: " +totalPagar);
+		System.out.println("Total a pagar: " +totalPagar);
 		//TODO  o bug das vendas esta nesta parte!
+
+
 		//controladorFinanceiro.receberDinheiroVenda(totalPagar);
 		
 		
 		
 		// laco que subtrai os itens de venda dos produtos estocados
-		for (int i = 0; i < qtdItens; i++) {
-			controlEstoque.subtrairProduto( arrayItem[i].getCodigo() , arrayItem[i].getQtd());
+		for (int i = 0; i < repoVenda.getQtdItem(); i++) {
+			controlEstoque.subtrairProduto( repoVenda.getArrayItem()[i].getCodigo() , repoVenda.getArrayItem()[i].getQtd());
 		}
-		resetarPedido();
+	//	resetarPedido(); COMENTEI ESSA LINHA PQ O TOTAL A PAGAR DA NOTA FISCAL RECEBIA 0 JA que O RESETAR atribuia 0 p total a pagar.
 	}
 	
 	// gera uma nota fiscal, deve ser usada antes do metodo encerrar pedido
-	public NotaFiscal gerarNotaFiscal() {
-		NotaFiscal teste = new NotaFiscal(funcionario, arrayItem, totalPagar, contadorCodigoNota, qtdItens);
+	public NotaFiscal gerarNotaFiscal(Funcionario funcionario) {
+		NotaFiscal teste = new NotaFiscal(funcionario, repoVenda.getArrayItem(), totalPagar, contadorCodigoNota, repoVenda.getQtdItem());
 		repoVenda.adicionarNotaFiscal( teste );
 		contadorCodigoNota++;
 		return teste;

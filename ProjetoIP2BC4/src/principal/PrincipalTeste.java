@@ -79,16 +79,20 @@ public class PrincipalTeste {
 						         + "\n(2) - Listar Vendas\n(3) - Deletar Historico\n(4) - Menu principal");
 				opcao = scanf.nextInt();
 				if( opcao == 1 ) {
+
+					while(opcao != 0){ //while para voltar a pedir a identificacao caso seja nula.
 					System.out.println("Digite a identificacao do funcionario");
 					identificacao = scanf.nextInt();
 					f = fachada.buscarFuncionario(identificacao);
 					if(f == null){
 					}
 					else{
+					terminarVenda = false; //Recebem o valor aqui pois se for registrar nova venda, para eles entrarem no while precisam recebe false de novo.
+					auxiliarVenda = false;
 					System.out.println("Funcionario: "+f.getPessoa().getNome());
 					System.out.println(fachada.listarItensVenda());
 					//aux = fachada.procuraProduto();
-					aux = 0; // s� funciona assim, porem com erro. A linha acima, deveria funcionar, mas da null pointer excepetion
+					aux = 0; // só funciona assim, porem com erro. A linha acima, deveria funcionar, mas da null pointer excepetion
 							 // a funcao procuraProduto deveria retornar um inteiro, to me baseando no projeto de c
 					while(!terminarVenda && aux >= 0){
 						
@@ -109,12 +113,13 @@ public class PrincipalTeste {
 							 codigo = scanf.nextInt();
 							 if( codigo == 1 ) {
 								 fachada.encerrarPedido();
+								 fachada.gerarNotaFiscal(f);
+								 //gerarNotaFiscal();
 								 // TODO gerar nota fiscal
 								 auxiliarVenda = true;
 								 terminarVenda = true;
 							 }
 							 else if(codigo == 2) {
-								// se a opcao for 2 ou qualquer valor diferente de 1 o codigo volta ao menu de vendas!
 							 }
 						}
 						if(codigo == -1) {
@@ -127,12 +132,22 @@ public class PrincipalTeste {
 								 System.out.println("\n\tVenda cancelada!\n\n");
 							 }
 							 else if(codigo == 2) {
-								// se a opcao for 2 ou qualquer valor diferente de 1 o codigo volta ao menu de vendas!
 							 }
-						}						
-					} 
-				} // fechamento do laco de venda
-			}
+						}
+						if( !auxiliarVenda ) {
+							Produto prod = fachada.buscarProduto(codigo);
+							System.out.println("Digite a quantidade");
+							quantidade = scanf.nextInt();
+							if(quantidade > 0){
+							ItemVenda ArrayItem = new ItemVenda(prod,quantidade);
+							fachada.inserirItem(ArrayItem);
+							}
+							//fachada.vender(codigo, quantidade, fachada.buscarFuncionario(identificacao));
+						}
+						
+					} } // fechamento do laco de venda e do else
+				}
+				}
 				else if (opcao == 2) {
 					System.out.println(fachada.listarVendas());
 				} 
@@ -145,7 +160,7 @@ public class PrincipalTeste {
 					}
 				}
 				else if (opcao == 4){
-					// j� volta automaticamente com qualquer numero exceto os que estao nos if's!
+					// jï¿½ volta automaticamente com qualquer numero exceto os que estao nos if's!
 				}
 				break;
 			}
