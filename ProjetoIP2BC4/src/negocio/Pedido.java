@@ -41,17 +41,18 @@ public class Pedido {
 	
 	// controla o pedido do cliente
 	// estes metodos contam a quantidade de itens que o cliente pediu, colocand-os no array para emitir a nota fiscal
-	// efetua a venda e checa se no array jï¿½ possui um item repetido para somar o novo
+	// efetua a venda e checa se no array ja possui um item repetido para somar o novo
 	
 	public void acrescentarPedido(int codigo, int quantidade, Funcionario funcionario) {
 		
 		this.funcionario = funcionario;
 		/*
-		 * Este laï¿½o busca se o item com este codigo jï¿½ foi adionado.
+		 * Este laco busca se o item com este codigo ja foi adionado.
 		 * Se sim, ele acrescente a quantidade nele
-		 * Se nï¿½o, significa que o item nao estï¿½ cadastrado
-		 * o outro laï¿½o faz o trabalho de instancia-lo
+		 * Se nao, significa que o item nao esta cadastrado
+		 * o outro laco faz o trabalho de instancia-lo
 		 */
+		//System.out.println("Item antes de acrescentar pedido: " + arrayItem[0]);
 		for (int i = 0; i < qtdItens ; i++) {
 			if(arrayItem[i].getCodigo() == codigo) {
 				arrayItem[i].setQtd( arrayItem[i].getQtd()+quantidade );
@@ -69,6 +70,7 @@ public class Pedido {
 				return;
 			}
 		}
+		//System.out.println("Item depois de acrescentar pedido: " + arrayItem[0]);
 		return;
 	}
 	
@@ -91,8 +93,9 @@ public class Pedido {
 		for (int i = 0; i < qtdItens; i++) {
 			totalPagar += arrayItem[i].valorTotal();
 		}
-		
-		//TODO  o bug das vendas está nesta parte!
+	//	System.out.println("Item: " +arrayItem[0]); Print so pra teste.
+	//	System.out.println("Total a pagar: " +totalPagar);
+		//TODO  o bug das vendas esta nesta parte!
 		//controladorFinanceiro.receberDinheiroVenda(totalPagar);
 		
 		

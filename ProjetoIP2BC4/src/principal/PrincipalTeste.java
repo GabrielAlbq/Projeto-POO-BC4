@@ -87,6 +87,7 @@ public class PrincipalTeste {
 						opcao = 1;
 					}
 					else{
+						
 					System.out.println("Funcionario: "+f.getPessoa().getNome());
 					System.out.println(fachada.listarItensVenda());
 					while( !terminarVenda ){
@@ -144,7 +145,7 @@ public class PrincipalTeste {
 					}
 				}
 				else if (opcao == 4){
-					// j� volta automaticamente com qualquer numero exceto os que estao nos if's!
+					// ja volta automaticamente com qualquer numero exceto os que estao nos if's!
 				}
 				break;
 			}
@@ -222,7 +223,7 @@ public class PrincipalTeste {
 					System.out.println(fachada.buscarProduto(codigo));
 				}
 				else if (opcao == 6){
-					// j� volta automaticamente com qualquer numero exceto os que estao nos if's!
+					// ja volta automaticamente com qualquer numero exceto os que estao nos if's!
 				}
 				break;
 			}
@@ -294,7 +295,7 @@ public class PrincipalTeste {
 					System.out.println(f);
 				}
 				else if(opcao == 6) {
-					// j� volta automaticamente com qualquer numero exceto os que estao nos if's!
+					// ja volta automaticamente com qualquer numero exceto os que estao nos if's!
 				}
 				break;
 			}
@@ -312,7 +313,7 @@ public class PrincipalTeste {
 					System.out.println(fachada.exibirFinancas());
 				}
 				else if (opcao == 3){
-					// j� volta automaticamente com qualquer numero exceto os que estao nos if's!
+					// ja volta automaticamente com qualquer numero exceto os que estao nos if's!
 				}
 				break;
 			}	
@@ -322,5 +323,7 @@ public class PrincipalTeste {
 			}	
 		  }
 		} // fechamento do switch
+		if(scanf != null)
+			scanf.close();
 	}
 }
