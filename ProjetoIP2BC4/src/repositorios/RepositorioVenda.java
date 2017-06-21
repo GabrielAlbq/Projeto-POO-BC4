@@ -1,8 +1,7 @@
 package repositorios;
 
-import java.util.ArrayList;
-
-import beans.*;
+import beans.ItemVenda;
+import beans.NotaFiscal;
 
 public class RepositorioVenda {
 	private int TAM_MAX = 100;
@@ -59,7 +58,7 @@ public class RepositorioVenda {
 		qtdNotaFiscal++;
 	}
 	
-	// não prescisa de validações, pois estas já foram feitas no controlador estoque!
+	// nao prescisa de validacoes, pois estas ja foram feitas no controlador estoque!
 	public void inserir(ItemVenda item) {
 		arrayItem[qtdItem] = item;
 		qtdItem++;

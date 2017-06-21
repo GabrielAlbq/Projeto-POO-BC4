@@ -15,10 +15,10 @@ public class Pedido {
 	private int qtdItens; 			  // zera apos o metodo encerrarPedido ser chamado
 	private Funcionario funcionario;  // zera apos o metodo encerrarPedido ser chamado
 	
-	// instanciar o repositorioFinanceiro
+	// Instanciar o repositorioFinanceiro
 	
 	
-	// singleton
+	// SINGLETON
 	
 	private static Pedido instancia;
 	
@@ -41,15 +41,15 @@ public class Pedido {
 	
 	// controla o pedido do cliente
 	// estes metodos contam a quantidade de itens que o cliente pediu, colocand-os no array para emitir a nota fiscal
-	// efetua a venda e checa se no array jï¿½ possui um item repetido para somar o novo
+	// efetua a venda e checa se no array ja possui um item repetido para somar o novo
 	
 	public void acrescentarPedido(int codigo, int quantidade, Funcionario funcionario) {
 		
 		this.funcionario = funcionario;
 		/*
-		 * Este laï¿½o busca se o item com este codigo jï¿½ foi adionado.
+		 * Este laco busca se o item com este codigo ja foi adionado.
 		 * Se sim, ele acrescente a quantidade nele
-		 * Se nï¿½o, significa que o item nao estï¿½ cadastrado
+		 * Se nao, significa que o item nao esta cadastrado
 		 * o outro laï¿½o faz o trabalho de instancia-lo
 		 */
 		for (int i = 0; i < qtdItens ; i++) {
@@ -69,6 +69,7 @@ public class Pedido {
 				return;
 			}
 		}
+		//System.out.println("Item depois de acrescentar pedido: " + arrayItem[0]);
 		return;
 	}
 	
@@ -93,6 +94,8 @@ public class Pedido {
 		}
 		
 		//TODO  o bug das vendas está nesta parte!
+		//System.out.println("Item: " +arrayItem[0]); Print so pra teste.
+		//TODO  o bug das vendas está nesta parte!		
 		//controladorFinanceiro.receberDinheiroVenda(totalPagar);
 		
 		

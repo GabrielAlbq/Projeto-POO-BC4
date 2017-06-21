@@ -1,8 +1,12 @@
 package principal;
 
-import repositorios.*;
-import beans.*;
-import negocio.*;
+import beans.Funcionario;
+import beans.Produto;
+import negocio.ControladorEstoque;
+import negocio.ControladorFinanceiro;
+import negocio.ControladorFuncionario;
+import negocio.ControladorVenda;
+import negocio.Pedido;
 
 public class Fachada {
 	
@@ -38,7 +42,9 @@ public class Fachada {
 	
 	// SISTEMA VENDA
 	
-	
+	public int procuraProduto (){
+		return controladorVenda.procuraProduto();
+	}
 	public void encerrarPedido () {
 		pedido.encerrarPedido();
 	}

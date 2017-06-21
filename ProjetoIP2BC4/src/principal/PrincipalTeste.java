@@ -7,6 +7,7 @@ import beans.Funcionario;
 import beans.ItemVenda;
 import beans.Pessoa;
 import beans.Produto;
+import negocio.ControladorVenda;
 
 public class PrincipalTeste {
 	public static void main(String[] args) {
@@ -59,11 +60,12 @@ public class PrincipalTeste {
 		fachada.inserirFuncionario(f3);
 		fachada.inserirFuncionario(f4);
 		
-		int opcao, identificacao, codigo, quantidade;
+		int opcao, identificacao, codigo, quantidade, aux;
 		boolean parar = false, vender = true, terminarVenda = false, auxiliarVenda = false;
 		String nome, cep, cidade, rua, logradouro, numeroCasa, cpf, funcao;
 		double preco, salario;
 		Funcionario f;
+		
 		
 		
 		while(!parar) {
@@ -77,7 +79,6 @@ public class PrincipalTeste {
 						         + "\n(2) - Listar Vendas\n(3) - Deletar Historico\n(4) - Menu principal");
 				opcao = scanf.nextInt();
 				if( opcao == 1 ) {
-					int i = 1;
 					System.out.println("Digite a identificacao do funcionario");
 					identificacao = scanf.nextInt();
 					f = fachada.buscarFuncionario(identificacao);
@@ -85,17 +86,28 @@ public class PrincipalTeste {
 					}
 					else{
 					System.out.println("Funcionario: "+f.getPessoa().getNome());
-					while( !terminarVenda ){
+					System.out.println(fachada.listarItensVenda());
+					//aux = fachada.procuraProduto();
+					aux = 0; // só funciona assim, porem com erro. A linha acima, deveria funcionar, mas da null pointer excepetion
+							 // a funcao procuraProduto deveria retornar um inteiro, to me baseando no projeto de c
+					while(!terminarVenda && aux >= 0){
 						
-						System.out.println(fachada.listarItensVenda());
 						System.out.println("\n\n\t(0) - Encerrar a venda\n\t(-1) - Cancelar venda\n\n");
 						System.out.println("Digite o codigo do produto");
+						scanf.nextLine();
 						codigo = scanf.nextInt();
-						
+						System.out.println("Digite a quantidade");
+						quantidade = scanf.nextInt();
+						//if (quantidade > 0 && itens[aux].getQtd() >= quantidade){
+						double totalParcial = (quantidade*itens[aux].getQtd());
+			            System.out.println("\n\tProduto: " + itens[aux].getNome() +"\n\tQtd: " + itens[aux].getQtd() +
+			            		"\n\tPreco: " + itens[aux].getPreco() + "\n\tSubTotal: " + (itens[aux].getPreco()*itens[aux].getQtd()) + "\n");
+			            System.out.println("\n\nTotal parcial: "+ totalParcial +"\n\n");
+						//}
 						if(codigo == 0) {
 							System.out.println("\n\n\tTem certeza de que quer ENCERRAR a compra?\n\t(1) - SIM \n\t(2) - NAO\n\n");
-							 int charizard = scanf.nextInt();
-							 if( charizard == 1 ) {
+							 codigo = scanf.nextInt();
+							 if( codigo == 1 ) {
 								 fachada.encerrarPedido();
 								 // TODO gerar nota fiscal
 								 auxiliarVenda = true;
@@ -107,8 +119,8 @@ public class PrincipalTeste {
 						}
 						if(codigo == -1) {
 							System.out.println("\n\n\tTem certeza de que quer CANCELAR a compra?\n\t(1) - SIM \n\t(2) - NAO\n\n");
-							 int charizard = scanf.nextInt();
-							 if( charizard == 1 ) {
+							 codigo = scanf.nextInt();
+							 if( codigo == 1 ) {
 								 fachada.cancelarPedido();
 								 
 								 terminarVenda = true;
@@ -117,15 +129,10 @@ public class PrincipalTeste {
 							 else if(codigo == 2) {
 								// se a opcao for 2 ou qualquer valor diferente de 1 o codigo volta ao menu de vendas!
 							 }
-						}
-						if( !auxiliarVenda ) {
-							System.out.println("Digite a quantidade");
-							quantidade = scanf.nextInt();
-							fachada.vender(codigo, quantidade, fachada.buscarFuncionario(identificacao));
-						}
-						
-					} } // fechamento do laï¿½o de venda
-				}
+						}						
+					} 
+				} // fechamento do laco de venda
+			}
 				else if (opcao == 2) {
 					System.out.println(fachada.listarVendas());
 				} 
@@ -216,7 +223,7 @@ public class PrincipalTeste {
 					System.out.println(fachada.buscarProduto(codigo));
 				}
 				else if (opcao == 6){
-					// jï¿½ volta automaticamente com qualquer numero exceto os que estao nos if's!
+					// ja volta automaticamente com qualquer numero exceto os que estao nos if's!
 				}
 				break;
 			}
@@ -288,7 +295,7 @@ public class PrincipalTeste {
 					System.out.println(f);
 				}
 				else if(opcao == 6) {
-					// jï¿½ volta automaticamente com qualquer numero exceto os que estao nos if's!
+					// ja volta automaticamente com qualquer numero exceto os que estao nos if's!
 				}
 				break;
 			}
@@ -306,7 +313,7 @@ public class PrincipalTeste {
 					System.out.println(fachada.exibirFinancas());
 				}
 				else if (opcao == 3){
-					// jï¿½ volta automaticamente com qualquer numero exceto os que estao nos if's!
+					// ja volta automaticamente com qualquer numero exceto os que estao nos if's!
 				}
 				break;
 			}	
@@ -316,5 +323,7 @@ public class PrincipalTeste {
 			}	
 		  }
 		} // fechamento do switch
+		if(scanf != null)
+			scanf.close();
 	}
 }

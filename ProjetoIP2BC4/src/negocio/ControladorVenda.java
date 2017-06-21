@@ -1,15 +1,23 @@
   package negocio;
 
-import beans.*;
-import repositorios.*;
+import java.util.Arrays;
+import java.util.Scanner;
+
+import beans.Funcionario;
+import beans.ItemVenda;
+import beans.NotaFiscal;
+import beans.Produto;
+import repositorios.RepositorioEstoque;
+import repositorios.RepositorioVenda;
 
 
 public class ControladorVenda {
 	private RepositorioEstoque repoEstoque;
 	private RepositorioVenda repoVenda;
 	private Pedido pedido;
+	ItemVenda[] itens = new ItemVenda[10];
 	
-	// singleton
+	// SINGLETON
 	
 	private static ControladorVenda instancia;
 
@@ -26,7 +34,7 @@ public class ControladorVenda {
 		return instancia;
 	}
 	
-	// crud e metodos
+	// CRUD E METODOS
 	
 	public int retornaPosicao(int codigo) {
 		if( codigo <= 0 ) {
@@ -43,8 +51,8 @@ public class ControladorVenda {
 		return -1;
 	}
 	
-	// este metodo checa se existe o produto com este codigo e quantidade no repositorioEstoque
-	// se houver ele retorna verdadeiro, para validar a subtra��o deste produto na quantidade
+	// Este metodo checa se existe o produto com este codigo e quantidade no repositorioEstoque
+	// Se houver ele retorna verdadeiro, para validar a subtra��o deste produto na quantidade
 	public boolean checarQuantidade(int codigo, int quantidade) {
 		if( codigo <= 0 || quantidade <= 0) {
 			return false;
@@ -80,7 +88,7 @@ public class ControladorVenda {
 		}
 		boolean checagem = checarQuantidade(codigo, quantidade);
 		if( checagem == false ) {
-			System.out.println("Erro! n�mero de itens insuficiente!");
+			System.out.println("Erro! numero de itens insuficiente!");
 			return false;
 		}
 		pedido.acrescentarPedido(codigo, quantidade, funcionario);
@@ -116,6 +124,29 @@ public class ControladorVenda {
 		return texto;
 	}
 	
+	public int procuraProduto()	{
+	    System.out.println("Informe o codigo do produto a ser vendido: ");
+	    int encontrou = 0;
+	    int i=1;
+	    int codigo;
+	    Scanner scanf = new Scanner(System.in);
+	    while(encontrou!=i) {
+	    codigo = scanf.nextInt();
+	    for (i = 0; i < repoEstoque.getQuantSKU(); i++){
+	    	if(itens[i].getCodigo() != codigo){
+	         return 0;
+	        }
+	        encontrou = i;
+        }
+	    if(encontrou !=i)
+	        {
+	            System.out.println("Codigo nao encontrado, digite um novo: ");
+	        }
+	    }
+	    System.out.println("\n\nEncontrou: "+encontrou);
+	    return encontrou;
+	}
+	
 	public boolean alterar(Produto produto) {
 		if( produto == null ) {
 			System.out.println("\n\n\tErro! itemVenda invalido\n\n");
@@ -144,5 +175,27 @@ public class ControladorVenda {
 			teste = teste+"\n\n"+notas[i].toString();
 		}
 		return teste;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(itens);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ControladorVenda other = (ControladorVenda) obj;
+		if (!Arrays.equals(itens, other.itens))
+			return false;
+		return true;
 	}
 }
