@@ -1,14 +1,7 @@
   package negocio;
 
-import java.util.Arrays;
-import java.util.Scanner;
-
-import beans.Funcionario;
-import beans.ItemVenda;
-import beans.NotaFiscal;
-import beans.Produto;
-import repositorios.RepositorioEstoque;
-import repositorios.RepositorioVenda;
+import beans.*;
+import repositorios.*;
 
 
 public class ControladorVenda {
@@ -123,30 +116,6 @@ public class ControladorVenda {
 		}
 		return texto;
 	}
-	
-	public int procuraProduto()	{
-	    System.out.println("Informe o codigo do produto a ser vendido: ");
-	    int encontrou = 0;
-	    int i=1;
-	    int codigo;
-	    Scanner scanf = new Scanner(System.in);
-	    while(encontrou!=i) {
-	    codigo = scanf.nextInt();
-	    for (i = 0; i < repoEstoque.getQuantSKU(); i++){
-	    	if(itens[i].getCodigo() != codigo){
-	         return 0;
-	        }
-	        encontrou = i;
-        }
-	    if(encontrou !=i)
-	        {
-	            System.out.println("Codigo nao encontrado, digite um novo: ");
-	        }
-	    }
-	    System.out.println("\n\nEncontrou: "+encontrou);
-	    return encontrou;
-	}
-	
 	public boolean alterar(Produto produto) {
 		if( produto == null ) {
 			System.out.println("\n\n\tErro! itemVenda invalido\n\n");
@@ -175,27 +144,5 @@ public class ControladorVenda {
 			teste = teste+"\n\n"+notas[i].toString();
 		}
 		return teste;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + Arrays.hashCode(itens);
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ControladorVenda other = (ControladorVenda) obj;
-		if (!Arrays.equals(itens, other.itens))
-			return false;
-		return true;
 	}
 }
