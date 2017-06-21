@@ -90,7 +90,7 @@ public class ControladorVenda {
 			System.out.println("Erro! numero de itens insuficiente!");
 			return false;
 		}
-		pedido.acrescentarPedido(codigo, quantidade, funcionario);
+		//pedido.acrescentarPedido(codigo, quantidade, funcionario);
 		return true;
 	}
 	

@@ -51,8 +51,6 @@ public class PrincipalTeste {
 		Funcionario f2 = new Funcionario(p2,"vendedor",2000,2);
 		Funcionario f3 = new Funcionario(p3,"vendedor",2000,3);
 		Funcionario f4 = new Funcionario(p4,"vendedor",2000,4);
-		
-		Funcionario funcionarioTeste;
 
 		fachada.inserirFuncionario(f1);
 		fachada.inserirFuncionario(f2);
@@ -79,46 +77,36 @@ public class PrincipalTeste {
 				opcao = scanf.nextInt();
 				if( opcao == 1 ) {
 
+					double totalparcial = 0;
 					while(opcao != 0){ //while para voltar a pedir a identificacao caso seja nula.
 					System.out.println("Digite a identificacao do funcionario");
 					identificacao = scanf.nextInt();
 					f = fachada.buscarFuncionario(identificacao);
 					if(f == null){
+						opcao = 1;
 					}
 					else{
 					terminarVenda = false; //Recebem o valor aqui pois se for registrar nova venda, para eles entrarem no while precisam recebe false de novo.
 					auxiliarVenda = false;
 					System.out.println("Funcionario: "+f.getPessoa().getNome());
 					System.out.println(fachada.listarItensVenda());
-					//aux = fachada.procuraProduto();
-					aux = 0; // So funciona assim, porem com erro. A linha acima, deveria funcionar, mas da null pointer excepetion
-							 // a funcao procuraProduto deveria retornar um inteiro, to me baseando no projeto de c
-					while(!terminarVenda && aux >= 0){
+					while(!terminarVenda){
 						
 						System.out.println("\n\n\t(0) - Encerrar a venda\n\t(-1) - Cancelar venda\n\n");
 						System.out.println("Digite o codigo do produto");
-						scanf.nextLine();
 						codigo = scanf.nextInt();
-						System.out.println("Digite a quantidade");
-						quantidade = scanf.nextInt();
-						//if (quantidade > 0 && itens[aux].getQtd() >= quantidade){
-						double totalParcial = (quantidade*itens[aux].getQtd());
-			            System.out.println("\n\tProduto: " + itens[aux].getNome() +"\n\tQtd: " + itens[aux].getQtd() +
-			            		"\n\tPreco: " + itens[aux].getPreco() + "\n\tSubTotal: " + (itens[aux].getPreco()*itens[aux].getQtd()) + "\n");
-			            System.out.println("\n\nTotal parcial: "+ totalParcial +"\n\n");
-						//}
 						if(codigo == 0) {
 							System.out.println("\n\n\tTem certeza de que quer ENCERRAR a compra?\n\t(1) - SIM \n\t(2) - NAO\n\n");
 							 codigo = scanf.nextInt();
 							 if( codigo == 1 ) {
 								 fachada.encerrarPedido();
 								 fachada.gerarNotaFiscal(f);
-								 //gerarNotaFiscal();
-								 // TODO gerar nota fiscal
 								 auxiliarVenda = true;
 								 terminarVenda = true;
+								 opcao = 0;
 							 }
 							 else if(codigo == 2) {
+								 break;
 							 }
 						}
 						if(codigo == -1) {
@@ -131,20 +119,28 @@ public class PrincipalTeste {
 								 System.out.println("\n\tVenda cancelada!\n\n");
 							 }
 							 else if(codigo == 2) {
+								 break;
 							 }
 						}
 						if( !auxiliarVenda ) {
+							if(fachada.buscarProduto(codigo) != null){
 							Produto prod = fachada.buscarProduto(codigo);
 							System.out.println("Digite a quantidade");
 							quantidade = scanf.nextInt();
+							
 							if(quantidade > 0){
 							ItemVenda ArrayItem = new ItemVenda(prod,quantidade);
 							fachada.inserirItem(ArrayItem);
+							totalparcial = totalparcial + ArrayItem.valorTotal();
+							System.out.println("Total parcial: "+totalparcial);
 							}
-							//fachada.vender(codigo, quantidade, fachada.buscarFuncionario(identificacao));
+							}
+							else{
+								System.out.println("Codigo invalido ou produto nao existe. Digite novamente");
+							}
 						}
 						
-					} } // fechamento do laco de venda e do else
+					} }
 				}
 				}
 				else if (opcao == 2) {

@@ -43,10 +43,10 @@ public class NotaFiscal {
 	public String toString() {
 		String teste = "\n\n========================================\n";
 		teste = teste+"\n\t\tNota #"+codigoDaNota+"\n\n\tFuncionario: "+funcionario.getPessoa().getNome();
-		teste = teste+"\n\n\tItem Venda\tQuantidade\tPreco\tTotal\n";
+		teste = teste+"\n\nItem Venda\tQuantidade\tPreco\tTotal\n";
 		for (int i = 0; i < qtdItens; i++) {
-			teste = teste+itensVendidos[i].getNome()+"\t\t"+itensVendidos[i].getQtd()+"\t\t"+itensVendidos[i].getPreco()+"\t\t";
-			teste = teste+"R$ "+(itensVendidos[i].getQtd()*itensVendidos[i].getPreco());
+			teste = teste+itensVendidos[i].getNome()+"\t"+itensVendidos[i].getQtd()+"\t\t"+itensVendidos[i].getPreco()+"  ";
+			teste = teste+"  R$ "+(itensVendidos[i].getQtd()*itensVendidos[i].getPreco()+"\n");
 		}
 		teste = teste+"\n________________________________________\n\n\tTotal a pagar: R$ "+totalPagar;
 		return teste;
