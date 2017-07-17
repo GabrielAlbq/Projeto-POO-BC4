@@ -1,7 +1,11 @@
   package negocio;
 
-import beans.*;
-import repositorios.*;
+import beans.Funcionario;
+import beans.ItemVenda;
+import beans.NotaFiscal;
+import beans.Produto;
+import repositorios.RepositorioEstoque;
+import repositorios.RepositorioVenda;
 
 
 public class ControladorVenda {
@@ -38,13 +42,19 @@ public class ControladorVenda {
 			return -1;
 		}
 		
-		Produto[] teste = repoEstoque.getProdutos();
-		
-		for (int i = 0; i < repoEstoque.getQuantSKU() ; i++) {
-			if( codigo == teste[i].getCodigo() ) {
-				return i;
-			}
-		}
+//		Produto[] teste = repoEstoque.getProdutos();
+////		
+////		for(Produto prod : ((RepositorioEstoque)repoestoque).getProdutos()){
+////			if(codigo == prod.getCodigo()){
+////				return ((RepositorioEstoque)repoestoque).getProdutos().indexOf(prod);
+////			}
+////		}
+//		
+//		for (int i = 0; i < repoEstoque.getQuantSKU() ; i++) {
+//			if( codigo == teste[i].getCodigo() ) {
+//				return i;
+//			}
+//		}
 		return -1;
 	}
 	
@@ -52,47 +62,47 @@ public class ControladorVenda {
 	// este metodo checa se existe o produto com este codigo e quantidade no repositorioEstoque
 	// se houver ele retorna verdadeiro, para validar a subtracao deste produto na quantidade
 
-	public boolean checarQuantidade(int codigo, int quantidade) {
-		if( codigo <= 0 || quantidade <= 0) {
-			return false;
-		}
-		Produto[] teste = repoEstoque.getProdutos();
-		for (int i = 0; i < repoEstoque.getQuantSKU() ; i++) {
-			if( codigo == teste[i].getCodigo() ) {
-				if( teste[i].getQuantidade() >= quantidade ) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+//	public boolean checarQuantidade(int codigo, int quantidade) {
+//		if( codigo <= 0 || quantidade <= 0) {
+//			return false;
+//		}
+//		Produto[] teste = repoEstoque.getProdutos();
+//		for (int i = 0; i < repoEstoque.getQuantSKU() ; i++) {
+//			if( codigo == teste[i].getCodigo() ) {
+//				if( teste[i].getQuantidade() >= quantidade ) {
+//					return true;
+//				}
+//			}
+//		}
+//		return false;
+//	}
 	
 	public String listarNotasFiscais() {
 		return repoVenda.listarNotasFiscais();
 	}
 	
-	public boolean efetuarPedido (int codigo, int quantidade, Funcionario funcionario) {
-		if( codigo <= 0 ) {
-			System.out.println("\n\n\tErro! codigo invalido!");
-			return false;
-		}
-		if( quantidade <= 0 ) {
-			System.out.println("\n\n\tErro! quantidade invalida!");
-			return false;
-		}
-		int posicao = retornaPosicao(codigo);
-		if( posicao == -1 ) {
-			System.out.println("Erro! item inexistente!");
-			return false;
-		}
-		boolean checagem = checarQuantidade(codigo, quantidade);
-		if( checagem == false ) {
-			System.out.println("Erro! numero de itens insuficiente!");
-			return false;
-		}
-		//pedido.acrescentarPedido(codigo, quantidade, funcionario);
-		return true;
-	}
+//	public boolean efetuarPedido (int codigo, int quantidade, Funcionario funcionario) {
+//		if( codigo <= 0 ) {
+//			System.out.println("\n\n\tErro! codigo invalido!");
+//			return false;
+//		}
+//		if( quantidade <= 0 ) {
+//			System.out.println("\n\n\tErro! quantidade invalida!");
+//			return false;
+//		}
+//		int posicao = retornaPosicao(codigo);
+//		if( posicao == -1 ) {
+//			System.out.println("Erro! item inexistente!");
+//			return false;
+//		}
+//		boolean checagem = checarQuantidade(codigo, quantidade);
+//		if( checagem == false ) {
+//			System.out.println("Erro! numero de itens insuficiente!");
+//			return false;
+//		}
+//		//pedido.acrescentarPedido(codigo, quantidade, funcionario);
+//		return true;
+//	}
 	
 	public void adicionarNotaFiscal (NotaFiscal notaFiscal) {
 		if( notaFiscal == null ) {
@@ -115,11 +125,14 @@ public class ControladorVenda {
 	
 	// imprimir todas os produtos - nome(preco)\nqtd\ncodigo
 	public String listarProdutos () {
-		Produto[] teste = repoEstoque.getProdutos();
+//		Produto[] teste = repoEstoque.getProdutos();
 		String texto = "";
-		for (int i = 0; i < repoEstoque.getQuantSKU(); i++) {
-			texto += "\n"+teste[i].toString();
+		for(Produto prod : ((RepositorioEstoque)repoEstoque).getProdutos()){
+			texto += "\n"+prod.toString();
 		}
+//		for (int i = 0; i < repoEstoque.getQuantSKU(); i++) {
+//			texto += "\n"+teste[i].toString();
+//		}
 		return texto;
 	}
 	public boolean alterar(Produto produto) {

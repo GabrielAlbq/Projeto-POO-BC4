@@ -1,21 +1,24 @@
 package repositorios;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import beans.Produto;
 
 public class RepositorioEstoque implements IRepositorioEstoque {
 	
 	//ATRIBUTOS
-	
-	private final static int TAM_MAX = 100;
-	private Produto[] produtos;
-	private int quantSKU;
+	private List<Produto> produtos = new ArrayList<>();
+	//private final static int TAM_MAX = 100;
+	//private Produto[] produtos;
+	//private int quantSKU;
 	private static RepositorioEstoque instancia;
 	
 	//CONSTRUTOR
 	
 	private RepositorioEstoque(){
-		this.produtos = new Produto[TAM_MAX];
-		this.quantSKU = 0;
+	//	this.produtos = new Produto[TAM_MAX];
+	//	this.quantSKU = 0;
 	}
 	public static RepositorioEstoque getInstancia(){
 		if(instancia == null){
@@ -26,35 +29,35 @@ public class RepositorioEstoque implements IRepositorioEstoque {
 
 	//GET
 	
-	public Produto[] getProdutos() {
+	public List<Produto> getProdutos() {
 		return produtos;
 	}
-	public int getQuantSKU() {
-		return quantSKU;
-	}
+//	public Produto[] getProdutos() {
+//		return produtos;
+//	}
+//	public int getQuantSKU() {
+//		return quantSKU;
+//	}
 	
 	//METODOS
 	
 	public void subtrairProduto (int posicao, int quantidade) {
-		produtos[posicao].setQuantidade( produtos[posicao].getQuantidade()-quantidade );
+		this.produtos.get(posicao).setQuantidade(produtos.get(posicao).getQuantidade()-quantidade);
 	}
 	public void inserir(Produto prod){
-		this.produtos[quantSKU] = prod;
-		this.quantSKU++;
+		this.produtos.add(prod);
 	}
 	
 	public Produto buscar(int posicao){
-		return this.produtos[posicao];
+		return this.produtos.get(posicao);
 	}
 	
 	public void remover(int posicao){
-		this.produtos[posicao] = this.produtos[this.quantSKU-1];
-		this.produtos[this.quantSKU-1] = null;
-		this.quantSKU--;
+		this.produtos.remove(posicao);
 	}
 	
 	public void alterar(Produto novoProduto, int posicao){
-		this.produtos[posicao] = novoProduto;
+		this.produtos.set(posicao, novoProduto);
 	}
 	
 }

@@ -49,9 +49,9 @@ public class Fachada {
 	public void gerarNotaFiscal(Funcionario funcionario){
 		pedido.gerarNotaFiscal(funcionario);
 	}
-	public void vender (int codigo, int quantidade, Funcionario funcionario){
-		controladorVenda.efetuarPedido(codigo, quantidade, funcionario);
-	}
+//	public void vender (int codigo, int quantidade, Funcionario funcionario){
+//		controladorVenda.efetuarPedido(codigo, quantidade, funcionario);
+//	}
 	
 	public void cancelarPedido() {
 		pedido.resetarPedido();

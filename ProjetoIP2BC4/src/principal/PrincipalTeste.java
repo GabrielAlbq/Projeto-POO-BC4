@@ -219,8 +219,8 @@ public class PrincipalTeste {
 					else if(opcao == 3){
 						Produto prod = fachada.buscarProduto(codigo);
 						System.out.println("Digite o novo nome");
-						nome = scanf.nextLine();
 						scanf.nextLine();
+						nome = scanf.nextLine();
 						prod.setNome(nome);
 						fachada.atualizarProduto(prod);
 					}
