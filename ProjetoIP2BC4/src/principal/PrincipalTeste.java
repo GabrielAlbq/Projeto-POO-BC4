@@ -7,7 +7,6 @@ import beans.Funcionario;
 import beans.ItemVenda;
 import beans.Pessoa;
 import beans.Produto;
-import negocio.ControladorVenda;
 
 public class PrincipalTeste {
 	public static void main(String[] args) {

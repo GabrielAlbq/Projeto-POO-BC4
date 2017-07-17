@@ -1,21 +1,21 @@
 package negocio;
 
 import beans.Produto;
-import repositorios.RepositorioEstoque;
-import repositorios.RepositorioVenda;
+import repositorios.*;
 
 
 public class ControladorEstoque {
 	
 	//ATRIBUTOS
 	
-	RepositorioEstoque repoestoque;
+	//RepositorioEstoque repoestoque;
 	RepositorioVenda repoVenda;
 	private static ControladorEstoque instancia;
-	
+	private IRepositorioEstoque repoestoque;
 	//SINGLETON
 	
 	private ControladorEstoque(){
+		//this.repoestoque = repo;
 		repoestoque = RepositorioEstoque.getInstancia();
 		repoVenda = RepositorioVenda.getInstancia();
 	}
@@ -29,10 +29,10 @@ public class ControladorEstoque {
 	
 	//GET
 	
-	public RepositorioEstoque getRepoestoque() {
-		return repoestoque;
-	}
-	
+//	public RepositorioEstoque getRepoestoque() {
+//		return repoestoque;
+//	}
+//	
 	//METODOS COM CONTROLE DE NEGOCIOS
 	
 	public String listarProduto(){

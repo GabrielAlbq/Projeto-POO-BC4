@@ -2,7 +2,7 @@ package repositorios;
 
 import beans.Produto;
 
-public class RepositorioEstoque {
+public class RepositorioEstoque implements IRepositorioEstoque {
 	
 	//ATRIBUTOS
 	
