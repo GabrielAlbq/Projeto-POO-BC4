@@ -42,7 +42,7 @@ public class NotaFiscal {
 	
 	public String toString() {
 		String teste = "\n\n========================================\n";
-		teste = teste+"\n\t\tNota #"+codigoDaNota+"\n\n\tFuncionario: "+funcionario.getPessoa().getNome();
+		teste = teste+"\n\t\tNota #"+codigoDaNota+"\n\n\tFuncionario: "+funcionario.getNome();
 		teste = teste+"\n\nItem Venda\tQuantidade\tPreco\tTotal\n";
 		for (int i = 0; i < qtdItens; i++) {
 			teste = teste+itensVendidos[i].getNome()+"\t"+itensVendidos[i].getQtd()+"\t\t"+itensVendidos[i].getPreco()+"  ";

@@ -1,26 +1,21 @@
 package beans;
 
-public class Pessoa {
+public abstract class Pessoa extends Endereco{
 	
 	// ATRIBUTOS 
 	
-	private Endereco endereco;
 	private String nome;
 	private String cpf;
 	
 	// CONSTRUTOR 
 	
-	public Pessoa(Endereco endereco, String nome, String cpf) {
-		this.endereco = endereco;
+	public Pessoa(String rua, String cidade, String cep, String numero, String nome, String cpf) {
+		super(rua, cidade, cep, numero);
 		this.nome = nome;
 		this.cpf = cpf;
 	}
 	
 	// GET / SET
-
-	public Endereco getEndereco() {
-		return endereco;
-	}
 
 	public String getNome() {
 		return nome;
@@ -30,19 +25,13 @@ public class Pessoa {
 		return cpf;
 	}
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
 	// TO STRING 
 	
-	public String toString() {
-		return "Pessoa:\n\nnome: "+nome+"\ncpf: "+cpf+"\n\n"+endereco;
+	public String toStringPessoa() {
+		return "Pessoa:\n\nnome: "+nome+"\ncpf: "+cpf+"\n\n"+toStringEndereco();
 	}	
-	
-	
 }

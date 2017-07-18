@@ -1,36 +1,26 @@
 package beans;
 
-public class Funcionario {
+public abstract class Funcionario extends Pessoa{
 	
 	// ATRIBUTOS 
-	
-	private Pessoa pessoa;
+
 	private String funcao; // vendedor(1) / gerente(2) / chefe(3)
 	private double salario;
 	private int identificacao;
 	private boolean recebeuSalario;
 	
 	// CONSTRUTOR
-	
-	public Funcionario(Pessoa pessoa, String funcao, double salario, int identificacao) {
-		this.pessoa = pessoa;
+
+	public Funcionario(String rua, String cidade, String cep, String numero, String nome, String cpf, String funcao,
+			double salario, int identificacao, boolean recebeuSalario) {
+		super(rua, cidade, cep, numero, nome, cpf);
 		this.funcao = funcao;
-		this.salario = salario; // O if que garante um salario positivo fica no contorlador
+		this.salario = salario;// O if que garante um salario positivo fica no contorlador
 		this.identificacao = identificacao; // Nao pode ser menor ou igual a zero!
-		this.recebeuSalario = false; // Indica se o funcionario ja recebeu o salario "False: não" "True: sim"
+		this.recebeuSalario = recebeuSalario;// Indica se o funcionario ja recebeu o salario "False: não" "True: sim"
 	}
 
-	public Funcionario (Pessoa pessoa, int identificacao){
-		this.pessoa = pessoa;
-		this.identificacao = identificacao;
-	}
-	
 	// GET / SET 
-	
-	public Pessoa getPessoa() {
-		return pessoa;
-	}
-
 	public String getFuncao() {
 		return funcao;
 	}
@@ -41,10 +31,6 @@ public class Funcionario {
 
 	public int getIdentificacao() {
 		return identificacao;
-	}
-	
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
 	}
 
 	public void setFuncao(String funcao) {
@@ -66,21 +52,17 @@ public class Funcionario {
 	// EQUALS
 	
 	public boolean equals (Funcionario funcionario) {
-		if(funcionario == null) {
+		if(funcionario == null) 
 			return false;
-		}
-		if( pessoa.getCpf() == funcionario.getPessoa().getCpf() ) {
+		if(identificacao == funcionario.identificacao) 
 			return true;
-		}
 		return false;
 	}
 
 	// TO STRING 
 	
 	public String toString() {
-		return "Funcionario:\n\nfuncao: "+funcao+"\nsalario: "+salario+"\nidentificacao: "
-				+identificacao+"\nStatus do Pagamento: "+recebeuSalario+"\n\n"+pessoa;
+		return "Funcionario:\n\nfuncao: "+funcao+"\nsalario: R$ "+salario+"\nidentificacao: "
+				+identificacao+"\nStatus do Pagamento: "+recebeuSalario+"\n\n"+toStringPessoa();
 	}
-	
-	
 }

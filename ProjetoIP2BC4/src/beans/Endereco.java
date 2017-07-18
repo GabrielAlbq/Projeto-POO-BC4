@@ -1,6 +1,6 @@
 package beans;
 
-public class Endereco {
+public abstract class Endereco {
 	
 	// ATRIBUTOS 
 	
@@ -51,12 +51,12 @@ public class Endereco {
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
+
+
 	
 	// TO STRING
 
-	public String toString() {
-		return "Endereco\n\nrua: "+rua+"\ncidade: "+cidade+"\ncep: "+cep+"\nnumero: "+numero;
+	public String toStringEndereco() {
+		return "Logradouro: " + rua + "\nCidade: " + cidade + "\ncep: " + cep + "\nNumero: " + numero + "\n";
 	}
-	
-	
 }

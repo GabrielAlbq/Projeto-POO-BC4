@@ -1,14 +1,14 @@
 package repositorios;
 
+import java.util.ArrayList;
+
 import beans.Funcionario;
 
-public class RepositorioFuncionario {
+public class RepositorioFuncionario implements IRepositorioFuncionario{
 	
 	// ATRIBUTOS 
 	
-	private final int TAMMAX = 10;
-	private Funcionario[] funcionario;
-	private int qtdFuncionario; // é o int proxima do class conta
+	ArrayList<Funcionario> funcs;
 	
 	// SINGLETON
 	
@@ -24,65 +24,49 @@ public class RepositorioFuncionario {
 	// CONSTRUTOR
 	
 	private RepositorioFuncionario() {
-		funcionario = new Funcionario[TAMMAX];
-		qtdFuncionario = 0;
+		funcs = new ArrayList<>();
 	}
 	
 	// METODOS - as validacoes serao feitas no controlador utilizando estes metodos
 	
 	public String listarFuncionarios() {
-		String texto = "";
-		for (int i = 0; i < qtdFuncionario; i++) {
-			texto += "\n_____________________________\n"+funcionario[i].toString(); 
+		String t = "";
+		for (int i = 0; i < funcs.size(); i++) {
+			t += "\n_______________________________________\n"+funcs.get(i).toString();
 		}
-		return texto;
+		return t;
 	}
 	
 	public void pagarFancionario (int posicao){
-		funcionario[posicao].setRecebeuSalario(true);
+		funcs.get(posicao).setRecebeuSalario(true);
 	}
 	
-	public void inserir (Funcionario funcionario) {
-		this.funcionario[qtdFuncionario] = funcionario;
-		qtdFuncionario++;
+	public boolean inserir (Funcionario funcionario) {
+		funcs.add(funcionario);
+		return true;
 	}
 	
-	public void remover (int posicao) {
-		funcionario[posicao] = funcionario[qtdFuncionario-1];
-		funcionario[qtdFuncionario-1] = null;
-		qtdFuncionario--;
+	public boolean remover (int posicao) {
+		funcs.remove(posicao);
+		return true;
 	}
 	
-	public void alterar (Funcionario funcionario, int posicao) {
-		this.funcionario[posicao] = funcionario;
+	public boolean alterar (Funcionario funcionario, int posicao) {
+		funcs.set(posicao, funcionario);
+		return true;
 	}
 	
 	public Funcionario buscar (int posicao) {
-		return this.funcionario[posicao];
-	}
-	
-	// GETS / SETS
-	
-	public Funcionario[] getFuncionario() {
-		return funcionario;
-	}
-
-	public int getQtdFuncionario() {
-		return qtdFuncionario;
-	}
-
-	public int getTAMMAX() {
-		return TAMMAX;
+		return funcs.get(posicao);
 	}
 	
 	public Funcionario retornarFuncionario(int identificacao) { // Foi usado na Fachada
-		
-		return funcionario[identificacao];
+		return funcs.get(identificacao);
 	}
 	
-	public void imprimirTodos() {
-		for (int i = 0; i < qtdFuncionario; i++) {
-			System.out.println(funcionario[i]);
-		}
+	// GETS
+	
+	public ArrayList<Funcionario> getArrayFuncionarios() {
+		return funcs;
 	}
 }
