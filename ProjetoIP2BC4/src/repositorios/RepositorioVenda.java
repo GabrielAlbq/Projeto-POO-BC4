@@ -1,28 +1,25 @@
 package repositorios;
 
+import java.awt.List;
+import java.util.ArrayList;
+
 import beans.ItemVenda;
 import beans.NotaFiscal;
 
-public class RepositorioVenda {
+public class RepositorioVenda implements IRepositorioVenda{
 	
 	// ATRIBUTOS 
 	
-	private int TAM_MAX = 100;
-	private int TAM_MAX_NOTAS_FISCAIS = 1000;
-	private int qtdItem;
-	private int qtdNotaFiscal;
-	private ItemVenda[] arrayItem;// itens genericos que serao vendidos, copias da classe Produto.
-	private NotaFiscal[] notaFiscal; 
+	private ArrayList<ItemVenda> vendas = new ArrayList<>();
+	private ArrayList<NotaFiscal> nota = new ArrayList<>();
 
-	// SINGLETON
+	// SINGLETON / CONSTRUTOR
 	
 	private static RepositorioVenda instancia;
 	
 	private RepositorioVenda () {
-		arrayItem = new ItemVenda[TAM_MAX];
-		notaFiscal = new NotaFiscal[TAM_MAX_NOTAS_FISCAIS];
-		qtdItem = 0;
-		qtdNotaFiscal = 0;
+		vendas = new ArrayList<>();
+		nota = new ArrayList<>();
 	}
 	
 	public static RepositorioVenda getInstancia() {
@@ -34,67 +31,31 @@ public class RepositorioVenda {
 
 	// METODOS
 	
-	// limpa todas as notas fiscais
-	public void limparHistoricoNotasFiscais (int posicao) {
-		this.notaFiscal[posicao] = null;
+	public void limparHistoricoNotasFiscais (int posicao) { // Limpa todas as notas fiscais
+		this.vendas.clear();
 	}
 
-	// imprimir todas as notas fiscais
-
-	public String listarNotasFiscais () {
-		String texto = "";
-		if( qtdNotaFiscal == 0 ) {
-			texto += "\n\n\tO historico ja esta vazio!\n\n";
+	public void listarNotasFiscais () {
+		for (int i = 0; i < this.vendas.size(); i++){ // Imprimir na tela todas as notas fiscais
+			this.vendas.get(i);
 		}
-		else {
-			for (int i = 0; i < qtdNotaFiscal; i++) {
-				texto = texto+notaFiscal[i].toString();
-			}
-		}
-		return texto;
 	}
 	
-	
-	public void adicionarNotaFiscal(NotaFiscal notaFiscal) {
-		this.notaFiscal[qtdNotaFiscal] = notaFiscal;
-		qtdNotaFiscal++;
+	public void adicionarNotaFiscal(NotaFiscal notaFiscal) { // Adiciona nota fiscal
+		this.nota.add(notaFiscal);
 	}
 	
-	// nao prescisa de validacoes, pois estas ja foram feitas no controlador estoque!
-	// nao precisa de validacoes, pois estas ja foram feitas no controlador estoque!
-	public void inserir(ItemVenda itemvenda) {
-		arrayItem[qtdItem] = itemvenda;
-		qtdItem++;
+	public void inserir(ItemVenda itemvenda) { // Adiciona um produto para o mercadinho
+		this.vendas.add(itemvenda);
 	}
 	
-	public void remover(int posicao) {
-		arrayItem[posicao] = null;
-		qtdItem--;
+	public void remover(int posicao) { // Remove um produto do mercadinho
+		this.vendas.remove(posicao);
 	}
 	
-	public void alterar(int posicao, ItemVenda item) {
-		arrayItem[posicao] = item;
+	public void alterar(int posicao, ItemVenda item) { // Altera um produto do mercadinho
+		this.vendas.set(posicao, item);
 	}
 
-	// GETS
-	
-	public ItemVenda[] getArrayItem() {
-		return arrayItem;
-	}
 
-	public NotaFiscal[] getNotaFiscal() {
-		return notaFiscal;
-	}
-	
-	public int getQtdNotaFiscal() {
-		return qtdNotaFiscal;
-	}
-	
-	public int getQtdItem() {
-		return qtdItem;
-	}
-	
-	public void setQtdNotaFiscal(int n) {
-		qtdNotaFiscal = n;
-	}
 }
