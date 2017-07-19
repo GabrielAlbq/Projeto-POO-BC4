@@ -51,12 +51,4 @@ public abstract class Endereco {
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
-
-
-	
-	// TO STRING
-
-	public String toStringEndereco() {
-		return "Logradouro: " + rua + "\nCidade: " + cidade + "\ncep: " + cep + "\nNumero: " + numero + "\n";
-	}
 }

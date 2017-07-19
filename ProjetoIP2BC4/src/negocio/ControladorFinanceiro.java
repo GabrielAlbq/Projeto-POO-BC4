@@ -8,6 +8,7 @@ public class ControladorFinanceiro {
 	
 	// ATRIBUTOS 
 	
+	// TODO interface do repositorio funcionario e financeiro a serem implementadas
 	private ControladorFuncionario controladorFuncionario;
 	private RepositorioFuncionario repositorioFuncionario;
 	private RepositorioFinanceiro repositorioFinanceiro;
@@ -38,9 +39,11 @@ public class ControladorFinanceiro {
 		return repositorioFinanceiro.exibirFinancas();
 	}
 	
-	public boolean pagarFuncionario (Funcionario func){
-		if( func == null ) {
-			System.out.println("\n\n\tErro! Funcionario nulo!");
+	
+	// TODO alterar o metodo pagarFuncionario. O parametro deve ser a identificacao
+	public boolean pagarFuncionario (int identificacao){
+		if( identificacao <= 0 ) {
+			System.out.println("\n\n\tErro! Idenficacao invalida!");
 			return false;
 		}
 		Funcionario [] funcionario = repositorioFuncionario.getFuncionario();

@@ -8,7 +8,7 @@ public class RepositorioFuncionario implements IRepositorioFuncionario{
 	
 	// ATRIBUTOS 
 	
-	ArrayList<Funcionario> funcs;
+	private ArrayList<Funcionario> funcs;
 	
 	// SINGLETON
 	
@@ -66,7 +66,7 @@ public class RepositorioFuncionario implements IRepositorioFuncionario{
 	
 	// GETS
 	
-	public ArrayList<Funcionario> getArrayFuncionarios() {
+	public ArrayList<Funcionario> getFuncionarios() {
 		return funcs;
 	}
 }

@@ -28,10 +28,4 @@ public abstract class Pessoa extends Endereco{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	// TO STRING 
-	
-	public String toStringPessoa() {
-		return "Pessoa:\n\nnome: "+nome+"\ncpf: "+cpf+"\n\n"+toStringEndereco();
-	}	
 }

@@ -7,7 +7,7 @@ public abstract class Funcionario extends Pessoa{
 	private String funcao; // vendedor(1) / gerente(2) / chefe(3)
 	private double salario;
 	private int identificacao;
-	private boolean recebeuSalario;
+	private boolean recebeuSalario; // TODO refazer este atributo no login!
 	
 	// CONSTRUTOR
 
@@ -57,12 +57,5 @@ public abstract class Funcionario extends Pessoa{
 		if(identificacao == funcionario.identificacao) 
 			return true;
 		return false;
-	}
-
-	// TO STRING 
-	
-	public String toString() {
-		return "Funcionario:\n\nfuncao: "+funcao+"\nsalario: R$ "+salario+"\nidentificacao: "
-				+identificacao+"\nStatus do Pagamento: "+recebeuSalario+"\n\n"+toStringPessoa();
 	}
 }

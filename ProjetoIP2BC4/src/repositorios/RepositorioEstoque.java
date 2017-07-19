@@ -8,7 +8,7 @@ import beans.Produto;
 public class RepositorioEstoque implements IRepositorioEstoque {
 	
 	//ATRIBUTOS
-	private List<Produto> produtos = new ArrayList<>();
+	private List<Produto> produtos;
 	//private final static int TAM_MAX = 100;
 	//private Produto[] produtos;
 	//private int quantSKU;
@@ -17,6 +17,7 @@ public class RepositorioEstoque implements IRepositorioEstoque {
 	//CONSTRUTOR
 	
 	private RepositorioEstoque(){
+		produtos = new ArrayList<>();
 	//	this.produtos = new Produto[TAM_MAX];
 	//	this.quantSKU = 0;
 	}

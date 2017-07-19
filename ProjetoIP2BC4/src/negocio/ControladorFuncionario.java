@@ -2,13 +2,14 @@
 package negocio;
 
 import beans.Funcionario;
+import repositorios.IRepositorioFuncionario;
 import repositorios.RepositorioFuncionario;
 
 public class ControladorFuncionario {
 	
 	// ATRIBUTO 
 	
-	private RepositorioFuncionario repoFuncionario;
+	private IRepositorioFuncionario repoFuncionario;
 	
 	// SINGLETON
 	
@@ -28,23 +29,20 @@ public class ControladorFuncionario {
 	}
 	
 	// METODOS - As validacoes sao feitas nesta classe para chamar os metodos do repositorio
-
+	// TODO implementar o cadastro referente a vendedores e gerentes utilizando polimorfismo
 	public int retornaPosicao (int identificacao) {
-		Funcionario[] funcionarioTeste = repoFuncionario.getFuncionario();
-		
-		if( identificacao <= 0 ) {
+		if( identificacao <= 0 )
 			return -1; // Retorna -1 se a identificacao for negativa ou se nao achar a posicao
-		}
-		for(int n = 0; n < repoFuncionario.getQtdFuncionario() ; n++ ) {
-			if( identificacao == funcionarioTeste[n].getIdentificacao() ) {
-				return n;
-			}
+		
+		for (Funcionario func : ((RepositorioFuncionario)repoFuncionario).getFuncionarios()) {
+			if(func.getIdentificacao() == identificacao) 
+				return ((RepositorioFuncionario)repoFuncionario).getFuncionarios().indexOf(func);
 		}
 		return -1;
 	}
 	
 	public String listarFuncionarios() {
-		return repoFuncionario.listarFuncionarios();
+		return ((RepositorioFuncionario)repoFuncionario).listarFuncionarios();
 	}
 	
 	public boolean inserir (Funcionario funcionarioInserir) {
@@ -52,49 +50,36 @@ public class ControladorFuncionario {
 			System.out.println("\n\n\tErro! Funcionario nulo!\n\n");
 			return false;
 		}
-		if(repoFuncionario.getQtdFuncionario() == 10) {
-			System.out.println("\n\tErro! Maximo de funcionarios ja atingido!\n\n");
-			return false;
-		}
 		if(funcionarioInserir.getIdentificacao() <= 0) {
 			System.out.println("\n\tErro! Identificacao invalida!");
 			return false;
 		}
 		int checagem = retornaPosicao(funcionarioInserir.getIdentificacao());
-		
 		if(checagem != -1) {
 			System.out.println("\n\tErro! Funcionario ja cadastrado!\n\n");
 			return false;
 		}
-		
-		System.out.println("\tInserido com sucesso!");
-		repoFuncionario.inserir(funcionarioInserir);
-		
-		return true;
+		System.out.println("\tFuncionario Inserido com sucesso!");
+		return repoFuncionario.inserir(funcionarioInserir);
 	}
 	
 	
 	public boolean remover (int identificacao) {
-		if(repoFuncionario.getQtdFuncionario() == 0) {
-			System.out.println("\n\tErro! Nao ha funcionario para remover!");
-			return false;
-		}
 		if(identificacao <= 0) {
 			System.out.println("\n\tErro! Identificacao invalida!\n\n");
 			return false;
 		}
-		
+		if( ((RepositorioFuncionario)repoFuncionario).getFuncionarios().size() == 0) {
+			System.out.println("\n\tErro! Nao ha funcionario para remover!");
+			return false;
+		}
 		int checagem = retornaPosicao(identificacao);
-		
 		if(checagem == -1) {
 			System.out.println("\n\tErro! Funcionario nao exite!\n\n");
 			return false;
 		}
-		
 		System.out.println("\tFuncionario removido com sucesso!");
-		repoFuncionario.remover(checagem);
-		
-		return true;
+		return ((RepositorioFuncionario)repoFuncionario).remover(checagem);
 	}
 	
 	public boolean alterar (Funcionario funcionarioAlterar) {
@@ -106,18 +91,14 @@ public class ControladorFuncionario {
 			System.out.println("\n\tErro! Identificacao invalida!");
 			return false;
 		}
-
 		int checagem = retornaPosicao(funcionarioAlterar.getIdentificacao());
-		
 		if(checagem == -1) {
 			System.out.println("\n\tErro! Funcionario nao exite!\n\n");
 			return false;
 		}
 		
 		System.out.println("\n\tFuncionario alterado com sucesso!\n\n");
-		repoFuncionario.alterar(funcionarioAlterar, checagem);
-		
-		return true;
+		return ((RepositorioFuncionario)repoFuncionario).alterar(funcionarioAlterar, checagem);
 	}
 	
 	public Funcionario buscar (int identificacao) {
@@ -125,22 +106,15 @@ public class ControladorFuncionario {
 			System.out.println("\n\tErro! Identificacao invalida!\n\n");
 			return null;
 		}
-		
 		int checagem = retornaPosicao(identificacao);
-		
 		if(checagem == -1) {
 			System.out.println("\tErro! Funcionario inexistente!");
 			return null;
 		}
-		
 		return repoFuncionario.buscar(checagem);
 	}
 	
-	public void imprimirTodos() {
-		repoFuncionario.imprimirTodos();
-	}
-	
-	public RepositorioFuncionario getRepositorioFuncionario () {
-		return repoFuncionario;
+	public String listarTodos() {
+		return ((RepositorioFuncionario)repoFuncionario).listarFuncionarios();
 	}
 }
