@@ -14,6 +14,7 @@ public class ControladorEstoque {
 	RepositorioVenda repoVenda;
 	private static ControladorEstoque instancia;
 	private IRepositorioEstoque repoestoque;
+	
 	//SINGLETON
 	
 	private ControladorEstoque(){
@@ -146,7 +147,7 @@ public class ControladorEstoque {
 			return false;
 		}
 		repoestoque.remover(posicao);
-		repoVenda.remover(posicao);
+		//repoVenda.remover(posicao);
 		System.out.println("Produto removido com sucesso!");
 		return true;
 	}

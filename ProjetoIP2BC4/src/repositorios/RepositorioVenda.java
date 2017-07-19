@@ -31,13 +31,19 @@ public class RepositorioVenda implements IRepositorioVenda{
 
 	// METODOS
 	
-	public void limparHistoricoNotasFiscais (int posicao) { // Limpa todas as notas fiscais
+	public void limparHistoricoNotasFiscais () { // Limpa todas as notas fiscais
 		this.vendas.clear();
+	}
+	
+	public void listarVendas () {
+		for (int i = 0; i < this.vendas.size(); i++){ // Imprimir na tela todas as vendas realizadas
+			this.vendas.get(i).toString();
+		}
 	}
 
 	public void listarNotasFiscais () {
 		for (int i = 0; i < this.vendas.size(); i++){ // Imprimir na tela todas as notas fiscais
-			this.vendas.get(i);
+			this.nota.get(i).toString();
 		}
 	}
 	
@@ -49,13 +55,13 @@ public class RepositorioVenda implements IRepositorioVenda{
 		this.vendas.add(itemvenda);
 	}
 	
-	public void remover(int posicao) { // Remove um produto do mercadinho
-		this.vendas.remove(posicao);
-	}
-	
-	public void alterar(int posicao, ItemVenda item) { // Altera um produto do mercadinho
-		this.vendas.set(posicao, item);
-	}
+//	public void remover(int posicao) { // Remove um produto do mercadinho
+//		this.vendas.remove(posicao);
+//	}
+//	
+//	public void alterar(int posicao, ItemVenda item) { // Altera um produto do mercadinho
+//		this.vendas.set(posicao, item);
+//	}
 
 
 }

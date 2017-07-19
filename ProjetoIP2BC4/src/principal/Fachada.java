@@ -57,16 +57,16 @@ public class Fachada {
 		pedido.resetarPedido();
 	}
 	
-	public String listarItensVenda() {
-		return controladorVenda.listarProdutos();
+	public void listarItensVenda() {
+		controladorVenda.listarVendas();
 	}
 	
-	public String listarVendas(){
-		return controladorVenda.listarNotasFiscais();
+	public void listarVendas(){
+		controladorVenda.listarNotasFiscais();
 	}
 	
-	public boolean limparHistorico (){
-		return controladorVenda.limparHistoricoNotasFiscais();
+	public void limparHistorico (){
+		controladorVenda.limparHistoricoNotasFiscais();
 	}
 	public void inserirItem(ItemVenda itemvenda){
 		controladorVenda.inserir(itemvenda);

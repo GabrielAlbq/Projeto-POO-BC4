@@ -1,19 +1,23 @@
 package repositorios;
 
-import beans.*;
+import java.util.ArrayList;
+
+import beans.Funcionario;
+import beans.ItemVenda;
+import beans.Produto;
 
 public class RepositorioFinanceiro {
 	
-	RepositorioFuncionario repositorioFuncionario;
-	RepositorioEstoque repositorioEstoque;
+	IRepositorioFuncionario repositorioFuncionario;
+	IRepositorioEstoque repositorioEstoque;
 	
 	// ATRIBUTO
-	
-	private double rendaBruta; // Total inicial do mes
-	private double totalFuncionario; // Pagamento dos funcionarios
-	private double totalFornecedor; // Falta implementar (2 VA)
-	private double rendaLiquida;  // Total de dinheiro apos o pagamento de func + forn 
-	private double totalVendas; // Total de vendas - total fornecedor = lucro das vendas
+		
+	private double rendaBruta; 			// Total inicial do mes
+	private double totalFuncionario; 	// Pagamento dos funcionarios
+	private double totalFornecedor; 	// Falta implementar (2 VA)
+	private double rendaLiquida; 	    // Total de dinheiro apos o pagamento de func + forn 
+	private double totalVendas; 		// Total de vendas - total fornecedor = lucro das vendas
 	
 	// SINGLETON
 	
@@ -52,9 +56,9 @@ public class RepositorioFinanceiro {
 	
 	public double totalSalarioFuncionarios () {
 		totalFuncionario = 0;
-		Funcionario[] func = repositorioFuncionario.getFuncionario();
-		for (int i = 0; i < repositorioFuncionario.getQtdFuncionario(); i++) {
-			totalFuncionario += func[i].getSalario();
+		ArrayList<Integer> func = new ArrayList<>();
+		for (int i = 0; i < func.size(); i++) {
+			totalFuncionario += func.get(i);
 		}
 		return totalFuncionario;
 	}
@@ -62,9 +66,9 @@ public class RepositorioFinanceiro {
 	public double totalFornecedor () {
 		totalFornecedor = 0;
 		//Produto[] produtos = repositorioEstoque.getProdutos();
-		for(Produto prod : repositorioEstoque.getProdutos()){
-			totalFornecedor += prod.getPreco()*prod.getQuantidade();
-		}
+//		for(Produto prod : repositorioEstoque.getProdutos()){
+//			totalFornecedor += prod.getPreco()*prod.getQuantidade();
+//		}
 //		for (int i = 0; i < repositorioEstoque.getQuantSKU(); i++) {
 //			totalFornecedor += (produtos[i].getPreco()*produtos[i].getQuantidade());
 //		}
@@ -73,7 +77,6 @@ public class RepositorioFinanceiro {
 	}
 	
 	public void pagarFuncionario (Funcionario func, int posicao){
-		repositorioFuncionario.pagarFancionario(posicao);
 		rendaBruta -= func.getSalario();
 		System.out.println("Funcionario pago!");
 	}
