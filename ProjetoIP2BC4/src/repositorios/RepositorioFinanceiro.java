@@ -6,7 +6,7 @@ import beans.Funcionario;
 import beans.ItemVenda;
 import beans.Produto;
 
-public class RepositorioFinanceiro {
+public class RepositorioFinanceiro implements IRepositorioFinanceiro{
 	
 	IRepositorioFuncionario repositorioFuncionario;
 	IRepositorioEstoque repositorioEstoque;
@@ -65,13 +65,6 @@ public class RepositorioFinanceiro {
 	
 	public double totalFornecedor () {
 		totalFornecedor = 0;
-		//Produto[] produtos = repositorioEstoque.getProdutos();
-//		for(Produto prod : repositorioEstoque.getProdutos()){
-//			totalFornecedor += prod.getPreco()*prod.getQuantidade();
-//		}
-//		for (int i = 0; i < repositorioEstoque.getQuantSKU(); i++) {
-//			totalFornecedor += (produtos[i].getPreco()*produtos[i].getQuantidade());
-//		}
 		totalFornecedor = totalFornecedor*(0.75);
 		return totalFornecedor;
 	}

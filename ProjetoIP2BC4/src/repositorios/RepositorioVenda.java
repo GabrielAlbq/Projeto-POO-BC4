@@ -10,16 +10,16 @@ public class RepositorioVenda implements IRepositorioVenda{
 	
 	// ATRIBUTOS 
 	
-	private ArrayList<ItemVenda> vendas = new ArrayList<>();
-	private ArrayList<NotaFiscal> nota = new ArrayList<>();
+	private ArrayList<ItemVenda> itensvenda = new ArrayList<>();
+	private ArrayList<NotaFiscal> notas = new ArrayList<>();
 
 	// SINGLETON / CONSTRUTOR
 	
 	private static RepositorioVenda instancia;
 	
 	private RepositorioVenda () {
-		vendas = new ArrayList<>();
-		nota = new ArrayList<>();
+		itensvenda = new ArrayList<>();
+		notas = new ArrayList<>();
 	}
 	
 	public static RepositorioVenda getInstancia() {
@@ -31,37 +31,31 @@ public class RepositorioVenda implements IRepositorioVenda{
 
 	// METODOS
 	
-	public void limparHistoricoNotasFiscais () { // Limpa todas as notas fiscais
-		this.vendas.clear();
-	}
-	
-	public void listarVendas () {
-		for (int i = 0; i < this.vendas.size(); i++){ // Imprimir na tela todas as vendas realizadas
-			this.vendas.get(i).toString();
+	public String listaItensVenda () {
+		String text = "";
+		for (int i = 0; i < this.itensvenda.size(); i++){ // Imprimir na tela todos os itens de venda
+			text += itensvenda.get(i).toString();
 		}
+		return text;
 	}
 
-	public void listarNotasFiscais () {
-		for (int i = 0; i < this.vendas.size(); i++){ // Imprimir na tela todas as notas fiscais
-			this.nota.get(i).toString();
+	public String listarNotasFiscais () {
+		String text = "";
+		for (int i = 0; i < this.notas.size(); i++){ // Imprimir na tela todas as notas fiscais
+			text += notas.get(i).toString();
 		}
+		return text;
 	}
 	
 	public void adicionarNotaFiscal(NotaFiscal notaFiscal) { // Adiciona nota fiscal
-		this.nota.add(notaFiscal);
+		notas.add(notaFiscal);
 	}
 	
-	public void inserir(ItemVenda itemvenda) { // Adiciona um produto para o mercadinho
-		this.vendas.add(itemvenda);
+	public void limparHistoricoNotasFiscais () { // Limpa todas as notas fiscais
+		this.notas.clear();
 	}
 	
-//	public void remover(int posicao) { // Remove um produto do mercadinho
-//		this.vendas.remove(posicao);
-//	}
-//	
-//	public void alterar(int posicao, ItemVenda item) { // Altera um produto do mercadinho
-//		this.vendas.set(posicao, item);
-//	}
-
-
+	public void inserirItemVenda (ItemVenda item) { // Adiciona um ItemVenda para o mercadinho
+		itensvenda.add(item);
+	}
 }

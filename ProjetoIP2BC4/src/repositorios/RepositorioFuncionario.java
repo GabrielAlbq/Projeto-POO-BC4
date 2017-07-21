@@ -41,19 +41,16 @@ public class RepositorioFuncionario implements IRepositorioFuncionario{
 		funcs.get(posicao).setRecebeuSalario(true);
 	}
 	
-	public boolean inserir (Funcionario funcionario) {
+	public void inserir (Funcionario funcionario) {
 		funcs.add(funcionario);
-		return true;
 	}
 	
-	public boolean remover (int posicao) {
+	public void remover (int posicao) {
 		funcs.remove(posicao);
-		return true;
 	}
 	
-	public boolean alterar (Funcionario funcionario, int posicao) {
+	public void alterar (Funcionario funcionario, int posicao) {
 		funcs.set(posicao, funcionario);
-		return true;
 	}
 	
 	public Funcionario buscar (int posicao) {

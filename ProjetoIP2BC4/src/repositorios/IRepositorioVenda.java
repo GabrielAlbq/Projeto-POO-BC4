@@ -5,18 +5,13 @@ import beans.NotaFiscal;
 
 public interface IRepositorioVenda {
 	
-	public void limparHistoricoNotasFiscais ();
+	String listaItensVenda ();
+
+	String listarNotasFiscais ();
 	
-	public void listarVendas ();
+	void adicionarNotaFiscal(NotaFiscal notaFiscal);
 	
-	public void listarNotasFiscais ();
+	void limparHistoricoNotasFiscais ();
 	
-	public void adicionarNotaFiscal(NotaFiscal notaFiscal);
-	
-	public void inserir(ItemVenda itemvenda);
-	
-//	public void remover(int posicao);
-//	
-//	public void alterar(int posicao, ItemVenda item);
-	
+	void inserirItemVenda (ItemVenda item);
 }

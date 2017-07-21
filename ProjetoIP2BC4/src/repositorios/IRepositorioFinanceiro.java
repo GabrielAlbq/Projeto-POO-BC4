@@ -1,20 +1,26 @@
 package repositorios;
 
+import java.util.ArrayList;
+
 import beans.Funcionario;
 import beans.Produto;
 
 public interface IRepositorioFinanceiro {
 	
-	public double totalSalarioFuncionarios ();
+	double getRendaBruta();
+
+	void setRendaBruta(double rendaBruta);
 	
-	public double totalFornecedor ();
+	double totalSalarioFuncionarios ();
 	
-	public void pagarFuncionario (Funcionario func, int posicao);
+	double totalFornecedor ();
 	
-	public double rendaLiquida();
+	void pagarFuncionario (Funcionario func, int posicao);
 	
-	public void receberDinheiroVenda (double valor);
+	double rendaLiquida();
 	
-	public String exibirFinancas ();
+	void receberDinheiroVenda (double valor);
+	
+	String exibirFinancas ();
 
 }

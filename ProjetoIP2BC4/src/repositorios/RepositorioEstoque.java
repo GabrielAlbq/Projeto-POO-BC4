@@ -9,17 +9,12 @@ public class RepositorioEstoque implements IRepositorioEstoque {
 	
 	//ATRIBUTOS
 	private List<Produto> produtos;
-	//private final static int TAM_MAX = 100;
-	//private Produto[] produtos;
-	//private int quantSKU;
 	private static RepositorioEstoque instancia;
 	
 	//CONSTRUTOR
 	
 	private RepositorioEstoque(){
 		produtos = new ArrayList<>();
-	//	this.produtos = new Produto[TAM_MAX];
-	//	this.quantSKU = 0;
 	}
 	public static RepositorioEstoque getInstancia(){
 		if(instancia == null){
@@ -33,12 +28,6 @@ public class RepositorioEstoque implements IRepositorioEstoque {
 	public List<Produto> getProdutos() {
 		return produtos;
 	}
-//	public Produto[] getProdutos() {
-//		return produtos;
-//	}
-//	public int getQuantSKU() {
-//		return quantSKU;
-//	}
 	
 	//METODOS
 	
