@@ -25,7 +25,7 @@ public class RepositorioEstoque implements IRepositorioEstoque {
 
 	//GET
 	
-	public List<Produto> getProdutos() {
+	public List<Produto> listar() {
 		return produtos;
 	}
 	

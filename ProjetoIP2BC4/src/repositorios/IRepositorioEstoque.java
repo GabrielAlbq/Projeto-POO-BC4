@@ -1,5 +1,7 @@
 package repositorios;
 
+import java.util.List;
+
 import beans.Produto;
 
 public interface IRepositorioEstoque {
@@ -12,4 +14,6 @@ public interface IRepositorioEstoque {
 	public void remover(int posicao);
 	
 	public void alterar(Produto novoProduto, int posicao);
+	
+	public List<Produto> listar();
 }

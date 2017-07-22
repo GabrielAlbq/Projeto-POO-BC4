@@ -10,7 +10,6 @@ public class ControladorEstoque {
 	
 	//ATRIBUTOS
 	
-	//RepositorioEstoque repoestoque;
 	RepositorioVenda repoVenda;
 	private static ControladorEstoque instancia;
 	private IRepositorioEstoque repoestoque;
@@ -18,7 +17,6 @@ public class ControladorEstoque {
 	//SINGLETON
 	
 	private ControladorEstoque(){
-		//this.repoestoque = repo;
 		repoestoque = RepositorioEstoque.getInstancia();
 		repoVenda = RepositorioVenda.getInstancia();
 	}
@@ -30,45 +28,26 @@ public class ControladorEstoque {
 		return instancia;
 	}
 	
-	//GET
-	
-//	public RepositorioEstoque getRepoestoque() {
-//		return repoestoque;
-//	}
-//	
 	//METODOS COM CONTROLE DE NEGOCIOS
 	
 	public String listarProduto(){
 		String texto = "";
-		for(Produto prod : ((RepositorioEstoque)repoestoque).getProdutos()){
-			if(((RepositorioEstoque)repoestoque).getProdutos().isEmpty() == true){
+		for(Produto prod : repoestoque.listar()){
+			if(repoestoque.listar().isEmpty() == true){
 				texto = "\n\n\tNao ha produtos cadastrados!\n\n";
 			}
 			else{
 				texto += "\n"+prod.toString();
-			//	texto += "\n#"+(i+1)+prod[i].toString();
 			}
 		}
-//		Produto[] prod = repoestoque.getProdutos();
-	//	String texto = "";
-//		for(int i = 0 ; i < repoestoque.getQuantSKU() ; i++){
-//			if( prod[i] == null ) {
-//				texto = "\n\n\tNao ha produtos cadastrados!\n\n";
-//			} 
-//			else {
-//				texto += "\n#"+(i+1)+prod[i].toString();
-//			}
-//		}
 		return texto;
 	}
 	public boolean subtrairProduto (int codigo, int quantidade) {
-	//	List<Produto> produtos = new ArrayList<>();
-	//	Produto[] produtos = ((RepositorioEstoque)repoestoque).getProdutos();
 		int pos = retornarPosicao(codigo);
 		if(pos == -1){
 			return false;
 		}
-		for(Produto prod : ((RepositorioEstoque)repoestoque).getProdutos()){
+		for(Produto prod : repoestoque.listar()){
 			if(codigo == prod.getCodigo()){
 				if(quantidade <= prod.getQuantidade() ){
 					repoestoque.subtrairProduto(pos, quantidade);
@@ -76,22 +55,12 @@ public class ControladorEstoque {
 				}
 			}
 		}
-//		for (int i = 0; i < repoestoque.getQuantSKU(); i++) {
-//			if( codigo == produtos[i].getCodigo() ) {
-//				if( quantidade <= produtos[i].getQuantidade() ) {
-//					repoestoque.subtrairProduto(i, quantidade); //É pra passar por parametro a posicao
-//					return true;
-//				}
-//			}
-//		}
 		return false;
 	}
 	
 	public boolean inserir(Produto prod){
 		if(prod == null || prod.getCodigo() <= 0 || prod.getNome() == null)
 			return false;
-//		if(repoestoque.getQuantSKU() == repoestoque.getProdutos().length)
-//			return false;
 		if(retornarPosicao(prod.getCodigo()) != -1){
 			System.out.println("Ja existe um produto com esse codigo!");
 			return false;
@@ -123,21 +92,16 @@ public class ControladorEstoque {
 		if(posicao == -1){
 			return false;
 		}
-		if(((RepositorioEstoque)repoestoque).getProdutos().get(posicao).getCodigo() == novoProduto.getCodigo()){
+		if(repoestoque.listar().get(posicao).getCodigo() == novoProduto.getCodigo()){
 			repoestoque.alterar(novoProduto, posicao);
 			System.out.println("Produto alterado com sucesso!");
 			return true;
 		}
-//		if(repoestoque.getProdutos()[posicao].getCodigo() == novoProduto.getCodigo()){
-//			repoestoque.alterar(novoProduto,posicao);
-//			System.out.println("Produto alterado com sucesso!");
-//		return true;
-//		}
 		return false;
 	}
 	
 	public boolean remover(int cod){
-		if(((RepositorioEstoque)repoestoque).getProdutos().isEmpty() == true){
+		if(repoestoque.listar().isEmpty() == true){
 			System.out.println("\n\tErro! Nao ha produtos para remover!");
 			return false;
 		}
@@ -157,9 +121,9 @@ public class ControladorEstoque {
 		if (codigo <= 0) {
 			return -1;
 		}
-		for(Produto prod : ((RepositorioEstoque)repoestoque).getProdutos()){
+		for(Produto prod : repoestoque.listar()){
 			if(codigo == prod.getCodigo()){
-				return ((RepositorioEstoque)repoestoque).getProdutos().indexOf(prod);
+				return repoestoque.listar().indexOf(prod);
 			}
 		}
 		//aqui devolve o indexof(produto)
