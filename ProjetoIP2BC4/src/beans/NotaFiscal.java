@@ -8,7 +8,7 @@ public class NotaFiscal {
 	// ATRIBUTOS 
 	
 	private Funcionario funcionario; // � o funcionario que vendeu
-	private ArrayList<ItemVenda> itensVendidos; // Lista de itens vendidos
+	private ArrayList<ItemVenda> itensVendidos = new ArrayList<>(); // Lista de itens vendidos
 	private int qtdItens;
 	private double totalPagar; // Somatorio de cada item da lista, (quantidade de cada item) * (valor do item);
 	private int codigoDaNota; // Codigo da nota fiscal
@@ -17,7 +17,8 @@ public class NotaFiscal {
 	
 	public NotaFiscal(Funcionario funcionario,ArrayList<ItemVenda> itensVendidos, double totalPagar, int codigoDaNota, int qtdItens) {
 		this.funcionario = funcionario;
-		this.itensVendidos = itensVendidos;
+		this.itensVendidos = (ArrayList<ItemVenda>)itensVendidos.clone();
+	//	this.itensVendidos = itensVendidos.clone();
 		this.totalPagar = totalPagar;
 		this.codigoDaNota = codigoDaNota;
 		this.qtdItens = qtdItens;
@@ -56,6 +57,7 @@ public class NotaFiscal {
 		teste = teste+"\n\nItem Venda\tQuantidade\tPreco\tTotal\n";
 		for (int i = 0; i < qtdItens; i++) {
 			teste = teste + itensVendidos.get(i).getNome()+ "\t"+itensVendidos.get(i).getQtd()+ "\t\t"+itensVendidos.get(i).getPreco()+"  ";
+			teste = teste+"  R$ "+(itensVendidos.get(i).getQtd()*itensVendidos.get(i).getPreco()+"\n");
 			//teste = teste+"  R$ "+(itensVendidos[i].getQtd()*itensVendidos[i].getPreco()+"\n";
 			//teste = teste+itensVendidos.getNome()+"\t"+itensVendidos[i].getQtd()+"\t\t"+itensVendidos[i].getPreco()+"  ";
 			//teste = teste+"  R$ "+(itensVendidos[i].getQtd()*itensVendidos[i].getPreco()+"\n");

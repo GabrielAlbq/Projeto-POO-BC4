@@ -71,7 +71,6 @@ public class PrincipalTeste {
 			System.out.println("\n\n=========================================\n\n\tMercadinho mil grau\n\n(1) - Sistema de Vendas\n"
 							 + "(2) - Sistema de Estoque\n(3) - Sistema de Funcionario\n(4) - Sistema Financeiro\n(5) - Fechar programa");
 			opcao = scanf.nextInt();
-			
 			switch(opcao) {
 			case 1: {
 				System.out.println("\n\n=========================================\n\n\tSistema de Vendas\n\n(1) - Registrar Venda"
@@ -107,7 +106,6 @@ public class PrincipalTeste {
 								 auxiliarVenda = true;
 								 terminarVenda = true;
 								 opcao = 0;
-								// fachada.cancelarPedido();
 							 }
 							 else if(codigo == 2) {
 								 break;

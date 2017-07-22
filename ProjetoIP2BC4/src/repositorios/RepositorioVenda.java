@@ -62,4 +62,7 @@ public class RepositorioVenda implements IRepositorioVenda{
 	public void inserirItemVenda (ItemVenda item) { // Adiciona um ItemVenda para o mercadinho
 		itensvenda.add(item);
 	}
+	public void limparArrayItemVenda (){
+		this.itensvenda.clear();
+	}
 }

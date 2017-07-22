@@ -64,11 +64,12 @@ public class ControladorVenda {
 	
 	public void inserir(ItemVenda itemvenda){
 		if (itemvenda == null){
-			System.out.println("Item não existe!");
+			System.out.println("Item nï¿½o existe!");
 		}
 		Produto prod = controlEstoque.buscar(itemvenda.getCodigo());
 		if(itemvenda.getQtd() > prod.getQuantidade() ){
 			System.out.println("Quantidade maior do que a do produto");
+			return;
 		}
 		repoVenda.inserirItemVenda(itemvenda);
 	}
