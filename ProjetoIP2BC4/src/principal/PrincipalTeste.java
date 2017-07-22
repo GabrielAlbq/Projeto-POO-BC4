@@ -61,6 +61,7 @@ public class PrincipalTeste {
 //		
 		int opcao, identificacao, codigo, quantidade, aux;
 		boolean parar = false, vender = true, terminarVenda = false, auxiliarVenda = false;
+		boolean quantidadenula = true;
 		String nome, cep, cidade, rua, logradouro, numeroCasa, cpf, funcao;
 		double preco, salario;
 		Funcionario f;
@@ -100,9 +101,11 @@ public class PrincipalTeste {
 						if(codigo == 0) {
 							System.out.println("\n\n\tTem certeza de que quer ENCERRAR a compra?\n\t(1) - SIM \n\t(2) - NAO\n\n");
 							 codigo = scanf.nextInt();
-							 if( codigo == 1 ) {
+							 if( codigo == 1) {
+								 if(quantidadenula == false){
 								 fachada.encerrarPedido();
 								 fachada.gerarNotaFiscal(f);
+								 }
 								 auxiliarVenda = true;
 								 terminarVenda = true;
 								 opcao = 0;
@@ -118,6 +121,8 @@ public class PrincipalTeste {
 								 fachada.cancelarPedido();
 								 
 								 terminarVenda = true;
+								 auxiliarVenda = true;
+								 opcao = 0;
 								 System.out.println("\n\tVenda cancelada!\n\n");
 							 }
 							 else if(codigo == 2) {
@@ -137,6 +142,7 @@ public class PrincipalTeste {
 							System.out.print("\n\tProduto: " + ArrayItem.getNome()+"\n\tQtd: " + ArrayItem.getQtd() +
 							"\n\tPreco: " + ArrayItem.getPreco() + "\n\tSubTotal: " + (ArrayItem.getPreco()*ArrayItem.getQtd()) + "\n");
 							System.out.println("\nTotal parcial: "+totalparcial);
+							quantidadenula = false; // TESTE 
 							}
 							else{
 								System.out.println("Quantidade tem que ser maior que zero!");
