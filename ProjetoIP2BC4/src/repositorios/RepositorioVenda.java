@@ -1,6 +1,6 @@
 package repositorios;
 
-import java.awt.List;
+
 import java.util.ArrayList;
 
 import beans.ItemVenda;
@@ -31,6 +31,10 @@ public class RepositorioVenda implements IRepositorioVenda{
 
 	// METODOS
 	
+	public ArrayList<ItemVenda> getItensvenda() {
+		return itensvenda;
+	}
+
 	public String listaItensVenda () {
 		String text = "";
 		for (int i = 0; i < this.itensvenda.size(); i++){ // Imprimir na tela todos os itens de venda

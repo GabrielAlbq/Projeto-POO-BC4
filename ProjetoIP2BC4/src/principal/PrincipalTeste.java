@@ -7,6 +7,7 @@ import beans.Funcionario;
 import beans.ItemVenda;
 import beans.Pessoa;
 import beans.Produto;
+import beans.Vendedor;
 
 public class PrincipalTeste {
 	public static void main(String[] args) {
@@ -32,30 +33,32 @@ public class PrincipalTeste {
 			fachada.inserirProduto(produto[i]);
 		}
 		
-		Endereco e1 = new Endereco("Rua A", "Cidade A", "12345-100", "155");
-		Endereco e2 = new Endereco("Rua B", "Cidade B", "98765-100", "344");
-		Endereco e3 = new Endereco("Rua C", "Cidade C", "15657-887", "511");
-		Endereco e4 = new Endereco("Rua D", "Cidade D", "78877-002", "361");
+//		Endereco e1 = new Endereco("Rua A", "Cidade A", "12345-100", "155");
+//		Endereco e2 = new Endereco("Rua B", "Cidade B", "98765-100", "344");
+//		Endereco e3 = new Endereco("Rua C", "Cidade C", "15657-887", "511");
+//		Endereco e4 = new Endereco("Rua D", "Cidade D", "78877-002", "361");
 		
 		Endereco enderecoTeste;
 		
-		Pessoa p1 = new Pessoa(e1, "Fabio"  , "11111111111");
-		Pessoa p2 = new Pessoa(e2, "Elthon" , "22222222222");
-		Pessoa p3 = new Pessoa(e3, "Gabriel", "33333333333");
-		Pessoa p4 = new Pessoa(e4, "Luciano", "44444444444");
+//		Pessoa p1 = new Pessoa(e1, "Fabio"  , "11111111111");
+//		Pessoa p2 = new Pessoa(e2, "Elthon" , "22222222222");
+//		Pessoa p3 = new Pessoa(e3, "Gabriel", "33333333333");
+//		Pessoa p4 = new Pessoa(e4, "Luciano", "44444444444");
 		
 		Pessoa pessoaTeste;
 		
-		Funcionario f1 = new Funcionario(p1,"vendedor",2001,1);
-		Funcionario f2 = new Funcionario(p2,"vendedor",2000,2);
-		Funcionario f3 = new Funcionario(p3,"vendedor",2000,3);
-		Funcionario f4 = new Funcionario(p4,"vendedor",2000,4);
-
-		fachada.inserirFuncionario(f1);
-		fachada.inserirFuncionario(f2);
-		fachada.inserirFuncionario(f3);
-		fachada.inserirFuncionario(f4);
+//		Funcionario f1 = new Funcionario(p1,"vendedor",2001,1);
+//		Funcionario f2 = new Funcionario(p2,"vendedor",2000,2);
+//		Funcionario f3 = new Funcionario(p3,"vendedor",2000,3);
+//		Funcionario f4 = new Funcionario(p4,"vendedor",2000,4);
 		
+		//Funcionario f1 = new Vendedor("Rua A", "Cidade A", "12345-100", "155", "Fabio"  , "11111111111","vendedor",2001,1,true);
+		Funcionario f2 = new Vendedor("Rua A", "Cidade A", "12345-100", "155", "Fabio"  , "11111111111","vendedor",2001,1,true, 5);
+		fachada.inserirFuncionario(f2);
+//		fachada.inserirFuncionario(f2);
+//		fachada.inserirFuncionario(f3);
+//		fachada.inserirFuncionario(f4);
+//		
 		int opcao, identificacao, codigo, quantidade, aux;
 		boolean parar = false, vender = true, terminarVenda = false, auxiliarVenda = false;
 		String nome, cep, cidade, rua, logradouro, numeroCasa, cpf, funcao;
@@ -87,8 +90,9 @@ public class PrincipalTeste {
 					else{
 					terminarVenda = false; //Recebem o valor aqui pois se for registrar nova venda, para eles entrarem no while precisam recebe false de novo.
 					auxiliarVenda = false;
-					System.out.println("Funcionario: "+f.getPessoa().getNome());
-					System.out.println(fachada.listarItensVenda());
+					System.out.println("Funcionario: "+f.getNome());// +f.getPessoa().getNome());
+					System.out.println(fachada.listarProdutos());
+				//	System.out.println(fachada.listarItensVenda());
 					while(!terminarVenda){
 						
 						System.out.println("\n\n\t(0) - Encerrar a venda\n\t(-1) - Cancelar venda\n\n");
@@ -103,6 +107,7 @@ public class PrincipalTeste {
 								 auxiliarVenda = true;
 								 terminarVenda = true;
 								 opcao = 0;
+								// fachada.cancelarPedido();
 							 }
 							 else if(codigo == 2) {
 								 break;
@@ -149,14 +154,15 @@ public class PrincipalTeste {
 				}
 				else if (opcao == 2) {
 					System.out.println(fachada.listarVendas());
+				//	System.out.println(fachada.listarProdutos());
 				} 
 				else if(opcao == 3) {
-					if(fachada.limparHistorico() == false ) {
-						System.out.println("\n\n\tHistorico ja esta vazio!\n\n");
-					}
-					else {
-						System.out.println("\n\n\tHistorico de vendas apagado,\n\tnotas fiscais deletadas!\n\n");
-					}
+//					if(fachada.limparHistorico() == false ) {
+//						System.out.println("\n\n\tHistorico ja esta vazio!\n\n");
+//					}
+//					else {
+//						System.out.println("\n\n\tHistorico de vendas apagado,\n\tnotas fiscais deletadas!\n\n");
+//					}
 				}
 				else if (opcao == 4){
 					// ja volta automaticamente com qualquer numero exceto os que estao nos if's!
@@ -274,9 +280,9 @@ public class PrincipalTeste {
 					scanf.nextLine();
 					funcao = scanf.nextLine();
 					System.out.println("\t"+funcao+"\n");
-					enderecoTeste = new Endereco(logradouro, cidade, cep, numeroCasa);
-					pessoaTeste = new Pessoa(enderecoTeste, nome, cpf);
-					fachada.inserirFuncionario(new Funcionario(pessoaTeste, funcao, salario, identificacao));
+//					enderecoTeste = new Endereco(logradouro, cidade, cep, numeroCasa);
+//					pessoaTeste = new Pessoa(enderecoTeste, nome, cpf);
+//					fachada.inserirFuncionario(new Funcionario(pessoaTeste, funcao, salario, identificacao));
 				} 
 				else if (opcao == 3) {
 					System.out.println("\n\n\tDigite a identificacao do funcionario: \n");
@@ -294,9 +300,9 @@ public class PrincipalTeste {
 					cep = scanf.nextLine();
 					System.out.println("\n\n\tNumero da casa: ");
 					numeroCasa = scanf.nextLine();
-					enderecoTeste = new Endereco(logradouro, cidade, cep, numeroCasa);
-					pessoaTeste = new Pessoa(enderecoTeste, nome, cpf);
-					fachada.atualizarFuncionario(new Funcionario(pessoaTeste, identificacao));
+//					enderecoTeste = new Endereco(logradouro, cidade, cep, numeroCasa);
+//					pessoaTeste = new Pessoa(enderecoTeste, nome, cpf);
+//					fachada.atualizarFuncionario(new Funcionario(pessoaTeste, identificacao));
 				} 
 				else if(opcao == 4) {
 					System.out.println("\n\n\tDigite a identificacao do funcionario: \n");
@@ -321,7 +327,7 @@ public class PrincipalTeste {
 				
 				if( opcao == 1 ) {
 					System.out.println("\n\n\tDigite a identificacao do funcionario: \n");
-					fachada.pagarFuncionario(fachada.buscarFuncionario(scanf.nextInt()));
+			//		fachada.pagarFuncionario(fachada.buscarFuncionario(scanf.nextInt()));
 				} 
 				else if(opcao == 2) {
 					System.out.println(fachada.exibirFinancas());

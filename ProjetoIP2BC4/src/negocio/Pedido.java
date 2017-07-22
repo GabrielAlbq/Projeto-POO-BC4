@@ -107,6 +107,7 @@ public class Pedido {
 		this.totalPagar = 0;
 		this.qtdItens = 0;
 		this.funcionario = null;
+		repoVenda.getItensvenda().clear();
 	}
 	
 	// emitir nota fiscal / ocorre quando o pedido eh concluido;
@@ -115,8 +116,12 @@ public class Pedido {
 	
 	public void encerrarPedido () {
 		
-		for (int i = 0; i < repoVenda.getQtdItem(); i++) {
-			totalPagar += repoVenda.getArrayItem()[i].valorTotal();
+//		for (int i = 0; i < repoVenda.getQtdItem(); i++) {
+//			totalPagar += repoVenda
+//			totalPagar += repoVenda.getArrayItem()[i].valorTotal();
+//		}
+		for(ItemVenda item : repoVenda.getItensvenda()){
+			totalPagar += item.valorTotal() ;
 		}
 
 
@@ -127,16 +132,21 @@ public class Pedido {
 		
 		
 		// laco que subtrai os itens de venda dos produtos estocados
-		for (int i = 0; i < repoVenda.getQtdItem(); i++) {
-			controlEstoque.subtrairProduto( repoVenda.getArrayItem()[i].getCodigo() , repoVenda.getArrayItem()[i].getQtd());
+		for(ItemVenda item : repoVenda.getItensvenda()){
+			controlEstoque.subtrairProduto(item.getCodigo(), item.getQtd());
 		}
+//		repoVenda.getItensvenda().clear();
+//		for (int i = 0; i < repoVenda.getQtdItem(); i++) {
+//			controlEstoque.subtrairProduto( repoVenda.getArrayItem()[i].getCodigo() , repoVenda.getArrayItem()[i].getQtd());
+//		}
 	}
 	
 	// gera uma nota fiscal, deve ser usada antes do metodo encerrar pedido
 	public NotaFiscal gerarNotaFiscal(Funcionario funcionario) {
-		NotaFiscal teste = new NotaFiscal(funcionario, repoVenda.getArrayItem(), totalPagar, contadorCodigoNota, repoVenda.getQtdItem());
+		NotaFiscal teste = new NotaFiscal(funcionario, repoVenda.getItensvenda(), totalPagar, contadorCodigoNota, repoVenda.getItensvenda().size());
 		repoVenda.adicionarNotaFiscal( teste );
 		contadorCodigoNota++;
+		//repoVenda.getItensvenda().clear();
 		return teste;
 	}
 }

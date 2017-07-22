@@ -58,11 +58,12 @@ public class Fachada {
 	}
 	
 	public void listarItensVenda() {
-		controladorVenda.listarVendas();
+		controladorVenda.listarItensVenda();
+	//	controladorVenda.listarVendas();
 	}
 	
-	public void listarVendas(){
-		controladorVenda.listarNotasFiscais();
+	public String listarVendas(){
+		return controladorVenda.listarNotasFiscais();
 	}
 	
 	public void limparHistorico (){
@@ -118,9 +119,9 @@ public class Fachada {
 	
 	// SISTEMA FINANCEIRO
 	
-	public void pagarFuncionario (Funcionario funcionario) {
-		controladorFinanceiro.pagarFuncionario(funcionario);
-	}
+//	public void pagarFuncionario (Funcionario funcionario) {
+//		controladorFinanceiro.pagarFuncionario(funcionario);
+//	}
 	
 	// TODO public void solicitarFornecedor() { }
 	

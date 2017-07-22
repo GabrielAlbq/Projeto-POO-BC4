@@ -17,7 +17,7 @@ public abstract class Funcionario extends Pessoa{
 		this.funcao = funcao;
 		this.salario = salario;// O if que garante um salario positivo fica no contorlador
 		this.identificacao = identificacao; // Nao pode ser menor ou igual a zero!
-		this.recebeuSalario = recebeuSalario;// Indica se o funcionario ja recebeu o salario "False: não" "True: sim"
+		this.recebeuSalario = recebeuSalario;// Indica se o funcionario ja recebeu o salario "False: nï¿½o" "True: sim"
 	}
 
 	// GET / SET 
