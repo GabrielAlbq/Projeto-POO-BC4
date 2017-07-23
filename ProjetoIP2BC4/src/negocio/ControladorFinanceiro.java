@@ -3,7 +3,10 @@ package negocio;
 import java.util.ArrayList;
 
 import beans.Funcionario;
-import repositorios.*;
+import repositorios.IRepositorioFinanceiro;
+import repositorios.IRepositorioFuncionario;
+import repositorios.RepositorioFinanceiro;
+import repositorios.RepositorioFuncionario;
 
 public class ControladorFinanceiro {
 	
@@ -41,19 +44,14 @@ public class ControladorFinanceiro {
 	}
 	
 	public boolean pagarFuncionario (int identificacao){
-		if( identificacao <= 0 ) {
-			System.out.println("\n\n\tErro! Idenficacao invalida!");
+		Funcionario func = controladorFuncionario.buscar(identificacao);
+		if(func == null){
 			return false;
 		}
-		ArrayList<Funcionario> func = repoFuncionario.getFuncionarios();
-		for (int i = 0; i < repoFuncionario.getFuncionarios().size(); i++) {
-			if (func.get(i).getIdentificacao() == identificacao){
-				if (repoFinanceiro.getRendaBruta() - func.get(i).getSalario() >= 0){
-					if (func.get(i).getRecebeuSalario() == false){
-						repoFinanceiro.pagarFuncionario(func.get(i), i);
-						return true;
-					}
-				}
+		if(repoFinanceiro.getRendaBruta() - func.getSalario() >= 0){
+			if(func.getRecebeuSalario() == false){
+				repoFinanceiro.pagarFuncionario(func);
+				return true;
 			}
 		}
 		return false;

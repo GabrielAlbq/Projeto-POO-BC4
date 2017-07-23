@@ -1,5 +1,6 @@
 package principal;
 
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 import beans.Endereco;
@@ -56,7 +57,7 @@ public class PrincipalTeste {
 		// Funcionario f1 = new Vendedor("Rua A", "Cidade A", "12345-100",
 		// "155", "Fabio" , "11111111111","vendedor",2001,1,true);
 		Funcionario f2 = new Vendedor("Rua A", "Cidade A", "12345-100", "155", "Fabio", "11111111111", "vendedor", 2001,
-				1, true, 5);
+				1, false, 5);
 		fachada.inserirFuncionario(f2);
 		// fachada.inserirFuncionario(f2);
 		// fachada.inserirFuncionario(f3);
@@ -70,10 +71,13 @@ public class PrincipalTeste {
 		Funcionario f;
 
 		while (!parar) {
+			LocalDateTime rightNow = LocalDateTime.now();
+			System.out.println("Data e hora atuais : " + rightNow);
 			System.out.println(
 					"\n\n=========================================\n\n\tMercadinho mil grau\n\n(1) - Sistema de Vendas\n"
 							+ "(2) - Sistema de Estoque\n(3) - Sistema de Funcionario\n(4) - Sistema Financeiro\n(5) - Fechar programa");
 			opcao = scanf.nextInt();
+
 			switch (opcao) {
 			case 1: {
 				System.out.println(
@@ -334,7 +338,7 @@ public class PrincipalTeste {
 
 				if (opcao == 1) {
 					System.out.println("\n\n\tDigite a identificacao do funcionario: \n");
-					// fachada.pagarFuncionario(fachada.buscarFuncionario(scanf.nextInt()));
+					fachada.pagarFuncionario(scanf.nextInt());//fachada.buscarFuncionario(scanf.nextInt()));
 				} else if (opcao == 2) {
 					System.out.println(fachada.exibirFinancas());
 				} else if (opcao == 3) {

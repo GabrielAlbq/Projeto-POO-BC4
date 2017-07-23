@@ -119,9 +119,9 @@ public class Fachada {
 	
 	// SISTEMA FINANCEIRO
 	
-//	public void pagarFuncionario (Funcionario funcionario) {
-//		controladorFinanceiro.pagarFuncionario(funcionario);
-//	}
+	public void pagarFuncionario(int identificacao){// (Funcionario funcionario) {
+		controladorFinanceiro.pagarFuncionario(identificacao);
+	}
 	
 	// TODO public void solicitarFornecedor() { }
 	

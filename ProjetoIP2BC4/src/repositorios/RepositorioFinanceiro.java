@@ -69,7 +69,7 @@ public class RepositorioFinanceiro implements IRepositorioFinanceiro{
 		return totalFornecedor;
 	}
 	
-	public void pagarFuncionario (Funcionario func, int posicao){
+	public void pagarFuncionario (Funcionario func){//, int posicao){
 		rendaBruta -= func.getSalario();
 		System.out.println("Funcionario pago!");
 	}
