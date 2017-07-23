@@ -9,56 +9,56 @@ import repositorios.RepositorioFinanceiro;
 import repositorios.RepositorioFuncionario;
 
 public class ControladorFinanceiro {
-	
-	// ATRIBUTOS 
-	
-	// TODO interface do repositorio funcionario e financeiro a serem implementadas
+
+	// ATRIBUTOS
+
+	// TODO interface do repositorio funcionario e financeiro a serem
+	// implementadas
 	private ControladorFuncionario controladorFuncionario;
 	private IRepositorioFuncionario repoFuncionario;
 	private IRepositorioFinanceiro repoFinanceiro;
-	
-	
+
 	// SINGLETON
-	
+
 	private static ControladorFinanceiro instancia;
-		
+
 	public static ControladorFinanceiro getInstancia() {
-		if( instancia == null ) {
+		if (instancia == null) {
 			instancia = new ControladorFinanceiro();
 		}
 		return instancia;
 	}
-		
+
 	// CONSTRUTOR
-		
-	private ControladorFinanceiro () {
+
+	private ControladorFinanceiro() {
 		controladorFuncionario = ControladorFuncionario.getInstancia();
 		repoFinanceiro = RepositorioFinanceiro.getInstancia();
 		repoFuncionario = RepositorioFuncionario.getInstancia();
 	}
-	
-	// METODOS 
-	
-	public String exibirFinancas () {
+
+	// METODOS
+
+	public String exibirFinancas() {
 		return repoFinanceiro.exibirFinancas();
 	}
-	
-	public boolean pagarFuncionario (int identificacao){
+
+	public boolean pagarFuncionario(int identificacao) {
 		Funcionario func = controladorFuncionario.buscar(identificacao);
-		if(func == null){
+		if (func == null) {
 			return false;
 		}
-		if(repoFinanceiro.getRendaBruta() - func.getSalario() >= 0){
-			if(func.getRecebeuSalario() == false){
+		if (repoFinanceiro.getRendaBruta() - func.getSalario() >= 0) {
+			if (func.getRecebeuSalario() == false) {
 				repoFinanceiro.pagarFuncionario(func);
 				return true;
 			}
 		}
 		return false;
 	}
-	
-	public boolean receberDinheiroVenda (double valor){
-		if (valor <= 0){
+
+	public boolean receberDinheiroVenda(double valor) {
+		if (valor <= 0) {
 			System.out.println("\n\n\tErro! Valor invalido\n");
 			return false;
 		}

@@ -1,71 +1,77 @@
 package repositorios;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
 import beans.ItemVenda;
 import beans.NotaFiscal;
 
-public class RepositorioVenda implements IRepositorioVenda{
-	
-	// ATRIBUTOS 
-	
+public class RepositorioVenda implements IRepositorioVenda {
+
+	// ATRIBUTOS
+
 	private ArrayList<ItemVenda> itensvenda = new ArrayList<>();
 	private ArrayList<NotaFiscal> notas = new ArrayList<>();
 
 	// SINGLETON / CONSTRUTOR
-	
+
 	private static RepositorioVenda instancia;
-	
-	private RepositorioVenda () {
+
+	private RepositorioVenda() {
 		itensvenda = new ArrayList<>();
 		notas = new ArrayList<>();
 	}
-	
+
 	public static RepositorioVenda getInstancia() {
-		if( instancia == null ) {
+		if (instancia == null) {
 			instancia = new RepositorioVenda();
 		}
 		return instancia;
 	}
 
 	// METODOS
-	public List<ItemVenda> listar(){
+	public List<ItemVenda> listar() {
 		return itensvenda;
 	}
+
 	public ArrayList<ItemVenda> getItensvenda() {
 		return itensvenda;
 	}
 
-	public String listaItensVenda () {
+	public String listaItensVenda() {
 		String text = "";
-		for (int i = 0; i < this.itensvenda.size(); i++){ // Imprimir na tela todos os itens de venda
+		for (int i = 0; i < this.itensvenda.size(); i++) { // Imprimir na tela
+															// todos os itens de
+															// venda
 			text += itensvenda.get(i).toString();
 		}
 		return text;
 	}
 
-	public String listarNotasFiscais () {
+	public String listarNotasFiscais() {
 		String text = "";
-		for (int i = 0; i < this.notas.size(); i++){ // Imprimir na tela todas as notas fiscais
+		for (int i = 0; i < this.notas.size(); i++) { // Imprimir na tela todas
+														// as notas fiscais
 			text += notas.get(i).toString();
 		}
 		return text;
 	}
-	
-	public void adicionarNotaFiscal(NotaFiscal notaFiscal) { // Adiciona nota fiscal
+
+	public void adicionarNotaFiscal(NotaFiscal notaFiscal) { // Adiciona nota
+																// fiscal
 		notas.add(notaFiscal);
 	}
-	
-	public void limparHistoricoNotasFiscais () { // Limpa todas as notas fiscais
+
+	public void limparHistoricoNotasFiscais() { // Limpa todas as notas fiscais
 		this.notas.clear();
 	}
-	
-	public void inserirItemVenda (ItemVenda item) { // Adiciona um ItemVenda para o mercadinho
+
+	public void inserirItemVenda(ItemVenda item) { // Adiciona um ItemVenda para
+													// o mercadinho
 		itensvenda.add(item);
 	}
-	public void limparArrayItemVenda (){
+
+	public void limparArrayItemVenda() {
 		this.itensvenda.clear();
 	}
 }

@@ -39,11 +39,11 @@ public class Pedido {
 	// METODOS
 
 	public void resetarPedido() {
-//		for (int i = 0; i < qtdItens; i++) {
-//			arrayItem[i] = null;
-//		}
-//		this.totalPagar = 0;
-//		this.qtdItens = 0;
+		// for (int i = 0; i < qtdItens; i++) {
+		// arrayItem[i] = null;
+		// }
+		// this.totalPagar = 0;
+		// this.qtdItens = 0;
 		repoVenda.getItensvenda().clear();
 	}
 

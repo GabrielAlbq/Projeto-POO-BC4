@@ -6,48 +6,50 @@ import java.util.List;
 import beans.Produto;
 
 public class RepositorioEstoque implements IRepositorioEstoque {
-	
-	//ATRIBUTOS
+
+	// ATRIBUTOS
 	private List<Produto> produtos;
 	private static RepositorioEstoque instancia;
-	
-	//CONSTRUTOR
-	
-	private RepositorioEstoque(){
+
+	// CONSTRUTOR
+
+	private RepositorioEstoque() {
 		produtos = new ArrayList<>();
 	}
-	public static RepositorioEstoque getInstancia(){
-		if(instancia == null){
+
+	public static RepositorioEstoque getInstancia() {
+		if (instancia == null) {
 			instancia = new RepositorioEstoque();
 		}
 		return instancia;
 	}
 
-	//GET
-	
+	// GET
+
 	public List<Produto> listar() {
 		return produtos;
 	}
-	
-	//METODOS
-	
-	public void subtrairProduto (int posicao, int quantidade) {
-		this.produtos.get(posicao).setQuantidade(produtos.get(posicao).getQuantidade()-quantidade);
+
+	// METODOS
+
+	public void subtrairProduto(int posicao, int quantidade) {
+		this.produtos.get(posicao).setQuantidade(produtos.get(posicao).getQuantidade() - quantidade);
 	}
-	public void inserir(Produto prod){
+
+	public void inserir(Produto prod) {
 		this.produtos.add(prod);
 	}
-	
-	public Produto buscar(int posicao){
+
+	public Produto buscar(int posicao) {
 		return this.produtos.get(posicao);
 	}
-	
-	public void remover(int posicao){
+
+	public void remover(int posicao) {
 		this.produtos.remove(posicao);
 	}
-	
-	public void alterar(Produto novoProduto, int posicao){
+
+	public void alterar(Produto novoProduto, int posicao) {
 		this.produtos.set(posicao, novoProduto);
 	}
-	
+
 }
