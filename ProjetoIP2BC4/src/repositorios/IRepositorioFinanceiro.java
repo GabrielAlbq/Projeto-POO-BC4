@@ -15,7 +15,7 @@ public interface IRepositorioFinanceiro {
 	
 	double totalFornecedor ();
 	
-	void pagarFuncionario (Funcionario func);//, int posicao);
+	void pagarFuncionario (Funcionario func);
 	
 	double rendaLiquida();
 	

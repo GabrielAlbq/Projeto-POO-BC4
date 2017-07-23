@@ -101,15 +101,16 @@ public class PrincipalTeste {
 													// no while precisam recebe
 													// false de novo.
 							auxiliarVenda = false;
-							System.out.println("Funcionario: " + f.getNome());// +f.getPessoa().getNome());
+							System.out.println("Funcionario: " + f.getNome());
 							System.out.println(fachada.listarProdutos());
-							// System.out.println(fachada.listarItensVenda());
 							while (!terminarVenda) {
 
 								System.out.println("\n\n\t(0) - Encerrar a venda\n\t(-1) - Cancelar venda\n\n");
 								System.out.println("Digite o codigo do produto");
 								codigo = scanf.nextInt();
 								if (codigo == 0) {
+									System.out.println(fachada.listarItensVenda());
+									System.out.println("\nTotal parcial: " + totalparcial);
 									System.out.println(
 											"\n\n\tTem certeza de que quer ENCERRAR a compra?\n\t(1) - SIM \n\t(2) - NAO\n\n");
 									codigo = scanf.nextInt();
@@ -149,19 +150,21 @@ public class PrincipalTeste {
 										if (quantidade > 0) {
 											ItemVenda ArrayItem = new ItemVenda(prod, quantidade);
 											fachada.inserirItem(ArrayItem);
+											if(ArrayItem.getQtd() >= quantidade){  ////////////////////////////////////////////
 											totalparcial = totalparcial + ArrayItem.valorTotal();
 											System.out.print("\n\tProduto: " + ArrayItem.getNome() + "\n\tQtd: "
 													+ ArrayItem.getQtd() + "\n\tPreco: " + ArrayItem.getPreco()
 													+ "\n\tSubTotal: " + (ArrayItem.getPreco() * ArrayItem.getQtd())
 													+ "\n");
 											System.out.println("\nTotal parcial: " + totalparcial);
-											quantidadenula = false; // TESTE
+											quantidadenula = false;
+											}// TESTE
 										} else {
 											System.out.println("Quantidade tem que ser maior que zero!");
 										}
-									} else {
-										System.out.println("Codigo invalido ou produto nao existe. Digite novamente");
-									}
+									} //else {
+									//	System.out.println("Codigo invalido ou produto nao existe. Digite novamente");
+									//}
 								}
 
 							}
@@ -169,25 +172,17 @@ public class PrincipalTeste {
 					}
 				} else if (opcao == 2) {
 					System.out.println(fachada.listarVendas());
-					// System.out.println(fachada.listarProdutos());
 				} else if (opcao == 3) {
-					// if(fachada.limparHistorico() == false ) {
-					// System.out.println("\n\n\tHistorico ja esta vazio!\n\n");
-					// }
-					// else {
-					// System.out.println("\n\n\tHistorico de vendas
-					// apagado,\n\tnotas fiscais deletadas!\n\n");
-					// }
+					fachada.limparHistorico();
+					 System.out.println("\n\n\tHistorico de vendas apagado,\n\tnotas fiscais deletadas!\n\n");
 				} else if (opcao == 4) {
-					// ja volta automaticamente com qualquer numero exceto os
-					// que estao nos if's!
 				}
 				break;
 			}
 			case 2: {
 				System.out.println(
 						"\n\n=========================================\n\n\tSistema de estoque\n\n(1) - Listar Produtos"
-								+ "\n(2) - Adicionar produto\n(3) - Atualizar produtor\n(4) - Remover produto\n(5) - Buscar produto\n(6) - Menu principal\n\n");
+								+ "\n(2) - Adicionar produto\n(3) - Atualizar produto\n(4) - Remover produto\n(5) - Buscar produto\n(6) - Menu principal\n\n");
 
 				opcao = scanf.nextInt();
 
@@ -251,8 +246,6 @@ public class PrincipalTeste {
 					codigo = scanf.nextInt();
 					System.out.println(fachada.buscarProduto(codigo));
 				} else if (opcao == 6) {
-					// ja volta automaticamente com qualquer numero exceto os
-					// que estao nos if's!
 				}
 				break;
 			}

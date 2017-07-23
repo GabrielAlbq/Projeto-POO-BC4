@@ -1,7 +1,12 @@
  package negocio;
 
-import beans.*;
-import repositorios.*;
+import beans.ItemVenda;
+import beans.NotaFiscal;
+import beans.Produto;
+import repositorios.IRepositorioEstoque;
+import repositorios.IRepositorioVenda;
+import repositorios.RepositorioEstoque;
+import repositorios.RepositorioVenda;
 
 
 public class ControladorVenda {
@@ -45,7 +50,17 @@ public class ControladorVenda {
 	}
 	
 	public String listarItensVenda () {  			// lista todas os ItensVenda do repositorioVenda
-		return repoVenda.listaItensVenda();
+		String texto = "";
+		for(ItemVenda iv : repoVenda.listar()){
+			if(repoVenda.listar().isEmpty() == true){
+				texto = "\n\n\tNao ha produtos cadastrados!\n\n";
+			}
+			else{
+				texto += "\n"+iv.toString();
+			}
+		}
+		return texto;
+		//return repoVenda.listaItensVenda();
 	}
 	
 	public void adicionarNotaFiscal (NotaFiscal notaFiscal) {		// adiciona uma nova nota fiscal no repositorioVenda
@@ -64,7 +79,7 @@ public class ControladorVenda {
 	
 	public void inserir(ItemVenda itemvenda){
 		if (itemvenda == null){
-			System.out.println("Item n�o existe!");
+			System.out.println("Item nao existe!");
 		}
 		Produto prod = controlEstoque.buscar(itemvenda.getCodigo());
 		if(itemvenda.getQtd() > prod.getQuantidade() ){

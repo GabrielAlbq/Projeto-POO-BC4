@@ -2,6 +2,7 @@ package repositorios;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import beans.ItemVenda;
 import beans.NotaFiscal;
@@ -30,7 +31,9 @@ public class RepositorioVenda implements IRepositorioVenda{
 	}
 
 	// METODOS
-	
+	public List<ItemVenda> listar(){
+		return itensvenda;
+	}
 	public ArrayList<ItemVenda> getItensvenda() {
 		return itensvenda;
 	}

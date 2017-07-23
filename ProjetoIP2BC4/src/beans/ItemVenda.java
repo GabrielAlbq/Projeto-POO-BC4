@@ -20,7 +20,6 @@ public class ItemVenda {
 		this.nome = prod.getNome();
 		this.preco = prod.getPreco();
 		this.codigo = prod.getCodigo();
-		//this.qtd = prod.getQuantidade();
 		this.qtd = quantidade;
 	}
 	public double valorTotal() {
@@ -77,6 +76,10 @@ public class ItemVenda {
 	// TO STRING
 
 	public String toString() {
-		return "Nome: " + nome + ", Preco: R$" + preco;
+		return "\n\tProduto: " + nome + "\n\tQtd: "
+				+ qtd + "\n\tPreco: " + preco
+				+ "\n\tSubTotal: " + valorTotal()
+				+ "\n";
+		//return "Nome: " + nome + ", Preco: R$" + preco;
 	}
 }
