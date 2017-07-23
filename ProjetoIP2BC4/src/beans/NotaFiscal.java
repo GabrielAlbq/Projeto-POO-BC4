@@ -46,21 +46,14 @@ public class NotaFiscal {
 //	}
 	// TO STRING 
 
-//	public String toString() {
-//		return "NotaFiscal [funcionario=" + funcionario.getNome() + ", itensVendidos=" + itensVendidos + ", qtdItens=" + qtdItens
-//				+ ", totalPagar=" + totalPagar + ", codigoDaNota=" + codigoDaNota + "]";
-//	}
 	
 	public String toString() {
 		String teste = "\n\n========================================\n";
 		teste = teste+"\n\t\tNota #"+codigoDaNota+"\n\n\tFuncionario: "+funcionario.getNome();
 		teste = teste+"\n\nItem Venda\tQuantidade\tPreco\tTotal\n";
 		for (int i = 0; i < qtdItens; i++) {
-			teste = teste + itensVendidos.get(i).getNome()+ "\t"+itensVendidos.get(i).getQtd()+ "\t\t"+itensVendidos.get(i).getPreco()+"  ";
-			teste = teste+"  R$ "+(itensVendidos.get(i).getQtd()*itensVendidos.get(i).getPreco()+"\n");
-			//teste = teste+"  R$ "+(itensVendidos[i].getQtd()*itensVendidos[i].getPreco()+"\n";
-			//teste = teste+itensVendidos.getNome()+"\t"+itensVendidos[i].getQtd()+"\t\t"+itensVendidos[i].getPreco()+"  ";
-			//teste = teste+"  R$ "+(itensVendidos[i].getQtd()*itensVendidos[i].getPreco()+"\n");
+			teste += itensVendidos.get(i).getNome()+ "\t"+itensVendidos.get(i).getQtd()+ "\t\t"+itensVendidos.get(i).getPreco()+"  ";
+			teste +="  R$ "+(itensVendidos.get(i).getQtd()*itensVendidos.get(i).getPreco()+"\n");
 		}
 		teste = teste+"\n________________________________________\n\n\tTotal a pagar: R$ "+totalPagar;
 		return teste;

@@ -147,10 +147,9 @@ public class PrincipalTeste {
 										System.out.println("Digite a quantidade");
 										quantidade = scanf.nextInt();
 
-										if (quantidade > 0) {
+										if (quantidade > 0 && quantidade < prod.getQuantidade()) {
 											ItemVenda ArrayItem = new ItemVenda(prod, quantidade);
 											fachada.inserirItem(ArrayItem);
-											if(ArrayItem.getQtd() >= quantidade){  ////////////////////////////////////////////
 											totalparcial = totalparcial + ArrayItem.valorTotal();
 											System.out.print("\n\tProduto: " + ArrayItem.getNome() + "\n\tQtd: "
 													+ ArrayItem.getQtd() + "\n\tPreco: " + ArrayItem.getPreco()
@@ -158,7 +157,7 @@ public class PrincipalTeste {
 													+ "\n");
 											System.out.println("\nTotal parcial: " + totalparcial);
 											quantidadenula = false;
-											}// TESTE
+											
 										} else {
 											System.out.println("Quantidade tem que ser maior que zero!");
 										}
