@@ -3,13 +3,11 @@ package repositorios;
 import java.util.ArrayList;
 
 import beans.Funcionario;
-import beans.ItemVenda;
-import beans.Produto;
 
 public class RepositorioFinanceiro implements IRepositorioFinanceiro{
 	
 	IRepositorioFuncionario repositorioFuncionario;
-	IRepositorioEstoque repositorioEstoque;
+	IRepositorioFinanceiro repositorioFinanceiro;
 	
 	// ATRIBUTO
 		
@@ -26,6 +24,7 @@ public class RepositorioFinanceiro implements IRepositorioFinanceiro{
 	public static RepositorioFinanceiro getInstancia () {
 		if( instancia == null ) {
 			instancia = new RepositorioFinanceiro();
+			//instancia = RepositorioFinanceiro.carregarbd();
 		}
 		return instancia;
 	}
@@ -34,7 +33,7 @@ public class RepositorioFinanceiro implements IRepositorioFinanceiro{
 	
 	private RepositorioFinanceiro() {
 		this.repositorioFuncionario = RepositorioFuncionario.getInstancia();
-		this.repositorioEstoque = RepositorioEstoque.getInstancia();
+//		this.repositorioFinanceiro = RepositorioFinanceiro.getInstancia();
 		this.rendaBruta = 100000;
 		this.totalFuncionario = totalSalarioFuncionarios();
 		this.totalFornecedor = totalFornecedor();
@@ -91,6 +90,82 @@ public class RepositorioFinanceiro implements IRepositorioFinanceiro{
 		teste += rendaLiquida()+"\n\tTotal Vendas: R$ "+totalVendas+"\n\n";
 		return teste;
 	}
+	
+	/*private static RepositorioFinanceiro carregarbd() {
+
+		RepositorioFinanceiro repositorio = null;
+
+		File bd = new File("RepositorioFinanceiro.Mercadinho");
+		FileInputStream fis = null;
+		ObjectInputStream ois = null;
+
+		try {
+
+			fis = new FileInputStream(bd);
+			ois = new ObjectInputStream(fis);
+
+			repositorio = (RepositorioFinanceiro) ois.readObject();
+		} catch (Exception e) {
+			repositorio = new RepositorioFinanceiro();
+
+			try {
+				if (!bd.exists()) {
+					bd.createNewFile();
+				}
+
+				FileOutputStream fos = new FileOutputStream(bd);
+				ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+				oos.writeObject(repositorio);
+				oos.flush();
+				oos.close();
+				fos.flush();
+				fos.close();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+
+			//e.printStackTrace();
+		} finally {
+			if (ois != null) {
+				try {
+					ois.close();
+				} catch (IOException e) {
+					System.out.println("Não foi possível fechar o arquivo!");
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return repositorio;
+	}
+
+	@Override
+	public void salvarbd() {
+		if (!(instancia == null)) {
+
+			File bd = new File("RepositorioFinanceiro.Mercadinho");
+
+			try {
+
+				if (!bd.exists()) {
+					bd.createNewFile();
+				}
+
+				FileOutputStream fos = new FileOutputStream(bd);
+				ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+				oos.writeObject(instancia);
+				oos.flush();
+				oos.close();
+				fos.flush();
+				fos.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+	}*/
 	
 	// TODO pagar fornecedor
 }

@@ -16,4 +16,6 @@ public interface IRepositorioFuncionario {
 	ArrayList<Funcionario> getFuncionarios();
 	
 	public String listarFuncionarios();
+
+	void salvarArquivo();
 }

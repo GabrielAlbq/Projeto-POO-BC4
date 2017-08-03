@@ -1,9 +1,6 @@
 package repositorios;
 
-import java.util.ArrayList;
-
 import beans.Funcionario;
-import beans.Produto;
 
 public interface IRepositorioFinanceiro {
 	
@@ -22,5 +19,5 @@ public interface IRepositorioFinanceiro {
 	void receberDinheiroVenda (double valor);
 	
 	String exibirFinancas ();
-
+	
 }

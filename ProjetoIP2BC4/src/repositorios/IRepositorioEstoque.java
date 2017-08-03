@@ -16,4 +16,6 @@ public interface IRepositorioEstoque {
 	public void alterar(Produto novoProduto, int posicao);
 	
 	public List<Produto> listar();
+	
+	public void salvarArquivo();
 }

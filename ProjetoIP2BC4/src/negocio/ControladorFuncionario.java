@@ -38,6 +38,7 @@ public class ControladorFuncionario {
 		}
 		if(!repoFuncionario.getFuncionarios().contains(funcionarioInserir)) {
 			repoFuncionario.inserir(funcionarioInserir);
+			//instancia.repoFuncionario.salvarArquivo();
 		}
 	}
 	
@@ -55,6 +56,7 @@ public class ControladorFuncionario {
 		}
 		System.out.println("\tFuncionario removido com sucesso!");
 		((RepositorioFuncionario)repoFuncionario).remover(checagem);
+			instancia.repoFuncionario.salvarArquivo();
 	}
 	
 	public void alterar (Funcionario funcionarioAlterar) {
@@ -70,6 +72,7 @@ public class ControladorFuncionario {
 		}
 		System.out.println("\n\tFuncionario alterado com sucesso!\n\n");
 		repoFuncionario.alterar(funcionarioAlterar, checagem);
+			instancia.repoFuncionario.salvarArquivo();
 	}
 	
 	public Funcionario buscar (int identificacao) {

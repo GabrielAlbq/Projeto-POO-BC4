@@ -74,8 +74,7 @@ public class ControladorVenda {
 	}
 
 	public void limparHistoricoNotasFiscais() { // Apaga as notas fiscais
-												// armazenadas no
-												// repositorioVenda
+												// armazenadas no repositorioVenda
 		repoVenda.limparHistoricoNotasFiscais();
 	}
 
@@ -91,5 +90,6 @@ public class ControladorVenda {
 			return;
 		}
 		repoVenda.inserirItemVenda(itemvenda);
+		instancia.repoVenda.salvarArquivo();
 	}
 }

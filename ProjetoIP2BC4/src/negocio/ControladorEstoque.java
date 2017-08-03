@@ -8,13 +8,11 @@ import repositorios.RepositorioVenda;
 public class ControladorEstoque {
 
 	// ATRIBUTOS
-
 	RepositorioVenda repoVenda;
 	private static ControladorEstoque instancia;
 	private IRepositorioEstoque repoestoque;
 
 	// SINGLETON
-
 	private ControladorEstoque() {
 		repoestoque = RepositorioEstoque.getInstancia();
 		repoVenda = RepositorioVenda.getInstancia();
@@ -28,7 +26,6 @@ public class ControladorEstoque {
 	}
 
 	// METODOS COM CONTROLE DE NEGOCIOS
-
 	public String listarProduto() {
 		String texto = "";
 		for (Produto prod : repoestoque.listar()) {
@@ -65,6 +62,7 @@ public class ControladorEstoque {
 			return false;
 		}
 		repoestoque.inserir(prod);
+		instancia.repoestoque.salvarArquivo();
 		// repoVenda.inserir( new ItemVenda(prod.getCodigo(), prod.getNome(),
 		// prod.getPreco(), 0) ); ///////
 		System.out.println("Produto adicionado com sucesso!");
@@ -93,6 +91,7 @@ public class ControladorEstoque {
 		}
 		if (repoestoque.listar().get(posicao).getCodigo() == novoProduto.getCodigo()) {
 			repoestoque.alterar(novoProduto, posicao);
+			instancia.repoestoque.salvarArquivo();
 			System.out.println("Produto alterado com sucesso!");
 			return true;
 		}
@@ -110,7 +109,7 @@ public class ControladorEstoque {
 			return false;
 		}
 		repoestoque.remover(posicao);
-		// repoVenda.remover(posicao);
+		instancia.repoestoque.salvarArquivo();
 		System.out.println("Produto removido com sucesso!");
 		return true;
 	}

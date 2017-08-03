@@ -1,10 +1,17 @@
 package repositorios;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import beans.Funcionario;
 
-public class RepositorioFuncionario implements IRepositorioFuncionario{
+public class RepositorioFuncionario implements IRepositorioFuncionario, Serializable{
 	
 	// ATRIBUTOS 
 	
@@ -16,7 +23,8 @@ public class RepositorioFuncionario implements IRepositorioFuncionario{
 	
 	public static RepositorioFuncionario getInstancia() {
 		if( instancia == null ) {
-			instancia = new RepositorioFuncionario();
+		//	instancia = new RepositorioFuncionario();
+			instancia = RepositorioFuncionario.carregarArquivo();
 		}
 		return instancia;
 	}
@@ -65,5 +73,78 @@ public class RepositorioFuncionario implements IRepositorioFuncionario{
 	
 	public ArrayList<Funcionario> getFuncionarios() {
 		return funcs;
+	}
+	
+	private static RepositorioFuncionario carregarArquivo() {
+
+		RepositorioFuncionario repositorio = null;
+
+		File carregar = new File("RepositorioFuncionario.Mercadinho");
+		FileInputStream fis = null;
+		ObjectInputStream ois = null;
+
+		try {
+
+			fis = new FileInputStream(carregar);
+			ois = new ObjectInputStream(fis);
+
+			repositorio = (RepositorioFuncionario) ois.readObject();
+		} catch (Exception e) {
+			repositorio = new RepositorioFuncionario();
+
+			try {
+				if (!carregar.exists()) {
+					carregar.createNewFile();
+				}
+
+				FileOutputStream fos = new FileOutputStream(carregar);
+				ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+				oos.writeObject(repositorio);
+				oos.flush();
+				oos.close();
+				fos.flush();
+				fos.close();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+
+			//e.printStackTrace();
+		} finally {
+			if (ois != null) {
+				try {
+					ois.close();
+				} catch (IOException e) {
+					System.out.println("Não foi possível fechar o arquivo!");
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return repositorio;
+	}
+
+	@Override
+	public void salvarArquivo() {
+		if (!(instancia == null)) {
+			File salvar = new File("RepositorioFuncionario.Mercadinho");
+			try {
+				if (!salvar.exists()) {
+					salvar.createNewFile();
+				}
+
+				FileOutputStream fos = new FileOutputStream(salvar);
+				ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+				oos.writeObject(instancia);
+				oos.flush();
+				oos.close();
+				fos.flush();
+				fos.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
 	}
 }
