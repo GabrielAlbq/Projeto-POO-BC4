@@ -26,6 +26,7 @@ public class ControladorEstoque {
 	}
 
 	// METODOS COM CONTROLE DE NEGOCIOS
+	// TODO usar collections neste metodo
 	public String listarProduto() {
 		String texto = "";
 		for (Produto prod : repoestoque.listar()) {

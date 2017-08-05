@@ -37,6 +37,7 @@ public class ControladorFuncionario {
 		}
 		if(!repoFuncionario.getFuncionarios().contains(funcionarioInserir)) {
 			repoFuncionario.inserir(funcionarioInserir);
+			// TODO arquivo inserir funcionario
 			//instancia.repoFuncionario.salvarArquivo();
 		}
 	}
@@ -88,9 +89,10 @@ public class ControladorFuncionario {
 	}
 	
 	public int retornaPosicao (int identificacao) {
-		if( identificacao <= 0 )
+		if( identificacao <= 0 ) {
 			return -1;
-		
+		}
+			
 		for (Funcionario f : repoFuncionario.getFuncionarios()) {
 			if(f.getIdentificacao() == identificacao) 
 				return repoFuncionario.getFuncionarios().indexOf(f);
