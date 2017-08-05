@@ -1,4 +1,4 @@
-package beans;
+package ufrpe.beans;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,16 +8,17 @@ public class NotaFiscal {
 	// ATRIBUTOS 
 	
 	private Funcionario funcionario; // � o funcionario que vendeu
-	private ArrayList<ItemVenda> itensVendidos = new ArrayList<>(); // Lista de itens vendidos
+	private List<ItemVenda> itensVendidos; // Lista de itens vendidos
 	private int qtdItens;
 	private double totalPagar; // Somatorio de cada item da lista, (quantidade de cada item) * (valor do item);
 	private int codigoDaNota; // Codigo da nota fiscal
 	
 	// CONSTRUTOR 
 	
-	public NotaFiscal(Funcionario funcionario,ArrayList<ItemVenda> itensVendidos, double totalPagar, int codigoDaNota, int qtdItens) {
+	public NotaFiscal(Funcionario funcionario,ArrayList<ItemVenda> itensVendidos,
+			          double totalPagar, int codigoDaNota, int qtdItens) {
 		this.funcionario = funcionario;
-		this.itensVendidos = (ArrayList<ItemVenda>)itensVendidos.clone();
+		this.itensVendidos = (ArrayList<ItemVenda>) itensVendidos.clone();
 	//	this.itensVendidos = itensVendidos.clone();
 		this.totalPagar = totalPagar;
 		this.codigoDaNota = codigoDaNota;
@@ -30,7 +31,7 @@ public class NotaFiscal {
 		return funcionario;
 	}
 
-	public ArrayList<ItemVenda> getItensVendidos() {
+	public List<ItemVenda> getItensVendidos() {
 		return itensVendidos;
 	}
 

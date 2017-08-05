@@ -1,12 +1,10 @@
-package negocio;
+package ufrpe.negocio;
 
-import java.util.ArrayList;
-
-import beans.Funcionario;
-import repositorios.IRepositorioFinanceiro;
-import repositorios.IRepositorioFuncionario;
-import repositorios.RepositorioFinanceiro;
-import repositorios.RepositorioFuncionario;
+import ufrpe.beans.Funcionario;
+import ufrpe.repositorio.IRepositorioFinanceiro;
+import ufrpe.repositorio.IRepositorioFuncionario;
+import ufrpe.repositorio.RepositorioFinanceiro;
+import ufrpe.repositorio.RepositorioFuncionario;
 
 public class ControladorFinanceiro {
 

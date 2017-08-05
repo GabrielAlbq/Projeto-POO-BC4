@@ -1,7 +1,9 @@
-package negocio;
+package ufrpe.negocio;
 
-import repositorios.*;
-import beans.*;
+import ufrpe.beans.Funcionario;
+import ufrpe.beans.ItemVenda;
+import ufrpe.beans.NotaFiscal;
+import ufrpe.repositorio.RepositorioVenda;
 
 public class Pedido {
 

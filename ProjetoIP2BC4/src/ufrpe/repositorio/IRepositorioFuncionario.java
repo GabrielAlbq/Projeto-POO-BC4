@@ -1,8 +1,8 @@
-package repositorios;
+package ufrpe.repositorio;
 
 import java.util.ArrayList;
 
-import beans.Funcionario;
+import ufrpe.beans.Funcionario;
 
 public interface IRepositorioFuncionario {
 	void inserir (Funcionario funcionario);

@@ -1,4 +1,4 @@
-package beans;
+package ufrpe.beans;
 
 import java.io.Serializable;
 

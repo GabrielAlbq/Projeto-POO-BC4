@@ -1,4 +1,4 @@
-package repositorios;
+package ufrpe.repositorio;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import beans.Produto;
+import ufrpe.beans.Produto;
 
 public class RepositorioEstoque implements IRepositorioEstoque, Serializable {
 

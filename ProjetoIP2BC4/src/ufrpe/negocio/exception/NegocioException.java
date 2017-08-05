@@ -1,4 +1,4 @@
-package negocio;
+package ufrpe.negocio.exception;
 
 public class NegocioException extends Exception {
 	

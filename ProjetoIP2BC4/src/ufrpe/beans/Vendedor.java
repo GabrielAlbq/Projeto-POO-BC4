@@ -1,4 +1,4 @@
-package beans;
+package ufrpe.beans;
 
 public class Vendedor extends Funcionario{
 	private double comissaoVenda; // a comissão aumenta de acordo com as vendas efetuadas pelo vendedor

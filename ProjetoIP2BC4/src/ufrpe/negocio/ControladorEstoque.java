@@ -1,9 +1,9 @@
-package negocio;
+package ufrpe.negocio;
 
-import beans.Produto;
-import repositorios.IRepositorioEstoque;
-import repositorios.RepositorioEstoque;
-import repositorios.RepositorioVenda;
+import ufrpe.beans.Produto;
+import ufrpe.repositorio.IRepositorioEstoque;
+import ufrpe.repositorio.RepositorioEstoque;
+import ufrpe.repositorio.RepositorioVenda;
 
 public class ControladorEstoque {
 

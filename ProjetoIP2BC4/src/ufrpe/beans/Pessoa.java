@@ -1,4 +1,4 @@
-package beans;
+package ufrpe.beans;
 
 public abstract class Pessoa extends Endereco{
 	

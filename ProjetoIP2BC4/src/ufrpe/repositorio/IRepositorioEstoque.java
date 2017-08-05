@@ -1,8 +1,8 @@
-package repositorios;
+package ufrpe.repositorio;
 
 import java.util.List;
 
-import beans.Produto;
+import ufrpe.beans.Produto;
 
 public interface IRepositorioEstoque {
 	public void subtrairProduto (int posicao, int quantidade);

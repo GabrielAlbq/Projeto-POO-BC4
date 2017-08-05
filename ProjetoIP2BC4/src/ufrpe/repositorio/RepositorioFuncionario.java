@@ -1,4 +1,4 @@
-package repositorios;
+package ufrpe.repositorio;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import beans.Funcionario;
+import ufrpe.beans.Funcionario;
 
 public class RepositorioFuncionario implements IRepositorioFuncionario, Serializable{
 	

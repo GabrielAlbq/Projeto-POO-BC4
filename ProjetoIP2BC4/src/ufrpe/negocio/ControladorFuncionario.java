@@ -1,9 +1,8 @@
+package ufrpe.negocio;
 
-package negocio;
-
-import beans.Funcionario;
-import repositorios.IRepositorioFuncionario;
-import repositorios.RepositorioFuncionario;
+import ufrpe.beans.Funcionario;
+import ufrpe.repositorio.IRepositorioFuncionario;
+import ufrpe.repositorio.RepositorioFuncionario;
 
 public class ControladorFuncionario {
 	

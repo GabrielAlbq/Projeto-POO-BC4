@@ -1,12 +1,12 @@
-package negocio;
+package ufrpe.negocio;
 
-import beans.ItemVenda;
-import beans.NotaFiscal;
-import beans.Produto;
-import repositorios.IRepositorioEstoque;
-import repositorios.IRepositorioVenda;
-import repositorios.RepositorioEstoque;
-import repositorios.RepositorioVenda;
+import ufrpe.beans.ItemVenda;
+import ufrpe.beans.NotaFiscal;
+import ufrpe.beans.Produto;
+import ufrpe.repositorio.IRepositorioEstoque;
+import ufrpe.repositorio.IRepositorioVenda;
+import ufrpe.repositorio.RepositorioEstoque;
+import ufrpe.repositorio.RepositorioVenda;
 
 public class ControladorVenda {
 

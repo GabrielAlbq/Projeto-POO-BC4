@@ -1,4 +1,4 @@
-package beans;
+package ufrpe.beans;
 
 public class Gerente extends Funcionario{
 	private double comissaoMensal; // a comissão do gerente é calculada de acordo com o lucro total mensal

@@ -1,6 +1,6 @@
-package repositorios;
+package ufrpe.repositorio;
 
-import beans.Funcionario;
+import ufrpe.beans.Funcionario;
 
 public interface IRepositorioFinanceiro {
 	

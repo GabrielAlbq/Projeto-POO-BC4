@@ -1,4 +1,4 @@
-package repositorios;
+package ufrpe.repositorio;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,8 +10,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import beans.ItemVenda;
-import beans.NotaFiscal;
+import ufrpe.beans.ItemVenda;
+import ufrpe.beans.NotaFiscal;
 
 public class RepositorioVenda implements IRepositorioVenda, Serializable {
 

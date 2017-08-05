@@ -1,16 +1,16 @@
-package principal;
+package ufrpe;
 
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
-import beans.Endereco;
-import beans.Funcionario;
-import beans.ItemVenda;
-import beans.Pessoa;
-import beans.Produto;
-import beans.Vendedor;
+import ufrpe.beans.Endereco;
+import ufrpe.beans.Funcionario;
+import ufrpe.beans.ItemVenda;
+import ufrpe.beans.Pessoa;
+import ufrpe.beans.Produto;
+import ufrpe.beans.Vendedor;
 
-public class PrincipalTeste {
+public class Principal {
 	public static void main(String[] args) {
 
 		// SCANNER

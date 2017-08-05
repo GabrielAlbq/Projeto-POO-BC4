@@ -1,13 +1,13 @@
-package principal;
+package ufrpe;
 
-import beans.Funcionario;
-import beans.ItemVenda;
-import beans.Produto;
-import negocio.ControladorEstoque;
-import negocio.ControladorFinanceiro;
-import negocio.ControladorFuncionario;
-import negocio.ControladorVenda;
-import negocio.Pedido;
+import ufrpe.beans.Funcionario;
+import ufrpe.beans.ItemVenda;
+import ufrpe.beans.Produto;
+import ufrpe.negocio.ControladorEstoque;
+import ufrpe.negocio.ControladorFinanceiro;
+import ufrpe.negocio.ControladorFuncionario;
+import ufrpe.negocio.ControladorVenda;
+import ufrpe.negocio.Pedido;
 
 public class Fachada {
 
