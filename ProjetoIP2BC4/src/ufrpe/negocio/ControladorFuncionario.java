@@ -3,6 +3,7 @@ package ufrpe.negocio;
 import ufrpe.beans.Funcionario;
 import ufrpe.negocio.exception.IdentificacaoInvalidaException;
 import ufrpe.negocio.exception.InstanciaInexistenteException;
+import ufrpe.negocio.exception.InstanciaRepetidaException;
 import ufrpe.negocio.exception.NegocioException;
 import ufrpe.repositorio.IRepositorioFuncionario;
 import ufrpe.repositorio.RepositorioFuncionario;
@@ -41,11 +42,12 @@ public class ControladorFuncionario {
 			throw new IdentificacaoInvalidaException("\nIdentificacao invalida: " +
 													 funcInserir.getIdentificacao() + "\n");
 		}
-		if(repoFuncionario.getFuncionarios().contains(funcInserir) == false) {
-			repoFuncionario.inserir(funcInserir);
-			// TODO arquivo inserir funcionario
-			//instancia.repoFuncionario.salvarArquivo();
+		if(repoFuncionario.getFuncionarios().contains(funcInserir) != false) {
+			throw new InstanciaRepetidaException("\nInstancia de funcionario ja foi cadastrada!\n");
 		}
+		repoFuncionario.inserir(funcInserir);
+		// TODO arquivo inserir funcionario
+		//instancia.repoFuncionario.salvarArquivo();
 	}
 	
 	public void remover (int identificacao) throws NegocioException{
@@ -56,7 +58,7 @@ public class ControladorFuncionario {
 		}
 		if( ((RepositorioFuncionario)repoFuncionario).getFuncionarios().size() == 0) {
 			//System.out.println("\n\tErro! Nao ha funcionario para remover!");
-			throw new InstanciaInexistenteException("\nNao ha funcionario para remover\n");
+			throw new InstanciaInexistenteException("\nNao ha funcionario para remover!\n");
 		}
 		int checagem = retornaPosicao(identificacao);
 		if(checagem == -1) {

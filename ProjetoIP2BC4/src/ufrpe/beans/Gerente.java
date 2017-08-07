@@ -4,8 +4,8 @@ public class Gerente extends Funcionario{
 	private double comissaoMensal; // a comissão do gerente é calculada de acordo com o lucro total mensal
 
 	public Gerente(String rua, String cidade, String cep, String numero, String nome, String cpf, String funcao,
-			double salario, int identificacao, boolean recebeuSalario, double comissaoMensal) {
-		super(rua, cidade, cep, numero, nome, cpf, funcao, salario, identificacao, recebeuSalario);
+			double salario, int identificacao, boolean recebeuSalario, double comissaoMensal, Login login) {
+		super(rua, cidade, cep, numero, nome, cpf, funcao, salario, identificacao, recebeuSalario, login);
 		this.comissaoMensal = comissaoMensal;
 	}
 

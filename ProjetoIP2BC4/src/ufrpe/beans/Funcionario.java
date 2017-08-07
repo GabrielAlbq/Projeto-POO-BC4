@@ -7,17 +7,19 @@ public abstract class Funcionario extends Pessoa{
 	private String funcao; // vendedor(1) / gerente(2) / chefe(3)
 	private double salario;
 	private int identificacao;
-	private boolean recebeuSalario; // TODO refazer este atributo no login!
+	private boolean recebeuSalario;
+	private Login login;
 	
 	// CONSTRUTOR
 
 	public Funcionario(String rua, String cidade, String cep, String numero, String nome, String cpf, String funcao,
-			double salario, int identificacao, boolean recebeuSalario) {
+			double salario, int identificacao, boolean recebeuSalario, Login login) {
 		super(rua, cidade, cep, numero, nome, cpf);
 		this.funcao = funcao;
 		this.salario = salario;// O if que garante um salario positivo fica no contorlador
 		this.identificacao = identificacao; // Nao pode ser menor ou igual a zero!
 		this.recebeuSalario = recebeuSalario;// Indica se o funcionario ja recebeu o salario "False: n�o" "True: sim"
+		this.login = login;
 	}
 
 	// GET / SET 
@@ -47,6 +49,14 @@ public abstract class Funcionario extends Pessoa{
 	
 	public void setSalario(double salario) {
 		this.salario = salario;
+	}
+	
+	public Login getLogin() {
+		return login;
+	}
+
+	public void setLogin(Login login) {
+		this.login = login;
 	}
 	
 	// EQUALS

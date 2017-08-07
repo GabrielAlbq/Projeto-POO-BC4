@@ -6,9 +6,11 @@ import java.util.Scanner;
 import ufrpe.beans.Endereco;
 import ufrpe.beans.Funcionario;
 import ufrpe.beans.ItemVenda;
+import ufrpe.beans.Login;
 import ufrpe.beans.Pessoa;
 import ufrpe.beans.Produto;
 import ufrpe.beans.Vendedor;
+import ufrpe.negocio.Fachada;
 import ufrpe.negocio.exception.NegocioException;
 
 public class Principal {
@@ -62,7 +64,7 @@ public class Principal {
 		// Funcionario f1 = new Vendedor("Rua A", "Cidade A", "12345-100",
 		// "155", "Fabio" , "11111111111","vendedor",2001,1,true);
 		Funcionario f2 = new Vendedor("Rua A", "Cidade A", "12345-100", "155", "Fabio", "11111111111", "vendedor", 2001,
-				1, false, 5);
+				1, false, 5, new Login("fabio","12345"));
 		try {
 			fachada.inserirFuncionario(f2);
 		} catch(NegocioException exception) {

@@ -1,13 +1,8 @@
-package ufrpe;
+package ufrpe.negocio;
 
 import ufrpe.beans.Funcionario;
 import ufrpe.beans.ItemVenda;
 import ufrpe.beans.Produto;
-import ufrpe.negocio.ControladorEstoque;
-import ufrpe.negocio.ControladorFinanceiro;
-import ufrpe.negocio.ControladorFuncionario;
-import ufrpe.negocio.ControladorVenda;
-import ufrpe.negocio.Pedido;
 import ufrpe.negocio.exception.NegocioException;
 
 public class Fachada {
