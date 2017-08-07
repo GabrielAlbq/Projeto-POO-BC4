@@ -8,6 +8,7 @@ import ufrpe.negocio.ControladorFinanceiro;
 import ufrpe.negocio.ControladorFuncionario;
 import ufrpe.negocio.ControladorVenda;
 import ufrpe.negocio.Pedido;
+import ufrpe.negocio.exception.NegocioException;
 
 public class Fachada {
 
@@ -44,7 +45,7 @@ public class Fachada {
 
 	// SISTEMA VENDA
 
-	public void encerrarPedido() {
+	public void encerrarPedido() throws NegocioException{
 		pedido.encerrarPedido();
 	}
 
@@ -68,25 +69,25 @@ public class Fachada {
 		controladorVenda.limparHistoricoNotasFiscais();
 	}
 
-	public void inserirItem(ItemVenda itemvenda) {
+	public void inserirItem(ItemVenda itemvenda) throws NegocioException{
 		controladorVenda.inserir(itemvenda);
 	}
 
 	// SISTEMA ESTOQUE
 
-	public void inserirProduto(Produto produto) {
+	public void inserirProduto(Produto produto) throws NegocioException{
 		controladorEstoque.inserir(produto);
 	}
 
-	public String listarProdutos() {
+	public String listarProdutos() throws NegocioException{
 		return controladorEstoque.listarProduto();
 	}
 
-	public void atualizarProduto(Produto novoProduto) {
+	public void atualizarProduto(Produto novoProduto) throws NegocioException{
 		controladorEstoque.alterar(novoProduto);
 	}
 
-	public void removerProduto(int indentificacao) {
+	public void removerProduto(int indentificacao) throws NegocioException{
 		controladorEstoque.remover(indentificacao);
 	}
 
@@ -96,19 +97,19 @@ public class Fachada {
 
 	// SISTEMA FUNCIONARIO
 
-	public String listarFuncionarios() {
+	public String listarFuncionarios() throws NegocioException{
 		return controladorFuncionario.listarFuncionarios();
 	}
 
-	public void inserirFuncionario(Funcionario funcionario) {
+	public void inserirFuncionario(Funcionario funcionario) throws NegocioException{
 		controladorFuncionario.inserir(funcionario);
 	}
 
-	public void atualizarFuncionario(Funcionario funcionario) {
+	public void atualizarFuncionario(Funcionario funcionario) throws NegocioException{
 		controladorFuncionario.alterar(funcionario);
 	}
 
-	public void removerFuncionario(int identificacao) {
+	public void removerFuncionario(int identificacao) throws NegocioException{
 		controladorFuncionario.remover(identificacao);
 	}
 
@@ -118,7 +119,7 @@ public class Fachada {
 
 	// SISTEMA FINANCEIRO
 
-	public void pagarFuncionario(int identificacao) {// (Funcionario
+	public void pagarFuncionario(int identificacao) throws NegocioException{// (Funcionario
 														// funcionario) {
 		controladorFinanceiro.pagarFuncionario(identificacao);
 	}

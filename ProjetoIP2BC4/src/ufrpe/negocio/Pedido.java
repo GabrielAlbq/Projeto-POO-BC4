@@ -3,6 +3,7 @@ package ufrpe.negocio;
 import ufrpe.beans.Funcionario;
 import ufrpe.beans.ItemVenda;
 import ufrpe.beans.NotaFiscal;
+import ufrpe.negocio.exception.NegocioException;
 import ufrpe.repositorio.RepositorioVenda;
 
 public class Pedido {
@@ -44,7 +45,7 @@ public class Pedido {
 		repoVenda.getItensvenda().clear();
 	}
 
-	public void encerrarPedido() {
+	public void encerrarPedido() throws NegocioException{
 
 		for (ItemVenda item : repoVenda.getItensvenda()) {
 			totalPagar += item.valorTotal();
@@ -59,7 +60,7 @@ public class Pedido {
 
 	public void gerarNotaFiscal(Funcionario funcionario) {
 		NotaFiscal teste = new NotaFiscal(funcionario, repoVenda.getItensvenda(), totalPagar, contadorCodigoNota,
-				repoVenda.getItensvenda().size());
+		repoVenda.getItensvenda().size());
 		repoVenda.adicionarNotaFiscal(teste);
 		contadorCodigoNota++;
 		repoVenda.limparArrayItemVenda();

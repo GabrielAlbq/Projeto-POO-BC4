@@ -9,6 +9,7 @@ import ufrpe.beans.ItemVenda;
 import ufrpe.beans.Pessoa;
 import ufrpe.beans.Produto;
 import ufrpe.beans.Vendedor;
+import ufrpe.negocio.exception.NegocioException;
 
 public class Principal {
 	public static void main(String[] args) {
@@ -32,7 +33,11 @@ public class Principal {
 		for (int i = 0; i < produto.length; i++) {
 			produto[i] = new Produto(nomes[i], codigoProduto[i], 1000, precos[i]);
 			itens[i] = new ItemVenda(codigoProduto[i], nomes[i], precos[i], i);
-			fachada.inserirProduto(produto[i]);
+			try {
+				fachada.inserirProduto(produto[i]);
+			} catch(NegocioException exception) {
+				exception.printStackTrace();
+			}
 		}
 
 		// Endereco e1 = new Endereco("Rua A", "Cidade A", "12345-100", "155");
@@ -58,7 +63,12 @@ public class Principal {
 		// "155", "Fabio" , "11111111111","vendedor",2001,1,true);
 		Funcionario f2 = new Vendedor("Rua A", "Cidade A", "12345-100", "155", "Fabio", "11111111111", "vendedor", 2001,
 				1, false, 5);
-		fachada.inserirFuncionario(f2);
+		try {
+			fachada.inserirFuncionario(f2);
+		} catch(NegocioException exception) {
+			exception.printStackTrace();
+		}
+		
 		// fachada.inserirFuncionario(f2);
 		// fachada.inserirFuncionario(f3);
 		// fachada.inserirFuncionario(f4);
@@ -102,7 +112,11 @@ public class Principal {
 													// false de novo.
 							auxiliarVenda = false;
 							System.out.println("Funcionario: " + f.getNome());
-							System.out.println(fachada.listarProdutos());
+							try {
+								System.out.println(fachada.listarProdutos());
+							} catch(NegocioException exception) {
+								exception.printStackTrace();
+							}
 							while (!terminarVenda) {
 
 								System.out.println("\n\n\t(0) - Encerrar a venda\n\t(-1) - Cancelar venda\n\n");
@@ -116,7 +130,11 @@ public class Principal {
 									codigo = scanf.nextInt();
 									if (codigo == 1) {
 										if (quantidadenula == false) {
-											fachada.encerrarPedido();
+											try {
+												fachada.encerrarPedido();
+											} catch(NegocioException exception) {
+												exception.printStackTrace();
+											}
 											fachada.gerarNotaFiscal(f);
 										}
 										auxiliarVenda = true;
@@ -149,7 +167,11 @@ public class Principal {
 
 										if (quantidade > 0 && quantidade < prod.getQuantidade()) {
 											ItemVenda ArrayItem = new ItemVenda(prod, quantidade);
-											fachada.inserirItem(ArrayItem);
+											try {
+												fachada.inserirItem(ArrayItem);
+											} catch(NegocioException exception) {
+												exception.printStackTrace();
+											}
 											totalparcial = totalparcial + ArrayItem.valorTotal();
 											System.out.print("\n\tProduto: " + ArrayItem.getNome() + "\n\tQtd: "
 													+ ArrayItem.getQtd() + "\n\tPreco: " + ArrayItem.getPreco()
@@ -186,7 +208,11 @@ public class Principal {
 				opcao = scanf.nextInt();
 
 				if (opcao == 1) {
-					System.out.println(fachada.listarProdutos());
+					try {
+						System.out.println(fachada.listarProdutos());
+					} catch(NegocioException exception) {
+						exception.printStackTrace();
+					}
 				} else if (opcao == 2) {
 
 					System.out.println("Digite o codigo do produto");
@@ -199,7 +225,11 @@ public class Principal {
 					System.out.println("Digite a sua quantidade");
 					quantidade = scanf.nextInt();
 					Produto prod = new Produto(nome, codigo, quantidade, preco);
-					fachada.inserirProduto(prod);
+					try {
+						fachada.inserirProduto(prod);
+					} catch(NegocioException exception) {
+						exception.printStackTrace();
+					}
 				} else if (opcao == 3) {
 					opcao = 0;
 					System.out.println("Digite o codigo do produto que sera atualizado");
@@ -212,7 +242,11 @@ public class Principal {
 						quantidade = scanf.nextInt();
 						if (quantidade > 0) {
 							prod.setQuantidade(quantidade);
-							fachada.atualizarProduto(prod);
+							try {
+								fachada.atualizarProduto(prod);
+							} catch(NegocioException exception) {
+								exception.printStackTrace();
+							}
 						} else {
 							System.out.println("Erro! quantidade invalida!");
 						}
@@ -222,7 +256,11 @@ public class Principal {
 						preco = scanf.nextDouble();
 						if (preco > 0) {
 							prod.setPreco(preco);
-							fachada.atualizarProduto(prod);
+							try {
+								fachada.atualizarProduto(prod);
+							} catch(NegocioException exception) {
+								exception.printStackTrace();
+							}
 						} else {
 							System.out.println("Erro! quantidade invalida!");
 						}
@@ -232,12 +270,20 @@ public class Principal {
 						scanf.nextLine();
 						nome = scanf.nextLine();
 						prod.setNome(nome);
-						fachada.atualizarProduto(prod);
+						try {
+							fachada.atualizarProduto(prod);
+						} catch(NegocioException exception) {
+							exception.printStackTrace();
+						}
 					}
 				} else if (opcao == 4) {
 					System.out.println("Digite o codigo do produto a ser removido");
 					codigo = scanf.nextInt();
-					fachada.removerProduto(codigo);
+					try {
+						fachada.removerProduto(codigo);
+					} catch(NegocioException exception) {
+						exception.printStackTrace();
+					}
 				}
 
 				else if (opcao == 5) {
@@ -257,7 +303,11 @@ public class Principal {
 				opcao = scanf.nextInt();
 
 				if (opcao == 1) {
-					System.out.println(fachada.listarFuncionarios());
+					try {
+						System.out.println(fachada.listarFuncionarios());
+					} catch(NegocioException exception) {
+						exception.printStackTrace();
+					}
 				} else if (opcao == 2) {
 					System.out.println("\n\n\tDigite a identificacao do funcionario: \n");
 					identificacao = scanf.nextInt();
@@ -308,7 +358,11 @@ public class Principal {
 					// identificacao));
 				} else if (opcao == 4) {
 					System.out.println("\n\n\tDigite a identificacao do funcionario: \n");
-					fachada.removerFuncionario(scanf.nextInt());
+					try {
+						fachada.removerFuncionario(scanf.nextInt());
+					} catch(NegocioException exception) {
+						exception.printStackTrace();
+					}
 				}
 
 				else if (opcao == 5) {
@@ -330,7 +384,11 @@ public class Principal {
 
 				if (opcao == 1) {
 					System.out.println("\n\n\tDigite a identificacao do funcionario: \n");
-					fachada.pagarFuncionario(scanf.nextInt());//fachada.buscarFuncionario(scanf.nextInt()));
+					try {
+						fachada.pagarFuncionario(scanf.nextInt());//fachada.buscarFuncionario(scanf.nextInt()));
+					} catch(NegocioException exception) {
+						exception.printStackTrace();
+					}
 				} else if (opcao == 2) {
 					System.out.println(fachada.exibirFinancas());
 				} else if (opcao == 3) {

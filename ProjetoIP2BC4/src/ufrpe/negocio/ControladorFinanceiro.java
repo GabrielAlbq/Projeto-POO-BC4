@@ -1,6 +1,9 @@
 package ufrpe.negocio;
 
 import ufrpe.beans.Funcionario;
+import ufrpe.negocio.exception.NegocioException;
+import ufrpe.negocio.exception.PagamentoInvalidoException;
+import ufrpe.negocio.exception.QuantidadeInvalidaException;
 import ufrpe.repositorio.IRepositorioFinanceiro;
 import ufrpe.repositorio.IRepositorioFuncionario;
 import ufrpe.repositorio.RepositorioFinanceiro;
@@ -10,8 +13,6 @@ public class ControladorFinanceiro {
 
 	// ATRIBUTOS
 
-	// TODO interface do repositorio funcionario e financeiro a serem
-	// implementadas
 	private ControladorFuncionario controladorFuncionario;
 	private IRepositorioFuncionario repoFuncionario;
 	private IRepositorioFinanceiro repoFinanceiro;
@@ -41,26 +42,27 @@ public class ControladorFinanceiro {
 		return repoFinanceiro.exibirFinancas();
 	}
 
-	public boolean pagarFuncionario(int identificacao) {
+	public void pagarFuncionario(int identificacao) throws NegocioException{
 		Funcionario func = controladorFuncionario.buscar(identificacao);
 		if (func == null) {
-			return false;
+			throw new RuntimeException("\nInstancia de Funcionario nula!\n");
 		}
 		if (repoFinanceiro.getRendaBruta() - func.getSalario() >= 0) {
 			if (func.getRecebeuSalario() == false) {
 				repoFinanceiro.pagarFuncionario(func);
-				return true;
+			}
+			else {
+				throw new PagamentoInvalidoException("\nPagamento do funcionario("+
+														identificacao+") ja efetuado\n");
 			}
 		}
-		return false;
 	}
 
-	public boolean receberDinheiroVenda(double valor) {
+	public void receberDinheiroVenda(double valor) throws NegocioException{
 		if (valor <= 0) {
-			System.out.println("\n\n\tErro! Valor invalido\n");
-			return false;
+			//System.out.println("\n\n\tErro! Valor invalido\n");
+			throw new QuantidadeInvalidaException("\nQuantia de dinheiro invalida (R$ "+valor+")\n");
 		}
 		repoFinanceiro.receberDinheiroVenda(valor);
-		return true;
 	}
 }

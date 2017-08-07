@@ -1,6 +1,6 @@
 package ufrpe.repositorio;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import ufrpe.beans.Funcionario;
 
@@ -13,9 +13,7 @@ public interface IRepositorioFuncionario {
 	
 	Funcionario buscar (int posicao);
 	
-	ArrayList<Funcionario> getFuncionarios();
+	List<Funcionario> getFuncionarios();
 	
-	public String listarFuncionarios();
-
 	void salvarArquivo();
 }

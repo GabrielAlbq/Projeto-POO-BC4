@@ -3,6 +3,8 @@ package ufrpe.negocio;
 import ufrpe.beans.ItemVenda;
 import ufrpe.beans.NotaFiscal;
 import ufrpe.beans.Produto;
+import ufrpe.negocio.exception.NegocioException;
+import ufrpe.negocio.exception.QuantidadeInvalidaException;
 import ufrpe.repositorio.IRepositorioEstoque;
 import ufrpe.repositorio.IRepositorioVenda;
 import ufrpe.repositorio.RepositorioEstoque;
@@ -38,13 +40,6 @@ public class ControladorVenda {
 
 	// METODOS
 
-	public int retornaPosicao(int codigo) {
-		if (codigo <= 0) {
-			return -1;
-		}
-		return -1;
-	}
-
 	public String listarNotasFiscais() { // lista todas as notas fiscais
 		return repoVenda.listarNotasFiscais();
 	}
@@ -63,12 +58,12 @@ public class ControladorVenda {
 		// return repoVenda.listaItensVenda();
 	}
 
-	public void adicionarNotaFiscal(NotaFiscal notaFiscal) { // adiciona uma
+	public void adicionarNotaFiscal(NotaFiscal notaFiscal) throws NegocioException{ // adiciona uma
 																// nova nota
 																// fiscal no
 																// repositorioVenda
 		if (notaFiscal == null) {
-			return;
+			throw new RuntimeException("\nInstancia de NotaFiscal nula!\n");
 		}
 		repoVenda.adicionarNotaFiscal(notaFiscal);
 	}
@@ -80,14 +75,15 @@ public class ControladorVenda {
 
 	// CRUD DA PARTE DE VENDAS
 
-	public void inserir(ItemVenda itemvenda) {
+	public void inserir(ItemVenda itemvenda) throws NegocioException{
 		if (itemvenda == null) {
 			System.out.println("Item nao existe!");
+			throw new RuntimeException("\nInstancia de NotaFiscal nula!\n");
 		}
 		Produto prod = controlEstoque.buscar(itemvenda.getCodigo());
 		if (itemvenda.getQtd() > prod.getQuantidade()) {
-			System.out.println("Quantidade maior do que a do produto");
-			return;
+			//System.out.println("Quantidade maior do que a do produto");
+			throw new QuantidadeInvalidaException("\nQuantidade maior do que a do produto\n");
 		}
 		repoVenda.inserirItemVenda(itemvenda);
 		instancia.repoVenda.salvarArquivo();

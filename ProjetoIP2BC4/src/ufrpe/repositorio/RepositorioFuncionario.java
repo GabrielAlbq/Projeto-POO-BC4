@@ -8,14 +8,15 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-
+import java.util.List;
 import ufrpe.beans.Funcionario;
+import ufrpe.negocio.exception.NegocioException;
 
 public class RepositorioFuncionario implements IRepositorioFuncionario, Serializable{
 	
 	// ATRIBUTOS 
 	
-	private ArrayList<Funcionario> funcs;
+	private  List<Funcionario> funcs;
 	
 	// SINGLETON
 	
@@ -37,13 +38,6 @@ public class RepositorioFuncionario implements IRepositorioFuncionario, Serializ
 	
 	// METODOS - as validacoes serao feitas no controlador utilizando estes metodos
 	
-	public String listarFuncionarios() {
-		String t = "";
-		for (int i = 0; i < funcs.size(); i++) {
-			t += "\n_______________________________________\n"+funcs.get(i).toString();
-		}
-		return t;
-	}
 	
 	public void pagarFancionario (int posicao){
 		funcs.get(posicao).setRecebeuSalario(true);
@@ -71,7 +65,7 @@ public class RepositorioFuncionario implements IRepositorioFuncionario, Serializ
 	
 	// GETS
 	
-	public ArrayList<Funcionario> getFuncionarios() {
+	public List<Funcionario> getFuncionarios() {
 		return funcs;
 	}
 	
