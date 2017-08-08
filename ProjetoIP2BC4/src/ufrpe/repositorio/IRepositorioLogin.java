@@ -15,5 +15,5 @@ public interface IRepositorioLogin {
 	
 	List<Login> listar();
 	
-	void salvarArquivo();
+	//void salvarArquivo();
 }

@@ -1,9 +1,12 @@
 package ufrpe.negocio;
 
+import ufrpe.beans.Admin;
 import ufrpe.beans.Funcionario;
+import ufrpe.beans.Login;
 import ufrpe.negocio.exception.IdentificacaoInvalidaException;
 import ufrpe.negocio.exception.InstanciaInexistenteException;
 import ufrpe.negocio.exception.InstanciaRepetidaException;
+import ufrpe.negocio.exception.LoginInvalidoExecption;
 import ufrpe.negocio.exception.NegocioException;
 import ufrpe.repositorio.IRepositorioFuncionario;
 import ufrpe.repositorio.RepositorioFuncionario;
@@ -32,6 +35,7 @@ public class ControladorFuncionario {
 	
 	// METODOS
 	
+	
 	public void inserir (Funcionario funcInserir) throws NegocioException{
 		if(funcInserir == null) {
 			//System.out.println("\n\n\tErro! Funcionario nulo!\n\n");
@@ -42,12 +46,16 @@ public class ControladorFuncionario {
 			throw new IdentificacaoInvalidaException("\nIdentificacao invalida: " +
 													 funcInserir.getIdentificacao() + "\n");
 		}
-		if(repoFuncionario.getFuncionarios().contains(funcInserir) != false) {
-			throw new InstanciaRepetidaException("\nInstancia de funcionario ja foi cadastrada!\n");
+		if(retornaPosicao(funcInserir.getIdentificacao()) != -1) {
+			throw new InstanciaRepetidaException("\nFuncionario de id("+funcInserir.getIdentificacao()
+													+") ja foi cadastrado!\n");
+		}
+		if(retornaPosicaoLogin(funcInserir.getLogin().getUser()) != -1) {
+			throw new InstanciaRepetidaException("\nNome de usuario("+
+									funcInserir.getLogin().getUser()+") ja esta cadastrado!\n");
 		}
 		repoFuncionario.inserir(funcInserir);
-		// TODO arquivo inserir funcionario
-		//instancia.repoFuncionario.salvarArquivo();
+		instancia.repoFuncionario.salvarArquivo();
 	}
 	
 	public void remover (int identificacao) throws NegocioException{
@@ -122,8 +130,58 @@ public class ControladorFuncionario {
 			throw new InstanciaInexistenteException("\nNao ah funcionarios cadastrados\n");
 		}
 		for (Funcionario f : repoFuncionario.getFuncionarios()) {
-			texto += "\n_______________________________________\n"+f.toString();
+			if(!(f instanceof Admin)) {
+				texto += "\n_______________________________________\n"+f.toString();
+			}
 		}
 		return texto;
+	}
+	
+	// METODOS DO SISTEMA DE LOGIN
+	
+	public int retornaPosicaoLogin (String user) {
+		if(user == null) {
+			return -1;
+		}
+		for (Funcionario f: repoFuncionario.getFuncionarios()) {
+			if(f.getLogin().getUser() == user) {
+				return repoFuncionario.getFuncionarios().indexOf(f);
+			}
+		}
+		return -1;
+	}
+	
+	// se esquecer a senha o metodo pede a palavra de seguranca
+	public void esqueceuSenha(String user, String novaSenha, String palavra) throws NegocioException{
+		if(user == null) {
+			throw new RuntimeException("\nNome de usuario nulo!\n");
+		}
+		if(novaSenha == null) {
+			throw new RuntimeException("\nNova senha nula!\n");
+		}
+		if(palavra == null) {
+			throw new RuntimeException("\nPalavra de seguranca nula!\n");
+		}
+		int posicao = retornaPosicaoLogin(user);
+		if(posicao == -1) {
+			throw new InstanciaInexistenteException("\nO login de username ("+user+") nao existe!\n");
+		}
+		if(!repoFuncionario.getFuncionarios().get(posicao).getLogin().getPalavraSeguranca().equals(palavra)) {
+			throw new LoginInvalidoExecption("\nPalavra de seguranca incorreta!\n");
+		}
+		repoFuncionario.alterarLogin(new Login(user, novaSenha, palavra), posicao);
+	}
+
+	// eh usado durante o login de um usuario
+	public boolean validarLogin(Login log) {
+		if(log == null) {
+			throw new RuntimeException("\nInstancia de Login nula!\n");
+		}
+		for (Funcionario f: repoFuncionario.getFuncionarios()) {
+			if(f.getLogin().equals(log)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

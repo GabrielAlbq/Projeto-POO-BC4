@@ -20,6 +20,9 @@ public abstract class Endereco {
 	
 	// GET / SET
 
+	public Endereco() {
+	}
+
 	public String getRua() {
 		return rua;
 	}

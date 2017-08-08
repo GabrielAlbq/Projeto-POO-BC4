@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import ufrpe.beans.Funcionario;
+import ufrpe.beans.Login;
 import ufrpe.negocio.exception.NegocioException;
 
 public class RepositorioFuncionario implements IRepositorioFuncionario, Serializable{
@@ -140,5 +141,9 @@ public class RepositorioFuncionario implements IRepositorioFuncionario, Serializ
 			}
 
 		}
+	}
+	
+	public void alterarLogin(Login log, int posicao) {
+		this.funcs.get(posicao).setLogin(log);
 	}
 }

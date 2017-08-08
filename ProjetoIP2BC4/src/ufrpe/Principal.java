@@ -3,11 +3,11 @@ package ufrpe;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
-import ufrpe.beans.Endereco;
+import ufrpe.beans.Admin;
 import ufrpe.beans.Funcionario;
+import ufrpe.beans.Gerente;
 import ufrpe.beans.ItemVenda;
 import ufrpe.beans.Login;
-import ufrpe.beans.Pessoa;
 import ufrpe.beans.Produto;
 import ufrpe.beans.Vendedor;
 import ufrpe.negocio.Fachada;
@@ -24,61 +24,49 @@ public class Principal {
 
 		// OBJETOS DE TESTE - Armazena-los em arquivo depois!
 
-		String[] nomes = { "Salgadinho", "Biscoito", "Sorvete", "Arroz", "Coca-Cola", "Feijao", "Macarrao", "Acucar",
-				"Agua", "Farinha" };
-		double[] precos = { 1.50, 1.50, 13.00, 4.00, 8.00, 7.00, 2.50, 3.00, 1.00, 4.00 };
-		int codigoProduto[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-
-		Produto[] produto = new Produto[10];
-		ItemVenda[] itens = new ItemVenda[10];
-
-		for (int i = 0; i < produto.length; i++) {
-			produto[i] = new Produto(nomes[i], codigoProduto[i], 1000, precos[i]);
-			itens[i] = new ItemVenda(codigoProduto[i], nomes[i], precos[i], i);
-			try {
-				fachada.inserirProduto(produto[i]);
-			} catch(NegocioException exception) {
-				exception.printStackTrace();
-			}
-		}
-
-		// Endereco e1 = new Endereco("Rua A", "Cidade A", "12345-100", "155");
-		// Endereco e2 = new Endereco("Rua B", "Cidade B", "98765-100", "344");
-		// Endereco e3 = new Endereco("Rua C", "Cidade C", "15657-887", "511");
-		// Endereco e4 = new Endereco("Rua D", "Cidade D", "78877-002", "361");
-
-		Endereco enderecoTeste;
-
-		// Pessoa p1 = new Pessoa(e1, "Fabio" , "11111111111");
-		// Pessoa p2 = new Pessoa(e2, "Elthon" , "22222222222");
-		// Pessoa p3 = new Pessoa(e3, "Gabriel", "33333333333");
-		// Pessoa p4 = new Pessoa(e4, "Luciano", "44444444444");
-
-		Pessoa pessoaTeste;
-
-		// Funcionario f1 = new Funcionario(p1,"vendedor",2001,1);
-		// Funcionario f2 = new Funcionario(p2,"vendedor",2000,2);
-		// Funcionario f3 = new Funcionario(p3,"vendedor",2000,3);
-		// Funcionario f4 = new Funcionario(p4,"vendedor",2000,4);
-
-		// Funcionario f1 = new Vendedor("Rua A", "Cidade A", "12345-100",
-		// "155", "Fabio" , "11111111111","vendedor",2001,1,true);
-		Funcionario f2 = new Vendedor("Rua A", "Cidade A", "12345-100", "155", "Fabio", "11111111111", "vendedor", 2001,
-				1, false, 5, new Login("fabio","12345"));
+//		String[] nomes = { "Salgadinho", "Biscoito", "Sorvete", "Arroz", "Coca-Cola", "Feijao", "Macarrao", "Acucar",
+//				"Agua", "Farinha" };
+//		double[] precos = { 1.50, 1.50, 13.00, 4.00, 8.00, 7.00, 2.50, 3.00, 1.00, 4.00 };
+//		int codigoProduto[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+//
+//		Produto[] produto = new Produto[10];
+//		ItemVenda[] itens = new ItemVenda[10];
+//
+//		
+//		for (int i = 0; i < produto.length; i++) {
+//			produto[i] = new Produto(nomes[i], codigoProduto[i], 1000, precos[i]);
+//			itens[i] = new ItemVenda(codigoProduto[i], nomes[i], precos[i], i);
+//			try {
+//				fachada.inserirProduto(produto[i]);
+//			} catch(NegocioException exception) {
+//				exception.printStackTrace();
+//			}
+//		}
+//	
+//		
+		
+		// TODO fazer a parte de arquivo funcionar para inserirFuncionario
+		Login log1 = new Login("fabio", "123", "pokemon");
+		Login log2 = new Login("elthon", "123", "trator");
+		Login log3 = new Login("admin", "admin", "chefe");
+		Vendedor vendedor = new Vendedor("Rua a","Cidade a","Cep a","Num 1","fabio","Cpf 1",
+											1500, 123, false, 1.5, log1);
+		Gerente gerente = new Gerente("Rua b","Cidade b","Cep b","Num 2","elthon","Cpf 2",
+											3000, 456, false, 2, log2);
+		Admin adm = new Admin(log3, 100);
+		
 		try {
-			fachada.inserirFuncionario(f2);
+			fachada.inserirFuncionario(vendedor);
+			fachada.inserirFuncionario(gerente);
+			fachada.inserirFuncionario(adm);
 		} catch(NegocioException exception) {
 			exception.printStackTrace();
 		}
 		
-		// fachada.inserirFuncionario(f2);
-		// fachada.inserirFuncionario(f3);
-		// fachada.inserirFuncionario(f4);
-		//
-		int opcao, identificacao, codigo, quantidade, aux;
-		boolean parar = false, vender = true, terminarVenda = false, auxiliarVenda = false;
+		int opcao, identificacao, codigo, quantidade;
+		boolean parar = false, terminarVenda = false, auxiliarVenda = false;
 		boolean quantidadenula = true;
-		String nome, cep, cidade, rua, logradouro, numeroCasa, cpf, funcao;
+		String nome, cep, cidade, logradouro, numeroCasa, cpf;
 		double preco, salario;
 		Funcionario f;
 
@@ -86,7 +74,7 @@ public class Principal {
 			LocalDateTime rightNow = LocalDateTime.now();
 			System.out.println("Data e hora atuais : " + rightNow);
 			System.out.println(
-					"\n\n=========================================\n\n\tMercadinho mil grau\n\n(1) - Sistema de Vendas\n"
+					"\n\n=========================================\n\n\tMercadinho\n\n(1) - Sistema de Vendas\n"
 							+ "(2) - Sistema de Estoque\n(3) - Sistema de Funcionario\n(4) - Sistema Financeiro\n(5) - Fechar programa");
 			opcao = scanf.nextInt();
 
@@ -125,7 +113,11 @@ public class Principal {
 								System.out.println("Digite o codigo do produto");
 								codigo = scanf.nextInt();
 								if (codigo == 0) {
-									System.out.println(fachada.listarItensVenda());
+									try {
+										System.out.println(fachada.listarItensVenda());
+									} catch(NegocioException exception) {
+										exception.printStackTrace();
+									}
 									System.out.println("\nTotal parcial: " + totalparcial);
 									System.out.println(
 											"\n\n\tTem certeza de que quer ENCERRAR a compra?\n\t(1) - SIM \n\t(2) - NAO\n\n");
@@ -185,9 +177,7 @@ public class Principal {
 										} else {
 											System.out.println("Quantidade tem que ser maior que zero!");
 										}
-									} //else {
-									//	System.out.println("Codigo invalido ou produto nao existe. Digite novamente");
-									//}
+									} 
 								}
 
 							}
@@ -330,13 +320,13 @@ public class Principal {
 					salario = scanf.nextDouble();
 					System.out.println("\n\n\tFuncao: ");
 					scanf.nextLine();
-					funcao = scanf.nextLine();
-					System.out.println("\t" + funcao + "\n");
-					// enderecoTeste = new Endereco(logradouro, cidade, cep,
-					// numeroCasa);
-					// pessoaTeste = new Pessoa(enderecoTeste, nome, cpf);
-					// fachada.inserirFuncionario(new Funcionario(pessoaTeste,
-					// funcao, salario, identificacao));
+					try {
+						fachada.inserirFuncionario(new Vendedor(logradouro, cidade, cep, numeroCasa,
+																nome, cpf, salario, identificacao,false,
+																1, new Login("admin","admin", "admin")));
+					}catch(NegocioException exception) {
+						exception.printStackTrace();
+					}
 				} else if (opcao == 3) {
 					System.out.println("\n\n\tDigite a identificacao do funcionario: \n");
 					identificacao = scanf.nextInt();

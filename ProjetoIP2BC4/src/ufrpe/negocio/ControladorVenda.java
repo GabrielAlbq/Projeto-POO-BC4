@@ -3,6 +3,7 @@ package ufrpe.negocio;
 import ufrpe.beans.ItemVenda;
 import ufrpe.beans.NotaFiscal;
 import ufrpe.beans.Produto;
+import ufrpe.negocio.exception.InstanciaInexistenteException;
 import ufrpe.negocio.exception.NegocioException;
 import ufrpe.negocio.exception.QuantidadeInvalidaException;
 import ufrpe.repositorio.IRepositorioEstoque;
@@ -44,15 +45,14 @@ public class ControladorVenda {
 		return repoVenda.listarNotasFiscais();
 	}
 
-	public String listarItensVenda() { // lista todas os ItensVenda do
+	public String listarItensVenda() throws NegocioException{ // lista todas os ItensVenda do
 										// repositorioVenda
+		if (repoVenda.listar().isEmpty() == true) {
+			throw new InstanciaInexistenteException("\nNao ha produtos cadastrados!\n");
+		}
 		String texto = "";
 		for (ItemVenda iv : repoVenda.listar()) {
-			if (repoVenda.listar().isEmpty() == true) {
-				texto = "\n\n\tNao ha produtos cadastrados!\n\n";
-			} else {
-				texto += "\n" + iv.toString();
-			}
+			texto += "\n" + iv.toString();
 		}
 		return texto;
 		// return repoVenda.listaItensVenda();

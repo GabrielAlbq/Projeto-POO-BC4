@@ -1,10 +1,12 @@
 package ufrpe.beans;
 
-public abstract class Funcionario extends Pessoa{
+import java.io.Serializable;
+
+public abstract class Funcionario extends Pessoa implements Serializable{
 	
 	// ATRIBUTOS 
 
-	private String funcao; // vendedor(1) / gerente(2) / chefe(3)
+	private int funcao; // vendedor(1) / gerente(2) / chefe(3)
 	private double salario;
 	private int identificacao;
 	private boolean recebeuSalario;
@@ -12,8 +14,15 @@ public abstract class Funcionario extends Pessoa{
 	
 	// CONSTRUTOR
 
-	public Funcionario(String rua, String cidade, String cep, String numero, String nome, String cpf, String funcao,
+	// este construtor eh usado pelo admin
+	public Funcionario(Login login) {
+		super();
+		this.login = login;
+	}
+	
+	public Funcionario(String rua, String cidade, String cep, String numero, String nome, String cpf, int funcao,
 			double salario, int identificacao, boolean recebeuSalario, Login login) {
+		
 		super(rua, cidade, cep, numero, nome, cpf);
 		this.funcao = funcao;
 		this.salario = salario;// O if que garante um salario positivo fica no contorlador
@@ -23,7 +32,7 @@ public abstract class Funcionario extends Pessoa{
 	}
 
 	// GET / SET 
-	public String getFuncao() {
+	public int getFuncao() {
 		return funcao;
 	}
 
@@ -35,7 +44,7 @@ public abstract class Funcionario extends Pessoa{
 		return identificacao;
 	}
 
-	public void setFuncao(String funcao) {
+	public void setFuncao(int funcao) {
 		this.funcao = funcao;
 	}
 	

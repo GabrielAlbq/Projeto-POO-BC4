@@ -2,6 +2,7 @@ package ufrpe.negocio;
 
 import ufrpe.beans.Funcionario;
 import ufrpe.beans.ItemVenda;
+import ufrpe.beans.Login;
 import ufrpe.beans.Produto;
 import ufrpe.negocio.exception.NegocioException;
 
@@ -52,7 +53,7 @@ public class Fachada {
 		pedido.resetarPedido();
 	}
 
-	public String listarItensVenda() {
+	public String listarItensVenda() throws NegocioException{
 		return controladorVenda.listarItensVenda();
 	}
 
@@ -95,7 +96,7 @@ public class Fachada {
 	public String listarFuncionarios() throws NegocioException{
 		return controladorFuncionario.listarFuncionarios();
 	}
-
+	
 	public void inserirFuncionario(Funcionario funcionario) throws NegocioException{
 		controladorFuncionario.inserir(funcionario);
 	}
@@ -112,6 +113,12 @@ public class Fachada {
 		return controladorFuncionario.buscar(identificacao);
 	}
 
+	// SISTEMA DE LOGIN
+	
+	public boolean validarLogin(Login log) {
+		return controladorFuncionario.validarLogin(log);
+	}
+	
 	// SISTEMA FINANCEIRO
 
 	public void pagarFuncionario(int identificacao) throws NegocioException{// (Funcionario

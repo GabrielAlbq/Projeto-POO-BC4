@@ -17,6 +17,10 @@ public abstract class Pessoa extends Endereco{
 	
 	// GET / SET
 
+	public Pessoa() {
+		super();
+	}
+
 	public String getNome() {
 		return nome;
 	}

@@ -1,12 +1,18 @@
 package ufrpe.beans;
 
-public class Login {
+import java.io.Serializable;
+
+public class Login implements Serializable{
 	private String user;
 	private String senha;
+	private String palavraSeguranca; // eh usado para validar o usuario
+									   // no caso de esquecer
+									   // sua senha ou nome de usuario
 	
-	public Login(String user, String senha) {
+	public Login(String user, String senha, String palavraSeguranca) {
 		this.user = user;
 		this.senha = senha;
+		this.palavraSeguranca = palavraSeguranca;
 	}
 
 	public String getUser() {
@@ -25,6 +31,10 @@ public class Login {
 		this.senha = senha;
 	}
 	
+	public String getPalavraSeguranca() {
+		return palavraSeguranca;
+	}
+
 	public boolean equals(Login l) {
 		if(l == null || l.user == null || l.senha == null) {
 			return false;

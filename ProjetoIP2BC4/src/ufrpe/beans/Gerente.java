@@ -1,11 +1,13 @@
 package ufrpe.beans;
 
-public class Gerente extends Funcionario{
+import java.io.Serializable;
+
+public class Gerente extends Funcionario implements Serializable{
 	private double comissaoMensal; // a comissão do gerente é calculada de acordo com o lucro total mensal
 
-	public Gerente(String rua, String cidade, String cep, String numero, String nome, String cpf, String funcao,
-			double salario, int identificacao, boolean recebeuSalario, double comissaoMensal, Login login) {
-		super(rua, cidade, cep, numero, nome, cpf, funcao, salario, identificacao, recebeuSalario, login);
+	public Gerente(String rua, String cidade, String cep, String numero, String nome, String cpf,
+			double salario, int identificacao, boolean recebeuSalario, double comissaoMensal,  Login login) {
+		super(rua, cidade, cep, numero, nome, cpf, 2, salario, identificacao, recebeuSalario, login);
 		this.comissaoMensal = comissaoMensal;
 	}
 
@@ -22,6 +24,6 @@ public class Gerente extends Funcionario{
 		return  "\nGerente\n\nIdentificacao: "+getIdentificacao()+"\nSalario: R$ "+getSalario()+
 				"\ncomissao: R$ "+ comissaoMensal +"\n"+"\nStatus de pagamento: "+ getRecebeuSalario()+
 				"\n\nNome: "+ getNome() +"\nCpf:"+getCpf()+"\n\nLogradouro: "+ getRua()+"\nCep: "
-				+getCep()+"\\nNumero: "+getNumero()+"\nCidade: "+getCidade()+"\n";
+				+getCep()+"\nNumero: "+getNumero()+"\nCidade: "+getCidade()+"\n";
 	}
 }
