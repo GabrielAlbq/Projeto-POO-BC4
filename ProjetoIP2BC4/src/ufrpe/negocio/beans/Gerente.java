@@ -3,27 +3,19 @@ package ufrpe.negocio.beans;
 import java.io.Serializable;
 
 public class Gerente extends Funcionario implements Serializable{
-	private double comissaoMensal; // a comissão do gerente é calculada de acordo com o lucro total mensal
 
-	public Gerente(String rua, String cidade, String cep, String numero, String nome, String cpf,
-			double salario, int identificacao, boolean recebeuSalario, double comissaoMensal,  Login login) {
-		super(rua, cidade, cep, numero, nome, cpf, 2, salario, identificacao, recebeuSalario, login);
-		this.comissaoMensal = comissaoMensal;
-	}
+	private static final long serialVersionUID = 1L;
 
-	public double getComissaoMensal() {
-		return comissaoMensal;
-	}
-
-	public void setComissaoMensal(double comissaoMensal) {
-		this.comissaoMensal = comissaoMensal;
+	public Gerente(double salario, int identificacao, boolean recebeuSalario, Login login, String nome, String cpf,
+			Endereco endereco) {
+		super(salario, identificacao, recebeuSalario, login, nome, cpf, endereco);
 	}
 	
 	@Override
 	public String toString() {
 		return  "\nGerente\n\nIdentificacao: "+getIdentificacao()+"\nSalario: R$ "+getSalario()+
-				"\ncomissao: R$ "+ comissaoMensal +"\n"+"\nStatus de pagamento: "+ getRecebeuSalario()+
-				"\n\nNome: "+ getNome() +"\nCpf:"+getCpf()+"\n\nLogradouro: "+ getRua()+"\nCep: "
-				+getCep()+"\nNumero: "+getNumero()+"\nCidade: "+getCidade()+"\n";
+				"\n"+"\nStatus de pagamento: "+ getRecebeuSalario()+"\n\nNome: "+ getNome() +
+				"\nCpf:"+getCpf()+"\n\nLogradouro: "+ getEndereco().getRua()+"\nCep: "+getEndereco().getCep()+
+				"\nNumero: "+getEndereco().getNumero()+"\nCidade: "+getEndereco().getCidade()+"\n";
 	}
 }

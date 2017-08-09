@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import ufrpe.negocio.Fachada;
 import ufrpe.negocio.beans.Admin;
+import ufrpe.negocio.beans.Endereco;
 import ufrpe.negocio.beans.Funcionario;
 import ufrpe.negocio.beans.Gerente;
 import ufrpe.negocio.beans.ItemVenda;
@@ -49,10 +50,10 @@ public class PrincipalConsole {
 		Login log1 = new Login("fabio", "123", "pokemon");
 		Login log2 = new Login("elthon", "123", "trator");
 		Login log3 = new Login("admin", "admin", "chefe");
-		Vendedor vendedor = new Vendedor("Rua a","Cidade a","Cep a","Num 1","fabio","Cpf 1",
-											1500, 123, false, 1.5, log1);
-		Gerente gerente = new Gerente("Rua b","Cidade b","Cep b","Num 2","elthon","Cpf 2",
-											3000, 456, false, 2, log2);
+		Endereco end1 = new Endereco("rua a", "cidade a", "cep a", "numero a");
+		Endereco end2 = new Endereco("rua b", "cidade b", "cep b", "numero b");
+		Vendedor vendedor = new Vendedor(2000, 1, false, log1, "fabio", "11122233344", end1);
+		Gerente gerente = new Gerente(3000, 2, false, log2, "elthon", "66655588844", end2);
 		Admin adm = new Admin(log3, 100);
 		
 		try {
@@ -75,22 +76,12 @@ public class PrincipalConsole {
 			user = scanf.nextLine();
 			System.out.println("\n\tPassword: ");
 			pass = scanf.nextLine();
-			opcao = fachada.validarLogin(new Login(user, pass, ""));
-			if(opcao == -1) {
-				System.out.println("\n\tUsuario ou Senha incorretos!\n");
+			try {
+				f = fachada.validarLogin(new Login(user, pass, ""));
+			}catch(NegocioException exception) {
+				exception.printStackTrace();
 			}
-			else if(opcao == 1) {
-				// sistema do vendedor
-				break;
-			}
-			else if(opcao == 2) {
-				// sistema do gerente
-				break;
-			}
-			else if(opcao == 3) {
-				// sistema do admin (dono)
-				break;
-			}
+			// TODO
 		}
 		
 		//TODO terminar o sistema rodando pelo main
@@ -343,13 +334,13 @@ public class PrincipalConsole {
 					salario = scanf.nextDouble();
 					System.out.println("\n\n\tFuncao: ");
 					scanf.nextLine();
-					try {
-						fachada.inserirFuncionario(new Vendedor(logradouro, cidade, cep, numeroCasa,
-																nome, cpf, salario, identificacao,false,
-																1, new Login("admin","admin", "admin")));
-					}catch(NegocioException exception) {
-						exception.printStackTrace();
-					}
+					// TODO
+//					try {
+//						
+//						fachada.inserirFuncionario();
+//					}catch(NegocioException exception) {
+//						exception.printStackTrace();
+//					}
 				} else if (opcao == 3) {
 					System.out.println("\n\n\tDigite a identificacao do funcionario: \n");
 					identificacao = scanf.nextInt();

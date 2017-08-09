@@ -115,7 +115,7 @@ public class Fachada {
 
 	// SISTEMA DE LOGIN
 	
-	public int validarLogin(Login log) {
+	public Funcionario validarLogin(Login log) throws NegocioException{
 		return controladorFuncionario.validarLogin(log);
 	}
 	

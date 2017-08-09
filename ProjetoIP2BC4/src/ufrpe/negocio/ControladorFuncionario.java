@@ -177,7 +177,7 @@ public class ControladorFuncionario {
 	// se retornar 2 = gerente
 	// se retornar 3 = admin (dono)
 	// se retornar -1 = informacoes nao conferem
-	public int validarLogin(Login log) {
+	public Funcionario validarLogin(Login log) throws NegocioException{
 		if(log == null) {
 			throw new RuntimeException("\nInstancia de Login nula!\n");
 		}
@@ -189,9 +189,9 @@ public class ControladorFuncionario {
 		}
 		for (Funcionario f: repoFuncionario.getFuncionarios()) {
 			if(f.getLogin().equals(log)) {
-				return f.getFuncao();
+				return f;
 			}
 		}
-		return -1;
+		throw new LoginInvalidoExecption("\nFalha no login! username ou password incorretos!\n");
 	}
 }

@@ -1,6 +1,6 @@
 package ufrpe.negocio.beans;
 
-public abstract class Endereco {
+public class Endereco {
 	
 	// ATRIBUTOS 
 	
