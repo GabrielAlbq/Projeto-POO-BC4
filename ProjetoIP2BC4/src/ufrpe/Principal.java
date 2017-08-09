@@ -63,16 +63,38 @@ public class Principal {
 			exception.printStackTrace();
 		}
 		
+		
+		boolean parar = false, terminarVenda = false, auxiliarVenda = false, quantidadenula = true;
+		String nome, cep, cidade, logradouro, numeroCasa, cpf, user, pass;
 		int opcao, identificacao, codigo, quantidade;
-		boolean parar = false, terminarVenda = false, auxiliarVenda = false;
-		boolean quantidadenula = true;
-		String nome, cep, cidade, logradouro, numeroCasa, cpf;
 		double preco, salario;
 		Funcionario f;
 
+		while(!parar) {
+			System.out.println("\n=========================================\n\tUsername: ");
+			user = scanf.nextLine();
+			System.out.println("\n\tPassword: ");
+			pass = scanf.nextLine();
+			opcao = fachada.validarLogin(new Login(user, pass, ""));
+			if(opcao == -1) {
+				System.out.println("\n\tUsuario ou Senha incorretos!\n");
+			}
+			else if(opcao == 1) {
+				// sistema do vendedor
+				break;
+			}
+			else if(opcao == 2) {
+				// sistema do gerente
+				break;
+			}
+			else if(opcao == 3) {
+				// sistema do admin (dono)
+				break;
+			}
+		}
+		
+		//TODO terminar o sistema rodando pelo main
 		while (!parar) {
-			LocalDateTime rightNow = LocalDateTime.now();
-			System.out.println("Data e hora atuais : " + rightNow);
 			System.out.println(
 					"\n\n=========================================\n\n\tMercadinho\n\n(1) - Sistema de Vendas\n"
 							+ "(2) - Sistema de Estoque\n(3) - Sistema de Funcionario\n(4) - Sistema Financeiro\n(5) - Fechar programa");
@@ -89,6 +111,7 @@ public class Principal {
 					double totalparcial = 0;
 					while (opcao != 0) { // while para voltar a pedir a
 											// identificacao caso seja nula.
+									
 						System.out.println("Digite a identificacao do funcionario");
 						identificacao = scanf.nextInt();
 						f = fachada.buscarFuncionario(identificacao);

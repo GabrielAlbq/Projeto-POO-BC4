@@ -172,16 +172,26 @@ public class ControladorFuncionario {
 		repoFuncionario.alterarLogin(new Login(user, novaSenha, palavra), posicao);
 	}
 
-	// eh usado durante o login de um usuario
-	public boolean validarLogin(Login log) {
+	// eh usado durante o login de um usuario, checa se o user e senha conferem e se conferirem retorna a funcao do funcionario em questao
+	// se retornar 1 = vendedor
+	// se retornar 2 = gerente
+	// se retornar 3 = admin (dono)
+	// se retornar -1 = informacoes nao conferem
+	public int validarLogin(Login log) {
 		if(log == null) {
 			throw new RuntimeException("\nInstancia de Login nula!\n");
 		}
+		if(log.getSenha() == null) {
+			throw new RuntimeException("\nSenha do Login nula!\n");
+		}
+		if(log.getUser() == null) {
+			throw new RuntimeException("\nUsername do Login nulo!\n");
+		}
 		for (Funcionario f: repoFuncionario.getFuncionarios()) {
 			if(f.getLogin().equals(log)) {
-				return true;
+				return f.getFuncao();
 			}
 		}
-		return false;
+		return -1;
 	}
 }

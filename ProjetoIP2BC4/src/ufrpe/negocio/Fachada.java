@@ -115,7 +115,7 @@ public class Fachada {
 
 	// SISTEMA DE LOGIN
 	
-	public boolean validarLogin(Login log) {
+	public int validarLogin(Login log) {
 		return controladorFuncionario.validarLogin(log);
 	}
 	
