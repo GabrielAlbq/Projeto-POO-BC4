@@ -10,8 +10,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import ufrpe.beans.ItemVenda;
-import ufrpe.beans.NotaFiscal;
+import ufrpe.negocio.beans.ItemVenda;
+import ufrpe.negocio.beans.NotaFiscal;
 
 public class RepositorioVenda implements IRepositorioVenda, Serializable {
 

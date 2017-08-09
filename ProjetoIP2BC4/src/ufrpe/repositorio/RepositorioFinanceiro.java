@@ -2,7 +2,7 @@ package ufrpe.repositorio;
 
 import java.util.ArrayList;
 
-import ufrpe.beans.Funcionario;
+import ufrpe.negocio.beans.Funcionario;
 
 public class RepositorioFinanceiro implements IRepositorioFinanceiro{
 	

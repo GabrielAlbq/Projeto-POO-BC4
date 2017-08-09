@@ -9,8 +9,9 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import ufrpe.beans.Funcionario;
-import ufrpe.beans.Login;
+
+import ufrpe.negocio.beans.Funcionario;
+import ufrpe.negocio.beans.Login;
 import ufrpe.negocio.exception.NegocioException;
 
 public class RepositorioFuncionario implements IRepositorioFuncionario, Serializable{

@@ -2,8 +2,8 @@ package ufrpe.repositorio;
 
 import java.util.List;
 
-import ufrpe.beans.Funcionario;
-import ufrpe.beans.Login;
+import ufrpe.negocio.beans.Funcionario;
+import ufrpe.negocio.beans.Login;
 
 public interface IRepositorioFuncionario {
 	void inserir (Funcionario funcionario);

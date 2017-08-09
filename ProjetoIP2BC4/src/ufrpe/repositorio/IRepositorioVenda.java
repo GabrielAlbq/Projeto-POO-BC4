@@ -2,8 +2,8 @@ package ufrpe.repositorio;
 
 import java.util.List;
 
-import ufrpe.beans.ItemVenda;
-import ufrpe.beans.NotaFiscal;
+import ufrpe.negocio.beans.ItemVenda;
+import ufrpe.negocio.beans.NotaFiscal;
 
 public interface IRepositorioVenda {
 

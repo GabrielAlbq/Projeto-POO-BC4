@@ -2,7 +2,7 @@ package ufrpe.repositorio;
 
 import java.util.List;
 
-import ufrpe.beans.Produto;
+import ufrpe.negocio.beans.Produto;
 
 public interface IRepositorioEstoque {
 	public void subtrairProduto (int posicao, int quantidade);

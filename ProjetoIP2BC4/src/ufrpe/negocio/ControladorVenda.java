@@ -1,8 +1,8 @@
 package ufrpe.negocio;
 
-import ufrpe.beans.ItemVenda;
-import ufrpe.beans.NotaFiscal;
-import ufrpe.beans.Produto;
+import ufrpe.negocio.beans.ItemVenda;
+import ufrpe.negocio.beans.NotaFiscal;
+import ufrpe.negocio.beans.Produto;
 import ufrpe.negocio.exception.InstanciaInexistenteException;
 import ufrpe.negocio.exception.NegocioException;
 import ufrpe.negocio.exception.QuantidadeInvalidaException;

@@ -3,17 +3,17 @@ package ufrpe;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
-import ufrpe.beans.Admin;
-import ufrpe.beans.Funcionario;
-import ufrpe.beans.Gerente;
-import ufrpe.beans.ItemVenda;
-import ufrpe.beans.Login;
-import ufrpe.beans.Produto;
-import ufrpe.beans.Vendedor;
 import ufrpe.negocio.Fachada;
+import ufrpe.negocio.beans.Admin;
+import ufrpe.negocio.beans.Funcionario;
+import ufrpe.negocio.beans.Gerente;
+import ufrpe.negocio.beans.ItemVenda;
+import ufrpe.negocio.beans.Login;
+import ufrpe.negocio.beans.Produto;
+import ufrpe.negocio.beans.Vendedor;
 import ufrpe.negocio.exception.NegocioException;
 
-public class Principal {
+public class PrincipalConsole {
 	public static void main(String[] args) {
 
 		// SCANNER

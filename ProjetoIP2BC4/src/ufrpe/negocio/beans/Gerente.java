@@ -1,4 +1,4 @@
-package ufrpe.beans;
+package ufrpe.negocio.beans;
 
 import java.io.Serializable;
 

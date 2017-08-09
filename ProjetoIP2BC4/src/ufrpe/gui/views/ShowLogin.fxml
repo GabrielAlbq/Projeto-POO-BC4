@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="ufrpe.gui.model.ControladorLogin">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="bt_logar" layoutX="252.0" layoutY="218.0" mnemonicParsing="false" onAction="#usuarioLogado" prefHeight="30.0" prefWidth="153.0" text="ENTRAR">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <TextField fx:id="tf_user" layoutX="252.0" layoutY="131.0" prefHeight="30.0" prefWidth="153.0" promptText="LOGIN" />
+            <PasswordField fx:id="pf_password" layoutX="252.0" layoutY="176.0" prefHeight="30.0" prefWidth="153.0" promptText="SENHA" />
+            <Label fx:id="lb_user" layoutX="166.0" layoutY="131.0" text="Usuário:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="lb_password" layoutX="166.0" layoutY="176.0" prefHeight="30.0" prefWidth="72.0" text="Senha:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="lb_welcome" layoutX="243.0" layoutY="37.0" text="Bem Vindo!!!">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

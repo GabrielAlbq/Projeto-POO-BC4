@@ -2,7 +2,7 @@ package ufrpe.repositorio;
 
 import java.util.List;
 
-import ufrpe.beans.Login;
+import ufrpe.negocio.beans.Login;
 
 public interface IRepositorioLogin {
 	void inserirLogin (Login login);

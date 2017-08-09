@@ -1,6 +1,6 @@
 package ufrpe.negocio;
 
-import ufrpe.beans.Funcionario;
+import ufrpe.negocio.beans.Funcionario;
 import ufrpe.negocio.exception.NegocioException;
 import ufrpe.negocio.exception.PagamentoInvalidoException;
 import ufrpe.negocio.exception.QuantidadeInvalidaException;

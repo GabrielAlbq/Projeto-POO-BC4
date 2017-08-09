@@ -1,8 +1,8 @@
 package ufrpe.negocio;
 
-import ufrpe.beans.Admin;
-import ufrpe.beans.Funcionario;
-import ufrpe.beans.Login;
+import ufrpe.negocio.beans.Admin;
+import ufrpe.negocio.beans.Funcionario;
+import ufrpe.negocio.beans.Login;
 import ufrpe.negocio.exception.IdentificacaoInvalidaException;
 import ufrpe.negocio.exception.InstanciaInexistenteException;
 import ufrpe.negocio.exception.InstanciaRepetidaException;

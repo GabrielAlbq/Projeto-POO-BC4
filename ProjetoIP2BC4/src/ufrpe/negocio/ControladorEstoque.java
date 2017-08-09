@@ -1,6 +1,6 @@
 package ufrpe.negocio;
 
-import ufrpe.beans.Produto;
+import ufrpe.negocio.beans.Produto;
 import ufrpe.negocio.exception.IdentificacaoInvalidaException;
 import ufrpe.negocio.exception.InstanciaInexistenteException;
 import ufrpe.negocio.exception.InstanciaRepetidaException;

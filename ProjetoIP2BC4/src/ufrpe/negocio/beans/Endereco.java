@@ -1,4 +1,4 @@
-package ufrpe.beans;
+package ufrpe.negocio.beans;
 
 public abstract class Endereco {
 	

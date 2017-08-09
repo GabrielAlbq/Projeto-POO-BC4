@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import ufrpe.beans.Produto;
+import ufrpe.negocio.beans.Produto;
 
 public class RepositorioEstoque implements IRepositorioEstoque, Serializable {
 

@@ -1,4 +1,4 @@
-package ufrpe.beans;
+package ufrpe.negocio.beans;
 
 public class Admin extends Funcionario {
 	public Admin(Login login, int identificacao) {
