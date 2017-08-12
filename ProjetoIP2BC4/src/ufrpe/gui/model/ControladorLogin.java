@@ -2,6 +2,7 @@ package ufrpe.gui.model;
 
 import java.security.Principal;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -23,6 +24,8 @@ public class ControladorLogin {
 	@FXML
 	PasswordField pf_password;
 	
+	String usuario;
+	String senha;
 	public void usuarioLogado (){
 		
 		tf_user.getText();
@@ -30,6 +33,26 @@ public class ControladorLogin {
 		
 		
 	}
+	public void FazerLogin(ActionEvent event){
+				if(tf_user.getText().toString().toLowerCase().equals(usuario) == true){
+					if(pf_password.getText().toString().equals(senha) == true){
+					System.out.println("logado");
+					}
+					else if(pf_password.getText().toString().isEmpty() == true){
+						System.out.println("Senha n inserida");
+					}
+					else{
+						System.out.println("Senha incorreta");
+					}
+				}
+				else if(tf_user.getText().toString().isEmpty()){
+					System.out.println("Usuario nao inserido");
+				}
+				else{
+					System.out.println("Usuario incorreto");
+				}
+			}
+		
 
 //	public void setMainApp(ufrpe.Principal principal) {
 //		// TODO Auto-generated method stub
