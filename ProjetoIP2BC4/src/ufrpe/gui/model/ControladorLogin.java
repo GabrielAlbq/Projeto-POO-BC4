@@ -5,27 +5,43 @@ import java.security.Principal;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import ufrpe.negocio.beans.Funcionario;
+import ufrpe.repositorio.IRepositorioFuncionario;
+import ufrpe.repositorio.RepositorioFuncionario;
 
 public class ControladorLogin {
 	
-	@FXML
-	Button bt_logar;
-	@FXML
-	Label lb_password;
-	@FXML
-	Label lb_user;
-	@FXML
-	Label lb_welcome;
-	@FXML
-	TextField tf_user;
-	@FXML
-	PasswordField pf_password;
+	@FXML Button bt_logar;
+	
+	@FXML TextField tf_user;
+	
+	@FXML PasswordField pf_password;
+	
+	private Principal main;
+	private Funcionario funcionario;
 	
 	String usuario;
 	String senha;
+	
+	IRepositorioFuncionario repositorioPessoa = RepositorioFuncionario.getInstancia();
+
+	public ControladorLogin() {
+
+	}
+
+	@FXML
+	private void initialize() {
+		
+
+	}
+
+	public void setMain(Principal principal) {
+		this.main = principal;
+	}
+
+	
 	public void usuarioLogado (){
 		
 		tf_user.getText();
