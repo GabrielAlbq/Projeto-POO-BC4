@@ -1,5 +1,7 @@
 package ufrpe.negocio;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import ufrpe.negocio.beans.Admin;
 import ufrpe.negocio.beans.Funcionario;
 import ufrpe.negocio.beans.Login;
@@ -182,6 +184,11 @@ public class ControladorFuncionario {
 			throw new RuntimeException("\nInstancia de Login nula!\n");
 		}
 		if(log.getSenha() == null) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Falha de Login");
+			alert.setHeaderText("Informações inválidas");
+			alert.setContentText("Senha incorreta");
+			alert.showAndWait();
 			throw new RuntimeException("\nSenha do Login nula!\n");
 		}
 		if(log.getUser() == null) {
@@ -192,6 +199,11 @@ public class ControladorFuncionario {
 				return f;
 			}
 		}
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Falha de Login");
+		alert.setHeaderText("Informações inválidas");
+		alert.setContentText("Usuario ou senha incorretos");
+		alert.showAndWait();
 		throw new LoginInvalidoExecption("\nFalha no login! username ou password incorretos!\n");
 	}
 }

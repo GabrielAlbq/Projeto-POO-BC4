@@ -131,4 +131,16 @@ public class Fachada {
 	public String exibirFinancas() {
 		return controladorFinanceiro.exibirFinancas();
 	}
+
+	
+	//FUNCIONARIO
+	public int retornaPosicaoLogin(String user) {
+		return controladorFuncionario.retornaPosicaoLogin(user);
+	}
+
+	public void esqueceuSenha(String user, String novaSenha, String palavra) throws NegocioException {
+		controladorFuncionario.esqueceuSenha(user, novaSenha, palavra);
+	}
+	
+	
 }

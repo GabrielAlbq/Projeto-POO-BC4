@@ -1,14 +1,11 @@
 package ufrpe.gui;
 
-import java.io.IOException;
-import java.util.Scanner;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import ufrpe.gui.model.ControladorMain;
 import ufrpe.negocio.ControladorFuncionario;
 import ufrpe.negocio.Fachada;
 import ufrpe.negocio.beans.Funcionario;
@@ -33,38 +30,54 @@ public class Principal extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
+		instance = this;
 		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("Mercadao mil grau");
+		this.primaryStage.setTitle("Sistema de Mercado");//  Mercadao mil grau");
+		showLogin();
 
 	}
 
 	public void showLogin() {
+//		try {
+//			FXMLLoader loader = new FXMLLoader();
+//			loader.setLocation(Principal.class.getResource("views/ShowLogin.fxml"));
+//			AnchorPane Login = (AnchorPane) loader.load();
+//
+//			this.rootScene.getChildren().add(Login);
+//			ControladorMain controller = loader.getController();
+//			controller.setApp(this);
+//
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Principal.class.getResource("view/Login.fxml"));
-			AnchorPane Login = (AnchorPane) loader.load();
-
-			this.rootScene.getChildren().add(Login);
-			ControladorMain controller = loader.getController();
-			controller.setApp(this);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+					Parent root = FXMLLoader.load(getClass().getResource("views/ShowLogin.fxml"));
+					Scene scene = new Scene(root);
+			//		scene.getStylesheets().add(getClass().getResource("NOME DO CSS.css").toExternalForm()); PARA O CSS CASO FOR ADICIONAR
+					primaryStage.setScene(scene);
+					primaryStage.show();
+					} catch(Exception e) {
+						e.printStackTrace();
+					}
 	}
 	
-
+	
+	public void changeStage(Stage stage){
+		  this.primaryStage = stage;
+	}
+	public Stage getPrimaryStage(){
+		return this.primaryStage;
+	}
+	
+	public Pane getRootScene(){
+		return this.rootScene;
+	}
+	
 	public static void main(String[] args) {
 
 		launch(args);
-
-		// SCANNER
-		Scanner scanf = new Scanner(System.in);
-
-		// FACHADA
 		Fachada fachada = Fachada.getInstancia();
 
-		// TODO fazer a parte de arquivo funcionar para inserirFuncionario
 		Login log1 = new Login("fabio", "123", "pokemon");
 		Login log2 = new Login("elthon", "123", "trator");
 		Login log3 = new Login("admin", "admin", "chefe");
