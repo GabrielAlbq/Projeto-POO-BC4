@@ -137,6 +137,13 @@ public class ControladorGerente {
             	listarproduto();
             }
         });
+	
+		this.btnProdBuscarAlt.setOnAction(new EventHandler<ActionEvent>() {		
+			//TODO FALTA IMPLEMENTAR DIREITO A PARTE DE ATUALIZAR
+			@Override
+			public void handle(ActionEvent event) {
+					Produto p = fachada.buscarProduto(Integer.parseInt(tfBuscProdCod1.getText().toString()));
+			}});
 		
 	}
 	
@@ -183,13 +190,6 @@ public class ControladorGerente {
 	}
 	public void alterarproduto(ActionEvent event){
 		//TODO falta colocar para buscar o código.
-		this.btnProdBuscarAlt.setOnAction(new EventHandler<ActionEvent>() {
-			
-			@Override
-			public void handle(ActionEvent event) {
-				//	Produto p = fachada.buscarProduto(codigo);
-			}});
-		
 		
 		int codigo = Integer.parseInt(tfBuscProdCod1.getText().toString());
 		Produto p = fachada.buscarProduto(codigo);
@@ -199,6 +199,8 @@ public class ControladorGerente {
 					p.setQuantidade(Integer.parseInt(tfBuscProdQtd1.getText().toString()));
 		}
 		}
+	
+	
 	public void buscarproduto(ActionEvent event) {
 		int codigo = Integer.parseInt(tfBuscProdCod.getText().toString());
 		Produto p = fachada.buscarProduto(codigo);
