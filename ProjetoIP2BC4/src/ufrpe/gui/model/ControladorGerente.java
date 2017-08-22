@@ -7,6 +7,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -112,13 +113,18 @@ public class ControladorGerente {
 	@FXML TextField tfAltFuncFun;
 	@FXML Button btnFuncBuscarAlt;
 	@FXML Button btnFuncAtualizar;
-
+	
+	@FXML TextField	tfBuscProdCod1;
 	@FXML TextField tfAltProdCod;
 	@FXML TextField tfAltProdNome;
 	@FXML TextField tfAltProdPrec;
 	@FXML TextField tfAltProdQtd;
 	@FXML Button btnProdBuscarAlt;
 	@FXML Button btnProdAtualizar;
+	
+	@FXML TextField tfBuscProdNome1;
+	@FXML TextField tfBuscProdPrec1;
+	@FXML TextField tfBuscProdQtd1;
 	
 	// VENDAS 
 	// TODO
@@ -176,9 +182,32 @@ public class ControladorGerente {
 		}
 	}
 	public void alterarproduto(ActionEvent event){
-		//tfBuscProdCod1
+		//TODO falta colocar para buscar o código.
+		this.btnProdBuscarAlt.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				//	Produto p = fachada.buscarProduto(codigo);
+			}});
+		
+		
+		int codigo = Integer.parseInt(tfBuscProdCod1.getText().toString());
+		Produto p = fachada.buscarProduto(codigo);
+		if(p != null){
+					p.setNome(tfBuscProdNome1.getText().toString());
+					p.setPreco(Double.parseDouble(tfBuscProdPrec1.getText().toString()));
+					p.setQuantidade(Integer.parseInt(tfBuscProdQtd1.getText().toString()));
+		}
+		}
+	public void buscarproduto(ActionEvent event) {
+		int codigo = Integer.parseInt(tfBuscProdCod.getText().toString());
+		Produto p = fachada.buscarProduto(codigo);
+		if(p != null){
+			tfBuscProdNome.setText(p.getNome());
+			tfBuscProdPrec.setText(String.valueOf(p.getPreco()));
+			tfBuscProdQtd.setText(String.valueOf(p.getQuantidade()));
+		}
 	}
-	
 	//DESLOGAR
 	public void sair(ActionEvent event){
 		main = Principal.getInstance();

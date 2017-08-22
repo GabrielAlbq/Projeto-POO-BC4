@@ -102,7 +102,10 @@ public class ControladorEstoque {
 		if (posicao != -1) {
 			return repoestoque.buscar(posicao);
 		}
-		System.out.println("Produto nao existe");
+		alert.setTitle("Produto não encontrado");
+		alert.setHeaderText(null);
+		alert.setContentText("Produto não existe em estoque, verifique se o código foi digitado corretamente!");
+		alert.showAndWait();
 		return null;
 	}
 
