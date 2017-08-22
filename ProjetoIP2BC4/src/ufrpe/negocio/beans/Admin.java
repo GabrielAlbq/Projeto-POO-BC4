@@ -8,6 +8,9 @@ public class Admin extends Funcionario {
 	public Admin(Login login, int identificacao) {
 		super(1, 100, false, login, "adm", "453257433", new Endereco("adm", "adm", "adm", "adm"));
 	}
+	public Admin(){
+		
+	}
 	
 	@Override
 	public String toString() {

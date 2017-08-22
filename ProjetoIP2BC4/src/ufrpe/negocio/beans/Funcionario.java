@@ -28,6 +28,9 @@ public abstract class Funcionario implements Serializable{
 		this.cpf = cpf;
 		this.endereco = endereco;
 	}
+	public Funcionario(){
+		
+	}
 	
 	// EQUALS
 	

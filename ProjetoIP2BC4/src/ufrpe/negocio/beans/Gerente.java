@@ -13,7 +13,7 @@ public class Gerente extends Funcionario implements Serializable{
 			Endereco endereco) {
 		super(salario, identificacao, recebeuSalario, login, nome, cpf, endereco);
 	}
-	
+
 	@Override
 	public String toString() {
 		return  "\nGerente\n\nIdentificacao: "+getIdentificacao()+"\nSalario: R$ "+getSalario()+

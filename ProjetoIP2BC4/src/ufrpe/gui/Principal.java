@@ -11,8 +11,11 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import ufrpe.gui.model.ControladorGerente;
 import ufrpe.negocio.ControladorFuncionario;
+import ufrpe.negocio.beans.Admin;
 import ufrpe.negocio.beans.Funcionario;
+import ufrpe.negocio.beans.Gerente;
 import ufrpe.negocio.beans.Login;
+import ufrpe.negocio.beans.Vendedor;
 
 public class Principal extends Application {
 
@@ -22,7 +25,19 @@ public class Principal extends Application {
 	private Funcionario logado;
 	private Pane rootScene;
 	private ControladorFuncionario control;
-	private Funcionario atual;
+	
+	private Funcionario funcionariologado;
+	
+	public Funcionario getFuncionariologado() {
+		return funcionariologado;
+	}
+
+	public void setFuncionariologado(Funcionario funcionariologado) {
+		
+		this.funcionariologado = funcionariologado;
+	}
+	
+
 	// SINGLETON
 	public static Principal getInstance() {
 		if (instance == null) {
@@ -34,19 +49,13 @@ public class Principal extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		instance = this;
+		this.funcionariologado = new Admin();
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Sistema de Mercado");
 		showLogin();
 
 	}
-	
-	 public Funcionario getAtual() {
-		return atual;
-	}
 
-	public void setAtual(Funcionario atual) {
-		this.atual = atual;
-	}
 
 	public void showGerente() {
 			try {

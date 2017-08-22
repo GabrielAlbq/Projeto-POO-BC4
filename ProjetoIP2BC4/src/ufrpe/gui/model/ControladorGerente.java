@@ -2,31 +2,39 @@ package ufrpe.gui.model;
 
 import java.io.IOException;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import ufrpe.gui.Principal;
+import ufrpe.negocio.Fachada;
 import ufrpe.negocio.beans.Funcionario;
 import ufrpe.negocio.beans.ItemVenda;
 import ufrpe.negocio.beans.Produto;
+import ufrpe.negocio.exception.NegocioException;
 
 public class ControladorGerente {
 	
 	
- 
+	Fachada fachada = Fachada.getInstancia();
 	private Principal main;
 
 	// PRINCIPAL
 	@FXML Button btnSair;
-	
+	@FXML Label lbAdmNome;
 	// CADASTRAR 
 	@FXML TextField tfCadFuncID;
 	@FXML TextField tfCadFuncNome;
@@ -60,8 +68,8 @@ public class ControladorGerente {
 	@FXML TableColumn <Funcionario, String> tbcFuncFun;
 	@FXML TableColumn <Funcionario, Double> tbcFuncSal;
 	
-	//@FXML TableView <Produto> tbvListaProd;
-	@FXML TitledPane tbvListaProd;
+	@FXML TitledPane tpListProd;
+	@FXML TableView <Produto> tbvListaProd;
 	@FXML TableColumn <Produto, Integer>tbcProdCod;
 	@FXML TableColumn <Produto, String>tbcProdNome;
 	@FXML TableColumn <Produto, Double>tbcProdPrec;
@@ -111,22 +119,78 @@ public class ControladorGerente {
 	@FXML TextField tfAltProdQtd;
 	@FXML Button btnProdBuscarAlt;
 	@FXML Button btnProdAtualizar;
-
+	
 	// VENDAS 
 	// TODO
+	@FXML
+	private void initialize() {
+		//lbAdmNome.setText( "Nível de acesso: ");
+		tpListProd.expandedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            	listarproduto();
+            }
+        });
+		
+	}
+	
+	//METODOS PARA PRODUTOS
+	
+	
+	private ObservableList<Produto> obListProd;
+	
+	public void cadastrarproduto(ActionEvent event){
+		try{
+		String nome = tfCadProdNome.getText().toString();
+		int codigo = Integer.parseInt(tfCadProdCodigo.getText().toString());
+		int qtd = Integer.parseInt(tfCadProdQtd.getText().toString());
+		double preco = Double.parseDouble(tfCadProdPreco.getText().toString());
+		
+		Produto produto = new Produto(nome,codigo,qtd,preco);
+	
+			fachada.inserirProduto(produto);
+		} catch (NegocioException e) {
+			e.printStackTrace();
+		} catch (NumberFormatException ne){
+			ne.printStackTrace();
+		}
+	}
+	public void removerproduto(ActionEvent event){
+		try{
+			fachada.removerProduto(Integer.parseInt(tfRemoProdID.getText().toString()));
+		} catch (NegocioException e) {
+			e.printStackTrace();
+		}
+	}
+	public void listarproduto(){
+		try{
+			tbcProdCod.setCellValueFactory(new PropertyValueFactory<Produto, Integer>("codigo"));
+			tbcProdNome.setCellValueFactory(new PropertyValueFactory<Produto, String>("nome"));
+			tbcProdPrec.setCellValueFactory(new PropertyValueFactory<Produto, Double>("preco"));
+			tbcProdQtd.setCellValueFactory(new PropertyValueFactory<Produto, Integer>("quantidade"));
+			
+			obListProd = FXCollections.observableArrayList(fachada.listarProdutos());
+			tbvListaProd.setItems(obListProd);
+		} catch (NegocioException e) {
+			e.printStackTrace();
+		}
+	}
+	public void alterarproduto(ActionEvent event){
+		//tfBuscProdCod1
+	}
+	
+	//DESLOGAR
 	public void sair(ActionEvent event){
 		main = Principal.getInstance();
 		Stage stage;
 		Parent root;
-		Parent old;
 		try{
-			//old = FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/Gerente.fxml"));
-			root = (Parent) FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/ShowLogin.fxml")); // NOVO FXML
+			root = (Parent) FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/ShowLogin.fxml"));
 			Scene scene = new Scene(root);
 			stage = main.getPrimaryStage();
 			stage.setScene(scene);
+			stage.setTitle("Sistema de Mercado");
 			main.changeStage(stage);
-			main.setAtual(null);
 		}catch(IOException e){
 			e.printStackTrace();
 		}

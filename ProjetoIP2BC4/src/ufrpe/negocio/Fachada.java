@@ -1,5 +1,7 @@
 package ufrpe.negocio;
 
+import java.util.List;
+
 import ufrpe.negocio.beans.Funcionario;
 import ufrpe.negocio.beans.ItemVenda;
 import ufrpe.negocio.beans.Login;
@@ -75,7 +77,7 @@ public class Fachada {
 		controladorEstoque.inserir(produto);
 	}
 
-	public String listarProdutos() throws NegocioException{
+	public List<Produto> listarProdutos() throws NegocioException{
 		return controladorEstoque.listarProduto();
 	}
 

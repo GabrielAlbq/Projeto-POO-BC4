@@ -26,26 +26,15 @@ import ufrpe.repositorio.RepositorioFuncionario;
 
 public class ControladorLogin {
 
-	@FXML
-	Button bt_logar;
-
-	@FXML
-	TextField tf_user;
-
-	@FXML
-	PasswordField pf_password;
+	@FXML Button bt_logar;
+	@FXML TextField tf_user;
+	@FXML PasswordField pf_password;
 
 	private Principal main;
 	private Funcionario funcionariologado = null;
-
-	IRepositorioFuncionario repositorioPessoa = RepositorioFuncionario.getInstancia();
+	
 	Fachada fachada = Fachada.getInstancia();
 
-	
-	public ControladorLogin() {
-
-	}
-	
 	@FXML
 	private void initialize() {
 
@@ -57,7 +46,7 @@ public class ControladorLogin {
 
 	public void FazerLogin(ActionEvent event) {
 
-		Stage stage = null;
+		Stage stage = new Stage();
 		Parent root = null;
 
 		Login login = new Login(tf_user.getText().toString().toLowerCase(), pf_password.getText().toString(), "");
@@ -77,19 +66,23 @@ public class ControladorLogin {
 				// // chamar tela admin
 				// }
 				logado = true;
-				main.setAtual(funcionariologado);
+				//main.setFuncionariologado(funcionariologado);
 				if (logado) {
 					Alert alert = new Alert(AlertType.CONFIRMATION);
 					alert.setTitle("Confirmacao de login");
-					alert.setHeaderText("Logado com sucesso!");
+					alert.setHeaderText(null);
+					alert.setContentText("Logado com sucesso!");
 					alert.showAndWait();
 
 					stage = (Stage) bt_logar.getScene().getWindow();
-					root = FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/Gerente.fxml"));																					
+					root = FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/Gerente.fxml"));
+					
+					root.setUserData(funcionariologado.getNome().toString());
 					Scene scene = new Scene(root);
 					stage.setScene(scene);
 					//String tituloAtual = stage.getTitle();
 					stage.setTitle("Bem vindo, " + funcionariologado.getNome());
+				//	stage.setUserData(funcionariologado);
 					stage.setResizable(true);
 					main.changeStage(stage);
 

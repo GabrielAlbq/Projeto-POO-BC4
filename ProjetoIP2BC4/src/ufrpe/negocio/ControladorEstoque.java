@@ -1,5 +1,9 @@
 package ufrpe.negocio;
 
+import java.util.List;
+
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import ufrpe.negocio.beans.Produto;
 import ufrpe.negocio.exception.IdentificacaoInvalidaException;
 import ufrpe.negocio.exception.InstanciaInexistenteException;
@@ -16,7 +20,7 @@ public class ControladorEstoque {
 	RepositorioVenda repoVenda;
 	private static ControladorEstoque instancia;
 	private IRepositorioEstoque repoestoque;
-
+	Alert alert = new Alert(AlertType.INFORMATION);
 	// SINGLETON
 	private ControladorEstoque() {
 		repoestoque = RepositorioEstoque.getInstancia();
@@ -32,15 +36,11 @@ public class ControladorEstoque {
 
 	// METODOS COM CONTROLE DE NEGOCIOS
 	// TODO usar collections neste metodo
-	public String listarProduto() throws NegocioException{
-		String texto = "";
+	public List<Produto> listarProduto() throws NegocioException{
 		if (repoestoque.listar().isEmpty() == true) {
 			throw new InstanciaInexistenteException("\nNao ha produtos cadastrados!\n");
 		}
-		for (Produto prod : repoestoque.listar()) {
-			texto += "\n" + prod.toString();
-		}
-		return texto;
+		return repoestoque.listar();
 	}
 
 	public void subtrairProduto(int codigo, int quantidade) throws NegocioException{
@@ -65,18 +65,34 @@ public class ControladorEstoque {
 		if (prod == null) {
 			throw new RuntimeException("\nInstancia de Produto nula\n");
 		}
-		if(prod.getNome() == null) {
+		if(prod.getNome().isEmpty() == true) {
+			alert.setTitle("Nome invalido");
+			alert.setHeaderText(null);
+			alert.setContentText("Adicione um nome!");
+			alert.showAndWait();
 			throw new RuntimeException("\nString do Nome do Produto nula\n");
 		}
 		if(prod.getCodigo() <= 0) {
+			alert.setTitle("Codigo negativo");
+			alert.setHeaderText(null);
+			alert.setContentText("Codigo não pode ser negativo, adicione outro!");
+			alert.showAndWait();
 			throw new IdentificacaoInvalidaException("\nCodigo ("+prod.getCodigo()+") invalido\n");
 		}
 		if (retornarPosicao(prod.getCodigo()) != -1) {
+			alert.setTitle("Produto existente");
+			alert.setHeaderText(null);
+			alert.setContentText("Já existe um produto com esse código, tente outro!");
+			alert.showAndWait();
 			throw new InstanciaRepetidaException("\nProduto de codigo("+prod.getCodigo()+") ja cadastrado\n");
 		}
 		repoestoque.inserir(prod);
 		instancia.repoestoque.salvarArquivo();
-		System.out.println("Produto adicionado com sucesso!");
+		
+		alert.setTitle("Confirmacao de adicao");
+		alert.setHeaderText(null);
+		alert.setContentText("Produto adicionado com sucesso!");
+		alert.showAndWait();
 	}
 
 	public Produto buscar(int cod) {
@@ -114,17 +130,27 @@ public class ControladorEstoque {
 			throw new IdentificacaoInvalidaException("\nCodigo ("+cod+") invalido\n");
 		}
 		if (repoestoque.listar().isEmpty() == true) {
-			//System.out.println("\n\tErro! Nao ha produtos para remover!");
+			alert.setTitle("Erro!");
+			alert.setHeaderText(null);
+			alert.setContentText("Não há produtos para remover!");
+			alert.showAndWait();
 			throw new InstanciaInexistenteException("\nNao ha produtos cadastrados no array\n");
 		}
 		int posicao = this.retornarPosicao(cod);
 		if (posicao == -1) {
-			//System.out.println("Codigo nao encontrado!");
+			alert.setTitle("Erro!");
+			alert.setHeaderText(null);
+			alert.setContentText("Não existe produto com esse código!");
+			alert.showAndWait();
 			throw new InstanciaInexistenteException("\nNao ha produto de codigo ("+cod+") para remover\n");
 		}
 		repoestoque.remover(posicao);
 		instancia.repoestoque.salvarArquivo();
-		System.out.println("Produto removido com sucesso!");
+		alert.setTitle("Confirmacao de remoção");
+		alert.setHeaderText(null);
+		alert.setContentText("Produto removido com sucesso!");
+		alert.showAndWait();
+		
 	}
 
 	private int retornarPosicao(int codigo) {
