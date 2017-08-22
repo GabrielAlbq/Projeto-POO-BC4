@@ -12,8 +12,10 @@ import javafx.stage.Stage;
 import ufrpe.gui.model.ControladorGerente;
 import ufrpe.negocio.ControladorFuncionario;
 import ufrpe.negocio.Fachada;
+import ufrpe.negocio.beans.Admin;
 import ufrpe.negocio.beans.Funcionario;
 import ufrpe.negocio.beans.Login;
+import ufrpe.negocio.exception.NegocioException;
 
 public class Principal extends Application {
 
@@ -108,10 +110,17 @@ public class Principal extends Application {
 	
 	public static void main(String[] args) {
 
-		launch(args);
 		Fachada fachada = Fachada.getInstancia();
-
-		Login log1 = new Login("fabio", "123", "pokemon");
+		Login log1 = new Login("admin", "padrao", "mercado");
+		Funcionario f1 = new Admin(log1, 100);
+		try {
+			fachada.inserirFuncionario(f1);
+		} catch (NegocioException e) {
+			e.printStackTrace();
+		}
+		
+		launch(args);
+		Login log4 = new Login("fabio", "123", "pokemon");
 		Login log2 = new Login("elthon", "123", "trator");
 		Login log3 = new Login("admin", "admin", "chefe");
 

@@ -69,7 +69,7 @@ public class RepositorioEstoque implements IRepositorioEstoque, Serializable {
 
 		RepositorioEstoque repositorio = null;
 
-		File carregar = new File("RepositorioEstoque.Mercadinho");
+		File carregar = new File("RepositorioEstoque.dat");
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;
 
@@ -103,7 +103,7 @@ public class RepositorioEstoque implements IRepositorioEstoque, Serializable {
 				try {
 					ois.close();
 				} catch (IOException e) {
-					System.out.println("Não foi possível fechar o arquivo!");
+					System.out.println("Nï¿½o foi possï¿½vel fechar o arquivo!");
 					e.printStackTrace();
 				}
 			}
@@ -115,7 +115,7 @@ public class RepositorioEstoque implements IRepositorioEstoque, Serializable {
 	@Override
 	public void salvarArquivo() {
 		if (!(instancia == null)) {
-			File salvar = new File("RepositorioEstoque.Mercadinho");
+			File salvar = new File("RepositorioEstoque.dat");
 			try {
 				if (!salvar.exists()) {
 					salvar.createNewFile();

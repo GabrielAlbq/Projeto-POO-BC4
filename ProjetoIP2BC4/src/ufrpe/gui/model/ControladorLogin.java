@@ -112,39 +112,39 @@ public class ControladorLogin {
 		
 		
 		
-		//Esse de baixo eh so pra testar, o de cima eh o que iremos utilizar
-		String usuario = "gabriel";
-		String senha = "123";
-		if(tf_user.getText().toString().toLowerCase().equals(usuario) == true){
-				 if(pf_password.getText().toString().equals(senha) == true){
-				 logado = true;
-				 }
-				 try{ 
-					 if (logado) {
-						Alert alert = new Alert(AlertType.CONFIRMATION);
-						alert.setTitle("Confirmacao de login");
-						alert.setHeaderText("Logado com sucesso!");
-						alert.showAndWait();
-						
-						stage = (Stage) bt_logar.getScene().getWindow();
-						
-						root = FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/OverviewTemplate.fxml")); //NOVO FXML
-						Scene scene = new Scene(root);
-						stage.setScene(scene);
-						String tituloAtual = stage.getTitle();
-						//stage.setTitle(tituloAtual +"Bem vindo, "+ (""+f.getNome().charAt(0)).toUpperCase() + f.getNome().substring(1, f.getNome().length()));
-						stage.setTitle("Bem vindo, "+usuario);
-						stage.setResizable(true);
-						main.changeStage(stage);
-						
-					}
-				 } catch (IOException e){
-					 e.printStackTrace();
-				 }
-				 
-				 
-				 
-		}
+//		//Esse de baixo eh so pra testar, o de cima eh o que iremos utilizar
+//		String usuario = "gabriel";
+//		String senha = "123";
+//		if(tf_user.getText().toString().toLowerCase().equals(usuario) == true){
+//				 if(pf_password.getText().toString().equals(senha) == true){
+//				 logado = true;
+//				 }
+//				 try{ 
+//					 if (logado) {
+//						Alert alert = new Alert(AlertType.CONFIRMATION);
+//						alert.setTitle("Confirmacao de login");
+//						alert.setHeaderText("Logado com sucesso!");
+//						alert.showAndWait();
+//						
+//						stage = (Stage) bt_logar.getScene().getWindow();
+//						
+//						root = FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/OverviewTemplate.fxml")); //NOVO FXML
+//						Scene scene = new Scene(root);
+//						stage.setScene(scene);
+//						String tituloAtual = stage.getTitle();
+//						//stage.setTitle(tituloAtual +"Bem vindo, "+ (""+f.getNome().charAt(0)).toUpperCase() + f.getNome().substring(1, f.getNome().length()));
+//						stage.setTitle("Bem vindo, "+usuario);
+//						stage.setResizable(true);
+//						main.changeStage(stage);
+//						
+//					}
+//				 } catch (IOException e){
+//					 e.printStackTrace();
+//				 }
+//				 
+//				 
+//				 
+//		}
 		
 		}
 	}

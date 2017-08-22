@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 public class Vendedor extends Funcionario implements Serializable{
 	
+	
+	private static final long serialVersionUID = -3030566477850150267L;
+
 	public Vendedor(double salario, int identificacao, boolean recebeuSalario, Login login, String nome, String cpf,
 			Endereco endereco) {
 		super(salario, identificacao, recebeuSalario, login, nome, cpf, endereco);

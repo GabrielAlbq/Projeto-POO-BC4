@@ -19,5 +19,5 @@ public interface IRepositorioFinanceiro {
 	void receberDinheiroVenda (double valor);
 	
 	String exibirFinancas ();
-	
+	public void salvarbd();
 }

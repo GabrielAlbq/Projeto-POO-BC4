@@ -1,5 +1,11 @@
 package ufrpe.repositorio;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import ufrpe.negocio.beans.Funcionario;
@@ -23,8 +29,8 @@ public class RepositorioFinanceiro implements IRepositorioFinanceiro{
 		
 	public static RepositorioFinanceiro getInstancia () {
 		if( instancia == null ) {
-			instancia = new RepositorioFinanceiro();
-			//instancia = RepositorioFinanceiro.carregarbd();
+			//instancia = new RepositorioFinanceiro();
+			instancia = RepositorioFinanceiro.carregarbd();
 		}
 		return instancia;
 	}
@@ -91,11 +97,11 @@ public class RepositorioFinanceiro implements IRepositorioFinanceiro{
 		return teste;
 	}
 	
-	/*private static RepositorioFinanceiro carregarbd() {
+	private static RepositorioFinanceiro carregarbd() {
 
 		RepositorioFinanceiro repositorio = null;
 
-		File bd = new File("RepositorioFinanceiro.Mercadinho");
+		File bd = new File("RepositorioFinanceiro.dat");
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;
 
@@ -131,7 +137,7 @@ public class RepositorioFinanceiro implements IRepositorioFinanceiro{
 				try {
 					ois.close();
 				} catch (IOException e) {
-					System.out.println("Não foi possível fechar o arquivo!");
+					System.out.println("Nï¿½o foi possï¿½vel fechar o arquivo!");
 					e.printStackTrace();
 				}
 			}
@@ -144,7 +150,7 @@ public class RepositorioFinanceiro implements IRepositorioFinanceiro{
 	public void salvarbd() {
 		if (!(instancia == null)) {
 
-			File bd = new File("RepositorioFinanceiro.Mercadinho");
+			File bd = new File("RepositorioFinanceiro.dat");
 
 			try {
 
@@ -165,7 +171,6 @@ public class RepositorioFinanceiro implements IRepositorioFinanceiro{
 			}
 
 		}
-	}*/
+	}
 	
-	// TODO pagar fornecedor
 }

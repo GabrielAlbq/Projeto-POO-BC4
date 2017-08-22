@@ -3,6 +3,9 @@ package ufrpe.negocio.beans;
 import java.io.Serializable;
 
 public class Login implements Serializable{
+	
+	private static final long serialVersionUID = 5696955181283437225L;
+	
 	private String user;
 	private String senha;
 	private String palavraSeguranca; // eh usado para validar o usuario

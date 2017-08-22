@@ -4,9 +4,10 @@ import java.io.Serializable;
 
 public abstract class Funcionario implements Serializable{
 	
-	// ATRIBUTOS 
 
-	private static final long serialVersionUID = 1L;
+	//ATRIBUTOS
+
+	private static final long serialVersionUID = 2886632581022532992L;
 	private double salario;
 	private int identificacao;
 	private boolean recebeuSalario;

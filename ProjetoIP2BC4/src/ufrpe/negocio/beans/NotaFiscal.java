@@ -1,12 +1,13 @@
 package ufrpe.negocio.beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotaFiscal {
+public class NotaFiscal implements Serializable {
 	
-	// ATRIBUTOS 
-	
+	//ATRIBUTOS
+	private static final long serialVersionUID = -6612494956675446965L;
 	private Funcionario funcionario; // � o funcionario que vendeu
 	private List<ItemVenda> itensVendidos; // Lista de itens vendidos
 	private int qtdItens;

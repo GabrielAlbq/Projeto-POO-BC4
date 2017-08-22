@@ -4,12 +4,9 @@ import java.io.Serializable;
 
 public class Produto implements Serializable{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1644589701048471052L;
-	// ATRIBUTOS 
-	
+
+
+	private static final long serialVersionUID = -2693317801611913410L;
 	private String nome;
 	private int codigo;
 	private int quantidade;

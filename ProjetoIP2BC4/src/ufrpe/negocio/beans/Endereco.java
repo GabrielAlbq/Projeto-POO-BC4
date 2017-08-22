@@ -1,8 +1,13 @@
 package ufrpe.negocio.beans;
 
-public class Endereco {
+import java.io.Serializable;
+
+public class Endereco implements Serializable{
 	
+	
+	private static final long serialVersionUID = -4623980324799023116L;
 	// ATRIBUTOS 
+
 	
 	private String rua;
 	private String cidade;

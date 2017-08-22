@@ -79,7 +79,7 @@ public class RepositorioFuncionario implements IRepositorioFuncionario, Serializ
 
 		RepositorioFuncionario repositorio = null;
 
-		File carregar = new File("RepositorioFuncionario.Mercadinho");
+		File carregar = new File("RepositorioFuncionario.dat");
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;
 
@@ -115,7 +115,7 @@ public class RepositorioFuncionario implements IRepositorioFuncionario, Serializ
 				try {
 					ois.close();
 				} catch (IOException e) {
-					System.out.println("Não foi possível fechar o arquivo!");
+					System.out.println("Nï¿½o foi possï¿½vel fechar o arquivo!");
 					e.printStackTrace();
 				}
 			}
@@ -127,7 +127,7 @@ public class RepositorioFuncionario implements IRepositorioFuncionario, Serializ
 	@Override
 	public void salvarArquivo() {
 		if (!(instancia == null)) {
-			File salvar = new File("RepositorioFuncionario.Mercadinho");
+			File salvar = new File("RepositorioFuncionario.dat");
 			try {
 				if (!salvar.exists()) {
 					salvar.createNewFile();
