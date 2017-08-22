@@ -16,7 +16,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <TextField fx:id="tf_user" layoutX="224.0" layoutY="129.0" prefHeight="30.0" prefWidth="153.0" promptText="LOGIN" />
+            <TextField fx:id="tf_user" layoutX="224.0" layoutY="130.0" prefHeight="30.0" prefWidth="153.0" promptText="LOGIN" />
             <PasswordField fx:id="pf_password" layoutX="224.0" layoutY="176.0" prefHeight="30.0" prefWidth="153.0" promptText="SENHA" />
             <Label fx:id="lb_user" layoutX="135.0" layoutY="132.0" text="Usuário:">
                <font>
@@ -28,7 +28,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="lb_welcome" layoutX="208.0" layoutY="39.0" text="Sistema Mercado">
+            <Label fx:id="lb_welcome" layoutX="177.0" layoutY="46.0" text="Sistema Mercado">
                <font>
                   <Font size="30.0" />
                </font>

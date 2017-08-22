@@ -11,11 +11,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import ufrpe.gui.model.ControladorGerente;
 import ufrpe.negocio.ControladorFuncionario;
-import ufrpe.negocio.Fachada;
-import ufrpe.negocio.beans.Admin;
 import ufrpe.negocio.beans.Funcionario;
 import ufrpe.negocio.beans.Login;
-import ufrpe.negocio.exception.NegocioException;
 
 public class Principal extends Application {
 
@@ -25,7 +22,7 @@ public class Principal extends Application {
 	private Funcionario logado;
 	private Pane rootScene;
 	private ControladorFuncionario control;
-
+	private Funcionario atual;
 	// SINGLETON
 	public static Principal getInstance() {
 		if (instance == null) {
@@ -43,7 +40,15 @@ public class Principal extends Application {
 
 	}
 	
-	 public void showGerente() {
+	 public Funcionario getAtual() {
+		return atual;
+	}
+
+	public void setAtual(Funcionario atual) {
+		this.atual = atual;
+	}
+
+	public void showGerente() {
 			try {
 				FXMLLoader loader = new FXMLLoader();
 				loader.setLocation(Principal.class.getResource("views/Gerente.fxml"));
@@ -73,18 +78,7 @@ public class Principal extends Application {
 //	}
 
 	public void showLogin() {
-//		try {
-//			FXMLLoader loader = new FXMLLoader();
-//			loader.setLocation(Principal.class.getResource("views/ShowLogin.fxml"));
-//			AnchorPane Login = (AnchorPane) loader.load();
-//
-//			this.rootScene.getChildren().add(Login);
-//			ControladorMain controller = loader.getController();
-//			controller.setApp(this);
-//
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+
 		try {
 					Parent root = FXMLLoader.load(getClass().getResource("views/ShowLogin.fxml"));
 					Scene scene = new Scene(root);
@@ -110,15 +104,15 @@ public class Principal extends Application {
 	
 	public static void main(String[] args) {
 
-		Fachada fachada = Fachada.getInstancia();
-		Login log1 = new Login("admin", "padrao", "mercado");
-		Funcionario f1 = new Admin(log1, 100);
-		try {
-			fachada.inserirFuncionario(f1);
-		} catch (NegocioException e) {
-			e.printStackTrace();
-		}
-		
+//		Fachada fachada = Fachada.getInstancia();
+//		Login log1 = new Login("admin", "padrao", "mercado");
+//		Funcionario f1 = new Admin(log1, 100);
+//		try {
+//			fachada.inserirFuncionario(f1);
+//		} catch (NegocioException e) {
+//			e.printStackTrace();
+//		}
+//		
 		launch(args);
 		Login log4 = new Login("fabio", "123", "pokemon");
 		Login log2 = new Login("elthon", "123", "trator");

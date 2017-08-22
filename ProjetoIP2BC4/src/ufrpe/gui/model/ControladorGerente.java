@@ -1,16 +1,29 @@
 package ufrpe.gui.model;
 
+import java.io.IOException;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
+import javafx.stage.Stage;
+import ufrpe.gui.Principal;
 import ufrpe.negocio.beans.Funcionario;
 import ufrpe.negocio.beans.ItemVenda;
 import ufrpe.negocio.beans.Produto;
 
 public class ControladorGerente {
 	
+	
+ 
+	private Principal main;
+
 	// PRINCIPAL
 	@FXML Button btnSair;
 	
@@ -41,18 +54,21 @@ public class ControladorGerente {
 
 	// LISTAR
 	@FXML TableView <Funcionario> tbvListaFunc;
+	//@FXML TitledPane tbvListaFunc;
 	@FXML TableColumn <Funcionario, Integer> tbcFuncID;
 	@FXML TableColumn <Funcionario, String> tbcFuncNome;
 	@FXML TableColumn <Funcionario, String> tbcFuncFun;
 	@FXML TableColumn <Funcionario, Double> tbcFuncSal;
 	
-	@FXML TableView <Produto> tbvListaProd;
+	//@FXML TableView <Produto> tbvListaProd;
+	@FXML TitledPane tbvListaProd;
 	@FXML TableColumn <Produto, Integer>tbcProdCod;
 	@FXML TableColumn <Produto, String>tbcProdNome;
 	@FXML TableColumn <Produto, Double>tbcProdPrec;
 	@FXML TableColumn <Produto, Integer>tbcProdQtd;
 	
-	@FXML TableView <ItemVenda> tbvListaVenda;
+	//@FXML TableView <ItemVenda> tbvListaVenda;
+	@FXML TitledPane tbvListaVenda;
 	@FXML TableColumn <ItemVenda, Integer> tbcVenProd;
 	@FXML TableColumn <ItemVenda, String> tbcVenQtd;
 	@FXML TableColumn <ItemVenda, String> tbcVenPre;
@@ -98,7 +114,27 @@ public class ControladorGerente {
 
 	// VENDAS 
 	// TODO
+	public void sair(ActionEvent event){
+		main = Principal.getInstance();
+		Stage stage;
+		Parent root;
+		Parent old;
+		try{
+			//old = FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/Gerente.fxml"));
+			root = (Parent) FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/ShowLogin.fxml")); // NOVO FXML
+			Scene scene = new Scene(root);
+			stage = main.getPrimaryStage();
+			stage.setScene(scene);
+			main.changeStage(stage);
+			main.setAtual(null);
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	}
 	
+	public void setMain(Principal principal) {
+		this.main = principal;
+	}
 	
 
 
