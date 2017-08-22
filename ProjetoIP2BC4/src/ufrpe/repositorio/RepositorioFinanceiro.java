@@ -6,12 +6,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import ufrpe.negocio.beans.Funcionario;
 
-public class RepositorioFinanceiro implements IRepositorioFinanceiro{
+public class RepositorioFinanceiro implements IRepositorioFinanceiro, Serializable{
 	
+	
+	private static final long serialVersionUID = -3295446455781245385L;
 	IRepositorioFuncionario repositorioFuncionario;
 	IRepositorioFinanceiro repositorioFinanceiro;
 	
