@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Gerente extends Funcionario implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	
 
 	public Gerente(double salario, int identificacao, boolean recebeuSalario, Login login, String nome, String cpf,
 			Endereco endereco) {

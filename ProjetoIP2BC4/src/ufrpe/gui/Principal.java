@@ -1,11 +1,15 @@
 package ufrpe.gui;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import ufrpe.gui.model.ControladorGerente;
 import ufrpe.negocio.ControladorFuncionario;
 import ufrpe.negocio.Fachada;
 import ufrpe.negocio.beans.Funcionario;
@@ -32,10 +36,39 @@ public class Principal extends Application {
 	public void start(Stage primaryStage) {
 		instance = this;
 		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("Sistema de Mercado");//  Mercadao mil grau");
+		this.primaryStage.setTitle("Sistema de Mercado");
 		showLogin();
 
 	}
+	
+	 public void showGerente() {
+			try {
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(Principal.class.getResource("views/Gerente.fxml"));
+     			AnchorPane funcionario = (AnchorPane) loader.load();
+
+		//		rootScene.setCenter(funcionario);
+				ControladorGerente controller = loader.getController();
+		//		controller.setMainApp(this);
+
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	
+//	public void showGerente(){
+//		
+//		try {
+//			Parent root = FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/Gerente.fxml"));
+//			Scene scene = new Scene(root);
+//			primaryStage.setScene(scene);
+//			primaryStage.show();
+//			} catch(Exception e) {
+//				e.printStackTrace();
+//			}
+//		
+//	}
 
 	public void showLogin() {
 //		try {

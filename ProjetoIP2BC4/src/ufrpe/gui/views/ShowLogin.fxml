@@ -28,7 +28,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="lb_welcome" layoutX="208.0" layoutY="39.0" text="Bem Vindo!!!">
+            <Label fx:id="lb_welcome" layoutX="208.0" layoutY="39.0" text="Sistema Mercado">
                <font>
                   <Font size="30.0" />
                </font>

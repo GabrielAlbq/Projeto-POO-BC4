@@ -4,6 +4,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import ufrpe.negocio.beans.Admin;
 import ufrpe.negocio.beans.Funcionario;
+import ufrpe.negocio.beans.Gerente;
 import ufrpe.negocio.beans.Login;
 import ufrpe.negocio.exception.IdentificacaoInvalidaException;
 import ufrpe.negocio.exception.InstanciaInexistenteException;
@@ -180,6 +181,7 @@ public class ControladorFuncionario {
 	// se retornar 3 = admin (dono)
 	// se retornar -1 = informacoes nao conferem
 	public Funcionario validarLogin(Login log) throws NegocioException{
+
 		if(log == null) {
 			throw new RuntimeException("\nInstancia de Login nula!\n");
 		}
@@ -194,16 +196,23 @@ public class ControladorFuncionario {
 		if(log.getUser() == null) {
 			throw new RuntimeException("\nUsername do Login nulo!\n");
 		}
+	
 		for (Funcionario f: repoFuncionario.getFuncionarios()) {
-			if(f.getLogin().equals(log)) {
-				return f;
+			if(f.getLogin().getUser().equals(log.getUser())){
+				if(f.getLogin().getSenha().equals(log.getSenha())){
+					return f;
+				}
 			}
+		//	if(f.getLogin().equals(log)) {
+			//	return f;	
+			//}
 		}
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("Falha de Login");
 		alert.setHeaderText("Informações inválidas");
 		alert.setContentText("Usuario ou senha incorretos");
 		alert.showAndWait();
+		
 		throw new LoginInvalidoExecption("\nFalha no login! username ou password incorretos!\n");
 	}
 }

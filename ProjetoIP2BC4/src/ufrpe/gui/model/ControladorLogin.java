@@ -17,8 +17,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ufrpe.gui.Principal;
 import ufrpe.negocio.Fachada;
+import ufrpe.negocio.beans.Admin;
 import ufrpe.negocio.beans.Funcionario;
+import ufrpe.negocio.beans.Gerente;
 import ufrpe.negocio.beans.Login;
+import ufrpe.negocio.beans.Vendedor;
 import ufrpe.negocio.exception.NegocioException;
 import ufrpe.repositorio.IRepositorioFuncionario;
 import ufrpe.repositorio.RepositorioFuncionario;
@@ -68,10 +71,19 @@ public class ControladorLogin {
 		Login login = new Login(tf_user.getText().toString().toLowerCase(), pf_password.getText().toString(), "");
 		Funcionario f = null;
 		boolean logado = false;
-		
 		try {
 			f = fachada.validarLogin(login);
 			if (f != null) {
+//				
+//				if(f instanceof Gerente){
+//					main.showGerente();
+//				}
+//				if(f instanceof Vendedor){
+//					//chamar tela de Vendedor
+//				}
+//				if(f instanceof Admin){
+//					// chamar tela admin
+//				}
 				logado = true;
 				if (logado) {
 					Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -80,7 +92,7 @@ public class ControladorLogin {
 					alert.showAndWait();
 					
 					bt_logar.getScene().getWindow();
-					root = FXMLLoader.load(getClass().getResource("views/OverviewTemplate.fxml")); //NOVO FXML
+					root = FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/Gerente.fxml")); //NOVO FXML
 					
 					Scene scene = new Scene(root);
 					stage.setScene(scene);
@@ -101,38 +113,38 @@ public class ControladorLogin {
 		
 		
 		//Esse de baixo eh so pra testar, o de cima eh o que iremos utilizar
-//		String usuario = "gabriel";
-//		String senha = "123";
-//		if(tf_user.getText().toString().toLowerCase().equals(usuario) == true){
-//				 if(pf_password.getText().toString().equals(senha) == true){
-//				 logado = true;
-//				 }
-//				 try{ 
-//					 if (logado) {
-//						Alert alert = new Alert(AlertType.CONFIRMATION);
-//						alert.setTitle("Confirmacao de login");
-//						alert.setHeaderText("Logado com sucesso!");
-//						alert.showAndWait();
-//						
-//						stage = (Stage) bt_logar.getScene().getWindow();
-//						
-//						root = FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/OverviewTemplate.fxml")); //NOVO FXML
-//						Scene scene = new Scene(root);
-//						stage.setScene(scene);
-//						String tituloAtual = stage.getTitle();
-//						//stage.setTitle(tituloAtual +"Bem vindo, "+ (""+f.getNome().charAt(0)).toUpperCase() + f.getNome().substring(1, f.getNome().length()));
-//						stage.setTitle("Bem vindo, "+usuario);
-//						stage.setResizable(true);
-//						main.changeStage(stage);
-//						
-//					}
-//				 } catch (IOException e){
-//					 e.printStackTrace();
-//				 }
-//				 
-//				 
-//				 
-//		}
+		String usuario = "gabriel";
+		String senha = "123";
+		if(tf_user.getText().toString().toLowerCase().equals(usuario) == true){
+				 if(pf_password.getText().toString().equals(senha) == true){
+				 logado = true;
+				 }
+				 try{ 
+					 if (logado) {
+						Alert alert = new Alert(AlertType.CONFIRMATION);
+						alert.setTitle("Confirmacao de login");
+						alert.setHeaderText("Logado com sucesso!");
+						alert.showAndWait();
+						
+						stage = (Stage) bt_logar.getScene().getWindow();
+						
+						root = FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/OverviewTemplate.fxml")); //NOVO FXML
+						Scene scene = new Scene(root);
+						stage.setScene(scene);
+						String tituloAtual = stage.getTitle();
+						//stage.setTitle(tituloAtual +"Bem vindo, "+ (""+f.getNome().charAt(0)).toUpperCase() + f.getNome().substring(1, f.getNome().length()));
+						stage.setTitle("Bem vindo, "+usuario);
+						stage.setResizable(true);
+						main.changeStage(stage);
+						
+					}
+				 } catch (IOException e){
+					 e.printStackTrace();
+				 }
+				 
+				 
+				 
+		}
 		
 		}
 	}
