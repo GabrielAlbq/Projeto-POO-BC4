@@ -74,7 +74,21 @@ public class ControladorLogin {
 						main.changeStage(stage);
 				 }
 				 if(funcionariologado instanceof Vendedor){
-				 //chamar tela de Vendedor
+					 Alert alert = new Alert(AlertType.CONFIRMATION);
+						alert.setTitle("Confirmacao de login");
+						alert.setHeaderText(null);
+						alert.setContentText("Logado com sucesso!");
+						alert.showAndWait();
+
+						stage = (Stage) bt_logar.getScene().getWindow();
+						root = FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/Vendedor.fxml"));
+						root.setUserData(funcionariologado.getNome().toString());
+						Scene scene = new Scene(root);
+						stage.setScene(scene);
+						stage.setTitle("Bem vindo, " + funcionariologado.getNome());
+		
+						stage.setResizable(true);
+						main.changeStage(stage);
 				 }
 				 if(funcionariologado instanceof Admin){
 					 Alert alert = new Alert(AlertType.CONFIRMATION);

@@ -42,7 +42,7 @@ import ufrpe.negocio.beans.Produto;
 import ufrpe.negocio.beans.Vendedor;
 import ufrpe.negocio.exception.NegocioException;
 
-public class ControladorAdmin {
+public class ControladorVendedor{
 
 	Fachada fachada = Fachada.getInstancia();
 	private Principal main;
@@ -52,73 +52,8 @@ public class ControladorAdmin {
 	Button btnSair;
 	@FXML
 	Label lbAdmNome;
-	// CADASTRAR
-	@FXML
-	TextField tfCadFuncID;
-	@FXML
-	TextField tfCadFuncNome;
-	@FXML
-	TextField tfCadFuncCPF;
-	@FXML
-	TextField tfCadFuncLog;
-	@FXML
-	TextField tfCadFuncCid;
-	@FXML
-	TextField tfCadFuncCEP;
-	@FXML
-	TextField tfCadFuncCasa;
-	@FXML
-	TextField tfCadFuncSal;
-	@FXML
-	TextField tfCadFuncFun;
-	@FXML
-	TextField tfCadFuncLogin;
-	@FXML
-	TextField tfCadFuncSenha;
-	@FXML
-	TextField tfCadFuncPdS;
-	@FXML
-	Button btnFuncCadastrar;
-	@FXML
-	ChoiceBox<String> cbCadFuncFun;
-
-	@FXML
-	TextField tfCadProdCodigo;
-	@FXML
-	TextField tfCadProdNome;
-	@FXML
-	TextField tfCadProdPreco;
-	@FXML
-	TextField tfCadProdQtd;
-	@FXML
-	Button btnProdCadastrar;
-
-	// REMOVER
-	@FXML
-	TextField tfRemoFuncID;
-	@FXML
-	Button btnFuncRemover;
-
-	@FXML
-	TextField tfRemoProdID;
-	@FXML
-	Button btnProdRemover;
-
+	
 	// LISTAR
-	@FXML
-	TableView<Funcionario> tbvListaFunc;
-	// @FXML TitledPane tbvListaFunc;
-	@FXML
-	TitledPane tpListFunc;
-	@FXML
-	TableColumn<Funcionario, Integer> tbcFuncID;
-	@FXML
-	TableColumn<Funcionario, String> tbcFuncNome;
-	@FXML
-	TableColumn<Funcionario, String> tbcFuncFun;
-	@FXML
-	TableColumn<Funcionario, Double> tbcFuncSal;
-
 	@FXML
 	TitledPane tpListProd;
 	@FXML
@@ -177,29 +112,8 @@ public class ControladorAdmin {
 	@FXML
 	Button btnProdBuscar;
 
-	// ATUALIZAR
-	@FXML
-	TextField tfAltFuncID;
-	@FXML
-	TextField tfAltFuncNome;
-	@FXML
-	TextField tfAltFuncCPF;
-	@FXML
-	TextField tfAltFuncLog;
-	@FXML
-	TextField tfAltFuncCidade;
-	@FXML
-	TextField tfAltFuncCEP;
-	@FXML
-	TextField tfAltFuncCasa;
-	@FXML
-	TextField tfAltFuncSal;
-	@FXML
-	TextField tfAltFuncFun;
-	@FXML
+	
 	Button btnFuncBuscarAlt;
-	@FXML
-	Button btnFuncAtualizar;
 	@FXML
 	TextField tfBuscFuncNome1;
 	@FXML
@@ -277,9 +191,8 @@ public class ControladorAdmin {
 	@FXML
 	private void initialize() {
 		listarproduto();
-		listarFuncionario();
 		listarnotasfiscais();
-		this.cbCadFuncFun.getItems().addAll("Gerente", "Vendedor");
+
 		
 		tpListProd.expandedProperty().addListener(new ChangeListener<Boolean>() {
 			@Override
@@ -287,12 +200,6 @@ public class ControladorAdmin {
 				tbvListaProd.refresh();
 			}
 		});
-		 tpListFunc.expandedProperty().addListener(new ChangeListener<Boolean>() {
-		 @Override
-		 public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-			 tbvListaFunc.refresh();
-		 }
-		 });
 		 tpListaNF.expandedProperty().addListener(new ChangeListener<Boolean>() {
 			 
 			@Override
@@ -326,69 +233,11 @@ public class ControladorAdmin {
 				}
 			}
 		});
-		this.btnFuncBuscarAlt.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				int identificacao = Integer.parseInt(tfBuscFuncID1.getText().toString());
-				Funcionario f = fachada.buscarFuncionario(identificacao);
-				if (f != null) {
-					tfBuscFuncNome1.setPromptText(f.getNome());
-					tfBuscFuncCPF1.setPromptText(f.getCpf());
-					tfBuscFuncLog1.setPromptText(f.getEndereco().getRua());
-					tfBuscFuncCid1.setPromptText(f.getEndereco().getCidade());
-					tfBuscFuncCEP1.setPromptText(f.getEndereco().getCep());
-					tfBuscFuncCasa1.setPromptText(f.getEndereco().getNumero());
-					tfBuscFuncSal1.setPromptText(String.valueOf(f.getSalario()));
-					tfBuscFuncFun1.setPromptText(f.getFuncao());
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("Aviso importante!");
-					alert.setHeaderText(null);
-					alert.setContentText("Caso voce nao deseje alterar determinado campo, deixe-o em branco.");
-					alert.showAndWait();
-				}
-				if (f == null) {
-					tfBuscFuncNome1.setPromptText("");
-					tfBuscFuncCPF1.setPromptText("");
-					tfBuscFuncLog1.setPromptText("");
-					tfBuscFuncCid1.setPromptText("");
-					tfBuscFuncCEP1.setPromptText("");
-					tfBuscFuncCasa1.setPromptText("");
-					tfBuscFuncSal1.setPromptText("");
-					tfBuscFuncFun1.setPromptText("");
-				}
-			}
-		});
 		
 	}
 
 	// METODOS PARA PRODUTOS
 	private ObservableList<Produto> obListProd;
-
-	public void cadastrarproduto(ActionEvent event) {
-		try {
-			int codigo = Integer.parseInt(tfCadProdCodigo.getText().toString());
-			String nome = tfCadProdNome.getText().toString();
-			double preco = Double.parseDouble(tfCadProdPreco.getText().toString());
-			int qtd = Integer.parseInt(tfCadProdQtd.getText().toString());
-
-			Produto produto = new Produto(codigo, nome, preco, qtd);
-
-			fachada.inserirProduto(produto);
-		} catch (NegocioException e) {
-			e.printStackTrace();
-		} catch (NumberFormatException ne) {
-			ne.printStackTrace();
-		}
-	}
-
-	public void removerproduto(ActionEvent event) {
-		try {
-			fachada.removerProduto(Integer.parseInt(tfRemoProdID.getText().toString()));
-		} catch (NegocioException e) {
-			e.printStackTrace();
-		}
-	}
 
 	public void listarproduto() {
 		try {
@@ -403,41 +252,6 @@ public class ControladorAdmin {
 			e.printStackTrace();
 		}
 	}
-
-	public void alterarproduto(ActionEvent event) {
-
-		int codigo = Integer.parseInt(tfBuscProdCod1.getText().toString());
-		this.p = fachada.buscarProduto(codigo);
-		if (p != null) {
-			try {
-				if (tfBuscProdNome1.getText().isEmpty() == true) {
-					tfBuscProdNome1.setText(tfBuscProdNome1.getPromptText().toString());
-					p.setNome(tfBuscProdNome1.getPromptText().toString());
-				}
-				if (tfBuscProdPrec1.getText().trim().isEmpty() == true) {
-					tfBuscProdPrec1.setText(tfBuscProdPrec1.getPromptText().toString());
-					p.setPreco(Double.parseDouble(tfBuscProdPrec1.getPromptText().toString()));
-				}
-				if (tfBuscProdQtd1.getText().trim().isEmpty() == true) {
-					tfBuscProdQtd1.setText(tfBuscProdQtd1.getPromptText().toString());
-					p.setQuantidade(Integer.parseInt(tfBuscProdQtd1.getPromptText().toString()));
-				}
-				p.setNome(tfBuscProdNome1.getText().toString());
-				p.setPreco(Double.parseDouble(tfBuscProdPrec1.getText().toString()));
-				p.setQuantidade(Integer.parseInt(tfBuscProdQtd1.getText().toString()));
-
-				fachada.atualizarProduto(p);
-				tfBuscProdNome1.clear();
-				tfBuscProdQtd1.clear();
-				tfBuscProdPrec1.clear();
-			} catch (NegocioException e) {
-				e.printStackTrace();
-			} catch (NumberFormatException ne) {
-				ne.printStackTrace();
-			}
-		}
-	}
-
 	public void buscarproduto(ActionEvent event) {
 		int codigo = Integer.parseInt(tfBuscProdCod.getText().toString());
 		this.p = fachada.buscarProduto(codigo);
@@ -448,153 +262,7 @@ public class ControladorAdmin {
 		}
 	}
 
-	// METODOS PARA FUNCIONARIOS
 
-	private ObservableList<Funcionario> obListFunc;
-
-	public void cadastrarFuncionario(ActionEvent event) {
-		try {
-			Funcionario func;
-			int id = Integer.parseInt(tfCadFuncID.getText().toString());
-			String nome = tfCadFuncNome.getText().toString();
-			String cpf = tfCadFuncCPF.getText().toString();
-			String logradouro = tfCadFuncLog.getText().toString();
-			String cidade = tfCadFuncCid.getText().toString();
-			String cep = tfCadFuncCEP.getText().toString();
-			String casa = tfCadFuncCasa.getText().toString();
-			double salario = Double.parseDouble(tfCadFuncSal.getText().toString());
-			String user = tfCadFuncLogin.getText().toString();
-			String senha = tfCadFuncSenha.getText().toString();
-			String palavraSeguranca = tfCadFuncPdS.getText().toString();
-
-			if (cbCadFuncFun.getValue().equals("Gerente")) {
-				func = new Gerente("Gerente",salario, id, false, new Login(user, senha, palavraSeguranca), nome, cpf,
-						new Endereco(logradouro, cidade, cep, casa));
-				fachada.inserirFuncionario(func);
-			}
-			if (cbCadFuncFun.getValue().equals("Vendedor")) {
-				func = new Vendedor("Vendedor", salario, id, false, new Login(user, senha, palavraSeguranca), nome, cpf,
-						new Endereco(logradouro, cidade, cep, casa));
-				fachada.inserirFuncionario(func);
-			}
-		} catch (NegocioException e) {
-			e.printStackTrace();
-		} catch (NumberFormatException ne) {
-			ne.printStackTrace();
-		}
-	}
-
-	public void removerFuncionario(ActionEvent event) {
-		try {
-			fachada.removerFuncionario(Integer.parseInt(tfRemoFuncID.getText().toString()));
-		} catch (NegocioException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void listarFuncionario() {
-		tbvListaFunc.refresh();
-		try {
-			tbcFuncID.setCellValueFactory(new PropertyValueFactory<Funcionario, Integer>("identificacao"));
-			tbcFuncNome.setCellValueFactory(new PropertyValueFactory<Funcionario, String>("nome"));
-			tbcFuncFun.setCellValueFactory(new PropertyValueFactory<Funcionario,String>("funcao"));
-			tbcFuncSal.setCellValueFactory(new PropertyValueFactory<Funcionario, Double>("salario"));
-
-			obListFunc = FXCollections.observableArrayList(fachada.listarFuncionarios());
-			tbvListaFunc.setItems(obListFunc);
-		} catch (NegocioException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void alterarFuncionario(ActionEvent event) {
-
-	//	int id = Integer.parseInt(tfAltFuncID1.getText().toString());
-		this.f = fachada.buscarFuncionario(Integer.parseInt(tfBuscFuncID1.getText().toString()));
-		if (f != null) {
-			try {
-				if(tfBuscFuncNome1.getText().isEmpty()){
-					String nome = tfBuscFuncNome1.getPromptText().toString();
-					tfBuscFuncNome1.setText(nome);
-					f.setNome(nome);
-				}
-				if(tfBuscFuncCPF1.getText().isEmpty()){
-					String cpf = tfBuscFuncCPF1.getPromptText().toString();
-					tfBuscFuncCPF1.setText(cpf);
-					f.setCpf(cpf);
-				}
-				if(tfBuscFuncLog1.getText().isEmpty()){
-					String rua = tfBuscFuncLog1.getPromptText().toString();
-					tfBuscFuncLog1.setText(rua);
-					f.getEndereco().setRua(rua);;
-				}
-				if(tfBuscFuncCid1.getText().isEmpty()){
-					String cidade = tfBuscFuncCid1.getPromptText().toString();
-					tfBuscFuncCid1.setText(cidade);
-					f.getEndereco().setCidade(cidade);
-				}
-				if(tfBuscFuncCEP1.getText().isEmpty()){
-					String cep = tfBuscFuncCEP1.getPromptText().toString();
-					tfBuscFuncCEP1.setText(cep);
-					f.getEndereco().setCep(cep);
-				}
-				if(tfBuscFuncCasa1.getText().isEmpty()){
-					String casa = tfBuscFuncCasa1.getPromptText().toString();
-					tfBuscFuncCasa1.setText(casa);
-					f.getEndereco().setNumero(casa);
-				}
-				if(tfBuscFuncSal1.getText().isEmpty()){
-					double salario = Double.parseDouble(tfBuscFuncSal1.getPromptText().toString());
-					tfBuscFuncSal1.setText(String.valueOf(salario));
-					f.setSalario(salario);
-				}
-				if(tfBuscFuncFun1.getText().isEmpty()){
-					String funcao = tfBuscFuncFun1.getPromptText().toString();
-					tfBuscFuncFun1.setText(funcao);
-					f.setFuncao(funcao);
-				}
-				f.setNome(tfBuscFuncNome1.getText().toString());
-				f.setCpf(tfBuscFuncCPF1.getText().toString());
-				f.getEndereco().setRua(tfBuscFuncLog1.getText().toString());
-				f.getEndereco().setCidade(tfBuscFuncCid1.getText().toString());
-				f.getEndereco().setCep(tfBuscFuncCEP1.getText().toString());
-				f.getEndereco().setNumero(tfBuscFuncCasa1.getText().toString());
-				f.setSalario(Double.parseDouble(tfBuscFuncSal1.getText().toString()));
-				f.setFuncao(tfBuscFuncFun1.getText().toString());
-				
-				fachada.atualizarFuncionario(f);
-				tfBuscFuncNome1.clear();
-				tfBuscFuncCPF1.clear();
-				tfBuscFuncLog1.clear();
-				tfBuscFuncCid1.clear();
-				tfBuscFuncCEP1.clear();
-				tfBuscFuncCasa1.clear();
-				tfBuscFuncSal1.clear();
-				tfBuscFuncFun1.clear();
-			} catch (NegocioException e) {
-				e.printStackTrace();
-			} catch (NumberFormatException ne) {
-				ne.printStackTrace();
-			}
-		}
-	}
-
-	public void buscarFuncionario(ActionEvent event) {
-		int id = Integer.parseInt(tfBuscFuncID.getText().toString());
-		this.f = fachada.buscarFuncionario(id);
-		if (f != null) {
-			tfBuscFuncNome.setText(f.getNome());
-			tfBuscFuncCPF.setText(f.getCpf());
-			tfBuscFuncLog.setText(f.getEndereco().getRua());
-			tfBuscFuncCid.setText(f.getEndereco().getCidade());
-			tfBuscFuncCEP.setText(f.getEndereco().getCep());
-			tfBuscFuncCasa.setText(f.getEndereco().getNumero());
-			tfBuscFuncSal.setText(String.valueOf(f.getSalario()));
-			tfBuscFuncFun.setText(f.getFuncao());
-		}
-	}
-	
-	
 	//METODOS PARA VENDAS
 	ObservableList<ItemVenda> obListVenda;
 	double totalapagar = 0;

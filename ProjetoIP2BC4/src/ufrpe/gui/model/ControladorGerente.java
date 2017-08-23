@@ -279,7 +279,7 @@ public class ControladorGerente {
 		listarproduto();
 		listarFuncionario();
 		listarnotasfiscais();
-		this.cbCadFuncFun.getItems().addAll("Gerente", "Vendedor");
+		this.cbCadFuncFun.getItems().addAll("Vendedor");
 		
 		tpListProd.expandedProperty().addListener(new ChangeListener<Boolean>() {
 			@Override
