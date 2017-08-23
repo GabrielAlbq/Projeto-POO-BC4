@@ -254,11 +254,11 @@
                      <children>
                         <Accordion prefHeight="96.0" prefWidth="217.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <panes>
-                              <TitledPane animated="false" prefHeight="160.0" prefWidth="308.0" text="Buscar Funcionario" wrapText="true">
+                              <TitledPane animated="false" prefHeight="494.0" prefWidth="600.0" text="Buscar Funcionario" wrapText="true">
                                  <content>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                    <AnchorPane prefHeight="425.0" prefWidth="598.0">
                                        <children>
-                                          <Label layoutX="22.0" layoutY="43.0" text="Identificação">
+                                          <Label layoutX="11.0" layoutY="43.0" text="Identificação">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
@@ -278,7 +278,7 @@
                                                 <Font size="16.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="tfBuscFuncID" layoutX="118.0" layoutY="43.0" />
+                                          <TextField fx:id="tfBuscFuncID" layoutX="113.0" layoutY="39.0" />
                                           <TextField fx:id="tfBuscFuncCPF" editable="false" layoutX="113.0" layoutY="142.0" />
                                           <TextField fx:id="tfBuscFuncNome" editable="false" layoutX="113.0" layoutY="104.0" />
                                           <TextField fx:id="tfBuscFuncLog" editable="false" layoutX="113.0" layoutY="181.0" />
@@ -293,7 +293,7 @@
                                                 <Font size="16.0" />
                                              </font>
                                           </Label>
-                                          <Label layoutX="299.0" layoutY="147.0" text="Nº da casa">
+                                          <Label layoutX="300.0" layoutY="146.0" text="Nº da casa">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
@@ -313,7 +313,7 @@
                                           <TextField fx:id="tfBuscFuncCasa" editable="false" layoutX="382.0" layoutY="146.0" />
                                           <TextField fx:id="tfBuscFuncSal" editable="false" layoutX="381.0" layoutY="185.0" />
                                           <TextField fx:id="tfBuscFuncFun" editable="false" layoutX="381.0" layoutY="224.0" />
-                                          <Separator layoutX="188.0" layoutY="74.0" prefWidth="200.0" AnchorPane.bottomAnchor="194.0" AnchorPane.leftAnchor="-12.0" AnchorPane.rightAnchor="-12.0" AnchorPane.topAnchor="74.0" />
+                                          <Separator layoutX="1.0" layoutY="88.0" prefHeight="3.0" prefWidth="571.0" AnchorPane.leftAnchor="-12.0" AnchorPane.rightAnchor="-12.0" />
                                        </children>
                                     </AnchorPane>
                                  </content>
@@ -323,7 +323,7 @@
                               </TitledPane>
                               <TitledPane animated="false" layoutX="10.0" layoutY="10.0" prefHeight="143.0" prefWidth="353.0" text="Buscar Produto" wrapText="true">
                                  <content>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                    <AnchorPane prefHeight="425.0" prefWidth="616.0">
                                        <children>
                                           <Label layoutX="64.0" layoutY="29.0" text="Código">
                                              <font>
@@ -350,7 +350,7 @@
                                           <TextField fx:id="tfBuscProdNome" editable="false" layoutX="265.0" layoutY="116.0" />
                                           <TextField fx:id="tfBuscProdQtd" editable="false" layoutX="265.0" layoutY="193.0" />
                                           <Button fx:id="btnProdBuscar" layoutX="332.0" layoutY="22.0" mnemonicParsing="false" onAction="#buscarproduto" prefHeight="35.0" prefWidth="156.0" text="BUSCAR" />
-                                          <Separator layoutX="185.0" layoutY="88.0" prefWidth="200.0" AnchorPane.leftAnchor="-12.0" AnchorPane.rightAnchor="-12.0" />
+                                          <Separator layoutX="185.0" layoutY="88.0" prefWidth="200.0" AnchorPane.leftAnchor="-12.0" AnchorPane.rightAnchor="-5.0" />
                                        </children>
                                     </AnchorPane>
                                  </content>
@@ -428,7 +428,7 @@
                                           <TextField fx:id="tfBuscFuncCasa1" editable="false" layoutX="382.0" layoutY="146.0" />
                                           <TextField fx:id="tfBuscFuncSal1" editable="false" layoutX="381.0" layoutY="185.0" />
                                           <TextField fx:id="tfBuscFuncFun1" editable="false" layoutX="381.0" layoutY="224.0" />
-                                          <Separator layoutX="188.0" layoutY="74.0" prefWidth="200.0" AnchorPane.bottomAnchor="194.0" AnchorPane.leftAnchor="-12.0" AnchorPane.rightAnchor="-12.0" AnchorPane.topAnchor="74.0" />
+                                          <Separator layoutX="1.0" layoutY="90.0" prefWidth="200.0" AnchorPane.leftAnchor="-12.0" AnchorPane.rightAnchor="-12.0" />
                                           <Button fx:id="btnFuncAtualizar" layoutX="439.0" layoutY="40.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="115.0" text="ATUALIZAR" />
                                        </children>
                                     </AnchorPane>
@@ -462,9 +462,9 @@
                                              </font>
                                           </Label>
                                           <TextField fx:id="tfBuscProdCod1" layoutX="135.0" layoutY="27.0" />
-                                          <TextField fx:id="tfBuscProdPrec1" editable="false" layoutX="173.0" layoutY="154.0" />
-                                          <TextField fx:id="tfBuscProdNome1" editable="false" layoutX="173.0" layoutY="116.0" />
-                                          <TextField fx:id="tfBuscProdQtd1" editable="false" layoutX="173.0" layoutY="193.0" />
+                                          <TextField fx:id="tfBuscProdPrec1" layoutX="173.0" layoutY="154.0" />
+                                          <TextField fx:id="tfBuscProdNome1" layoutX="173.0" layoutY="116.0" />
+                                          <TextField fx:id="tfBuscProdQtd1" layoutX="173.0" layoutY="193.0" />
                                           <Button fx:id="btnProdBuscarAlt" layoutX="332.0" layoutY="22.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="156.0" text="BUSCAR" />
                                           <Separator layoutX="185.0" layoutY="88.0" prefWidth="200.0" AnchorPane.leftAnchor="-12.0" AnchorPane.rightAnchor="-12.0" />
                                           <Button fx:id="btnProdAtualizar" layoutX="404.0" layoutY="195.0" mnemonicParsing="false" onAction="#alterarproduto" prefHeight="35.0" prefWidth="156.0" text="ATUALIZAR" />

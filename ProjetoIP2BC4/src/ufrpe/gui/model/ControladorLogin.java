@@ -76,7 +76,6 @@ public class ControladorLogin {
 
 					stage = (Stage) bt_logar.getScene().getWindow();
 					root = FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/Gerente.fxml"));
-					
 					root.setUserData(funcionariologado.getNome().toString());
 					Scene scene = new Scene(root);
 					stage.setScene(scene);

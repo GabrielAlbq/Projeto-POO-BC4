@@ -95,7 +95,7 @@ public class Fachada {
 
 	// SISTEMA FUNCIONARIO
 
-	public String listarFuncionarios() throws NegocioException{
+	public List<Funcionario> listarFuncionarios() throws NegocioException{
 		return controladorFuncionario.listarFuncionarios();
 	}
 	

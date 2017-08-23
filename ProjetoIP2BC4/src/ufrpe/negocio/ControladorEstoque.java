@@ -35,7 +35,6 @@ public class ControladorEstoque {
 	}
 
 	// METODOS COM CONTROLE DE NEGOCIOS
-	// TODO usar collections neste metodo
 	public List<Produto> listarProduto() throws NegocioException{
 		if (repoestoque.listar().isEmpty() == true) {
 			throw new InstanciaInexistenteException("\nNao ha produtos cadastrados!\n");
@@ -124,7 +123,10 @@ public class ControladorEstoque {
 		if (repoestoque.listar().get(posicao).getCodigo() == novoProduto.getCodigo()) {
 			repoestoque.alterar(novoProduto, posicao);
 			instancia.repoestoque.salvarArquivo();
-			System.out.println("Produto alterado com sucesso!");
+			alert.setTitle("Produto alterado");
+			alert.setHeaderText(null);
+			alert.setContentText("Produto alterado com sucesso!");
+			alert.showAndWait();
 		}
 	}
 

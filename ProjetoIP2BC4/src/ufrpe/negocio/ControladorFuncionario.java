@@ -1,10 +1,10 @@
 package ufrpe.negocio;
 
+import java.util.List;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import ufrpe.negocio.beans.Admin;
 import ufrpe.negocio.beans.Funcionario;
-import ufrpe.negocio.beans.Gerente;
 import ufrpe.negocio.beans.Login;
 import ufrpe.negocio.exception.IdentificacaoInvalidaException;
 import ufrpe.negocio.exception.InstanciaInexistenteException;
@@ -20,7 +20,7 @@ public class ControladorFuncionario {
 	
 	private IRepositorioFuncionario repoFuncionario;
 	private static ControladorFuncionario instancia;
-	
+	Alert alert = new Alert(AlertType.INFORMATION);
 	// SINGLETON
 	
 	public static ControladorFuncionario getInstancia () {
@@ -127,17 +127,11 @@ public class ControladorFuncionario {
 		return -1;
 	}
 	
-	public String listarFuncionarios() throws NegocioException{
-		String texto = "";
+	public List<Funcionario> listarFuncionarios() throws NegocioException{
 		if(repoFuncionario.getFuncionarios().isEmpty()) {
 			throw new InstanciaInexistenteException("\nNao ah funcionarios cadastrados\n");
 		}
-		for (Funcionario f : repoFuncionario.getFuncionarios()) {
-			if(!(f instanceof Admin)) {
-				texto += "\n_______________________________________\n"+f.toString();
-			}
-		}
-		return texto;
+		return repoFuncionario.getFuncionarios();
 	}
 	
 	// METODOS DO SISTEMA DE LOGIN
