@@ -1,5 +1,6 @@
 package ufrpe.repositorio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ufrpe.negocio.beans.ItemVenda;
@@ -12,7 +13,9 @@ public interface IRepositorioVenda {
 	List<ItemVenda> listar();
 
 	List<NotaFiscal> listarNotasFiscais();
-
+	
+	ArrayList<ItemVenda> getItensvenda();
+	 
 	void adicionarNotaFiscal(NotaFiscal notaFiscal);
 
 	void limparHistoricoNotasFiscais();

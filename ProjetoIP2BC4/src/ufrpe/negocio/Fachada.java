@@ -17,7 +17,7 @@ public class Fachada {
 	private ControladorEstoque controladorEstoque;
 	private ControladorFuncionario controladorFuncionario;
 	private ControladorFinanceiro controladorFinanceiro;
-	private Pedido pedido;
+//	private Pedido pedido;
 
 	// SINGLETON
 
@@ -28,7 +28,7 @@ public class Fachada {
 		controladorEstoque = ControladorEstoque.getInstancia();
 		controladorFuncionario = ControladorFuncionario.getInstancia();
 		controladorFinanceiro = ControladorFinanceiro.getInstancia();
-		pedido = Pedido.getInstancia();
+		//pedido = Pedido.getInstancia();
 	}
 
 	public static Fachada getInstancia() {
@@ -45,15 +45,18 @@ public class Fachada {
 	// SISTEMA VENDA
 
 	public void encerrarPedido() throws NegocioException{
-		pedido.encerrarPedido();
+		//pedido.encerrarPedido();
+		controladorVenda.encerrarPedido();
 	}
 
-	public void gerarNotaFiscal(Funcionario funcionario) {
-		pedido.gerarNotaFiscal(funcionario);
+	public void gerarNotaFiscal(Funcionario funcionario) throws NegocioException {
+		controladorVenda.gerarNotaFiscal(funcionario);
+		//pedido.gerarNotaFiscal(funcionario);
 	}
 
 	public void cancelarPedido() {
-		pedido.resetarPedido();
+	//	pedido.resetarPedido();
+		controladorVenda.resetarPedido();
 	}
 
 	public List<ItemVenda> listarItensVenda() throws NegocioException{

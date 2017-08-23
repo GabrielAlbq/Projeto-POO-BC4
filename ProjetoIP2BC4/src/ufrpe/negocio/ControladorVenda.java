@@ -2,6 +2,9 @@ package ufrpe.negocio;
 
 import java.util.List;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import ufrpe.negocio.beans.Funcionario;
 import ufrpe.negocio.beans.ItemVenda;
 import ufrpe.negocio.beans.NotaFiscal;
 import ufrpe.negocio.beans.Produto;
@@ -16,13 +19,15 @@ import ufrpe.repositorio.RepositorioVenda;
 public class ControladorVenda {
 
 	// ATRIBUTOS
-
+	private ControladorFinanceiro controladorFinanceiro;
 	private IRepositorioEstoque repoEstoque;
 	private IRepositorioVenda repoVenda;
-	private Pedido pedido;
+	//private Pedido pedido;
 	private ControladorEstoque controlEstoque; // PARA COMPARAR A QUANTIDADE DO
-												// PRODUTO ORIGINAL
-
+	private int contadorCodigoNota; // variavel que coloca o codigo da nota
+	// fiscal de modo que nao se repetem
+	private double totalPagar;			// PRODUTO ORIGINAL
+	private int qtdItens;
 	// SINGLETON
 
 	private static ControladorVenda instancia;
@@ -30,8 +35,12 @@ public class ControladorVenda {
 	private ControladorVenda() {
 		repoVenda = RepositorioVenda.getInstancia();
 		repoEstoque = RepositorioEstoque.getInstancia();
-		pedido = Pedido.getInstancia();
+		//pedido = Pedido.getInstancia();
+		controladorFinanceiro = ControladorFinanceiro.getInstancia();
 		controlEstoque = ControladorEstoque.getInstancia();
+		qtdItens = 0;
+		contadorCodigoNota = 1000;
+		totalPagar = 0;
 	}
 
 	public static ControladorVenda getInstancia() {
@@ -63,6 +72,7 @@ public class ControladorVenda {
 			throw new RuntimeException("\nInstancia de NotaFiscal nula!\n");
 		}
 		repoVenda.adicionarNotaFiscal(notaFiscal);
+		instancia.repoVenda.salvarArquivo();
 	}
 
 	public void limparHistoricoNotasFiscais() { // Apaga as notas fiscais
@@ -85,4 +95,37 @@ public class ControladorVenda {
 		repoVenda.inserirItemVenda(itemvenda);
 		//instancia.repoVenda.salvarArquivo();
 	}
+	
+	public void resetarPedido() {
+		repoVenda.listar().clear();
+	}
+
+	public void encerrarPedido() throws NegocioException{
+		for (ItemVenda item : repoVenda.listar()) {
+			totalPagar += item.valorTotal();
+		}
+		controladorFinanceiro.receberDinheiroVenda(totalPagar);
+
+		for (ItemVenda item : repoVenda.listar()) {
+			controlEstoque.subtrairProduto(item.getCodigo(), item.getQtd());
+		}
+	}
+
+	public void gerarNotaFiscal(Funcionario funcionario) {
+		NotaFiscal teste = new NotaFiscal(funcionario, repoVenda.getItensvenda(), totalPagar, contadorCodigoNota, repoVenda.listar().size());
+		//controlvenda.adicionarNotaFiscal(teste);
+		repoVenda.adicionarNotaFiscal(teste);
+		contadorCodigoNota++;
+		//instancia.repoVenda.salvarArquivo();
+		repoVenda.listar().clear();
+		//repoVenda.limparArrayItemVenda();
+		this.totalPagar = 0;
+		instancia.repoVenda.salvarArquivo();
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Nota fiscal gerada");
+		alert.setHeaderText(null);
+		alert.setContentText("Nota fiscal gerada com sucesso!");
+		alert.showAndWait();
+	}
+
 }

@@ -263,7 +263,7 @@
                                           </AnchorPane>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="401.0" prefWidth="378.0">
                                              <children>
-                                                <TableView fx:id="tbvListaProd1" prefHeight="401.0" prefWidth="370.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                <TableView fx:id="tbvIVNF" prefHeight="401.0" prefWidth="370.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                    <columns>
                                                       <TableColumn fx:id="tbcNFItemNome" text="Nome" />
                                                       <TableColumn fx:id="tbcNFItemQtd" prefWidth="106.0" text="Quantidade" />

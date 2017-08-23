@@ -1,7 +1,12 @@
 package ufrpe.gui.model;
 
 import java.io.IOException;
+import java.util.Observable;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -14,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -23,6 +29,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import ufrpe.gui.Principal;
 import ufrpe.negocio.Fachada;
 import ufrpe.negocio.beans.Endereco;
@@ -260,15 +267,17 @@ public class ControladorGerente {
 	@FXML TableColumn<NotaFiscal, Integer> tbcNF;
 	@FXML TableColumn<NotaFiscal, Double> tbcTotalNF;
 	@FXML TableColumn<NotaFiscal, Funcionario>tbcFuncNF;
-	@FXML TableColumn<NotaFiscal, String> tbcNFItemNome;
+	@FXML TableColumn<NotaFiscal, ItemVenda> tbcNFItemNome;
 	@FXML TableColumn<NotaFiscal, Integer> tbcNFItemQtd;
 	@FXML TableColumn<NotaFiscal, Double> tbcNFItemPreco;
 	@FXML TableColumn<NotaFiscal, Double> tbcNFItemTotal;
 	@FXML TitledPane tpListaNF;
+	@FXML TableView<NotaFiscal> tbvIVNF;
 	@FXML
 	private void initialize() {
 		listarproduto();
 		listarFuncionario();
+		listarnotasfiscais();
 		this.cbCadFuncFun.getItems().addAll("Gerente", "Vendedor");
 		
 		tpListProd.expandedProperty().addListener(new ChangeListener<Boolean>() {
@@ -291,7 +300,9 @@ public class ControladorGerente {
 				
 			}
 		});
-		 
+		
+		 tbvNF.getSelectionModel().selectedItemProperty().addListener(
+				 (observable, oldValue, newValue) -> selecionarNotaFiscalTableView(newValue));
 		this.btnProdBuscarAlt.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -666,9 +677,16 @@ public class ControladorGerente {
 			tbcNF.setCellValueFactory(new PropertyValueFactory<NotaFiscal, Integer>("codigoDaNota"));
 			tbcTotalNF.setCellValueFactory(new PropertyValueFactory<NotaFiscal, Double>("totalPagar"));
 			tbcFuncNF.setCellValueFactory(new PropertyValueFactory<NotaFiscal, Funcionario>("funcionario"));
-			
 			obListNF = FXCollections.observableArrayList(fachada.listarVendas());
 			tbvNF.setItems(obListNF);
+	}
+	public void selecionarNotaFiscalTableView(NotaFiscal nf){
+		
+		
+		//tbcNFItemNome.setCellValueFactory(new PropertyValueFactory<nf, ItemVenda>("itensVendidos"));
+	//	tbcNFItemQtd;
+	//	tbcNFItemPreco;
+	//	tbcNFItemTotal;
 	}
 	// DESLOGAR
 	public void sair(ActionEvent event) {

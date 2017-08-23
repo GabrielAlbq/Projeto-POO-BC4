@@ -2,9 +2,10 @@ package ufrpe.negocio.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class NotaFiscal implements Serializable {
+public class NotaFiscal implements Serializable, Cloneable {
 	
 	//ATRIBUTOS
 	private static final long serialVersionUID = -6612494956675446965L;
@@ -15,11 +16,18 @@ public class NotaFiscal implements Serializable {
 	private int codigoDaNota; // Codigo da nota fiscal
 	
 	// CONSTRUTOR 
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
 	
 	public NotaFiscal(Funcionario funcionario,ArrayList<ItemVenda> itensVendidos,
 			          double totalPagar, int codigoDaNota, int qtdItens) {
 		this.funcionario = funcionario;
+	//	this.itensVendidos = new ArrayList(Collection);
 		this.itensVendidos = (ArrayList<ItemVenda>) itensVendidos.clone();
+//		this.itensVendidos = (List<ItemVenda>) ((Object) itensVendidos).clone();
+		Collections.copy(this.itensVendidos, itensVendidos);
 	//	this.itensVendidos = itensVendidos.clone();
 		this.totalPagar = totalPagar;
 		this.codigoDaNota = codigoDaNota;

@@ -143,7 +143,7 @@ public class PrincipalConsole {
 											} catch(NegocioException exception) {
 												exception.printStackTrace();
 											}
-											fachada.gerarNotaFiscal(f);
+											//fachada.gerarNotaFiscal(f);
 										}
 										auxiliarVenda = true;
 										terminarVenda = true;
