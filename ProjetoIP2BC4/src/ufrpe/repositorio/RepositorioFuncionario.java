@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import ufrpe.negocio.beans.Admin;
 import ufrpe.negocio.beans.Funcionario;
 import ufrpe.negocio.beans.Gerente;
 import ufrpe.negocio.beans.Login;
@@ -36,10 +37,10 @@ public class RepositorioFuncionario implements IRepositorioFuncionario, Serializ
 	
 	private RepositorioFuncionario() {
 		funcs = new ArrayList<>();
-		Login login = new Login("elthon", "123", "");
-		Funcionario novo = new Gerente(6000d, 12345, true, login, "", null, null);
+		Login log1 = new Login("admin", "padrao", "mercado");
+		Funcionario f1 = new Admin(log1, 100);
 		//Funcionario novo = new Funcionario();
-		funcs.add(novo);
+		funcs.add(f1);
 	}
 	
 	// METODOS - as validacoes serao feitas no controlador utilizando estes metodos

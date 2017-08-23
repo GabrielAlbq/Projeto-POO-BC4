@@ -56,13 +56,8 @@ public class RepositorioVenda implements IRepositorioVenda, Serializable {
 		return text;
 	}
 
-	public String listarNotasFiscais() {
-		String text = "";
-		for (int i = 0; i < this.notas.size(); i++) { // Imprimir na tela todas
-														// as notas fiscais
-			text += notas.get(i).toString();
-		}
-		return text;
+	public List<NotaFiscal> listarNotasFiscais() {
+		return notas;
 	}
 
 	public void adicionarNotaFiscal(NotaFiscal notaFiscal) { // Adiciona nota

@@ -1,5 +1,7 @@
 package ufrpe.negocio;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import ufrpe.negocio.beans.Funcionario;
 import ufrpe.negocio.beans.ItemVenda;
 import ufrpe.negocio.beans.NotaFiscal;
@@ -9,7 +11,7 @@ import ufrpe.repositorio.RepositorioVenda;
 public class Pedido {
 
 	// ATRIBUTOS
-
+	//private ControladorVenda controlvenda;
 	private ControladorEstoque controlEstoque;
 	private RepositorioVenda repoVenda;
 	private ControladorFinanceiro controladorFinanceiro;
@@ -27,6 +29,7 @@ public class Pedido {
 		controlEstoque = ControladorEstoque.getInstancia();
 		repoVenda = RepositorioVenda.getInstancia();
 		controladorFinanceiro = ControladorFinanceiro.getInstancia();
+		//controlvenda.getInstancia();
 		qtdItens = 0;
 		contadorCodigoNota = 1000;
 		totalPagar = 0;
@@ -61,10 +64,17 @@ public class Pedido {
 	public void gerarNotaFiscal(Funcionario funcionario) {
 		NotaFiscal teste = new NotaFiscal(funcionario, repoVenda.getItensvenda(), totalPagar, contadorCodigoNota,
 		repoVenda.getItensvenda().size());
+		
 		repoVenda.adicionarNotaFiscal(teste);
 		contadorCodigoNota++;
 		repoVenda.limparArrayItemVenda();
 		this.totalPagar = 0;
+		instancia.repoVenda.salvarArquivo();
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Nota fiscal gerada");
+		alert.setHeaderText(null);
+		alert.setContentText("Nota fiscal gerada com sucesso!");
+		alert.showAndWait();
 	}
 
 }

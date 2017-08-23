@@ -52,14 +52,14 @@ public class PrincipalConsole {
 		Login log3 = new Login("admin", "admin", "chefe");
 		Endereco end1 = new Endereco("rua a", "cidade a", "cep a", "numero a");
 		Endereco end2 = new Endereco("rua b", "cidade b", "cep b", "numero b");
-		Vendedor vendedor = new Vendedor(2000, 1, false, log1, "fabio", "11122233344", end1);
-		Gerente gerente = new Gerente(3000, 2, false, log2, "elthon", "66655588844", end2);
+	//	Vendedor vendedor = new Vendedor(2000, 1, false, log1, "fabio", "11122233344", end1);
+		//Gerente gerente = new Gerente(3000, 2, false, log2, "elthon", "66655588844", end2);
 		Admin adm = new Admin(log3, 100);
 		
 		try {
-			fachada.inserirFuncionario(vendedor);
-			fachada.inserirFuncionario(gerente);
-			fachada.inserirFuncionario(adm);
+		//	fachada.inserirFuncionario(vendedor);
+		//	fachada.inserirFuncionario(gerente);
+		fachada.inserirFuncionario(adm);
 		} catch(NegocioException exception) {
 			exception.printStackTrace();
 		}

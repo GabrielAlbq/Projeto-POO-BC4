@@ -53,6 +53,10 @@ public class ControladorEstoque {
 					repoestoque.subtrairProduto(pos, quantidade);
 				}
 				else {
+					alert.setTitle("Quantidade insuficiente");
+					alert.setHeaderText(null);
+					alert.setContentText("Quantidade insuficiente em estoque");
+					alert.showAndWait();
 					throw new QuantidadeInvalidaException("\nQuantidade insuficiente para subtracao!\n");
 				}
 				break;

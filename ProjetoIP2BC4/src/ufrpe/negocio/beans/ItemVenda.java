@@ -6,13 +6,30 @@ public class ItemVenda implements Serializable{
 
 	
 	
-	private static final long serialVersionUID = 4977119898406626026L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4285125528868671405L;
+	/**
+	 * 
+	 */
+	//private static final long serialVersionUID = -4285125528868671405L;
+	/**
+	 * 
+	 */
+//	private static final long serialVersionUID = 554431830042133930L;
+	/**
+	 * 
+	 */
+	//private static final long serialVersionUID = 554431830042133930L;
+	
 	// ATRIBUTOS
 
 	private String nome;
 	private double preco;
 	private int codigo;
 	private int qtd;
+	private double valort;
 	// CONSTRUTORES
 
 	public ItemVenda(int codigo, String nome, double preco, int qtd) {
@@ -20,6 +37,7 @@ public class ItemVenda implements Serializable{
 		this.preco = preco;
 		this.codigo = codigo;
 		this.qtd = qtd;
+		this.valort = preco*qtd;
 	}
 
 	public ItemVenda(Produto prod, int quantidade) {
@@ -27,6 +45,9 @@ public class ItemVenda implements Serializable{
 		this.preco = prod.getPreco();
 		this.codigo = prod.getCodigo();
 		this.qtd = quantidade;
+		//this.valortotal =(double) (prod.getPreco() * quantidade);
+		this.valort = prod.getPreco()*quantidade;
+
 	}
 
 	public double valorTotal() {
@@ -37,6 +58,14 @@ public class ItemVenda implements Serializable{
 
 	public String getNome() {
 		return nome;
+	}
+
+	public double getValort() {
+		return valort;
+	}
+
+	public void setValort(double valort) {
+		this.valort = valort;
 	}
 
 	public void setNome(String nome) {

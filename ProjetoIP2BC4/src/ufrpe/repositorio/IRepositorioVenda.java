@@ -11,7 +11,7 @@ public interface IRepositorioVenda {
 
 	List<ItemVenda> listar();
 
-	String listarNotasFiscais();
+	List<NotaFiscal> listarNotasFiscais();
 
 	void adicionarNotaFiscal(NotaFiscal notaFiscal);
 

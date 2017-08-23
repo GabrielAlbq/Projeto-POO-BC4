@@ -1,5 +1,7 @@
 package ufrpe.negocio;
 
+import java.util.List;
+
 import ufrpe.negocio.beans.ItemVenda;
 import ufrpe.negocio.beans.NotaFiscal;
 import ufrpe.negocio.beans.Produto;
@@ -41,21 +43,16 @@ public class ControladorVenda {
 
 	// METODOS
 
-	public String listarNotasFiscais() { // lista todas as notas fiscais
+	public List<NotaFiscal> listarNotasFiscais() { // lista todas as notas fiscais
 		return repoVenda.listarNotasFiscais();
 	}
 
-	public String listarItensVenda() throws NegocioException{ // lista todas os ItensVenda do
+	public List<ItemVenda> listarItensVenda() throws NegocioException{ // lista todas os ItensVenda do
 										// repositorioVenda
 		if (repoVenda.listar().isEmpty() == true) {
 			throw new InstanciaInexistenteException("\nNao ha produtos cadastrados!\n");
 		}
-		String texto = "";
-		for (ItemVenda iv : repoVenda.listar()) {
-			texto += "\n" + iv.toString();
-		}
-		return texto;
-		// return repoVenda.listaItensVenda();
+		return repoVenda.listar();
 	}
 
 	public void adicionarNotaFiscal(NotaFiscal notaFiscal) throws NegocioException{ // adiciona uma
@@ -81,11 +78,11 @@ public class ControladorVenda {
 			throw new RuntimeException("\nInstancia de NotaFiscal nula!\n");
 		}
 		Produto prod = controlEstoque.buscar(itemvenda.getCodigo());
-		if (itemvenda.getQtd() > prod.getQuantidade()) {
+		if (itemvenda.getQtd() > prod.getQuantidade() || itemvenda.getQtd() < 0) {
 			//System.out.println("Quantidade maior do que a do produto");
-			throw new QuantidadeInvalidaException("\nQuantidade maior do que a do produto\n");
+			throw new QuantidadeInvalidaException("\nQuantidade maior do que a do produto ou menor que 0\n");
 		}
 		repoVenda.inserirItemVenda(itemvenda);
-		instancia.repoVenda.salvarArquivo();
+		//instancia.repoVenda.salvarArquivo();
 	}
 }

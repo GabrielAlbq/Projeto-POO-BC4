@@ -5,6 +5,7 @@ import java.util.List;
 import ufrpe.negocio.beans.Funcionario;
 import ufrpe.negocio.beans.ItemVenda;
 import ufrpe.negocio.beans.Login;
+import ufrpe.negocio.beans.NotaFiscal;
 import ufrpe.negocio.beans.Produto;
 import ufrpe.negocio.exception.NegocioException;
 
@@ -55,11 +56,11 @@ public class Fachada {
 		pedido.resetarPedido();
 	}
 
-	public String listarItensVenda() throws NegocioException{
+	public List<ItemVenda> listarItensVenda() throws NegocioException{
 		return controladorVenda.listarItensVenda();
 	}
 
-	public String listarVendas() {
+	public List<NotaFiscal> listarVendas() {
 		return controladorVenda.listarNotasFiscais();
 	}
 

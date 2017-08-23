@@ -59,6 +59,10 @@ public class ControladorFuncionario {
 		}
 		repoFuncionario.inserir(funcInserir);
 		instancia.repoFuncionario.salvarArquivo();
+		alert.setTitle("Funcionario inserido");
+		alert.setHeaderText(null);
+		alert.setContentText("Funcionario inserido com sucesso!");
+		alert.showAndWait();
 	}
 	
 	public void remover (int identificacao) throws NegocioException{
@@ -76,9 +80,12 @@ public class ControladorFuncionario {
 			//System.out.println("\n\tErro! Funcionario nao exite!\n\n");
 			throw new InstanciaInexistenteException("\nFuncionario nao exite!\n");
 		}
-		System.out.println("\tFuncionario removido com sucesso!");
 		((RepositorioFuncionario)repoFuncionario).remover(checagem);
 			instancia.repoFuncionario.salvarArquivo();
+			alert.setTitle("Funcionario removido");
+			alert.setHeaderText(null);
+			alert.setContentText("Funcionario removido com sucesso!");
+			alert.showAndWait();
 	}
 	
 	public void alterar (Funcionario funcionarioAlterar) throws NegocioException{

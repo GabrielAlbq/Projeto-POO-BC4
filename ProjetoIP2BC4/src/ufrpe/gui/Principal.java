@@ -11,11 +11,11 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import ufrpe.gui.model.ControladorGerente;
 import ufrpe.negocio.ControladorFuncionario;
+import ufrpe.negocio.Fachada;
 import ufrpe.negocio.beans.Admin;
 import ufrpe.negocio.beans.Funcionario;
-import ufrpe.negocio.beans.Gerente;
 import ufrpe.negocio.beans.Login;
-import ufrpe.negocio.beans.Vendedor;
+import ufrpe.negocio.exception.NegocioException;
 
 public class Principal extends Application {
 

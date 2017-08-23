@@ -5,9 +5,18 @@ import java.io.Serializable;
 public abstract class Funcionario implements Serializable{
 	
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3482784901792220501L;
+	/**
+	 * 
+	 */
+	//private static final long serialVersionUID = 3569337822406696593L;
 	//ATRIBUTOS
 
-	private static final long serialVersionUID = 2886632581022532992L;
+	//private static final long serialVersionUID = -1773429005319533966L;
+	//private static final long serialVersionUID = 2886632581022532992L;
 	private double salario;
 	private int identificacao;
 	private boolean recebeuSalario;
@@ -15,11 +24,12 @@ public abstract class Funcionario implements Serializable{
 	private String nome;
 	private String cpf;
 	private Endereco endereco;
-	
+	private String funcao;
 	// CONSTRUTOR
 	
-	public Funcionario(double salario, int identificacao, boolean recebeuSalario, Login login, String nome, String cpf,
+	public Funcionario(String funcao, double salario, int identificacao, boolean recebeuSalario, Login login, String nome, String cpf,
 			Endereco endereco) {
+		this.funcao = funcao;
 		this.salario = salario;
 		this.identificacao = identificacao;
 		this.recebeuSalario = recebeuSalario;
@@ -48,6 +58,18 @@ public abstract class Funcionario implements Serializable{
 		return salario;
 	}
 
+	public void setIdentificacao(int identificacao) {
+		this.identificacao = identificacao;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+	public String getFuncao() {
+		return funcao;
+	}
+	public void setFuncao(String funcao) {
+		this.funcao = funcao;
+	}
 	public void setSalario(double salario) {
 		this.salario = salario;
 	}
