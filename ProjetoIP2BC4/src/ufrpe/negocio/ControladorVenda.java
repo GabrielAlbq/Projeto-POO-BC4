@@ -114,8 +114,8 @@ public class ControladorVenda {
 	public void gerarNotaFiscal(Funcionario funcionario) {
 		NotaFiscal teste = new NotaFiscal(funcionario, repoVenda.getItensvenda(), totalPagar, contadorCodigoNota, repoVenda.listar().size());
 		//controlvenda.adicionarNotaFiscal(teste);
-		repoVenda.adicionarNotaFiscal(teste);
 		contadorCodigoNota++;
+		repoVenda.adicionarNotaFiscal(teste);
 		//instancia.repoVenda.salvarArquivo();
 		repoVenda.listar().clear();
 		//repoVenda.limparArrayItemVenda();
@@ -124,7 +124,7 @@ public class ControladorVenda {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Nota fiscal gerada");
 		alert.setHeaderText(null);
-		alert.setContentText("Nota fiscal gerada com sucesso!");
+		alert.setContentText("Nota fiscal gerada com sucesso!!!!");
 		alert.showAndWait();
 	}
 

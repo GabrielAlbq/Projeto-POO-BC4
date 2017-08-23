@@ -41,19 +41,29 @@ public class ControladorFuncionario {
 	
 	public void inserir (Funcionario funcInserir) throws NegocioException{
 		if(funcInserir == null) {
-			//System.out.println("\n\n\tErro! Funcionario nulo!\n\n");
 			throw new RuntimeException("\nInstancia de Funcionario nula!\n");
 		}
 		if(funcInserir.getIdentificacao() <= 0) {
-			//System.out.println("\n\tErro! Identificacao invalida!");
+			alert.setTitle("Identificacao negativo");
+			alert.setHeaderText(null);
+			alert.setContentText("Identificacao nao pode ser negativa, adicione outra!");
+			alert.showAndWait();
 			throw new IdentificacaoInvalidaException("\nIdentificacao invalida: " +
 													 funcInserir.getIdentificacao() + "\n");
 		}
 		if(retornaPosicao(funcInserir.getIdentificacao()) != -1) {
+			alert.setTitle("Funcionario existente");
+			alert.setHeaderText(null);
+			alert.setContentText("Ja existe um funcionario com essa identificacao, tente outra!");
+			alert.showAndWait();
 			throw new InstanciaRepetidaException("\nFuncionario de id("+funcInserir.getIdentificacao()
 													+") ja foi cadastrado!\n");
 		}
 		if(retornaPosicaoLogin(funcInserir.getLogin().getUser()) != -1) {
+			alert.setTitle("Usuario invalido");
+			alert.setHeaderText(null);
+			alert.setContentText("Adicione um usuario!");
+			alert.showAndWait();
 			throw new InstanciaRepetidaException("\nNome de usuario("+
 									funcInserir.getLogin().getUser()+") ja esta cadastrado!\n");
 		}
@@ -67,17 +77,14 @@ public class ControladorFuncionario {
 	
 	public void remover (int identificacao) throws NegocioException{
 		if(identificacao <= 0) {
-			//System.out.println("\n\tErro! Identificacao invalida!\n\n");
 			throw new IdentificacaoInvalidaException("\nIdentificacao invalida: " +
 					 identificacao + "\n");
 		}
 		if( ((RepositorioFuncionario)repoFuncionario).getFuncionarios().size() == 0) {
-			//System.out.println("\n\tErro! Nao ha funcionario para remover!");
 			throw new InstanciaInexistenteException("\nNao ha funcionario para remover!\n");
 		}
 		int checagem = retornaPosicao(identificacao);
 		if(checagem == -1) {
-			//System.out.println("\n\tErro! Funcionario nao exite!\n\n");
 			throw new InstanciaInexistenteException("\nFuncionario nao exite!\n");
 		}
 		((RepositorioFuncionario)repoFuncionario).remover(checagem);
@@ -90,35 +97,37 @@ public class ControladorFuncionario {
 	
 	public void alterar (Funcionario funcionarioAlterar) throws NegocioException{
 		if(funcionarioAlterar == null) {
-			//System.out.println("\tErro! Funcionario nulo!");
 			throw new RuntimeException("\nInstancia de Funcionario nula!\n");
 		}
 		if(funcionarioAlterar.getIdentificacao() <= 0) {
-			//System.out.println("\n\tErro! Identificacao invalida!");
 			throw new IdentificacaoInvalidaException("\nIdentificacao invalida: " +
 					 funcionarioAlterar.getIdentificacao() + "\n");
 		}
 		int checagem = retornaPosicao(funcionarioAlterar.getIdentificacao());
 		if(checagem == -1) {
-			//System.out.println("\n\tErro! Funcionario nao exite!\n\n");
 			throw new InstanciaInexistenteException("\nFuncionario nao exite!\n");
 		}
-		System.out.println("\n\tFuncionario alterado com sucesso!\n\n");
 		repoFuncionario.alterar(funcionarioAlterar, checagem);
-			instancia.repoFuncionario.salvarArquivo();
+		instancia.repoFuncionario.salvarArquivo();
+		alert.setTitle("Funcionario alterado");
+		alert.setHeaderText(null);
+		alert.setContentText("Funcionario alterado com sucesso!");
+		alert.showAndWait();
+		
 	}
 	
 	public Funcionario buscar (int identificacao){
-		if(identificacao <= 0) {
-			System.out.println("\n\tErro! Identificacao invalida!\n\n");
-			return null;
+		int posicao;
+		posicao = this.retornaPosicao(identificacao);
+
+		if (posicao != -1) {
+			return repoFuncionario.buscar(posicao);
 		}
-		int checagem = retornaPosicao(identificacao);
-		if(checagem == -1) {
-			System.out.println("\tErro! Funcionario inexistente!");
-			return null;
-		}
-		return repoFuncionario.buscar(checagem);
+		alert.setTitle("Funcionario nao encontrado");
+		alert.setHeaderText(null);
+		alert.setContentText("Funcionario inexistente, verifique se o ID foi digitado corretamente!");
+		alert.showAndWait();
+		return null;
 	}
 	
 	public int retornaPosicao (int identificacao) {
@@ -176,11 +185,6 @@ public class ControladorFuncionario {
 		repoFuncionario.alterarLogin(new Login(user, novaSenha, palavra), posicao);
 	}
 
-	// eh usado durante o login de um usuario, checa se o user e senha conferem e se conferirem retorna a funcao do funcionario em questao
-	// se retornar 1 = vendedor
-	// se retornar 2 = gerente
-	// se retornar 3 = admin (dono)
-	// se retornar -1 = informacoes nao conferem
 	public Funcionario validarLogin(Login log) throws NegocioException{
 
 		if(log == null) {
@@ -189,7 +193,7 @@ public class ControladorFuncionario {
 		if(log.getSenha() == null) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Falha de Login");
-			alert.setHeaderText("Informações inválidas");
+			alert.setHeaderText("Informacoes invalidas");
 			alert.setContentText("Senha incorreta");
 			alert.showAndWait();
 			throw new RuntimeException("\nSenha do Login nula!\n");
@@ -210,7 +214,7 @@ public class ControladorFuncionario {
 		}
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("Falha de Login");
-		alert.setHeaderText("Informações inválidas");
+		alert.setHeaderText("Informacoes invalidas");
 		alert.setContentText("Usuario ou senha incorretos");
 		alert.showAndWait();
 		

@@ -657,7 +657,7 @@ public class ControladorGerente {
 			tbcItemVNome.setCellValueFactory(new PropertyValueFactory<ItemVenda, String>("nome"));
 			tbcItemVPreco.setCellValueFactory(new PropertyValueFactory<ItemVenda, Double>("preco"));
 			tbcItemVQtd.setCellValueFactory(new PropertyValueFactory<ItemVenda, Integer>("qtd"));
-			tbcItemVTotal.setCellValueFactory(new PropertyValueFactory<ItemVenda, Double>("valort"));
+			tbcItemVTotal.setCellValueFactory(new PropertyValueFactory<ItemVenda, Double>("valor"));
 			
 			obListVenda = FXCollections.observableArrayList(fachada.listarItensVenda());
 			tbvListaItemV.setItems(obListVenda);

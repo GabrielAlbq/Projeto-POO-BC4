@@ -78,14 +78,14 @@ public class ControladorEstoque {
 		if(prod.getCodigo() <= 0) {
 			alert.setTitle("Codigo negativo");
 			alert.setHeaderText(null);
-			alert.setContentText("Codigo não pode ser negativo, adicione outro!");
+			alert.setContentText("Codigo nao pode ser negativo, adicione outro!");
 			alert.showAndWait();
 			throw new IdentificacaoInvalidaException("\nCodigo ("+prod.getCodigo()+") invalido\n");
 		}
 		if (retornarPosicao(prod.getCodigo()) != -1) {
 			alert.setTitle("Produto existente");
 			alert.setHeaderText(null);
-			alert.setContentText("Já existe um produto com esse código, tente outro!");
+			alert.setContentText("Ja existe um produto com esse codigo, tente outro!");
 			alert.showAndWait();
 			throw new InstanciaRepetidaException("\nProduto de codigo("+prod.getCodigo()+") ja cadastrado\n");
 		}
@@ -105,9 +105,9 @@ public class ControladorEstoque {
 		if (posicao != -1) {
 			return repoestoque.buscar(posicao);
 		}
-		alert.setTitle("Produto não encontrado");
+		alert.setTitle("Produto nao encontrado");
 		alert.setHeaderText(null);
-		alert.setContentText("Produto não existe em estoque, verifique se o código foi digitado corretamente!");
+		alert.setContentText("Produto nao existe em estoque, verifique se o codigo foi digitado corretamente!");
 		alert.showAndWait();
 		return null;
 	}
@@ -141,7 +141,7 @@ public class ControladorEstoque {
 		if (repoestoque.listar().isEmpty() == true) {
 			alert.setTitle("Erro!");
 			alert.setHeaderText(null);
-			alert.setContentText("Não há produtos para remover!");
+			alert.setContentText("Nao ha produtos para remover!");
 			alert.showAndWait();
 			throw new InstanciaInexistenteException("\nNao ha produtos cadastrados no array\n");
 		}
@@ -149,13 +149,13 @@ public class ControladorEstoque {
 		if (posicao == -1) {
 			alert.setTitle("Erro!");
 			alert.setHeaderText(null);
-			alert.setContentText("Não existe produto com esse código!");
+			alert.setContentText("Nao existe produto com esse codigo!");
 			alert.showAndWait();
 			throw new InstanciaInexistenteException("\nNao ha produto de codigo ("+cod+") para remover\n");
 		}
 		repoestoque.remover(posicao);
 		instancia.repoestoque.salvarArquivo();
-		alert.setTitle("Confirmacao de remoção");
+		alert.setTitle("Confirmacao de remocao");
 		alert.setHeaderText(null);
 		alert.setContentText("Produto removido com sucesso!");
 		alert.showAndWait();
