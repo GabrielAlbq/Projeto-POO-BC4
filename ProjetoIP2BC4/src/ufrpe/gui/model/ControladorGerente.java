@@ -129,6 +129,7 @@ public class ControladorGerente {
 	@FXML TextField tfBuscProdQtd1;
 	
 	Produto p;
+	Funcionario f;
 	
 	// VENDAS 
 	// TODO
@@ -153,7 +154,7 @@ public class ControladorGerente {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Aviso importante!");
 				alert.setHeaderText(null);
-				alert.setContentText("Caso você não deseje alterar determinado campo, deixe-o em branco.");
+				alert.setContentText("Caso voce nao deseje alterar determinado campo, deixe-o em branco.");
 				alert.showAndWait();
 			}
 				if(p == null){
@@ -170,12 +171,12 @@ public class ControladorGerente {
 	
 	public void cadastrarproduto(ActionEvent event){
 		try{
-		String nome = tfCadProdNome.getText().toString();
 		int codigo = Integer.parseInt(tfCadProdCodigo.getText().toString());
-		int qtd = Integer.parseInt(tfCadProdQtd.getText().toString());
+		String nome = tfCadProdNome.getText().toString();
 		double preco = Double.parseDouble(tfCadProdPreco.getText().toString());
+		int qtd = Integer.parseInt(tfCadProdQtd.getText().toString());
 		
-		Produto produto = new Produto(nome,codigo,qtd,preco);
+		Produto produto = new Produto(codigo, nome, preco, qtd);
 	
 			fachada.inserirProduto(produto);
 		} catch (NegocioException e) {
@@ -248,6 +249,79 @@ public class ControladorGerente {
 			tfBuscProdQtd.setText(String.valueOf(p.getQuantidade()));
 		}
 	}
+	
+	//METODOS PARA FUNCIONARIOS
+	
+		private ObservableList<Funcionario> obListFunc;
+		
+		public void cadastrarFuncionario(ActionEvent event){
+	//		try{
+			int id = Integer.parseInt(tfCadFuncID.getText().toString());
+			String nome = tfCadFuncNome.getText().toString();
+			String cpf = (tfCadFuncCPF.getText().toString());
+			String logadouro = (tfCadFuncLog.getText().toString());
+			String cidade = (tfCadFuncCid.getText().toString());
+			String cep = (tfCadFuncCEP.getText().toString());
+			String casa = (tfCadFuncCasa.getText().toString());
+			double salario = Double.parseDouble(tfCadFuncSal.getText().toString());
+			String funcao = (tfCadFuncFun.getText().toString());
+
+			// TODO (???)
+//		
+//				fachada.inserirProduto(produto);
+//			} catch (NegocioException e) {
+//				e.printStackTrace();
+//			} catch (NumberFormatException ne){
+//				ne.printStackTrace();
+//			}
+		}
+		public void removerFuncionario(ActionEvent event){
+			try{
+				fachada.removerFuncionario(Integer.parseInt(tfRemoFuncID.getText().toString()));
+			} catch (NegocioException e) {
+				e.printStackTrace();
+			}
+		}
+		public void listarFuncionario(){
+			try{
+				tbcFuncID.setCellValueFactory(new PropertyValueFactory<Funcionario, Integer>("Idenficacao"));
+				tbcFuncNome.setCellValueFactory(new PropertyValueFactory<Funcionario, String>("Nome"));
+				tbcFuncFun.setCellValueFactory(new PropertyValueFactory<Funcionario, String>("Funcao"));
+				tbcFuncSal.setCellValueFactory(new PropertyValueFactory<Funcionario, Double>("Salario"));
+				
+				obListFunc = FXCollections.observableArrayList(fachada.listarFuncionarios());
+				tbvListaFunc.setItems(obListFunc);
+			} catch (NegocioException e) {
+				e.printStackTrace();
+			}
+		}
+		public void alterarFuncionario(ActionEvent event){
+			
+			int id = Integer.parseInt(tfAltFuncID.getText().toString());
+			this.f = fachada.buscarFuncionario(id);
+			if(f != null){
+							if(tfAltFuncNome.getText().isEmpty() == true ){
+								tfAltFuncNome.setText(tfAltFuncNome.getPromptText().toString());
+								f.setNome(tfAltFuncNome.getPromptText().toString());
+							}
+							if(tfAltFuncCPF.getText().isEmpty() == true ){
+								tfAltFuncCPF.setText(tfAltFuncCPF.getPromptText().toString());
+								//f.setNome(tfAltFuncCPF.getPromptText().toString());
+							}
+							
+							// TODO (???)
+				
+			}
+			}
+		public void buscarFuncionario(ActionEvent event) {
+			int id = Integer.parseInt(tfBuscFuncID.getText().toString());
+			this.f = fachada.buscarFuncionario(id);
+			if(p != null){
+				tfBuscFuncNome.setText(f.getNome());
+			// TODO (???)
+				
+			}
+		}
 	
 	//DESLOGAR
 	public void sair(ActionEvent event){

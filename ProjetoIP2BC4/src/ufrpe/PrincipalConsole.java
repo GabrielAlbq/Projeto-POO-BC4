@@ -230,7 +230,7 @@ public class PrincipalConsole {
 					preco = scanf.nextDouble();
 					System.out.println("Digite a sua quantidade");
 					quantidade = scanf.nextInt();
-					Produto prod = new Produto(nome, codigo, quantidade, preco);
+					Produto prod = new Produto(codigo, nome, preco, quantidade);
 					try {
 						fachada.inserirProduto(prod);
 					} catch(NegocioException exception) {

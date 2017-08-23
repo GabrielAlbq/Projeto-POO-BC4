@@ -14,7 +14,7 @@ public class Produto implements Serializable{
 	
 	// CONSTRUTORES
 	
-	public Produto(String nome,int codigo, int quantidade, double preco){
+	public Produto(int codigo, String nome, double preco, int quantidade){
 		this.nome = nome;
 		this.codigo = codigo;
 		this.quantidade = quantidade;
