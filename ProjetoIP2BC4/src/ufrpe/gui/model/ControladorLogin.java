@@ -55,36 +55,46 @@ public class ControladorLogin {
 		try {
 			funcionariologado = fachada.validarLogin(login);
 			if (funcionariologado != null) {
-				//
-				// if(funcionariologado instanceof Gerente){
-				// main.showGerente();
-				// }
-				// if(funcionariologado instanceof Vendedor){
-				// //chamar tela de Vendedor
-				// }
-				// if(funcionariologado instanceof Admin){
-				// // chamar tela admin
-				// }
+				
+				 if(funcionariologado instanceof Gerente){
+					 Alert alert = new Alert(AlertType.CONFIRMATION);
+						alert.setTitle("Confirmacao de login");
+						alert.setHeaderText(null);
+						alert.setContentText("Logado com sucesso!");
+						alert.showAndWait();
+
+						stage = (Stage) bt_logar.getScene().getWindow();
+						root = FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/Gerente.fxml"));
+						root.setUserData(funcionariologado.getNome().toString());
+						Scene scene = new Scene(root);
+						stage.setScene(scene);
+						stage.setTitle("Bem vindo, " + funcionariologado.getNome());
+		
+						stage.setResizable(true);
+						main.changeStage(stage);
+				 }
+				 if(funcionariologado instanceof Vendedor){
+				 //chamar tela de Vendedor
+				 }
+				 if(funcionariologado instanceof Admin){
+					 Alert alert = new Alert(AlertType.CONFIRMATION);
+						alert.setTitle("Confirmacao de login");
+						alert.setHeaderText(null);
+						alert.setContentText("Logado com sucesso!");
+						alert.showAndWait();
+
+						stage = (Stage) bt_logar.getScene().getWindow();
+						root = FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/Admin.fxml"));
+						root.setUserData(funcionariologado.getNome().toString());
+						Scene scene = new Scene(root);
+						stage.setScene(scene);
+						stage.setTitle("Bem vindo, " + funcionariologado.getNome());
+		
+						stage.setResizable(true);
+						main.changeStage(stage);
+				 }
 				logado = true;
-				//main.setFuncionariologado(funcionariologado);
 				if (logado) {
-					Alert alert = new Alert(AlertType.CONFIRMATION);
-					alert.setTitle("Confirmacao de login");
-					alert.setHeaderText(null);
-					alert.setContentText("Logado com sucesso!");
-					alert.showAndWait();
-
-					stage = (Stage) bt_logar.getScene().getWindow();
-					root = FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/Gerente.fxml"));
-					root.setUserData(funcionariologado.getNome().toString());
-					Scene scene = new Scene(root);
-					stage.setScene(scene);
-					//String tituloAtual = stage.getTitle();
-					stage.setTitle("Bem vindo, " + funcionariologado.getNome());
-				//	stage.setUserData(funcionariologado);
-					stage.setResizable(true);
-					main.changeStage(stage);
-
 				}
 			}
 		} catch (NegocioException exception) {

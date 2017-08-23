@@ -74,8 +74,12 @@ public class Fachada {
 	public void inserirItem(ItemVenda itemvenda) throws NegocioException{
 		controladorVenda.inserir(itemvenda);
 	}
+	public void remover(int cod) throws NegocioException {
+		controladorVenda.remover(cod);
+	}
 
 	// SISTEMA ESTOQUE
+
 
 	public void inserirProduto(Produto produto) throws NegocioException{
 		controladorEstoque.inserir(produto);

@@ -7,9 +7,12 @@ import java.util.List;
 
 public class NotaFiscal implements Serializable, Cloneable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4771798705023045490L;
 	//ATRIBUTOS
-	private static final long serialVersionUID = -6612494956675446965L;
-	private Funcionario funcionario; // � o funcionario que vendeu
+	private String funcionario; // � o funcionario que vendeu
 	private List<ItemVenda> itensVendidos; // Lista de itens vendidos
 	private int qtdItens;
 	private double totalPagar; // Somatorio de cada item da lista, (quantidade de cada item) * (valor do item);
@@ -23,12 +26,9 @@ public class NotaFiscal implements Serializable, Cloneable {
 	
 	public NotaFiscal(Funcionario funcionario,ArrayList<ItemVenda> itensVendidos,
 			          double totalPagar, int codigoDaNota, int qtdItens) {
-		this.funcionario = funcionario;
-	//	this.itensVendidos = new ArrayList(Collection);
+		this.funcionario = funcionario.getNome();
 		this.itensVendidos = (ArrayList<ItemVenda>) itensVendidos.clone();
-//		this.itensVendidos = (List<ItemVenda>) ((Object) itensVendidos).clone();
-		Collections.copy(this.itensVendidos, itensVendidos);
-	//	this.itensVendidos = itensVendidos.clone();
+
 		this.totalPagar = totalPagar;
 		this.codigoDaNota = codigoDaNota;
 		this.qtdItens = qtdItens;
@@ -36,12 +36,18 @@ public class NotaFiscal implements Serializable, Cloneable {
 
 	// GET / SET
 	
-	public Funcionario getFuncionario() {
-		return funcionario;
-	}
+	
 
 	public List<ItemVenda> getItensVendidos() {
 		return itensVendidos;
+	}
+
+	public String getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(String funcionario) {
+		this.funcionario = funcionario;
 	}
 
 	public double getTotalPagar() {
@@ -59,7 +65,7 @@ public class NotaFiscal implements Serializable, Cloneable {
 	
 	public String toString() {
 		String teste = "\n\n========================================\n";
-		teste = teste+"\n\t\tNota #"+codigoDaNota+"\n\n\tFuncionario: "+funcionario.getNome();
+		//teste = teste+"\n\t\tNota #"+codigoDaNota+"\n\n\tFuncionario: "+funcionario.getNome();
 		teste = teste+"\n\nItem Venda\tQuantidade\tPreco\tTotal\n";
 		for (int i = 0; i < qtdItens; i++) {
 			teste += itensVendidos.get(i).getNome()+ "\t"+itensVendidos.get(i).getQtd()+ "\t\t"+itensVendidos.get(i).getPreco()+"  ";

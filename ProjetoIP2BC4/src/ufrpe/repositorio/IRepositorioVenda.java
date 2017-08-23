@@ -21,6 +21,8 @@ public interface IRepositorioVenda {
 	void limparHistoricoNotasFiscais();
 
 	void inserirItemVenda(ItemVenda item);
-
+	
+	void removerItemVenda(int posicao);
+	
 	void salvarArquivo();
 }

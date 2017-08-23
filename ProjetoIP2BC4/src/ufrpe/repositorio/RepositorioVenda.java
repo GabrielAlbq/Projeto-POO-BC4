@@ -69,11 +69,12 @@ public class RepositorioVenda implements IRepositorioVenda, Serializable {
 		this.notas.clear();
 	}
 
-	public void inserirItemVenda(ItemVenda item) { // Adiciona um ItemVenda para
-													// o mercadinho
+	public void inserirItemVenda(ItemVenda item) { // Adiciona um ItemVenda para o mercadinho
 		itensvenda.add(item);
 	}
-
+	public void removerItemVenda(int posicao) {
+		itensvenda.remove(posicao);
+	}
 	public void limparArrayItemVenda() {
 		this.itensvenda.clear();
 	}

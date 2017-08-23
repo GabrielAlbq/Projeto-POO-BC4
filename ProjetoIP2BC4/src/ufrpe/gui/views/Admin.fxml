@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="400.0" minWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ufrpe.gui.model.ControladorGerente">
+<AnchorPane minHeight="400.0" minWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ufrpe.gui.model.ControladorAdmin">
    <children>
       <TabPane layoutY="19.0" prefHeight="531.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="19.0">
          <tabs>
@@ -570,7 +570,7 @@
             <Font size="11.0" />
          </font>
       </Button>
-      <Label fx:id="lbAdmNome" alignment="CENTER" prefHeight="3.0" prefWidth="390.0" text="Gerencia" AnchorPane.topAnchor="0.0">
+      <Label fx:id="lbAdmNome" alignment="CENTER" prefHeight="3.0" prefWidth="390.0" text="Administrador" AnchorPane.topAnchor="0.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
