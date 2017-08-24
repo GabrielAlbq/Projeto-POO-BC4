@@ -21,18 +21,19 @@ import ufrpe.negocio.beans.Gerente;
 import ufrpe.negocio.beans.Login;
 import ufrpe.negocio.beans.Vendedor;
 import ufrpe.negocio.exception.NegocioException;
-import ufrpe.repositorio.IRepositorioFuncionario;
-import ufrpe.repositorio.RepositorioFuncionario;
 
 public class ControladorLogin {
 
-	@FXML Button bt_logar;
-	@FXML TextField tf_user;
-	@FXML PasswordField pf_password;
+	@FXML
+	Button bt_logar;
+	@FXML
+	TextField tf_user;
+	@FXML
+	PasswordField pf_password;
 
 	private Principal main;
 	private Funcionario funcionariologado = null;
-	
+
 	Fachada fachada = Fachada.getInstancia();
 
 	@FXML
@@ -48,71 +49,55 @@ public class ControladorLogin {
 
 		Stage stage = new Stage();
 		Parent root = null;
-
 		Login login = new Login(tf_user.getText().toString().toLowerCase(), pf_password.getText().toString(), "");
-		
-		boolean logado = false;
+
 		try {
 			funcionariologado = fachada.validarLogin(login);
 			if (funcionariologado != null) {
-				
-				 if(funcionariologado instanceof Gerente){
-					 Alert alert = new Alert(AlertType.CONFIRMATION);
-						alert.setTitle("Confirmacao de login");
-						alert.setHeaderText(null);
-						alert.setContentText("Logado com sucesso!");
-						alert.showAndWait();
 
-						stage = (Stage) bt_logar.getScene().getWindow();
-						root = FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/Gerente.fxml"));
-						root.setUserData(funcionariologado.getNome().toString());
-						Scene scene = new Scene(root);
-						stage.setScene(scene);
-						stage.setTitle("Bem vindo, " + funcionariologado.getNome());
-		
-						stage.setResizable(true);
-						main.changeStage(stage);
-				 }
-				 if(funcionariologado instanceof Vendedor){
-					 Alert alert = new Alert(AlertType.CONFIRMATION);
-						alert.setTitle("Confirmacao de login");
-						alert.setHeaderText(null);
-						alert.setContentText("Logado com sucesso!");
-						alert.showAndWait();
+				if (funcionariologado instanceof Gerente) {
+					stage = (Stage) bt_logar.getScene().getWindow();
+					root = FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/Gerente.fxml"));
+					root.setUserData(funcionariologado.getNome().toString());
+					Scene scene = new Scene(root);
+					stage.setScene(scene);
+					stage.setTitle("Bem vindo, " + funcionariologado.getNome());
 
-						stage = (Stage) bt_logar.getScene().getWindow();
-						root = FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/Vendedor.fxml"));
-						root.setUserData(funcionariologado.getNome().toString());
-						Scene scene = new Scene(root);
-						stage.setScene(scene);
-						stage.setTitle("Bem vindo, " + funcionariologado.getNome());
-		
-						stage.setResizable(true);
-						main.changeStage(stage);
-				 }
-				 if(funcionariologado instanceof Admin){
-					 Alert alert = new Alert(AlertType.CONFIRMATION);
-						alert.setTitle("Confirmacao de login");
-						alert.setHeaderText(null);
-						alert.setContentText("Logado com sucesso!");
-						alert.showAndWait();
+					stage.setResizable(true);
+					main.changeStage(stage);
+				}
+				if (funcionariologado instanceof Vendedor) {
 
-						stage = (Stage) bt_logar.getScene().getWindow();
-						root = FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/Admin.fxml"));
-						root.setUserData(funcionariologado.getNome().toString());
-						Scene scene = new Scene(root);
-						stage.setScene(scene);
-						stage.setTitle("Bem vindo, " + funcionariologado.getNome());
-		
-						stage.setResizable(true);
-						main.changeStage(stage);
-				 }
-				logado = true;
-				if (logado) {
+					stage = (Stage) bt_logar.getScene().getWindow();
+					root = FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/Vendedor.fxml"));
+					root.setUserData(funcionariologado.getNome().toString());
+					Scene scene = new Scene(root);
+					stage.setScene(scene);
+					stage.setTitle("Bem vindo, " + funcionariologado.getNome());
+
+					stage.setResizable(true);
+					main.changeStage(stage);
+				}
+				if (funcionariologado instanceof Admin) {
+
+					stage = (Stage) bt_logar.getScene().getWindow();
+					root = FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/Admin.fxml"));
+					root.setUserData(funcionariologado.getNome().toString());
+					Scene scene = new Scene(root);
+					stage.setScene(scene);
+					stage.setTitle("Bem vindo, " + funcionariologado.getNome());
+
+					stage.setResizable(true);
+					main.changeStage(stage);
 				}
 			}
-		} catch (NegocioException exception) {
-			exception.printStackTrace();
+		} catch (NegocioException e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Falha de Login");
+			alert.setHeaderText(null);
+			alert.setContentText(e.getMessage());
+			alert.showAndWait();
+			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

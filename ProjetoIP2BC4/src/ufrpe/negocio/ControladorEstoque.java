@@ -2,8 +2,6 @@ package ufrpe.negocio;
 
 import java.util.List;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import ufrpe.negocio.beans.Produto;
 import ufrpe.negocio.exception.IdentificacaoInvalidaException;
 import ufrpe.negocio.exception.InstanciaInexistenteException;
@@ -20,7 +18,7 @@ public class ControladorEstoque {
 	RepositorioVenda repoVenda;
 	private static ControladorEstoque instancia;
 	private IRepositorioEstoque repoestoque;
-	Alert alert = new Alert(AlertType.INFORMATION);
+
 	// SINGLETON
 	private ControladorEstoque() {
 		repoestoque = RepositorioEstoque.getInstancia();
@@ -35,28 +33,23 @@ public class ControladorEstoque {
 	}
 
 	// METODOS COM CONTROLE DE NEGOCIOS
-	public List<Produto> listarProduto() throws NegocioException{
+	public List<Produto> listarProduto() throws NegocioException {
 		if (repoestoque.listar().isEmpty() == true) {
 			throw new InstanciaInexistenteException("\nNao ha produtos cadastrados!\n");
 		}
 		return repoestoque.listar();
 	}
 
-	public void subtrairProduto(int codigo, int quantidade) throws NegocioException{
+	public void subtrairProduto(int codigo, int quantidade) throws NegocioException {
 		int pos = retornarPosicao(codigo);
 		if (pos == -1) {
-			throw new InstanciaInexistenteException("\nProduto de codigo("+codigo+") nao existe\n");
+			throw new InstanciaInexistenteException("\nProduto de codigo(" + codigo + ") nao existe\n");
 		}
 		for (Produto prod : repoestoque.listar()) {
 			if (codigo == prod.getCodigo()) {
 				if (quantidade <= prod.getQuantidade()) {
 					repoestoque.subtrairProduto(pos, quantidade);
-				}
-				else {
-					alert.setTitle("Quantidade insuficiente");
-					alert.setHeaderText(null);
-					alert.setContentText("Quantidade insuficiente em estoque");
-					alert.showAndWait();
+				} else {
 					throw new QuantidadeInvalidaException("\nQuantidade insuficiente para subtracao!\n");
 				}
 				break;
@@ -64,38 +57,21 @@ public class ControladorEstoque {
 		}
 	}
 
-	public void inserir(Produto prod) throws NegocioException{
+	public void inserir(Produto prod) throws NegocioException {
 		if (prod == null) {
 			throw new RuntimeException("\nInstancia de Produto nula\n");
 		}
-		if(prod.getNome().isEmpty() == true) {
-			alert.setTitle("Nome invalido");
-			alert.setHeaderText(null);
-			alert.setContentText("Adicione um nome!");
-			alert.showAndWait();
-			throw new RuntimeException("\nString do Nome do Produto nula\n");
+		if (prod.getNome().isEmpty() == true) {
+			throw new RuntimeException("\nString do Nome do Produto nula, adicione um nome!\n");
 		}
-		if(prod.getCodigo() <= 0) {
-			alert.setTitle("Codigo negativo");
-			alert.setHeaderText(null);
-			alert.setContentText("Codigo nao pode ser negativo, adicione outro!");
-			alert.showAndWait();
-			throw new IdentificacaoInvalidaException("\nCodigo ("+prod.getCodigo()+") invalido\n");
+		if (prod.getCodigo() <= 0) {
+			throw new IdentificacaoInvalidaException("\nCodigo (" + prod.getCodigo() + ") invalido\n");
 		}
 		if (retornarPosicao(prod.getCodigo()) != -1) {
-			alert.setTitle("Produto existente");
-			alert.setHeaderText(null);
-			alert.setContentText("Ja existe um produto com esse codigo, tente outro!");
-			alert.showAndWait();
-			throw new InstanciaRepetidaException("\nProduto de codigo("+prod.getCodigo()+") ja cadastrado\n");
+			throw new InstanciaRepetidaException("\nProduto de codigo(" + prod.getCodigo() + ") ja cadastrado\n");
 		}
 		repoestoque.inserir(prod);
 		instancia.repoestoque.salvarArquivo();
-		
-		alert.setTitle("Confirmacao de adicao");
-		alert.setHeaderText(null);
-		alert.setContentText("Produto adicionado com sucesso!");
-		alert.showAndWait();
 	}
 
 	public Produto buscar(int cod) {
@@ -105,61 +81,42 @@ public class ControladorEstoque {
 		if (posicao != -1) {
 			return repoestoque.buscar(posicao);
 		}
-		alert.setTitle("Produto nao encontrado");
-		alert.setHeaderText(null);
-		alert.setContentText("Produto nao existe em estoque, verifique se o codigo foi digitado corretamente!");
-		alert.showAndWait();
 		return null;
 	}
 
-	public void alterar(Produto novoProduto) throws NegocioException{
+	public void alterar(Produto novoProduto) throws NegocioException {
 		int posicao;
 		if (novoProduto == null) {
 			throw new RuntimeException("\nInstancia de Produto nula\n");
 		}
-		if(novoProduto.getNome() == null) {
+		if (novoProduto.getNome() == null) {
 			throw new RuntimeException("\nString do Nome do Produto nula\n");
 		}
 		posicao = this.retornarPosicao(novoProduto.getCodigo());
 		if (posicao == -1) {
-			throw new InstanciaInexistenteException("\nInstancia de Produto ("+novoProduto.getCodigo()+") nao existe\n");
+			throw new InstanciaInexistenteException(
+					"\nInstancia de Produto (" + novoProduto.getCodigo() + ") nao existe\n");
 		}
 		if (repoestoque.listar().get(posicao).getCodigo() == novoProduto.getCodigo()) {
 			repoestoque.alterar(novoProduto, posicao);
 			instancia.repoestoque.salvarArquivo();
-			alert.setTitle("Produto alterado");
-			alert.setHeaderText(null);
-			alert.setContentText("Produto alterado com sucesso!");
-			alert.showAndWait();
 		}
 	}
 
-	public void remover(int cod) throws NegocioException{
-		if(cod <= 0) {
-			throw new IdentificacaoInvalidaException("\nCodigo ("+cod+") invalido\n");
+	public void remover(int cod) throws NegocioException {
+		if (cod <= 0) {
+			throw new IdentificacaoInvalidaException("\nCodigo (" + cod + ") invalido\n");
 		}
 		if (repoestoque.listar().isEmpty() == true) {
-			alert.setTitle("Erro!");
-			alert.setHeaderText(null);
-			alert.setContentText("Nao ha produtos para remover!");
-			alert.showAndWait();
 			throw new InstanciaInexistenteException("\nNao ha produtos cadastrados no array\n");
 		}
 		int posicao = this.retornarPosicao(cod);
 		if (posicao == -1) {
-			alert.setTitle("Erro!");
-			alert.setHeaderText(null);
-			alert.setContentText("Nao existe produto com esse codigo!");
-			alert.showAndWait();
-			throw new InstanciaInexistenteException("\nNao ha produto de codigo ("+cod+") para remover\n");
+			throw new InstanciaInexistenteException("\nNao ha produto de codigo (" + cod + ") para remover\n");
 		}
 		repoestoque.remover(posicao);
 		instancia.repoestoque.salvarArquivo();
-		alert.setTitle("Confirmacao de remocao");
-		alert.setHeaderText(null);
-		alert.setContentText("Produto removido com sucesso!");
-		alert.showAndWait();
-		
+
 	}
 
 	private int retornarPosicao(int codigo) {

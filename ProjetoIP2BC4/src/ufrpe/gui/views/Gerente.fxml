@@ -135,9 +135,9 @@
                                              </font>
                                           </Label>
                                           <TextField fx:id="tfCadProdCodigo" layoutX="126.0" layoutY="22.0" />
-                                          <TextField fx:id="tfCadProdPreco" layoutX="126.0" layoutY="60.0" />
-                                          <TextField fx:id="tfCadProdNome" layoutX="126.0" layoutY="98.0" />
-                                          <TextField fx:id="tfCadProdQtd" layoutX="126.0" layoutY="137.0" />
+                                          <TextField fx:id="tfCadProdPreco" layoutX="126.0" layoutY="106.0" />
+                                          <TextField fx:id="tfCadProdNome" layoutX="126.0" layoutY="67.0" />
+                                          <TextField fx:id="tfCadProdQtd" layoutX="126.0" layoutY="141.0" />
                                           <Button fx:id="btnProdCadastrar" layoutX="128.0" layoutY="189.0" mnemonicParsing="false" onAction="#cadastrarproduto" prefHeight="35.0" prefWidth="156.0" text="CADASTRAR" />
                                        </children>
                                     </AnchorPane>

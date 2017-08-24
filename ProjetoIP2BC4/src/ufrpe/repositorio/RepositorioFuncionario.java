@@ -12,70 +12,63 @@ import java.util.List;
 
 import ufrpe.negocio.beans.Admin;
 import ufrpe.negocio.beans.Funcionario;
-import ufrpe.negocio.beans.Gerente;
 import ufrpe.negocio.beans.Login;
 
-public class RepositorioFuncionario implements IRepositorioFuncionario, Serializable{
-	
-	// ATRIBUTOS 
-	
-	private  List<Funcionario> funcs;
-	
+public class RepositorioFuncionario implements IRepositorioFuncionario, Serializable {
+
+	// ATRIBUTOS
+
+	private List<Funcionario> funcs;
+
 	// SINGLETON
-	
+
 	private static RepositorioFuncionario instancia;
-	
+
 	public static RepositorioFuncionario getInstancia() {
-		if( instancia == null ) {
-		//	instancia = new RepositorioFuncionario();
+		if (instancia == null) {
 			instancia = RepositorioFuncionario.carregarArquivo();
 		}
 		return instancia;
 	}
-	
+
 	// CONSTRUTOR
-	
+
 	private RepositorioFuncionario() {
 		funcs = new ArrayList<>();
-		Login log1 = new Login("admin", "padrao", "mercado");
-		Funcionario f1 = new Admin(log1, 100);
-		//Funcionario novo = new Funcionario();
-		funcs.add(f1);
 	}
-	
-	// METODOS - as validacoes serao feitas no controlador utilizando estes metodos
-	
-	
-	public void pagarFancionario (int posicao){
+
+	// METODOS
+
+	public void pagarFancionario(int posicao) {
 		funcs.get(posicao).setRecebeuSalario(true);
 	}
-	
-	public void inserir (Funcionario funcionario) {
+
+	public void inserir(Funcionario funcionario) {
 		funcs.add(funcionario);
 	}
-	
-	public void remover (int posicao) {
+
+	public void remover(int posicao) {
 		funcs.remove(posicao);
 	}
-	
-	public void alterar (Funcionario funcionario, int posicao) {
+
+	public void alterar(Funcionario funcionario, int posicao) {
 		funcs.set(posicao, funcionario);
 	}
-	
-	public Funcionario buscar (int posicao) {
+
+	public Funcionario buscar(int posicao) {
 		return funcs.get(posicao);
 	}
-	
-	public Funcionario retornarFuncionario(int identificacao) { // Foi usado na Fachada
+
+	public Funcionario retornarFuncionario(int identificacao) {
 		return funcs.get(identificacao);
 	}
-	
+
 	// GETS
-	
+
 	public List<Funcionario> getFuncionarios() {
 		return funcs;
 	}
-	
+
 	private static RepositorioFuncionario carregarArquivo() {
 
 		RepositorioFuncionario repositorio = null;
@@ -109,8 +102,6 @@ public class RepositorioFuncionario implements IRepositorioFuncionario, Serializ
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
-
-			//e.printStackTrace();
 		} finally {
 			if (ois != null) {
 				try {
@@ -148,7 +139,7 @@ public class RepositorioFuncionario implements IRepositorioFuncionario, Serializ
 
 		}
 	}
-	
+
 	public void alterarLogin(Login log, int posicao) {
 		this.funcs.get(posicao).setLogin(log);
 	}

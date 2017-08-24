@@ -17,7 +17,6 @@ public class Fachada {
 	private ControladorEstoque controladorEstoque;
 	private ControladorFuncionario controladorFuncionario;
 	private ControladorFinanceiro controladorFinanceiro;
-//	private Pedido pedido;
 
 	// SINGLETON
 
@@ -28,7 +27,6 @@ public class Fachada {
 		controladorEstoque = ControladorEstoque.getInstancia();
 		controladorFuncionario = ControladorFuncionario.getInstancia();
 		controladorFinanceiro = ControladorFinanceiro.getInstancia();
-		//pedido = Pedido.getInstancia();
 	}
 
 	public static Fachada getInstancia() {
@@ -44,22 +42,19 @@ public class Fachada {
 
 	// SISTEMA VENDA
 
-	public void encerrarPedido() throws NegocioException{
-		//pedido.encerrarPedido();
+	public void encerrarPedido() throws NegocioException {
 		controladorVenda.encerrarPedido();
 	}
 
 	public void gerarNotaFiscal(Funcionario funcionario) throws NegocioException {
-		controladorVenda.gerarNotaFiscal(funcionario);
-		//pedido.gerarNotaFiscal(funcionario);
+		controladorVenda.gerarNotaFiscal(funcionario);;
 	}
 
 	public void cancelarPedido() {
-	//	pedido.resetarPedido();
 		controladorVenda.resetarPedido();
 	}
 
-	public List<ItemVenda> listarItensVenda() throws NegocioException{
+	public List<ItemVenda> listarItensVenda() throws NegocioException {
 		return controladorVenda.listarItensVenda();
 	}
 
@@ -71,29 +66,29 @@ public class Fachada {
 		controladorVenda.limparHistoricoNotasFiscais();
 	}
 
-	public void inserirItem(ItemVenda itemvenda) throws NegocioException{
+	public void inserirItem(ItemVenda itemvenda) throws NegocioException {
 		controladorVenda.inserir(itemvenda);
 	}
+
 	public void remover(int cod) throws NegocioException {
 		controladorVenda.remover(cod);
 	}
 
 	// SISTEMA ESTOQUE
 
-
-	public void inserirProduto(Produto produto) throws NegocioException{
+	public void inserirProduto(Produto produto) throws NegocioException {
 		controladorEstoque.inserir(produto);
 	}
 
-	public List<Produto> listarProdutos() throws NegocioException{
+	public List<Produto> listarProdutos() throws NegocioException {
 		return controladorEstoque.listarProduto();
 	}
 
-	public void atualizarProduto(Produto novoProduto) throws NegocioException{
+	public void atualizarProduto(Produto novoProduto) throws NegocioException {
 		controladorEstoque.alterar(novoProduto);
 	}
 
-	public void removerProduto(int indentificacao) throws NegocioException{
+	public void removerProduto(int indentificacao) throws NegocioException {
 		controladorEstoque.remover(indentificacao);
 	}
 
@@ -103,19 +98,19 @@ public class Fachada {
 
 	// SISTEMA FUNCIONARIO
 
-	public List<Funcionario> listarFuncionarios() throws NegocioException{
+	public List<Funcionario> listarFuncionarios() throws NegocioException {
 		return controladorFuncionario.listarFuncionarios();
 	}
-	
-	public void inserirFuncionario(Funcionario funcionario) throws NegocioException{
+
+	public void inserirFuncionario(Funcionario funcionario) throws NegocioException {
 		controladorFuncionario.inserir(funcionario);
 	}
 
-	public void atualizarFuncionario(Funcionario funcionario) throws NegocioException{
+	public void atualizarFuncionario(Funcionario funcionario) throws NegocioException {
 		controladorFuncionario.alterar(funcionario);
 	}
 
-	public void removerFuncionario(int identificacao) throws NegocioException{
+	public void removerFuncionario(int identificacao) throws NegocioException {
 		controladorFuncionario.remover(identificacao);
 	}
 
@@ -124,26 +119,23 @@ public class Fachada {
 	}
 
 	// SISTEMA DE LOGIN
-	
-	public Funcionario validarLogin(Login log) throws NegocioException{
+
+	public Funcionario validarLogin(Login log) throws NegocioException {
 		return controladorFuncionario.validarLogin(log);
 	}
-	
+
 	// SISTEMA FINANCEIRO
 
-	public void pagarFuncionario(int identificacao) throws NegocioException{// (Funcionario
-														// funcionario) {
+	public void pagarFuncionario(int identificacao) throws NegocioException {
 		controladorFinanceiro.pagarFuncionario(identificacao);
 	}
 
-	// TODO public void solicitarFornecedor() { }
 
 	public String exibirFinancas() {
 		return controladorFinanceiro.exibirFinancas();
 	}
 
-	
-	//FUNCIONARIO
+	// FUNCIONARIO
 	public int retornaPosicaoLogin(String user) {
 		return controladorFuncionario.retornaPosicaoLogin(user);
 	}
@@ -151,6 +143,5 @@ public class Fachada {
 	public void esqueceuSenha(String user, String novaSenha, String palavra) throws NegocioException {
 		controladorFuncionario.esqueceuSenha(user, novaSenha, palavra);
 	}
-	
-	
+
 }

@@ -1,12 +1,7 @@
 package ufrpe.gui.model;
 
 import java.io.IOException;
-import java.util.Observable;
 
-import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -19,7 +14,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -29,7 +23,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import ufrpe.gui.Principal;
 import ufrpe.negocio.Fachada;
 import ufrpe.negocio.beans.Endereco;
@@ -135,14 +128,14 @@ public class ControladorGerente {
 	// @FXML TableView <ItemVenda> tbvListaVenda;
 	@FXML
 	TitledPane tbvListaVenda;
-//	@FXML
-//	TableColumn<ItemVenda, Integer> tbcVenProd;
-//	@FXML
-//	TableColumn<ItemVenda, String> tbcVenQtd;
-//	@FXML
-//	TableColumn<ItemVenda, String> tbcVenPre;
-//	@FXML
-//	TableColumn<ItemVenda, Double> tbcVenTot;
+	// @FXML
+	// TableColumn<ItemVenda, Integer> tbcVenProd;
+	// @FXML
+	// TableColumn<ItemVenda, String> tbcVenQtd;
+	// @FXML
+	// TableColumn<ItemVenda, String> tbcVenPre;
+	// @FXML
+	// TableColumn<ItemVenda, Double> tbcVenTot;
 
 	// BUSCAR
 	@FXML
@@ -220,7 +213,7 @@ public class ControladorGerente {
 	TextField tfBuscFuncFun1;
 	@FXML
 	TextField tfAltFuncID1;
-	
+
 	@FXML
 	TextField tfBuscProdCod1;
 	@FXML
@@ -247,63 +240,88 @@ public class ControladorGerente {
 	Funcionario f;
 
 	// VENDAS
-	
-	@FXML TextField tfBuscFunVenda;
-	@FXML Button btnConfirmarFunc;
-	@FXML TextField tfBuscProdCodV;
-	@FXML TextField tfBuscProdQtdV;
-	@FXML Button btnProdInserirItem;
-	@FXML Button btnProdRemoverItem;
-	@FXML TableColumn<ItemVenda, String> tbcItemVNome;
-	@FXML TableColumn<ItemVenda, Integer> tbcItemVQtd;
-	@FXML TableColumn<ItemVenda, Double> tbcItemVPreco;
-	@FXML TableView<ItemVenda> tbvListaItemV;
-	@FXML TableColumn<ItemVenda, Double> tbcItemVTotal;
-	@FXML Button btnCancelarVenda;
-	@FXML Button btnFinalizarVenda;
-	@FXML TextField tfTotalPagar;
-	
+
+	@FXML
+	TextField tfBuscFunVenda;
+	@FXML
+	Button btnConfirmarFunc;
+	@FXML
+	TextField tfBuscProdCodV;
+	@FXML
+	TextField tfBuscProdQtdV;
+	@FXML
+	Button btnProdInserirItem;
+	@FXML
+	Button btnProdRemoverItem;
+	@FXML
+	TableColumn<ItemVenda, String> tbcItemVNome;
+	@FXML
+	TableColumn<ItemVenda, Integer> tbcItemVQtd;
+	@FXML
+	TableColumn<ItemVenda, Double> tbcItemVPreco;
+	@FXML
+	TableView<ItemVenda> tbvListaItemV;
+	@FXML
+	TableColumn<ItemVenda, Double> tbcItemVTotal;
+	@FXML
+	Button btnCancelarVenda;
+	@FXML
+	Button btnFinalizarVenda;
+	@FXML
+	TextField tfTotalPagar;
+
 	// NOTAS FISCAIS
-	@FXML TableView<NotaFiscal> tbvNF;
-	@FXML TableColumn<NotaFiscal, Integer> tbcNF;
-	@FXML TableColumn<NotaFiscal, Double> tbcTotalNF;
-	@FXML TableColumn<NotaFiscal, String>tbcFuncNF;
-	@FXML TableColumn<NotaFiscal, ItemVenda> tbcNFItemNome;
-	@FXML TableColumn<NotaFiscal, Integer> tbcNFItemQtd;
-	@FXML TableColumn<NotaFiscal, Double> tbcNFItemPreco;
-	@FXML TableColumn<NotaFiscal, Double> tbcNFItemTotal;
-	@FXML TitledPane tpListaNF;
-	@FXML TableView<NotaFiscal> tbvIVNF;
+	@FXML
+	TableView<NotaFiscal> tbvNF;
+	@FXML
+	TableColumn<NotaFiscal, Integer> tbcNF;
+	@FXML
+	TableColumn<NotaFiscal, Double> tbcTotalNF;
+	@FXML
+	TableColumn<NotaFiscal, String> tbcFuncNF;
+	@FXML
+	TableColumn<NotaFiscal, ItemVenda> tbcNFItemNome;
+	@FXML
+	TableColumn<NotaFiscal, Integer> tbcNFItemQtd;
+	@FXML
+	TableColumn<NotaFiscal, Double> tbcNFItemPreco;
+	@FXML
+	TableColumn<NotaFiscal, Double> tbcNFItemTotal;
+	@FXML
+	TitledPane tpListaNF;
+	@FXML
+	TableView<NotaFiscal> tbvIVNF;
+
 	@FXML
 	private void initialize() {
 		listarproduto();
 		listarFuncionario();
 		listarnotasfiscais();
 		this.cbCadFuncFun.getItems().addAll("Vendedor");
-		
+
 		tpListProd.expandedProperty().addListener(new ChangeListener<Boolean>() {
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 				tbvListaProd.refresh();
 			}
 		});
-		 tpListFunc.expandedProperty().addListener(new ChangeListener<Boolean>() {
-		 @Override
-		 public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-			 tbvListaFunc.refresh();
-		 }
-		 });
-		 tpListaNF.expandedProperty().addListener(new ChangeListener<Boolean>() {
-			 
+		tpListFunc.expandedProperty().addListener(new ChangeListener<Boolean>() {
+			@Override
+			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+				tbvListaFunc.refresh();
+			}
+		});
+		tpListaNF.expandedProperty().addListener(new ChangeListener<Boolean>() {
+
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 				tbvNF.refresh();
-				
+
 			}
 		});
-		
-		 tbvNF.getSelectionModel().selectedItemProperty().addListener(
-				 (observable, oldValue, newValue) -> selecionarNotaFiscalTableView(newValue));
+
+		tbvNF.getSelectionModel().selectedItemProperty()
+				.addListener((observable, oldValue, newValue) -> selecionarNotaFiscalTableView(newValue));
 		this.btnProdBuscarAlt.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -359,7 +377,7 @@ public class ControladorGerente {
 				}
 			}
 		});
-		
+
 	}
 
 	// METODOS PARA PRODUTOS
@@ -375,7 +393,18 @@ public class ControladorGerente {
 			Produto produto = new Produto(codigo, nome, preco, qtd);
 
 			fachada.inserirProduto(produto);
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Confirmacao de adicao");
+			alert.setHeaderText(null);
+			alert.setContentText("Produto adicionado com sucesso!");
+			alert.showAndWait();
+
 		} catch (NegocioException e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro ao cadastrar!");
+			alert.setHeaderText(null);
+			alert.setContentText(e.getMessage());
+			alert.showAndWait();
 			e.printStackTrace();
 		} catch (NumberFormatException ne) {
 			ne.printStackTrace();
@@ -385,7 +414,17 @@ public class ControladorGerente {
 	public void removerproduto(ActionEvent event) {
 		try {
 			fachada.removerProduto(Integer.parseInt(tfRemoProdID.getText().toString()));
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Confirmacao de remocao");
+			alert.setHeaderText(null);
+			alert.setContentText("Produto removido com sucesso!");
+			alert.showAndWait();
 		} catch (NegocioException e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro ao remover!");
+			alert.setHeaderText(null);
+			alert.setContentText(e.getMessage());
+			alert.showAndWait();
 			e.printStackTrace();
 		}
 	}
@@ -400,6 +439,11 @@ public class ControladorGerente {
 			obListProd = FXCollections.observableArrayList(fachada.listarProdutos());
 			tbvListaProd.setItems(obListProd);
 		} catch (NegocioException e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro ao listar!");
+			alert.setHeaderText(null);
+			alert.setContentText(e.getMessage());
+			alert.showAndWait();
 			e.printStackTrace();
 		}
 	}
@@ -430,7 +474,17 @@ public class ControladorGerente {
 				tfBuscProdNome1.clear();
 				tfBuscProdQtd1.clear();
 				tfBuscProdPrec1.clear();
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("Produto alterado");
+				alert.setHeaderText(null);
+				alert.setContentText("Produto alterado com sucesso!");
+				alert.showAndWait();
 			} catch (NegocioException e) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Erro ao alterar!");
+				alert.setHeaderText(null);
+				alert.setContentText(e.getMessage());
+				alert.showAndWait();
 				e.printStackTrace();
 			} catch (NumberFormatException ne) {
 				ne.printStackTrace();
@@ -445,6 +499,12 @@ public class ControladorGerente {
 			tfBuscProdNome.setText(p.getNome());
 			tfBuscProdPrec.setText(String.valueOf(p.getPreco()));
 			tfBuscProdQtd.setText(String.valueOf(p.getQuantidade()));
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Produto nao encontrado");
+			alert.setHeaderText(null);
+			alert.setContentText("Produto nao existe em estoque, verifique se o codigo foi digitado corretamente!");
+			alert.showAndWait();
 		}
 	}
 
@@ -468,7 +528,7 @@ public class ControladorGerente {
 			String palavraSeguranca = tfCadFuncPdS.getText().toString();
 
 			if (cbCadFuncFun.getValue().equals("Gerente")) {
-				func = new Gerente("Gerente",salario, id, false, new Login(user, senha, palavraSeguranca), nome, cpf,
+				func = new Gerente("Gerente", salario, id, false, new Login(user, senha, palavraSeguranca), nome, cpf,
 						new Endereco(logradouro, cidade, cep, casa));
 				fachada.inserirFuncionario(func);
 			}
@@ -477,7 +537,17 @@ public class ControladorGerente {
 						new Endereco(logradouro, cidade, cep, casa));
 				fachada.inserirFuncionario(func);
 			}
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Funcionario inserido");
+			alert.setHeaderText(null);
+			alert.setContentText("Funcionario inserido com sucesso!");
+			alert.showAndWait();
 		} catch (NegocioException e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro ao cadastrar!");
+			alert.setHeaderText(null);
+			alert.setContentText(e.getMessage());
+			alert.showAndWait();
 			e.printStackTrace();
 		} catch (NumberFormatException ne) {
 			ne.printStackTrace();
@@ -487,7 +557,17 @@ public class ControladorGerente {
 	public void removerFuncionario(ActionEvent event) {
 		try {
 			fachada.removerFuncionario(Integer.parseInt(tfRemoFuncID.getText().toString()));
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Funcionario removido");
+			alert.setHeaderText(null);
+			alert.setContentText("Funcionario removido com sucesso!");
+			alert.showAndWait();
 		} catch (NegocioException e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro ao remover!");
+			alert.setHeaderText(null);
+			alert.setContentText(e.getMessage());
+			alert.showAndWait();
 			e.printStackTrace();
 		}
 	}
@@ -497,58 +577,63 @@ public class ControladorGerente {
 		try {
 			tbcFuncID.setCellValueFactory(new PropertyValueFactory<Funcionario, Integer>("identificacao"));
 			tbcFuncNome.setCellValueFactory(new PropertyValueFactory<Funcionario, String>("nome"));
-			tbcFuncFun.setCellValueFactory(new PropertyValueFactory<Funcionario,String>("funcao"));
+			tbcFuncFun.setCellValueFactory(new PropertyValueFactory<Funcionario, String>("funcao"));
 			tbcFuncSal.setCellValueFactory(new PropertyValueFactory<Funcionario, Double>("salario"));
 
 			obListFunc = FXCollections.observableArrayList(fachada.listarFuncionarios());
 			tbvListaFunc.setItems(obListFunc);
 		} catch (NegocioException e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro!");
+			alert.setHeaderText(null);
+			alert.setContentText(e.getMessage());
+			alert.showAndWait();
 			e.printStackTrace();
 		}
 	}
 
 	public void alterarFuncionario(ActionEvent event) {
 
-	//	int id = Integer.parseInt(tfAltFuncID1.getText().toString());
 		this.f = fachada.buscarFuncionario(Integer.parseInt(tfBuscFuncID1.getText().toString()));
 		if (f != null) {
 			try {
-				if(tfBuscFuncNome1.getText().isEmpty()){
+				if (tfBuscFuncNome1.getText().isEmpty()) {
 					String nome = tfBuscFuncNome1.getPromptText().toString();
 					tfBuscFuncNome1.setText(nome);
 					f.setNome(nome);
 				}
-				if(tfBuscFuncCPF1.getText().isEmpty()){
+				if (tfBuscFuncCPF1.getText().isEmpty()) {
 					String cpf = tfBuscFuncCPF1.getPromptText().toString();
 					tfBuscFuncCPF1.setText(cpf);
 					f.setCpf(cpf);
 				}
-				if(tfBuscFuncLog1.getText().isEmpty()){
+				if (tfBuscFuncLog1.getText().isEmpty()) {
 					String rua = tfBuscFuncLog1.getPromptText().toString();
 					tfBuscFuncLog1.setText(rua);
-					f.getEndereco().setRua(rua);;
+					f.getEndereco().setRua(rua);
+					;
 				}
-				if(tfBuscFuncCid1.getText().isEmpty()){
+				if (tfBuscFuncCid1.getText().isEmpty()) {
 					String cidade = tfBuscFuncCid1.getPromptText().toString();
 					tfBuscFuncCid1.setText(cidade);
 					f.getEndereco().setCidade(cidade);
 				}
-				if(tfBuscFuncCEP1.getText().isEmpty()){
+				if (tfBuscFuncCEP1.getText().isEmpty()) {
 					String cep = tfBuscFuncCEP1.getPromptText().toString();
 					tfBuscFuncCEP1.setText(cep);
 					f.getEndereco().setCep(cep);
 				}
-				if(tfBuscFuncCasa1.getText().isEmpty()){
+				if (tfBuscFuncCasa1.getText().isEmpty()) {
 					String casa = tfBuscFuncCasa1.getPromptText().toString();
 					tfBuscFuncCasa1.setText(casa);
 					f.getEndereco().setNumero(casa);
 				}
-				if(tfBuscFuncSal1.getText().isEmpty()){
+				if (tfBuscFuncSal1.getText().isEmpty()) {
 					double salario = Double.parseDouble(tfBuscFuncSal1.getPromptText().toString());
 					tfBuscFuncSal1.setText(String.valueOf(salario));
 					f.setSalario(salario);
 				}
-				if(tfBuscFuncFun1.getText().isEmpty()){
+				if (tfBuscFuncFun1.getText().isEmpty()) {
 					String funcao = tfBuscFuncFun1.getPromptText().toString();
 					tfBuscFuncFun1.setText(funcao);
 					f.setFuncao(funcao);
@@ -561,7 +646,7 @@ public class ControladorGerente {
 				f.getEndereco().setNumero(tfBuscFuncCasa1.getText().toString());
 				f.setSalario(Double.parseDouble(tfBuscFuncSal1.getText().toString()));
 				f.setFuncao(tfBuscFuncFun1.getText().toString());
-				
+
 				fachada.atualizarFuncionario(f);
 				tfBuscFuncNome1.clear();
 				tfBuscFuncCPF1.clear();
@@ -571,7 +656,17 @@ public class ControladorGerente {
 				tfBuscFuncCasa1.clear();
 				tfBuscFuncSal1.clear();
 				tfBuscFuncFun1.clear();
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("Funcionario alterado");
+				alert.setHeaderText(null);
+				alert.setContentText("Funcionario alterado com sucesso!");
+				alert.showAndWait();
 			} catch (NegocioException e) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Erro ao alterar!");
+				alert.setHeaderText(null);
+				alert.setContentText(e.getMessage());
+				alert.showAndWait();
 				e.printStackTrace();
 			} catch (NumberFormatException ne) {
 				ne.printStackTrace();
@@ -591,99 +686,134 @@ public class ControladorGerente {
 			tfBuscFuncCasa.setText(f.getEndereco().getNumero());
 			tfBuscFuncSal.setText(String.valueOf(f.getSalario()));
 			tfBuscFuncFun.setText(f.getFuncao());
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Funcionario nao encontrado");
+			alert.setHeaderText(null);
+			alert.setContentText("Funcionario inexistente, verifique se o ID foi digitado corretamente!");
+			alert.showAndWait();
 		}
 	}
-	
-	
-	//METODOS PARA VENDAS
+
+	// METODOS PARA VENDAS
 	ObservableList<ItemVenda> obListVenda;
 	double totalapagar = 0;
-	public void confirmacaofuncionario(ActionEvent event){
-		try{
+
+	public void confirmacaofuncionario(ActionEvent event) {
+		try {
 			int identificacao;
-			if(tfBuscFunVenda.getText().toString().isEmpty() == false){
+			if (tfBuscFunVenda.getText().toString().isEmpty() == false) {
 				identificacao = Integer.parseInt(tfBuscFunVenda.getText().toString());
 				this.f = fachada.buscarFuncionario(identificacao);
-	
-					if(f !=  null){
-						tfBuscFunVenda.setEditable(false);
-						Alert alert = new Alert(AlertType.INFORMATION);
-						alert.setTitle("Funcionario encontrado!");
-						alert.setHeaderText(null);
-						alert.setContentText("Funcionário encontrado");
-						alert.showAndWait();
-					}
-					else{
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("Funcionario não encontrado!");
-				alert.setHeaderText(null);
-				alert.setContentText("Funcionário não encontrado, verifique se você digitou a identificação correta");
-				alert.showAndWait();
-			}
+
+				if (f != null) {
+					tfBuscFunVenda.setEditable(false);
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Funcionario encontrado!");
+					alert.setHeaderText(null);
+					alert.setContentText("Funcionário encontrado");
+					alert.showAndWait();
+				} else {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Funcionario não encontrado!");
+					alert.setHeaderText(null);
+					alert.setContentText(
+							"Funcionário não encontrado, verifique se você digitou a identificação correta");
+					alert.showAndWait();
+				}
 			}
 		} catch (NumberFormatException ne) {
 			ne.printStackTrace();
 		}
 	}
-	
-	public void finalizarvenda(ActionEvent event){
+
+	public void finalizarvenda(ActionEvent event) {
 		try {
 			tfTotalPagar.setText(String.valueOf(totalapagar));
 			fachada.encerrarPedido();
 			fachada.gerarNotaFiscal(f);
+			totalapagar = 0;
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Nota fiscal gerada");
+			alert.setHeaderText(null);
+			alert.setContentText("Nota fiscal gerada com sucesso!");
+			alert.showAndWait();
 		} catch (NegocioException e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro!");
+			alert.setHeaderText(null);
+			alert.setContentText(e.getMessage());
+			alert.showAndWait();
 			e.printStackTrace();
 		}
 	}
-	public void inseriritem(ActionEvent event){
-		
+
+	public void inseriritem(ActionEvent event) {
+
 		int codigo = Integer.parseInt(tfBuscProdCodV.getText().toString());
 		Produto p = fachada.buscarProduto(codigo);
-		if(p != null){
+		if (p != null) {
 			int quantidade = Integer.parseInt(tfBuscProdQtdV.getText().toString());
-				ItemVenda item = new ItemVenda(p, quantidade);
-				try {
-					fachada.inserirItem(item);
-					listaritensvenda();
-					tbvListaItemV.refresh();
-					totalapagar += item.getValort();
-				} catch (NegocioException e) {
-					e.printStackTrace();
-				}
+			ItemVenda item = new ItemVenda(p, quantidade);
+			try {
+				fachada.inserirItem(item);
+				listaritensvenda();
+				tbvListaItemV.refresh();
+				totalapagar += item.getValort();
+			} catch (NegocioException e) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Erro!");
+				alert.setHeaderText(null);
+				alert.setContentText(e.getMessage());
+				alert.showAndWait();
+				e.printStackTrace();
 			}
 		}
-	public void removerItem(ActionEvent event){
-		
+	}
+
+	public void removerItem(ActionEvent event) {
+
 		int codigo = Integer.parseInt(tfBuscProdCodV.getText().toString());
 		Produto p = fachada.buscarProduto(codigo);
-		if(p != null){
+		if (p != null) {
 			int quantidade = Integer.parseInt(tfBuscProdQtdV.getText().toString());
-				ItemVenda item = new ItemVenda(p, quantidade);
-				try {
-					fachada.remover(item.getCodigo());
-					listaritensvenda();
-					tbvListaItemV.refresh();
-					totalapagar -= item.getValort();
-				} catch (NegocioException e) {
-					e.printStackTrace();
-				}
+			ItemVenda item = new ItemVenda(p, quantidade);
+			try {
+				fachada.remover(item.getCodigo());
+				listaritensvenda();
+				tbvListaItemV.refresh();
+				totalapagar -= item.getValort();
+			} catch (NegocioException e) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Erro!");
+				alert.setHeaderText(null);
+				alert.setContentText(e.getMessage());
+				alert.showAndWait();
+				e.printStackTrace();
 			}
 		}
-	
-	public void listaritensvenda(){
+	}
+
+	public void listaritensvenda() {
 		try {
 			tbcItemVNome.setCellValueFactory(new PropertyValueFactory<ItemVenda, String>("nome"));
 			tbcItemVPreco.setCellValueFactory(new PropertyValueFactory<ItemVenda, Double>("preco"));
 			tbcItemVQtd.setCellValueFactory(new PropertyValueFactory<ItemVenda, Integer>("qtd"));
 			tbcItemVTotal.setCellValueFactory(new PropertyValueFactory<ItemVenda, Double>("valort"));
-			
+
 			obListVenda = FXCollections.observableArrayList(fachada.listarItensVenda());
 			tbvListaItemV.setItems(obListVenda);
 		} catch (NegocioException e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro!");
+			alert.setHeaderText(null);
+			alert.setContentText(e.getMessage());
+			alert.showAndWait();
 			e.printStackTrace();
 		}
 	}
-	public void cancelarvenda(){
+
+	public void cancelarvenda() {
 		fachada.cancelarPedido();
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Venda cancelada");
@@ -692,25 +822,27 @@ public class ControladorGerente {
 		alert.showAndWait();
 		tbvListaItemV.refresh();
 	}
-	
+
 	// NOTA FISCAL
 	ObservableList<NotaFiscal> obListNF;
-	
-	public void listarnotasfiscais(){
-			tbcNF.setCellValueFactory(new PropertyValueFactory<NotaFiscal, Integer>("codigoDaNota"));
-			tbcTotalNF.setCellValueFactory(new PropertyValueFactory<NotaFiscal, Double>("totalPagar"));
-			tbcFuncNF.setCellValueFactory(new PropertyValueFactory<NotaFiscal, String>("funcionario"));
-			obListNF = FXCollections.observableArrayList(fachada.listarVendas());
-			tbvNF.setItems(obListNF);
+
+	public void listarnotasfiscais() {
+		tbcNF.setCellValueFactory(new PropertyValueFactory<NotaFiscal, Integer>("codigoDaNota"));
+		tbcTotalNF.setCellValueFactory(new PropertyValueFactory<NotaFiscal, Double>("totalPagar"));
+		tbcFuncNF.setCellValueFactory(new PropertyValueFactory<NotaFiscal, String>("funcionario"));
+		obListNF = FXCollections.observableArrayList(fachada.listarVendas());
+		tbvNF.setItems(obListNF);
 	}
-	public void selecionarNotaFiscalTableView(NotaFiscal nf){
-		
-		
-		//tbcNFItemNome.setCellValueFactory(new PropertyValueFactory<nf, ItemVenda>("itensVendidos"));
-	//	tbcNFItemQtd;
-	//	tbcNFItemPreco;
-	//	tbcNFItemTotal;
+
+	public void selecionarNotaFiscalTableView(NotaFiscal nf) {
+
+		// tbcNFItemNome.setCellValueFactory(new PropertyValueFactory<nf,
+		// ItemVenda>("itensVendidos"));
+		// tbcNFItemQtd;
+		// tbcNFItemPreco;
+		// tbcNFItemTotal;
 	}
+
 	// DESLOGAR
 	public void sair(ActionEvent event) {
 		main = Principal.getInstance();

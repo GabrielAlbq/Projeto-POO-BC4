@@ -31,7 +31,6 @@ public class RepositorioVenda implements IRepositorioVenda, Serializable {
 
 	public static RepositorioVenda getInstancia() {
 		if (instancia == null) {
-	//		instancia = new RepositorioVenda();
 			instancia = RepositorioVenda.carregarArquivo();
 		}
 		return instancia;
@@ -46,39 +45,30 @@ public class RepositorioVenda implements IRepositorioVenda, Serializable {
 		return itensvenda;
 	}
 
-	public String listaItensVenda() {
-		String text = "";
-		for (int i = 0; i < this.itensvenda.size(); i++) { // Imprimir na tela
-															// todos os itens de
-															// venda
-			text += itensvenda.get(i).toString();
-		}
-		return text;
-	}
-
 	public List<NotaFiscal> listarNotasFiscais() {
 		return notas;
 	}
 
-	public void adicionarNotaFiscal(NotaFiscal notaFiscal) { // Adiciona nota
-																// fiscal
+	public void adicionarNotaFiscal(NotaFiscal notaFiscal) {
 		notas.add(notaFiscal);
 	}
 
-	public void limparHistoricoNotasFiscais() { // Limpa todas as notas fiscais
+	public void limparHistoricoNotasFiscais() {
 		this.notas.clear();
 	}
 
-	public void inserirItemVenda(ItemVenda item) { // Adiciona um ItemVenda para o mercadinho
+	public void inserirItemVenda(ItemVenda item) {
 		itensvenda.add(item);
 	}
+
 	public void removerItemVenda(int posicao) {
 		itensvenda.remove(posicao);
 	}
+
 	public void limparArrayItemVenda() {
 		this.itensvenda.clear();
 	}
-	
+
 	private static RepositorioVenda carregarArquivo() {
 
 		RepositorioVenda repositorio = null;

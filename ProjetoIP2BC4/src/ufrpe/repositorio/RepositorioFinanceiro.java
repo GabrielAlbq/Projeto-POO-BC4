@@ -11,38 +11,36 @@ import java.util.ArrayList;
 
 import ufrpe.negocio.beans.Funcionario;
 
-public class RepositorioFinanceiro implements IRepositorioFinanceiro, Serializable{
-	
-	
+public class RepositorioFinanceiro implements IRepositorioFinanceiro, Serializable {
+
 	private static final long serialVersionUID = -3295446455781245385L;
 	IRepositorioFuncionario repositorioFuncionario;
 	IRepositorioFinanceiro repositorioFinanceiro;
-	
+
 	// ATRIBUTO
-		
-	private double rendaBruta; 			// Total inicial do mes
-	private double totalFuncionario; 	// Pagamento dos funcionarios
-	private double totalFornecedor; 	// Falta implementar (2 VA)
-	private double rendaLiquida; 	    // Total de dinheiro apos o pagamento de func + forn 
-	private double totalVendas; 		// Total de vendas - total fornecedor = lucro das vendas
-	
+
+	private double rendaBruta;
+	private double totalFuncionario;
+	private double totalFornecedor;
+	private double rendaLiquida;
+	private double totalVendas;
+
 	// SINGLETON
-	
+
 	private static RepositorioFinanceiro instancia;
-		
-	public static RepositorioFinanceiro getInstancia () {
-		if( instancia == null ) {
-			//instancia = new RepositorioFinanceiro();
+
+	public static RepositorioFinanceiro getInstancia() {
+		if (instancia == null) {
 			instancia = RepositorioFinanceiro.carregarbd();
 		}
 		return instancia;
 	}
-	
-	// CONSTRUTOR 
-	
+
+	// CONSTRUTOR
+
 	private RepositorioFinanceiro() {
 		this.repositorioFuncionario = RepositorioFuncionario.getInstancia();
-//		this.repositorioFinanceiro = RepositorioFinanceiro.getInstancia();
+		// this.repositorioFinanceiro = RepositorioFinanceiro.getInstancia();
 		this.rendaBruta = 100000;
 		this.totalFuncionario = totalSalarioFuncionarios();
 		this.totalFornecedor = totalFornecedor();
@@ -51,7 +49,7 @@ public class RepositorioFinanceiro implements IRepositorioFinanceiro, Serializab
 	}
 
 	// GET E SET
-	
+
 	public double getRendaBruta() {
 		return rendaBruta;
 	}
@@ -59,10 +57,10 @@ public class RepositorioFinanceiro implements IRepositorioFinanceiro, Serializab
 	public void setRendaBruta(double rendaBruta) {
 		this.rendaBruta = rendaBruta;
 	}
-	
+
 	// METODOS
-	
-	public double totalSalarioFuncionarios () {
+
+	public double totalSalarioFuncionarios() {
 		totalFuncionario = 0;
 		ArrayList<Integer> func = new ArrayList<>();
 		for (int i = 0; i < func.size(); i++) {
@@ -70,36 +68,37 @@ public class RepositorioFinanceiro implements IRepositorioFinanceiro, Serializab
 		}
 		return totalFuncionario;
 	}
-	
-	public double totalFornecedor () {
+
+	public double totalFornecedor() {
 		totalFornecedor = 0;
-		totalFornecedor = totalFornecedor*(0.75);
+		totalFornecedor = totalFornecedor * (0.75);
 		return totalFornecedor;
 	}
-	
-	public void pagarFuncionario (Funcionario func){
+
+	public void pagarFuncionario(Funcionario func) {
 		rendaBruta -= func.getSalario();
 		System.out.println("Funcionario pago!");
 	}
-	
+
 	public double rendaLiquida() {
 		return rendaLiquida = rendaBruta - totalFornecedor() - totalSalarioFuncionarios();
 	}
-	
-	public void receberDinheiroVenda (double valor){
-		totalVendas += valor;		
+
+	public void receberDinheiroVenda(double valor) {
+		totalVendas += valor;
 	}
-	
-	// TO STRING 
-	
-	public String exibirFinancas (){
+
+	// TO STRING
+
+	public String exibirFinancas() {
 		String teste = "";
-		teste += "\n\n\t\tExibir Financas\n\tRenda total: R$ "+rendaBruta + "\n\tSalario dos funcionarios: R$ ";
-		teste += totalSalarioFuncionarios()+"\n\tTotal fornecedor: R$ "+totalFornecedor()+"\n\tRenda liquida: R$ ";
-		teste += rendaLiquida()+"\n\tTotal Vendas: R$ "+totalVendas+"\n\n";
+		teste += "\n\n\t\tExibir Financas\n\tRenda total: R$ " + rendaBruta + "\n\tSalario dos funcionarios: R$ ";
+		teste += totalSalarioFuncionarios() + "\n\tTotal fornecedor: R$ " + totalFornecedor()
+				+ "\n\tRenda liquida: R$ ";
+		teste += rendaLiquida() + "\n\tTotal Vendas: R$ " + totalVendas + "\n\n";
 		return teste;
 	}
-	
+
 	private static RepositorioFinanceiro carregarbd() {
 
 		RepositorioFinanceiro repositorio = null;
@@ -134,7 +133,7 @@ public class RepositorioFinanceiro implements IRepositorioFinanceiro, Serializab
 				e1.printStackTrace();
 			}
 
-			//e.printStackTrace();
+			// e.printStackTrace();
 		} finally {
 			if (ois != null) {
 				try {
@@ -175,5 +174,5 @@ public class RepositorioFinanceiro implements IRepositorioFinanceiro, Serializab
 
 		}
 	}
-	
+
 }

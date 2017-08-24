@@ -8,8 +8,6 @@ import ufrpe.negocio.beans.NotaFiscal;
 
 public interface IRepositorioVenda {
 
-	String listaItensVenda();
-
 	List<ItemVenda> listar();
 
 	List<NotaFiscal> listarNotasFiscais();
