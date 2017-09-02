@@ -15,11 +15,14 @@ import ufrpe.negocio.beans.NotaFiscal;
 
 public class RepositorioVenda implements IRepositorioVenda, Serializable {
 
-	// ATRIBUTOS
 
+	private static final long serialVersionUID = 3552918299042485851L;
+
+	// ATRIBUTOS
 	private ArrayList<ItemVenda> itensvenda = new ArrayList<>();
 	private ArrayList<NotaFiscal> notas = new ArrayList<>();
-
+	private int contadorCodigoNota = 1000;
+	
 	// SINGLETON / CONSTRUTOR
 
 	private static RepositorioVenda instancia;
@@ -34,6 +37,11 @@ public class RepositorioVenda implements IRepositorioVenda, Serializable {
 			instancia = RepositorioVenda.carregarArquivo();
 		}
 		return instancia;
+	}
+	
+
+	public int getContadorCodigoNota() {
+		return contadorCodigoNota;
 	}
 
 	// METODOS
@@ -51,6 +59,7 @@ public class RepositorioVenda implements IRepositorioVenda, Serializable {
 
 	public void adicionarNotaFiscal(NotaFiscal notaFiscal) {
 		notas.add(notaFiscal);
+		contadorCodigoNota++;
 	}
 
 	public void limparHistoricoNotasFiscais() {

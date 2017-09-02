@@ -13,6 +13,7 @@ public interface IRepositorioVenda {
 	List<NotaFiscal> listarNotasFiscais();
 	
 	ArrayList<ItemVenda> getItensvenda();
+	int getContadorCodigoNota();
 	 
 	void adicionarNotaFiscal(NotaFiscal notaFiscal);
 

@@ -1,6 +1,7 @@
 package ufrpe.gui.model;
 
 import java.io.IOException;
+import java.util.List;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -280,34 +281,35 @@ public class ControladorAdmin {
 	@FXML
 	TableColumn<NotaFiscal, String> tbcFuncNF;
 	@FXML
-	TableColumn<NotaFiscal, ItemVenda> tbcNFItemNome;
+	TableColumn<ItemVenda, String> tbcNFItemNome; //// TESTE DA
+															//// VENDAAAAAA
 	@FXML
-	TableColumn<NotaFiscal, Integer> tbcNFItemQtd;
+	TableColumn<ItemVenda, Integer> tbcNFItemQtd;
 	@FXML
-	TableColumn<NotaFiscal, Double> tbcNFItemPreco;
+	TableColumn<ItemVenda, Double> tbcNFItemPreco;
 	@FXML
-	TableColumn<NotaFiscal, Double> tbcNFItemTotal;
+	TableColumn<ItemVenda, Double> tbcNFItemTotal;
 	@FXML
 	TitledPane tpListaNF;
 	@FXML
-	TableView<NotaFiscal> tbvIVNF;
+	TableView<ItemVenda> tbvIVNF;
 
 	@FXML
 	private void initialize() {
-		listarproduto();
-		listarFuncionario();
-		listarnotasfiscais();
+
 		this.cbCadFuncFun.getItems().addAll("Gerente", "Vendedor");
 
 		tpListProd.expandedProperty().addListener(new ChangeListener<Boolean>() {
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+				listarproduto();
 				tbvListaProd.refresh();
 			}
 		});
 		tpListFunc.expandedProperty().addListener(new ChangeListener<Boolean>() {
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+				listarFuncionario();
 				tbvListaFunc.refresh();
 			}
 		});
@@ -315,6 +317,7 @@ public class ControladorAdmin {
 
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+				listarnotasfiscais();
 				tbvNF.refresh();
 
 			}
@@ -733,6 +736,11 @@ public class ControladorAdmin {
 			fachada.encerrarPedido();
 			fachada.gerarNotaFiscal(f);
 			totalapagar = 0;
+			tfBuscFunVenda.setEditable(true);
+			tfBuscProdCodV.clear();
+			tfBuscProdQtdV.clear();
+		//	tfTotalPagar.clear();
+			tbvListaItemV.refresh();
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Nota fiscal gerada");
 			alert.setHeaderText(null);
@@ -760,6 +768,7 @@ public class ControladorAdmin {
 				listaritensvenda();
 				tbvListaItemV.refresh();
 				totalapagar += item.getValort();
+				tfTotalPagar.setText(String.valueOf(totalapagar));
 			} catch (NegocioException e) {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Erro!");
@@ -825,6 +834,8 @@ public class ControladorAdmin {
 
 	// NOTA FISCAL
 	ObservableList<NotaFiscal> obListNF;
+	// ITENS DA NOTA FISCAL
+	ObservableList<ItemVenda> obIVNF;
 
 	public void listarnotasfiscais() {
 		tbcNF.setCellValueFactory(new PropertyValueFactory<NotaFiscal, Integer>("codigoDaNota"));
@@ -836,11 +847,12 @@ public class ControladorAdmin {
 
 	public void selecionarNotaFiscalTableView(NotaFiscal nf) {
 
-		// tbcNFItemNome.setCellValueFactory(new PropertyValueFactory<nf,
-		// ItemVenda>("itensVendidos"));
-		// tbcNFItemQtd;
-		// tbcNFItemPreco;
-		// tbcNFItemTotal;
+			tbcNFItemNome.setCellValueFactory(new PropertyValueFactory<ItemVenda, String>("nome"));
+			tbcNFItemQtd.setCellValueFactory(new PropertyValueFactory<ItemVenda, Integer>("qtd"));
+			tbcNFItemPreco.setCellValueFactory(new PropertyValueFactory<ItemVenda, Double>("preco"));
+			tbcNFItemTotal.setCellValueFactory(new PropertyValueFactory<ItemVenda, Double>("valort"));
+			obIVNF = FXCollections.observableArrayList(nf.getItensVendidos());
+			tbvIVNF.setItems(obIVNF);
 	}
 
 	// DESLOGAR

@@ -31,7 +31,7 @@ public class ControladorVenda {
 		repoVenda = RepositorioVenda.getInstancia();
 		controladorFinanceiro = ControladorFinanceiro.getInstancia();
 		controlEstoque = ControladorEstoque.getInstancia();
-		contadorCodigoNota = 1000;
+		contadorCodigoNota = repoVenda.getContadorCodigoNota();
 		totalPagar = 0;
 	}
 
@@ -41,7 +41,7 @@ public class ControladorVenda {
 		}
 		return instancia;
 	}
-
+	
 	// METODOS
 
 	public List<NotaFiscal> listarNotasFiscais() {
@@ -118,7 +118,6 @@ public class ControladorVenda {
 	public void gerarNotaFiscal(Funcionario funcionario) {
 		NotaFiscal teste = new NotaFiscal(funcionario, repoVenda.getItensvenda(), totalPagar, contadorCodigoNota,
 				repoVenda.listar().size());
-		contadorCodigoNota++;
 		repoVenda.adicionarNotaFiscal(teste);
 		repoVenda.listar().clear();
 		this.totalPagar = 0;
