@@ -84,6 +84,7 @@ public class ControladorLogin {
 					root = FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/Admin.fxml"));
 					root.setUserData(funcionariologado.getNome().toString());
 					Scene scene = new Scene(root);
+					scene.getStylesheets().add("Logado.css");
 					stage.setScene(scene);
 					stage.setTitle("Bem vindo, " + funcionariologado.getNome());
 

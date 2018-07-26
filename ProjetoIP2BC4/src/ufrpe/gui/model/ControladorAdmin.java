@@ -864,6 +864,7 @@ public class ControladorAdmin {
 			root = (Parent) FXMLLoader.load(getClass().getResource("/ufrpe/gui/views/ShowLogin.fxml"));
 			Scene scene = new Scene(root);
 			stage = main.getPrimaryStage();
+			scene.getStylesheets().add("LayoutPrincipal.css");
 			stage.setScene(scene);
 			stage.setTitle("Sistema de Mercado");
 			main.changeStage(stage);

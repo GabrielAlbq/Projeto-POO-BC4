@@ -1,0 +1,30 @@
+.root{
+	-fx-background-color: #2B3137;
+}
+.label{
+	-fx-text-fill: e8e8e8;
+}
+.button{
+	-fx-background-color: #404448;
+	-fx-background-radius: 6;
+	-fx-text-fill: #e8e8e8;
+}
+.text-field{
+	-fx-text-fill: #e8e8e8;
+}
+.tab-header-background{
+	-fx-background-color: #2B3137;
+}
+.tab-label{
+	-fx-text-fill: #FFFFFF;
+}
+.tab{
+	-fx-background-color: #404448;
+	-fx-border-color: #404448;
+}
+.tab:selected
+{
+  	-fx-border-color: #2B3137;
+  	-fx-faint-focus-color: transparent;
+  	-fx-focus-color: #404448;
+}
